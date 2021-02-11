@@ -18,9 +18,9 @@ class UnsortedCarList
         void MakeEmpty();
         void AddCar(Car);
         Car FindCar(string);
+        int FindCarInt(string);
+        void ChangeAvailability(string);
         void DeleteCar(string);
-        void ResetList();
-        Car GetNextCar();
         int GetLength();
         void PrintList();
         ~UnsortedCarList();

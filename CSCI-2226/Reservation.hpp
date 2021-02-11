@@ -7,7 +7,7 @@ using namespace std;
 
 class Reservation
 {
-    private: //can this be protected?
+    private: 
         string name;
         string vehicleRented;
 

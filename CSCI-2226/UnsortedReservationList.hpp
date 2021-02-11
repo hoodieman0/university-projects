@@ -16,11 +16,10 @@ class UnsortedReservationList
     
     public:
         void MakeEmpty();
-        void AddReservation(Reservation);
-        Reservation FindReservation(Reservation);
+        void AddReservation(Reservation&);
+        Reservation FindReservation(string);
+        string FindReservationCar(Reservation);
         void DeleteReservation(string);
-        void ResetList();
-        Reservation GetNextReservation();
         int GetLength();
         void PrintList();
         ~UnsortedReservationList();

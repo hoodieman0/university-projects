@@ -27,8 +27,3 @@ std::ostream& operator<<(std::ostream& os, const Reservation& res){
 	os << "Name: " << res.GetName() << "\nRented Vehicle: " << res.GetVehicleRented();
 	return os;
 }
-
-// std::istream& operator>>(std::istream& is, Reservation& res){
-// 	is >> res.name;
-// 	return is;
-// }

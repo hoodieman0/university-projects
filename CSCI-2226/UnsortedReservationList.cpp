@@ -5,22 +5,27 @@ void UnsortedReservationList::MakeEmpty()
     length = 0;
 }
         
-void UnsortedReservationList::AddReservation(Reservation newReservation)
+void UnsortedReservationList::AddReservation(Reservation& newReservation)
 {
     reservationArray[length] = newReservation;
     length++;
 }
 
-Reservation UnsortedReservationList::FindReservation(Reservation comparison)
+Reservation UnsortedReservationList::FindReservation(string comparison)
 {
     for(int i = 0; i < length; i++)
     {
-        if(reservationArray[i] == comparison)
+        if(reservationArray[i].GetName() == comparison)
         {
-            return reservationArray[currentPos];
+            return reservationArray[i];
         }
     }
-    throw("Reservation Not Found");
+    // throw "Reservation Not Found";
+}
+
+string UnsortedReservationList::FindReservationCar(Reservation comparison)
+{
+    return comparison.GetVehicleRented();
 }
 
 void UnsortedReservationList::DeleteReservation(string comparison)
@@ -32,21 +37,6 @@ void UnsortedReservationList::DeleteReservation(string comparison)
             reservationArray[i] = reservationArray[--length]; //why do I have to decrement first?
         }
     }
-}
-
-void UnsortedReservationList::ResetList()
-{
-    currentPos = 0;
-}
-
-Reservation UnsortedReservationList::GetNextReservation()
-{
-    if(currentPos < length)
-    {
-        currentPos++;
-        return reservationArray[currentPos];
-    }
-    throw("Out of Range");
 }
 
 int UnsortedReservationList::GetLength()

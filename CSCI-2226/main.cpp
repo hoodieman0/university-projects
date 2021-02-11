@@ -8,10 +8,11 @@ Created:: 3 February 2021
 Goal:: Create and use unsorted lists using proper classes and ADTs.
 
 Todo::
--Remove functions for Cars
--Remove functions for Reservations (remember bool isAvailable)
--comment code
--write headers (author, purpose, input, output)
+-Fix setAvailable                                   -solved
+-reservations select car by number in list          -in progress
+-Cant take out car if reserved                      -solved
+-comment code                                       -in progress
+-write headers (author, purpose, input, output)     -in progress
 */
 
 #include "Car.hpp"
@@ -20,6 +21,7 @@ Todo::
 #include "UnsortedReservationList.hpp"
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main()
@@ -43,11 +45,26 @@ int main()
     UnsortedReservationList* reservationList = new UnsortedReservationList();
 
     cout << "\n----- XYZ Car Rental Serivce -----" << endl;
+
+    Car* test = new Car;
+
+    test->Initialize("AJ717", "Nissan", "Rogue", static_cast<VehicleType>(1), 220);
+    //getAvailable and setAvailable works
+    test->SetAvailable(true);
+    cout << test->GetAvailibility() << endl; //should be true
+    carList->AddCar(*test);
+    carList->ChangeAvailability("AJ717");
+    carList->PrintList(); //should be false
+
+
+
+
     
     while(!exitCondition)
     {
         cout << "\n\nType An Option:\n1. List All Cars\n2. Add a Car\n3. Remove a Car\n4. List All Reservations\n5. Add a Reservation\n6. Cancel a Reservation\n7. Exit Program\n" << endl;
         //is there a way to make this on multiple lines?
+
         cin >> methodController;
         switch (methodController)
         {
@@ -60,7 +77,8 @@ int main()
                 {
                     cout << "\n~Input Car Information~\n" << endl;
                     
-                    cout << "License Plate: "; 
+
+                    cout << "License Plate: " << flush; 
                     cin >> inputPlate;
                     cout << "Make: ";
                     cin >> inputMake;
@@ -75,7 +93,7 @@ int main()
                     newCar->Initialize(inputPlate, inputMake, inputModel, static_cast<VehicleType>(inputType), inputPrice); //is this okay?
                     
                     carList->AddCar(*newCar);
-                    cout << "\n" << inputPlate << " was added to the list and is available.";
+                    cout << "\n" << newCar->GetPlateNumber() << " was added to the list and is available.";
 
                     break;
                 }
@@ -97,20 +115,27 @@ int main()
                     cout << "\n~Input Reservation Information~\n" << endl;
                     
                     cout << "Name: " << flush; 
-                    cin >> noskipws >> inputName; //get or getline work for whole name?
-                    cout << inputName;
+                    cin >> inputName; //get or getline work for whole name?
 
                     carList->PrintList();
-                    cout << "\n\nLicense Plate of Car to Rent: " << endl;
+                    cout << "\n\nLicense Plate of Car to Rent: ";
                     cin >> inputRent;
-                    
-                    Reservation* newReservation = new Reservation;
-                    newReservation->Initialize(inputName, inputRent);
-                    Car* newCar = new Car;
-                    *newCar = carList->FindCar(inputRent);
-                    newCar->SetAvailable(false);                    
 
-                    cout << "New reservation under " << inputName << " was created.";
+                    
+                    if(carList->FindCar(inputRent).GetAvailibility())
+                    {
+                        Reservation* newReservation = new Reservation;
+                        newReservation->Initialize(inputName, inputRent);
+                        reservationList->AddReservation(*newReservation);   
+
+                        carList->ChangeAvailability(inputName);
+
+                        cout << "New Reservation Under " << inputName << " Was Created.";
+                    }
+                    else
+                    {
+                        cout << "Car Is Currently Reserved.";
+                    }
 
                     break;
                 };
@@ -118,12 +143,12 @@ int main()
                 {
                     cout << "Enter Name: ";
                     cin >> deleteReservation;
+                    
+                    
+                    carList->ChangeAvailability(reservationList->FindReservationCar(reservationList->FindReservation(deleteReservation)));
 
                     reservationList->DeleteReservation(deleteReservation);
 
-                    Car* newCar = new Car;
-                    *newCar = carList->FindCar(inputRent);
-                    newCar->SetAvailable(true);
                     cout << "Reservation Deleted, Car Made Available";
 
 
