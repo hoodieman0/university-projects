@@ -1,15 +1,43 @@
+
+/*
+XYZ Rental Car Service Program 1
+
+Author:: James Mok
+
+Created:: 3 February 2021
+*/
+
 #include "UnsortedReservationList.hpp"
 
-void UnsortedReservationList::MakeEmpty()
-{
-    length = 0;
-}
+/*
+Function:: AddReservation
+
+Author:: James Mok
+
+Type:: Transformer
+
+Input:: Reservation reservationToAdd
+
+Output:: none
+*/
         
 void UnsortedReservationList::AddReservation(Reservation& newReservation)
 {
     reservationArray[length] = newReservation;
     length++;
 }
+
+/*
+Function:: FindReservation
+
+Author:: James Mok
+
+Type:: Iterator
+
+Input:: string name
+
+Output:: Reservation reservationOfName
+*/
 
 Reservation UnsortedReservationList::FindReservation(string comparison)
 {
@@ -20,13 +48,36 @@ Reservation UnsortedReservationList::FindReservation(string comparison)
             return reservationArray[i];
         }
     }
-    // throw "Reservation Not Found";
 }
+
+/*
+Function:: FindReservationCar
+
+Author:: James Mok
+
+Type:: Observer
+
+Input:: Reservation reservation
+
+Output:: string license plate
+*/
 
 string UnsortedReservationList::FindReservationCar(Reservation comparison)
 {
     return comparison.GetVehicleRented();
 }
+
+/*
+Function:: DeleteReservation
+
+Author:: James Mok
+
+Type:: Transformer
+
+Input:: string licnese plate
+
+Output:: none
+*/
 
 void UnsortedReservationList::DeleteReservation(string comparison)
 {
@@ -39,10 +90,17 @@ void UnsortedReservationList::DeleteReservation(string comparison)
     }
 }
 
-int UnsortedReservationList::GetLength()
-{
-    return length;
-}
+/*
+Function:: PrintList
+
+Author:: James Mok
+
+Type:: Iterator
+
+Input:: none
+
+Output:: prints all reservations in list
+*/
 
 void UnsortedReservationList::PrintList()
 {
@@ -53,5 +111,7 @@ void UnsortedReservationList::PrintList()
     }
     cout << "///////////////////////////////";
 }
+
+//destructor
 
 UnsortedReservationList::~UnsortedReservationList() {}

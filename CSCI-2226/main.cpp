@@ -1,5 +1,5 @@
 /*
-XYZ Rental Car Service
+XYZ Rental Car Service Program 1
 
 Author:: James Mok
 
@@ -11,8 +11,8 @@ Todo::
 -Fix setAvailable                                   -solved
 -reservations select car by number in list w/cancel -solved
 -Cant take out car if reserved                      -solved
--comment code                                       -in progress
--write headers (author, purpose, input, output)     -in progress
+-comment code                                       -solved
+-write headers (author, purpose, input, output)     -solved
 */
 
 #include "Car.hpp"
@@ -140,7 +140,7 @@ int main()
 
                     break;
                 };
-            case 6: //remove reservation FIX available status
+            case 6: //remove reservation
                 {
                     cout << "Enter Name: ";
                     cin >> deleteReservation;

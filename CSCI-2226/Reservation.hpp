@@ -1,3 +1,12 @@
+
+/*
+XYZ Rental Car Service Program 1
+
+Author:: James Mok
+
+Created:: 3 February 2021
+*/
+
 #ifndef RESERVATION_HPP
 #define RESERVATION_HPP
 

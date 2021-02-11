@@ -1,3 +1,12 @@
+
+/*
+XYZ Rental Car Service Program 1
+
+Author:: James Mok
+
+Created:: 3 February 2021
+*/
+
 #ifndef UNSORTEDCARLIST_HPP
 #define UNSORTEDCARLIST_HPP
 
@@ -15,13 +24,11 @@ class UnsortedCarList
         Car carArray[MAX_POS];
     
     public:
-        void MakeEmpty();
         void AddCar(Car);
         Car FindCar(string);
         Car& GetCarAtIndex(int);
         void ChangeAvailability(string);
         void DeleteCar(string);
-        int GetLength();
         void PrintList();
         ~UnsortedCarList();
 

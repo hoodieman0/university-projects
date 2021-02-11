@@ -1,15 +1,43 @@
+
+/*
+XYZ Rental Car Service Program 1
+
+Author:: James Mok
+
+Created:: 3 February 2021
+*/
+
 #include "UnsortedCarList.hpp"
 
-void UnsortedCarList::MakeEmpty()
-{
-    length = 0;
-}
-        
+/*
+Function:: AddCar
+
+Author:: James Mok
+
+Type:: Transformer
+
+Input:: Car carToAdd
+
+Output:: none
+*/
+
 void UnsortedCarList::AddCar(Car newCar)
 {
     carArray[length] = newCar;
     length++;
 }
+
+/*
+Function:: FindCar
+
+Author:: James Mok
+
+Type:: Iterator
+
+Input:: string license plate
+
+Output:: Car carToFind
+*/
 
 Car UnsortedCarList::FindCar(string comparison)
 {
@@ -22,11 +50,35 @@ Car UnsortedCarList::FindCar(string comparison)
     }
 }
 
+/*
+Function:: GetCarAtIndex
+
+Author:: James Mok
+
+Type:: Observer
+
+Input:: int indexOfCar
+
+Output:: Car carToReserve
+*/
+
 Car& UnsortedCarList::GetCarAtIndex(int index)
 {
     return carArray[index - 1];  
     throw std::out_of_range ("Index Out of Range");
 }
+
+/*
+Function:: ChangeAvailability
+
+Author:: James Mok
+
+Type:: Transformer
+
+Input:: string license plate
+
+Output:: none
+*/
 
 void UnsortedCarList::ChangeAvailability(string comparison)
 {
@@ -50,6 +102,18 @@ void UnsortedCarList::ChangeAvailability(string comparison)
     // throw("Car Not Found");
 }
 
+/*
+Function:: DeleteCar
+
+Author:: James Mok
+
+Type:: Transformer
+
+Input:: string license plate
+
+Output:: none
+*/
+
 void UnsortedCarList::DeleteCar(string comparison)
 {
     for(int i = 0; i < length; i++)
@@ -70,10 +134,17 @@ void UnsortedCarList::DeleteCar(string comparison)
     }
 }
 
-int UnsortedCarList::GetLength()
-{
-    return length+1;
-}
+/*
+Function:: PrintList
+
+Author:: James Mok
+
+Type:: Iterator
+
+Input:: none
+
+Output:: prints all cars in the list
+*/
 
 void UnsortedCarList::PrintList()
 {
@@ -84,5 +155,7 @@ void UnsortedCarList::PrintList()
     }
     cout << "///////////////////////////////";
 }
+
+//destructor
 
 UnsortedCarList::~UnsortedCarList() {}

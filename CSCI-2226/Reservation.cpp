@@ -1,4 +1,25 @@
+
+/*
+XYZ Rental Car Service Program 1
+
+Author:: James Mok
+
+Created:: 3 February 2021
+*/
+
 #include "Reservation.hpp"
+
+/*
+Function:: Initialize
+
+Author:: James Mok
+
+Type:: Constructor
+
+Input:: string name, string license plate
+
+Output:: none
+*/
 
 void Reservation::Initialize(string key, string vehiclePlate)
 {
@@ -6,15 +27,41 @@ void Reservation::Initialize(string key, string vehiclePlate)
     vehicleRented = vehiclePlate;
 }
 
+/*
+Function:: GetName
+
+Author:: James Mok
+
+Type:: Observer
+
+Input:: none
+
+Output:: string name
+*/
+
 string Reservation::GetName() const
 {
     return name;
 }
 
+/*
+Function:: GetVehicleRented
+
+Author:: James Mok
+
+Type:: Observer
+
+Input:: none
+
+Output:: string license plate
+*/
+
 string Reservation::GetVehicleRented() const
 {
     return vehicleRented;
 }
+
+//overloading operators + deconstructor
 
 Reservation::~Reservation() {}
 
