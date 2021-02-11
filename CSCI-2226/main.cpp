@@ -101,8 +101,17 @@ int main()
                 {
                     cout << "\nEnter License Plate: ";
                     cin >> deleteCar;
-                    carList->DeleteCar(deleteCar);
-                    cout << "Car Deleted";
+                    if (carList->FindCar(inputRent).GetAvailibility())
+                    {
+                        carList->DeleteCar(deleteCar);
+                        cout << "Car Deleted.";
+                    }
+                    else
+                    {
+                        cout << "Car Is In Use. Action Canceled.";
+                    }
+                    
+                    
                     break;
                 }
             case 4: //list reservations
@@ -121,7 +130,7 @@ int main()
                     cout << "\n\nLicense Plate of Car to Rent: ";
                     cin >> inputRent;
 
-                    
+
                     if(carList->FindCar(inputRent).GetAvailibility())
                     {
                         Reservation* newReservation = new Reservation;
