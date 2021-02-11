@@ -46,17 +46,6 @@ int main()
     UnsortedReservationList* reservationList = new UnsortedReservationList();
 
     cout << "\n----- XYZ Car Rental Serivce -----" << endl;
-
-    Car* test = new Car;
-
-    test->Initialize("AJ717", "Nissan", "Rogue", static_cast<VehicleType>(1), 220);
-    carList->AddCar(*test);
-    carList->ChangeAvailability("AJ717");
-    carList->PrintList(); //should be false
-
-
-
-
     
     while(!exitCondition)
     {
@@ -135,7 +124,7 @@ int main()
                             newReservation->Initialize(inputName, carRent);
                             reservationList->AddReservation(*newReservation);   
 
-                            carList->ChangeAvailability(inputName);
+                            carList->ChangeAvailability(carRent);
 
                             cout << "New Reservation Under " << inputName << " Was Created.";
                         }
