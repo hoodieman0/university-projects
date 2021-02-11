@@ -9,7 +9,7 @@ Goal:: Create and use unsorted lists using proper classes and ADTs.
 
 Todo::
 -Fix setAvailable                                   -solved
--reservations select car by number in list          -in progress
+-reservations select car by number in list w/cancel -solved
 -Cant take out car if reserved                      -solved
 -comment code                                       -in progress
 -write headers (author, purpose, input, output)     -in progress
@@ -36,7 +36,8 @@ int main()
     double inputPrice;
     
     string inputName;
-    string inputRent;
+    int inputRent;
+    string carRent;
 
     string deleteCar;
     string deleteReservation;
@@ -49,9 +50,6 @@ int main()
     Car* test = new Car;
 
     test->Initialize("AJ717", "Nissan", "Rogue", static_cast<VehicleType>(1), 220);
-    //getAvailable and setAvailable works
-    test->SetAvailable(true);
-    cout << test->GetAvailibility() << endl; //should be true
     carList->AddCar(*test);
     carList->ChangeAvailability("AJ717");
     carList->PrintList(); //should be false
@@ -101,16 +99,7 @@ int main()
                 {
                     cout << "\nEnter License Plate: ";
                     cin >> deleteCar;
-                    if (carList->FindCar(inputRent).GetAvailibility())
-                    {
-                        carList->DeleteCar(deleteCar);
-                        cout << "Car Deleted.";
-                    }
-                    else
-                    {
-                        cout << "Car Is In Use. Action Canceled.";
-                    }
-                    
+                    carList->DeleteCar(deleteCar);
                     
                     break;
                 }
@@ -121,29 +110,43 @@ int main()
                 };
             case 5: //add reservation
                 {
+
                     cout << "\n~Input Reservation Information~\n" << endl;
                     
                     cout << "Name: " << flush; 
                     cin >> inputName; //get or getline work for whole name?
-
                     carList->PrintList();
-                    cout << "\n\nLicense Plate of Car to Rent: ";
+                    cout << "\nEnter -0- To Cancel\n\nNumber of Car to Rent: ";
                     cin >> inputRent;
 
-
-                    if(carList->FindCar(inputRent).GetAvailibility())
+                    try //am I using try catch throw right?
                     {
-                        Reservation* newReservation = new Reservation;
-                        newReservation->Initialize(inputName, inputRent);
-                        reservationList->AddReservation(*newReservation);   
+                        if (inputRent == 0)
+                        {
+                            cout << "Reservation Canceled.";
+                            break;
+                        }
+                        
+                        carRent = carList->GetCarAtIndex(inputRent).GetPlateNumber();
+                        
+                        if(carList->FindCar(carRent).GetAvailibility())
+                        {
+                            Reservation* newReservation = new Reservation;
+                            newReservation->Initialize(inputName, carRent);
+                            reservationList->AddReservation(*newReservation);   
 
-                        carList->ChangeAvailability(inputName);
+                            carList->ChangeAvailability(inputName);
 
-                        cout << "New Reservation Under " << inputName << " Was Created.";
+                            cout << "New Reservation Under " << inputName << " Was Created.";
+                        }
+                        else
+                        {
+                            cout << "Car Is Currently Reserved.";
+                        }
                     }
-                    else
+                    catch (std::out_of_range)
                     {
-                        cout << "Car Is Currently Reserved.";
+                        cerr << "Index Out of Range";
                     }
 
                     break;
@@ -159,7 +162,6 @@ int main()
                     reservationList->DeleteReservation(deleteReservation);
 
                     cout << "Reservation Deleted, Car Made Available";
-
 
                     break;
                 };

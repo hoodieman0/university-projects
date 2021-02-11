@@ -20,19 +20,12 @@ Car UnsortedCarList::FindCar(string comparison)
             return carArray[i];
         }
     }
-    // throw("Car Not Found");
 }
 
-int UnsortedCarList::FindCarInt(string comparison)
+Car& UnsortedCarList::GetCarAtIndex(int index)
 {
-    for(int i = 0; i < length; i++)
-    {
-        if(carArray[i].GetPlateNumber() == comparison)
-        {
-            return i;
-        }
-    }
-    // throw("Car Not Found");
+    return carArray[index - 1];  
+    throw std::out_of_range ("Index Out of Range");
 }
 
 void UnsortedCarList::ChangeAvailability(string comparison)
@@ -66,8 +59,12 @@ void UnsortedCarList::DeleteCar(string comparison)
             if(carArray[i].GetAvailibility())
             {
                 carArray[i] = carArray[--length];
+                cout << "Car Deleted.";
             }
-            else throw("Car is currently rented");
+            else
+            {
+                cout << "Car Is In Use. Action Canceled.";
+            }
             break;
         }
     }
