@@ -1,29 +1,31 @@
 #ifndef CircularLinkedList_hpp
 #define CircularLinkedList_hpp
 
+#include <iostream>
 using namespace std;
 
-// template <typename T>
-struct Reel
+//Creates a circular linked list of any type to simulate individual slot machine reels.
+
+template <class T> struct Node
 {
-    char data;
-    Reel* next;
+    T data;
+    struct Node* next;
 };
 
-
-template <typename T>
-
-//Creates a circular linked list of any type to simulate individual slot machine reels.
-class LinkedList
+template <class T> class LinkedList
 {
     private:
         int length;
-        Reel* currentPosition;
-        Reel* head;
-        Reel* back;
+
+        struct Node<T>* currentPosition = nullptr;
+        struct Node<T>* head = nullptr;
+        struct Node<T>* back = nullptr;
+
+        bool isEmpty = true;
+        bool isCurrentPosition = true;
 
     public:
-        void Intitialize();
+        LinkedList();
         ~LinkedList();
         void MakeEmpty();
         void PutItem(T);
@@ -31,7 +33,7 @@ class LinkedList
 };
 
 
-template <typename T> void LinkedList<T>::Intitialize()
+template <class T> LinkedList<T>::LinkedList()
 {
     length = 0;
     currentPosition = nullptr;
@@ -39,14 +41,14 @@ template <typename T> void LinkedList<T>::Intitialize()
     back = nullptr;
 }
 
-template <typename T> LinkedList<T>::~LinkedList()
+template <class T> LinkedList<T>::~LinkedList()
 {
     MakeEmpty();
 }
 
-template <typename T> void LinkedList<T>::MakeEmpty()
+template <class T> void LinkedList<T>::MakeEmpty()
 {
-    Reel* temp = nullptr;
+    struct Node<T>* temp = nullptr;
     while(head != nullptr)
     {
         temp = head;
@@ -56,32 +58,49 @@ template <typename T> void LinkedList<T>::MakeEmpty()
     length = 0;
 }
 
-template <typename T> void LinkedList<T>::PutItem(T symbol)
+template <class T> void LinkedList<T>::PutItem(T symbol)
 {
-    Reel* temp = new Reel;
+    struct Node<T>* temp;
 	temp->data = symbol;
-    if(temp->next == nullptr)
+    std::cerr << "Assignments Passed" << endl;
+    
+    if(isEmpty) //this would not trigger with back == nullptr
     {
-        temp->next = temp;
+        std::cerr << "2Passed" << endl;
         back = temp;
+        std::cerr << "Passed" << endl;
+        back->next = back;
+        isEmpty = false;
+        std::cerr << "Back Creation Passed" << endl;
     } 
 	else
     {
-        temp->next = head;
+        std::cerr << "3Passed" << endl;
+        temp->next = back->next;
+        back->next = temp;
+        std::cerr << "Insertion Passed" << endl;
     }
 
-	head = temp; 
-    back->next = head;
-    currentPosition = head;
+    head = temp;
+    std::cerr << "Head Creation Passed" << endl;
+
 	length++; 
 }
 
-template <typename T> T LinkedList<T>::GetNextItem(){
-	T data = currentPosition->data; 
-	currentPosition = currentPosition->next; 
-	return data; 
+template <class T> T LinkedList<T>::GetNextItem()
+{
+    if (isCurrentPosition) //does not trigger with currentPosition == nullptr
+    {
+        currentPosition = head;
+        isCurrentPosition = false;
+    }
+    else
+    {
+        currentPosition = currentPosition->next;
+    }
+	std::cerr << head->data << "|" << currentPosition->data << endl;
+    T stuff = currentPosition->data;
+	return stuff;
 }
-
-
 
 #endif
