@@ -1,7 +1,12 @@
 #ifndef SlotMachine_hpp
 #define SlotMachine_hpp
 
+/*
+    Note:: This Slot Machine can only hold three reels.
+*/
+
 #include "CircularLinkedListTemp.hpp"
+
 #include <string>
 #include <iostream>
 #include <ctime>
@@ -18,6 +23,7 @@ template <class T> class SlotMachine
     public:
         SlotMachine(T (&arrayOne)[MAX_SIZE], T (&arrayTwo)[MAX_SIZE], T (&arrayThree)[MAX_SIZE])
         {
+            //puts the symbols in the reels
             for (auto &data : arrayOne)
             {
                 reelOne->PutItem(data);
@@ -49,7 +55,7 @@ template <class T> class SlotMachine
             return reelThree;
         }
 
-        string Spin(LinkedList<T>* first, LinkedList<T>* second, LinkedList<T>* third)
+        std::string Spin(LinkedList<T>* first, LinkedList<T>* second, LinkedList<T>* third)
         {
             T symbolOne; //LinkedList and SlotMachine must be same data type for this to work
             T symbolTwo;
@@ -57,17 +63,18 @@ template <class T> class SlotMachine
 
             std::string finalCombo;
 
+            //randomizes the spins using the clock time times an offset
+            //it can be predicted, but it would not be time efficient to write a solution
             srand((unsigned) time(0)); 
             int spinOne = (rand() % 100) + 1;
 
-            srand((unsigned) time(0) - 393);
+            srand((unsigned) time(0) * 393);
             int spinTwo = (rand() % 100) + 1;
 
-            srand((unsigned) time(0) + 255);
+            srand((unsigned) time(0) * 255);
             int spinThree = (rand() % 100) + 1;
-
-            std::cout << "|" << spinOne << "|" << spinTwo << "|" << spinThree << "|" << endl;
-
+            
+            //the actual spining of the reels
             for (int i = 0; i < spinOne; i++)
             {
                 symbolOne = first->GetNextItem();
@@ -83,29 +90,10 @@ template <class T> class SlotMachine
                 symbolThree = third->GetNextItem();
             }
 
+            std::cout << "\n ~Your spin~\n---------------\n | " << symbolOne << " | " << symbolTwo << " | " << symbolThree << " |\n---------------" << std::endl;
+            
             finalCombo = finalCombo + symbolOne + symbolTwo + symbolThree;
-            std::cout << finalCombo << endl;
-
             return finalCombo;
-        }
-        
-        void Debug()
-        {
-            std::cerr << "Debug Call:" << endl;
-            for (int i =0; i < MAX_SIZE; i++)
-            {
-                std::cout << reelOne->GetNextItem();
-            }
-            std::cout << endl;
-            for (int i =0; i < MAX_SIZE; i++)
-            {
-                std::cout << reelTwo->GetNextItem();
-            }
-            std::cout << endl;
-            for (int i =0; i < MAX_SIZE; i++)
-            {
-                std::cout << reelThree->GetNextItem();
-            }
         }
 };
 

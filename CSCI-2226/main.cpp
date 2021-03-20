@@ -5,59 +5,42 @@ Author:: James Mok
 
 Date Created:: 9 March 2021
 
-Objective:: Successfully use templates and circular linked lists.
+Objective:: Successfully use templates and circular linked lists to create a slot machine.
+
+Side Note:: LMD stands for Lungmen Dollar, it's a reference to the Arknights mobile game.
 */
 
-#include "SlotMachine.hpp"
-#include "CircularLinkedListTemp.hpp"
+#include "GameController.hpp"
 
 #include <iostream>
 
+// how much money the player should start with
+#define STARTING_BALANCE 100 
+
 int main()
 {
-    std::cout << "~Gacha Ruins Your Life~" << endl;
-    
-    char arrayOne[10] = {'a','a','a','a','b','b','b','c','c','7'};
-    char arrayTwo[10] = {'c','c','b','a','b','a','7','a','a','b'};
-    char arrayThree[10] = {'b','a','b','a','b','c','a','a','c','7'};
+    std::cout << "\n~Gacha Ruins Your Life~" << std::endl;
 
-    // SlotMachine<char>* gachaMachine;
-    // std::cerr << "Creation Passed" << endl;
-    // gachaMachine->Initialize(arrayOne, arrayTwo, arrayThree);
-    // std::cerr << "Initialize Passed" << endl;
-    // gachaMachine->Debug();
-    // std::cerr << "Debug Passed" << endl;
-    // std:: cerr << gachaMachine->Spin(gachaMachine->GetReelOne(), gachaMachine->GetReelTwo(), gachaMachine->GetReelThree());
-    // std::cerr << "Spin Passed" <<endl;
+    char input;
+    GameController Headhunting; //creates a new game instance
 
-    LinkedList<char>* reelOne;
-    
-    for (int i = 0; i < 10; i++)
+    if (STARTING_BALANCE <= 0) //checks if the balance is a positive number
     {
-        reelOne->PutItem(arrayOne[i]);
-        std::cout << "Putting " << arrayOne[i] << endl;
+        std::cout << "\nYou Do Not Have LMD. Go Print Some More.\n\n";
+        exit(1);
     }
 
-    for (int i = 0; i < 10; i++)
+    std::cout << "\nSpin The Gacha? (Y/N)" << std::endl;
+    std::cin >> input;
+
+    if (std::toupper(input) == 'Y')
     {
-        std::cout << reelOne->GetNextItem();
+        Headhunting.PlayGame(STARTING_BALANCE); //starts the game with the balance
+    }
+    else
+    {
+        std::cout << "No Dice" << std::endl;
     }
 
-    // char input;
-    // bool loop = true;
-    // GameController Headhunting;
-
-    // std::cout << "Spin the Gacha? (Y/N)" << endl;
-    // cin >> input;
-
-    // if (std::toupper(input) == 'Y')
-    // {
-    //     Headhunting.PlayGame(100);
-    // }
-    // else
-    // {
-    //     std::cout << "No Dice" << endl;
-    // }
-
-    std::cout << "\n~End of Program~";
+    std::cout << "\n\n~End of Program~\n\n";
 }

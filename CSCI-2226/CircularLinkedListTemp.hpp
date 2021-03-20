@@ -2,14 +2,14 @@
 #define CircularLinkedList_hpp
 
 #include <iostream>
-using namespace std;
 
 //Creates a circular linked list of any type to simulate individual slot machine reels.
 
+//each individual node
 template <class T> struct Node
 {
     T data;
-     Node* next;
+    Node* next;
 };
 
 template <class T> class LinkedList
@@ -47,7 +47,8 @@ template <class T> class LinkedList
 
         void PutItem(T symbol)
         {
-            Node<T>* temp = new Node<T>;
+            //I had so much trouble with this line, for the life of me I could not figure out Node must be called with <T>
+            Node<T>* temp = new Node<T>; 
 	        temp->data = symbol;
             if(back == nullptr)
             {
