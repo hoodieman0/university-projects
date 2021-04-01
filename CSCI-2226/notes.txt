@@ -1,0 +1,22 @@
+Classes:
+    game
+    actor
+    actorfactory
+    battlemove
+    battlemovefactory
+    commandmanager
+    battle
+
+Derived Classes:
+    From Actor:
+        Ghost
+        Knight
+    From BattleMove:
+        CurseAttack
+        MeleeAttack
+        SpellAttack
+        SwordAttack
+
+Enums:
+    actortype
+    movetype
