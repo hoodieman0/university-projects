@@ -1,3 +1,7 @@
+#include "Actor.hpp"
+#include "KnightActor.hpp"
+#include "GhostActor.hpp"
+
 class ActorFactory {
   public:
       static Actor* CreateActor(ActorType actorType) {
