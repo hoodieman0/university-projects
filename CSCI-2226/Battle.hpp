@@ -1,3 +1,7 @@
+#include "ActorFactory.hpp"
+#include "BattleMoveFactory.hpp"
+#include "CommandManager.hpp"
+
 class Battle
   {
     private:
@@ -6,11 +10,7 @@ class Battle
       Actor* player2; 
 
     public:
-      Battle(ActorType actor1, ActorType actor2) {
-        player1 = ActorFactory::CreateActor(actor1);
-        player2 = ActorFactory::CreateActor(actor2);
-      }
-
+      Battle(ActorType, ActorType);
       void Start();
       bool PlayerTurn();
       void NpcTurn();

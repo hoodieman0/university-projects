@@ -1,15 +1,10 @@
-int Utils::randInt(int min, int max) {
-    return rand() % (max - min + 1) + min;
-  }
+#include "Actor.hpp"
+#include "BattleMove.hpp"
 
-  map<ActorType, string> Utils::actorDisplayName{
-    {ActorType::Ghost, "Ghost"},
-    {ActorType::Knight, "Knight"},
-  };
-
-  map<MoveType, string> Utils::moveDisplayName{
-    {MoveType::Curse, "Curse"},
-    {MoveType::Melee, "Melee"},
-    {MoveType::Spell, "Spell"},
-    {MoveType::Sword, "Sword"}
-  };
+class Utils
+{
+  public:
+    int randInt(int, int);
+    map<ActorType, string> actorDisplayName();
+    map<MoveType, string> moveDisplayName();
+}

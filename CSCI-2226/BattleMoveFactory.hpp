@@ -1,3 +1,9 @@
+#include "BattleMove.hpp"
+#include "CurseAttack.hpp"
+#include "MeleeAttack.hpp"
+#include "SpellAttack.hpp"
+#include "SwordAttack.hpp"
+
 class BattleMoveFactory
   {
   public:
