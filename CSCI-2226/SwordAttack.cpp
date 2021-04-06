@@ -7,7 +7,7 @@ SwordAttack::SwordAttack(Actor* attacker, Actor* target)
 
 void SwordAttack::Execute()
 {
-    damageAmount = randInt(0, 20)
+    damageAmount = battleMoveHelper.randInt(0, 20)
     other->Hit(damageAmount);
 }
 

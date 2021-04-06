@@ -7,8 +7,8 @@
 class BattleMoveFactory
   {
   public:
-    static Attack* BuildMove(MoveType moveType, Actor* attacker, Actor* target) {
-      Attack* battleMove = nullptr;
+    static BattleMove* BuildMove(MoveType moveType, Actor* attacker, Actor* target) {
+      BattleMove* battleMove = nullptr;
       switch (moveType) {
       case MoveType::Curse:
         battleMove = new CurseAttack(attacker, target);

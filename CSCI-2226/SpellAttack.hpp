@@ -8,4 +8,4 @@ class SpellAttack : public BattleMove
         SpellAttack(Actor*, Actor*);
         void Execute();
         void Undo();
-}
+};

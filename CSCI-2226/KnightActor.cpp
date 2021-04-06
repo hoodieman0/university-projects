@@ -10,9 +10,11 @@ KnightActor::KnightActor()
 void KnightActor::Hit(int damage)
 {
     health -= damage;
+    std::cout << "\nDid " << damage << "Damage! Knight's Health Is Now " << health << ".\n";
 }
 
 void KnightActor::Heal(int amount)
 {
     health += amount;
+    std::cout << "\nKnight Healed " << amount << "! Health Is Now " << health << ".\n";
 }

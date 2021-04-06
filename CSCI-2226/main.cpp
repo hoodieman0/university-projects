@@ -1,18 +1,36 @@
-#include "ActorFactory.hpp"
-#include "BattleMoveFactory.hpp"
+#include "Battle.hpp"
+#include "MoveType.hpp"
 
-#include "BattleMove.hpp"
-#include "CommandManager.hpp"
+#include <iostream>
 
 int main()
 {
-    auto actorKnight = ActorFactory::CreateActor(ActorType::Knight);
-    auto actorGhost = ActorFactory::CreateActor(ActorType::Ghost); //actors
+    ActorType p1;
+    ActorType p2;
+    std::string input;
 
-    auto move = BattleMoveFactory::CreateBattleMove(MoveType::Melee); //battle moves
+    std::cout << "\n\n~Welcome To A Casual Fight To The Death~\n\n";
 
-    CommandManager lol = new CommandManager();
+    std::cout << "\nDo You Want To Play As A \"Knight\" or \"Ghost\"? (Default Knight)\n";
+    std::cin >> input;
 
-    BattleMove abc = new BattleMove(actorKnight, actorGhost);
+    if (input == "Ghost")
+    {
+        p1 = ActorType::Ghost;
+        p2 = ActorType::Knight;
+    }
+    else
+    {
+        p1 = ActorType::Knight;
+        p2 = ActorType::Ghost;
+    }
+    
+    Battle* FightToTheDeath = new Battle(p1, p2);
 
+    while (!FightToTheDeath->GetIsOver())
+    {
+        FightToTheDeath->Start();
+    }
+
+    std::cout << "\n\n~End Of Program~\n\n";
 }

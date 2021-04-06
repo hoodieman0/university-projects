@@ -7,7 +7,7 @@ MeleeAttack::MeleeAttack(Actor* attacker, Actor* target)
 
 void MeleeAttack::Execute()
 {
-    damageAmount = randInt(5, 15)
+    damageAmount = battleMoveHelper.randInt(5, 15)
     other->Hit(damageAmount);
 }
 

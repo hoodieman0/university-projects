@@ -6,5 +6,4 @@ class KnightActor: public Actor
         KnightActor();
         void Hit(int damage);
         void Heal(int amount);
-
 };

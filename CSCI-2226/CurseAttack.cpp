@@ -7,7 +7,7 @@ CurseAttack::CurseAttack(Actor* attacker, Actor* target)
 
 void CurseAttack::Execute()
 {
-    damageAmount = randInt(5,15)
+    damageAmount = battleMoveHelper.randInt(5,15)
     other->Hit(damageAmount);
 }
 

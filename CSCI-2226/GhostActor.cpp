@@ -10,9 +10,11 @@ GhostActor::GhostActor()
 void GhostActor::Hit(int damage)
 {
     health -= damage;
+    std::cout << "\nDid " << damage << "Damage! Ghost's Health Is Now " << health << ".\n";
 }
 
 void GhostActor::Heal(int amount)
 {
     health += amount;
+    std::cout << "\nGhost Healed " << amount << "! Health Is Now " << health << ".\n";
 }

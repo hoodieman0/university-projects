@@ -1,6 +1,8 @@
 #include "Stack.hpp"
 #include "UndoableCommand.hpp"
 
+#include <iostream>
+
 class CommandManager
     {
       private:

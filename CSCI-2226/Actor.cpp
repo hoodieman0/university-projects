@@ -1,13 +1,6 @@
 #include "Actor.hpp"
 
-Actor::Actor()
+std::ostream& operator<<(std::ostream& out, const Actor& actor)
 {
-    health = 0;
-    type = "Knight";
-}
-
-Actor::Actor(int h, std::string t)
-{
-    type = t;
-    health = h;
+    
 }

@@ -13,6 +13,13 @@ void CommandManager::Execute(UndoableCommand* command)
 
 void CommandManager::Undo()
 {
-    stack.Top()->Undo();
-    stack.Pop();
+    try
+    {
+        stack.Top()->Undo();
+        stack.Pop();
+    }
+    catch (const char* err)
+    {
+        std::cerr << err; 
+    }
 }

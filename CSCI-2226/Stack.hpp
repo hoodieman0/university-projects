@@ -29,14 +29,14 @@ class Stack
         T Top()
         {
             if(IsEmpty())
-                throw StackEmptyException(); 
+                throw StackEmptyException("Stack Is Empty"); 
             return top->data; 
         }
         
         void Pop()
         {
             if (IsEmpty())
-                throw StackEmptyException();
+                throw StackEmptyException("Stack Is Empty");
             Node<T>* temp = top;
             top = top->next; 
             delete temp;  
