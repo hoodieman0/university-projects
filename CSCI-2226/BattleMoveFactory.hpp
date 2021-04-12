@@ -1,8 +1,11 @@
-#include "BattleMove.hpp"
+#pragma once
+
 #include "CurseAttack.hpp"
 #include "MeleeAttack.hpp"
 #include "SpellAttack.hpp"
 #include "SwordAttack.hpp"
+
+//teacher provided
 
 class BattleMoveFactory
   {

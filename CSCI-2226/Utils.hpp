@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ActorType.hpp"
 #include "MoveType.hpp"
 
@@ -14,12 +16,12 @@ class Utils
     return rand() % (max - min + 1) + min;
     }
 
-    map<ActorType, string> Utils::actorDisplayName{
+    map<ActorType, string> actorDisplayName{
     {ActorType::Ghost, "Ghost"},
     {ActorType::Knight, "Knight"},
     };
     
-    map<MoveType, string> Utils::moveDisplayName{
+    map<MoveType, string> moveDisplayName{
     {MoveType::Curse, "Curse"},
     {MoveType::Melee, "Melee"},
     {MoveType::Spell, "Spell"},

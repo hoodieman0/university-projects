@@ -1,6 +1,8 @@
+#pragma once
+
 #include "Actor.hpp"
 
-class KnightActor: public Actor
+class KnightActor : public Actor
 {
     public:
         KnightActor();

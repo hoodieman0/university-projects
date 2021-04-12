@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Stack.hpp"
 #include "UndoableCommand.hpp"
 

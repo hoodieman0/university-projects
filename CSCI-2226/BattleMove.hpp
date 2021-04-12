@@ -1,7 +1,7 @@
+#pragma once
+
 #include "UndoableCommand.hpp"
 #include "Actor.hpp"
-#include "MoveType.hpp"
-
 #include "Utils.hpp"
 
 class BattleMove : public UndoableCommand {

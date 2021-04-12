@@ -1,26 +1,29 @@
+#pragma once
+
+#include "Actor.hpp"
+#include "GhostActor.hpp"
+#include "KnightActor.hpp"
 #include "ActorFactory.hpp"
 #include "BattleMoveFactory.hpp"
 #include "CommandManager.hpp"
 #include "Utils.hpp"
+#include "MoveType.hpp"
 
 #include <iostream>
 
 class Battle
   {
     private:
-      CommandManager undoManager;
+      CommandManager undoManager; //undo stack
       Actor* player1; 
       Actor* player2; 
 
-      Utils battleHelper;
-      bool isPlayerTurn = true;
-      bool isOver = false;
+      Utils battleHelper; //access utils class
       BattleMoveFactory* moveFactory;
 
     public:
       Battle(ActorType, ActorType);
       void Start();
-      bool PlayerTurn();
+      void PlayerTurn();
       void NpcTurn();
-      bool GetIsOver();
   };

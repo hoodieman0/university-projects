@@ -2,12 +2,13 @@
 
 SpellAttack::SpellAttack(Actor* attacker, Actor* target)
 {
-    BattleMove(attacker, target);
+    self = attacker;
+    other = target;;
 }
 
 void SpellAttack::Execute()
 {
-    damageAmount = battleMoveHelper.randInt(0, 20)
+    damageAmount = battleMoveHelper.randInt(0, 20);
     other->Hit(damageAmount);
 }
 

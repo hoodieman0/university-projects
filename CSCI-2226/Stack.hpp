@@ -1,5 +1,7 @@
 #pragma once
 
+#include <new>
+
 template <class T> struct Node
 {
     T data;
@@ -29,14 +31,14 @@ class Stack
         T Top()
         {
             if(IsEmpty())
-                throw StackEmptyException("Stack Is Empty"); 
+                throw "Stack Is Empty"; 
             return top->data; 
         }
         
         void Pop()
         {
             if (IsEmpty())
-                throw StackEmptyException("Stack Is Empty");
+                throw "\n~Stack Is Empty~\n";
             Node<T>* temp = top;
             top = top->next; 
             delete temp;  
@@ -61,7 +63,7 @@ class Stack
         return(top == nullptr); 
         
     } 
-    ~StackLi()
+    ~Stack()
     {
         Node<T>* temp;
         while(top != nullptr)
@@ -70,18 +72,6 @@ class Stack
             top = top->next;
             delete temp;  
         }
-    }
-    std::ostream& operator<<(std::ostream& out, Stack& s)
-    {
-        out << "Stack: ["; 
-        if (s.IsEmpty()) 
-            out << "(Empty)"; 
-        else
-        {
-            out << "(Not-Empty)"; 
-        }
-        out << "]";
-        return out; 
     }
 };
 

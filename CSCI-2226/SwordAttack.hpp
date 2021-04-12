@@ -1,3 +1,5 @@
+#pragma once
+
 #include "BattleMove.hpp"
 
 class SwordAttack : public BattleMove
@@ -8,4 +10,4 @@ class SwordAttack : public BattleMove
         SwordAttack(Actor*, Actor*);
         void Execute();
         void Undo();
-}
+};

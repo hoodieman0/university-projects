@@ -1,10 +1,5 @@
 #include "CommandManager.hpp"
 
-CommandManager::CommandManager()
-{
-
-}
-
 void CommandManager::Execute(UndoableCommand* command)
 {
     stack.Push(command);

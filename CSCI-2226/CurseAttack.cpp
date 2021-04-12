@@ -2,12 +2,13 @@
 
 CurseAttack::CurseAttack(Actor* attacker, Actor* target)
 {
-    BattleMove(attacker, target);
+    self = attacker;
+    other = target;
 }
 
 void CurseAttack::Execute()
 {
-    damageAmount = battleMoveHelper.randInt(5,15)
+    damageAmount = battleMoveHelper.randInt(5,15);
     other->Hit(damageAmount);
 }
 
