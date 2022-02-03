@@ -20,6 +20,14 @@ print("\n\n")
 #for i in list[1]:
 #    print(i)
 
+
+class Node:
+    def __init__(self, parent):
+        self.parent = parent
+        self.child = None
+
+
+#increments step for agent
 def next_move(posy, posx, lovelyList):
     while (posy > 0):
         posy -= 1
@@ -30,7 +38,7 @@ def next_move(posy, posx, lovelyList):
 
     row = 0
     column = 0
-    while row < len(list):
+    while row < len(list): #THIS IS THE SEARCH, make it better. Literally just searches every cell row by row
         while column < len(list[row]):
             try:
                 dirtX, dirtY = dirtLocator(lovelyList, row)
@@ -48,7 +56,9 @@ def next_move(posy, posx, lovelyList):
         row += 1
         column = 0
 
-def moveToLocation(lovelyList, currentX, currentY, newX, newY): #CostFunction, have it go back and forth if set in middle of row
+#CostFunction, inputs readable list current position and the location of the dirt
+#Returns new position
+def moveToLocation(lovelyList, currentX, currentY, newX, newY):
 
     while currentX > newX:
         lovelyList[currentY][currentX] = '-'
@@ -77,6 +87,7 @@ def moveToLocation(lovelyList, currentX, currentY, newX, newY): #CostFunction, h
     print("Clean")
     return currentX, currentY
 
+#Finds the place where the dirt is
 def dirtLocator(lovelyList, row): #this is the place for search
     xLocation = 0
     for char in lovelyList[row]:
