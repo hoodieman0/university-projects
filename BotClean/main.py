@@ -16,19 +16,28 @@ list[4][4] = 'd'
 
 print(list)
 print("\n\n")
-#print(len(list))
-#for i in list[1]:
-#    print(i)
+
+#TODO: Make Frontier
+#TODO: Make Explored
+#TODO: Make nodes
+#TODO: Make Cost function
+#TODO: Make search function
 
 
 class Node:
-    def __init__(self, parent):
-        self.parent = parent
-        self.child = None
+    def __init__(self, position, cost):
+        self.name = position
+        self.child = [None]
+        self.cost = cost
 
+    def GetCost(self):
+        return self.cost
+
+    def GetChildList(self):
+        return self.child
 
 #increments step for agent
-def next_move(posy, posx, lovelyList):
+def next_move(posx, posy, lovelyList):
     while (posy > 0):
         posy -= 1
         print("Up")
@@ -96,5 +105,9 @@ def dirtLocator(lovelyList, row): #this is the place for search
             return dirtX, row
         xLocation += 1
     raise Exception("\n~No Dirt Found~\n")
+
+def BreadthFirstSearch(start): #Stack LIFO
+    frontier = {}
+    explored = []
 
 next_move(0, 0, list)
