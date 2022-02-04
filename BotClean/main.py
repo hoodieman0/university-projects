@@ -14,20 +14,22 @@ list[2][3] = 'd'
 list[3][2] = 'd'
 list[4][4] = 'd'
 
+
+
 print(list)
 print("\n\n")
 
-#TODO: Make Frontier
-#TODO: Make Explored
 #TODO: Make nodes
 #TODO: Make Cost function
 #TODO: Make search function
 
 
 class Node:
-    def __init__(self, position, cost):
-        self.name = position
+    def __init__(self, positionx, positiony, state, cost): #self, int, int, char, float
+        self.positionx = positionx
+        self.positiony = positiony
         self.child = [None]
+        self.state = state
         self.cost = cost
 
     def GetCost(self):
@@ -106,8 +108,65 @@ def dirtLocator(lovelyList, row): #this is the place for search
         xLocation += 1
     raise Exception("\n~No Dirt Found~\n")
 
-def BreadthFirstSearch(start): #Stack LIFO
-    frontier = {}
-    explored = []
+def BreadthFirstSearch(lovelylist, startPositionX, startPositionY): #Queue FIFO
+    startNode = Node(startPositionX, startPositionY, lovelylist[startPositionY][startPositionX], 1)
+    AssignChild(lovelylist, startNode)
+    frontierQueue = [startNode]
+
+    while frontierQueue != 0:
+        tempNode = frontierQueue.pop(0)
+        for node in tempNode.GetChildList():
+            frontierQueue.append(node)
+
+def AssignChild(lovelylist, node):
+    if node.positionx == 0: #if node is in the left boundary
+        tempNode = Node(1, node.positiony, lovelylist[node.positiony][1], 1) #node to the right of boundary
+        node.child.append(tempNode)
+        if node.positiony != 0 and node.positiony != len(lovelylist)-1: #if node is on the left boundary AND not in the corner
+            tempNode = Node(node.positionx, node.positiony - 1, lovelylist[node.positiony - 1][node.positionx], 1)  # node above
+            node.child.append(tempNode)
+            tempNode = Node(node.positionx, node.positiony + 1, lovelylist[node.positiony + 1][node.positionx], 1)  # node below
+            node.child.append(tempNode)
+
+    elif node.positionx == len(lovelylist[0])-1: #if node is in the right boundary
+        tempNode = Node(len(lovelylist[0])-1, node.positiony, lovelylist[node.positiony][len(lovelylist[0])-1], 1) #node to the left of boundary
+        node.child.append(tempNode)
+        if node.positiony != 0 and node.positiony != len(lovelylist)-1: #if node is on the right boundary AND not in the corner
+            tempNode = Node(node.positionx, node.positiony - 1, lovelylist[node.positiony - 1][node.positionx], 1)  # node above
+            node.child.append(tempNode)
+            tempNode = Node(node.positionx, node.positiony + 1, lovelylist[node.positiony + 1][node.positionx], 1)  # node below
+            node.child.append(tempNode)
+
+    if node.positiony == 0: #if node is on the top of boundary
+        tempNode = Node(node.positionx, 1, lovelylist[1][node.positionx], 1)
+        node.child.append(tempNode)
+        if node.positionx != 0 and node.positionx != len(lovelylist[0]) - 1: #if node is on the top of boundary AND not in the corner
+            tempNode = Node(node.positionx - 1, node.positiony, lovelylist[node.positiony][node.positionx - 1], 1)  # node to the left
+            node.child.append(tempNode)
+            tempNode = Node(node.positionx + 1, node.positiony, lovelylist[node.positiony][node.positionx + 1], 1)  # node to the right
+            node.child.append(tempNode)
+
+    elif node.positiony == len(lovelylist)-1: #if node is on the bottom of boundary
+        tempNode = Node(node.positionx, len(lovelylist)-2, lovelylist[len(lovelylist)-2][node.positionx], 1)
+        node.child.append(tempNode)
+        if node.positionx != 0 and node.positionx != len(lovelylist[0]) - 1: #if node is on the bottom of boundary AND not in the corner
+            tempNode = Node(node.positionx - 1, node.positiony, lovelylist[node.positiony][node.positionx - 1], 1)  # node to the left
+            node.child.append(tempNode)
+            tempNode = Node(node.positionx + 1, node.positiony, lovelylist[node.positiony][node.positionx + 1], 1)  # node to the right
+            node.child.append(tempNode)
+
+    else:
+        tempNode = Node(node.positionx - 1, node.positiony, lovelylist[node.positiony][node.positionx - 1], 1) #node to the left
+        node.child.append(tempNode)
+        tempNode = Node(node.positionx + 1, node.positiony, lovelylist[node.positiony][node.positionx + 1], 1) #node to the right
+        node.child.append(tempNode)
+        tempNode = Node(node.positionx, node.positiony - 1, lovelylist[node.positiony - 1][node.positionx], 1) #node above
+        node.child.append(tempNode)
+        tempNode = Node(node.positionx, node.positiony + 1, lovelylist[node.positiony + 1][node.positionx], 1) #node below
+        node.child.append(tempNode)
+
+
+
+
 
 next_move(0, 0, list)
