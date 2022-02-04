@@ -21,11 +21,12 @@ b - - - d
 - - d d -
 - - d - -
 - - - - d
+
 """
 
 
-print(list)
-print("\n\n")
+print("\n", list)
+
 
 #TODO: Make Cost function
 
@@ -46,29 +47,6 @@ class Node:
 
 #increments step for agent, inputs initial position and game board state
 def next_move(posx, posy, lovelyList):
-
-    """ OUTDATED
-    while (posy > 0):
-        posy -= 1
-        print("Up")
-    while (posx > 0):
-        posx -= 1
-        print("Left")
-
-
-    row = 0
-    column = 0
-    while row < len(list): #THIS IS THE SEARCH, make it better. Literally just searches every cell row by row
-        while column < len(list[row]):
-            try:
-                dirtX, dirtY = dirtLocator(lovelyList, row)
-                print("\nDirt(X,Y) = (" + str(dirtX + 1) + ", " + str(dirtY + 1) + ')')
-                posx, posy = moveToLocation(lovelyList, posx, posy, dirtX, dirtY)
-                column = dirtX + 1
-            except:
-                print("No Dirt In Row, Jumping To Next Row")
-                column = len(list[row])
-    """
     goalBool = False
     while goalBool != True:
         print("\nCurrent Position = (", posx + 1, ", ", posy + 1, ") [Column, Row] \n")
@@ -78,7 +56,7 @@ def next_move(posx, posy, lovelyList):
             print("Nothing Returned From BreadthFirstSearch(): Exiting...")
             goalBool = True
             continue
-        print("Dirt Found At: ", tempNode.positionx, tempNode.positiony)
+        print("\nDirt Found At: ", tempNode.positionx, tempNode.positiony)
         posx, posy = MoveToLocation(lovelyList, posx, posy, tempNode.positionx, tempNode.positiony)
 
     print(("\n~End Of Program~\n"))
@@ -113,18 +91,6 @@ def MoveToLocation(lovelyList, currentX, currentY, newX, newY):
         print(lovelyList)
     print("Clean")
     return currentX, currentY
-
-"""
-#Finds the place where the dirt is, OUTDATED
-def dirtLocator(lovelyList, row): #this is the place for search
-    xLocation = 0
-    for char in lovelyList[row]:
-        if char == 'd':
-            dirtX = xLocation
-            return dirtX, row
-        xLocation += 1
-    raise Exception("\n~No Dirt Found~\n")
-"""
 
 #Frontier is Queue FIFO, returns the position of the located dirt else throws 0, 0
 def BreadthFirstSearch(lovelylist, startPositionX, startPositionY):
