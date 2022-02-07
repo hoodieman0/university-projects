@@ -1,6 +1,6 @@
 import random
 
-#takes the inputed character and finds it in the grid
+#takes the inputted character and finds it in the grid
 def FindBot(char, grid):
     for row in range(len(grid)):
         for column in range(len(grid[row])):
@@ -51,12 +51,9 @@ def PrintBoard(board):
 
 #finds where the pricess is calls MoveToPosition to get there, displays total cost
 #inputs are the size of the grid (int) and the list that is the grid (list)
-def DisplayPathToPrincess(n, grid):
-    try:
-        currentX, currentY = FindBot('m', grid)
-    except:
-        print("Bot Not Found. Aborting...")
-        exit(1)
+def DisplayPathToPrincess1(n, grid):
+    #mario is always in the middle of an odd grid, so he must be at the floor of n/2
+    currentX, currentY = int(n/2)
     #check each grid corner to determine state
     if grid[0][0] == 'p':
         newX = 0
@@ -75,6 +72,9 @@ def DisplayPathToPrincess(n, grid):
     cost = MoveToPosition(currentX, currentY, newX, newY, grid)
     print("Total Cost: ", cost)
 
+def DisplayPathToPrincess2(n, r, c, grid):
+
+
 #makes a num*num grid and puts the princess in one of the four corners with mario in the center
 #num (int) must be odd to work, as per the specification
 def CreateBoard1(num):
@@ -82,7 +82,7 @@ def CreateBoard1(num):
         raise Exception("odd_integers_only")
     board = [['-']*num for i in range(num)]
     random.seed()
-    princessPosition = random.randint(1, 5)
+    princessPosition = random.randint(1, 4)
     if princessPosition == 1:
         board[0][0] = 'p'
     elif princessPosition == 2:
@@ -93,22 +93,24 @@ def CreateBoard1(num):
         board[num-1][num-1] = 'p'
     board[int(num/2)][int(num/2)] = 'm'
 
-
-    """
+#makes a num*num grid and puts the princess and mario in any position
+#inputs num (int)
+def CreateBoard2(num):
+    board = [['-'] * num for i in range(num)]
+    random.seed()
     for row in range(len(board)):
         for column in range(len(board[row])):
-            if (random.randint(0, 100) % 5 == 0):
+            if (random.randint(0, 100) % 20 == 0):
                 board[row][column] = 'p'
                 break
                 
     board[random.randint(0, num-1)][random.randint(0, num-1)] = 'm'
-    """
 
     return board
 
 def main():
 
-    gridSize = 11
+    gridSize = 3
     try:
         grid = CreateBoard1(gridSize)
     except:
@@ -116,7 +118,9 @@ def main():
         gridSize = 3
         grid = CreateBoard1(gridSize)
     PrintBoard(grid)
-    DisplayPathToPrincess(gridSize, grid)
+    DisplayPathToPrincess1(gridSize, grid)
     print("\n~End Of Program~\n")
+
+
 
 main()
