@@ -7,10 +7,12 @@
 # TODO Bidirectional Search
 # TODO Greedy Best-First Search
 # TODO Dijkstra's Algorithm
-# TODO A* Search
+# TODO A* Search    (cost of getting to next node) + (hueristic of next node) + (cost to get to current node) or f(n) = h(n) + g(n)
 # TODO MINIMAX Algorithm
 # TODO Alpha-Beta Pruning
 # TODO Time and Space Complexity
+
+#Best First Search becomes different ones based on heuristic given
 
 # b is branching factor
 # m is maximum depth
@@ -70,4 +72,9 @@ class Problem:
 
     def Value(self, state):                             #Inheritance
         raise NotImplementedError
+
+
+
+
+print(list)
 
