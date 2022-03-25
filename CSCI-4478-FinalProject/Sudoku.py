@@ -147,7 +147,8 @@ def some(seq):
 
 def from_file(filename, sep='\n'):
     "Parse a file into a list of strings, separated by sep."
-    return file(filename).read().strip().split(sep)
+    file = open(filename, 'r')  #OUR OWN MODIFICATION
+    return file.read().strip().split(sep)
 
 
 def shuffled(seq):
@@ -168,9 +169,9 @@ def solve_all(grids, name='', showif=0.0):
     When showif is None, don't display any puzzles."""
 
     def time_solve(grid):
-        start = time.clock()
+        start = time.time()     #time.time() OUR MODIFICATION, time.clock outdated
         values = solve(grid)
-        t = time.clock() - start
+        t = time.time() - start #time.time() OUR MODIFICATION, time.clock outdated
         ## Display puzzles that take long enough
         if showif is not None and t > showif:
             display(grid_values(grid))
