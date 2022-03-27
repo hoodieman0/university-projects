@@ -111,12 +111,11 @@ def display(values):
     width = 1 + max(len(values[s]) for s in squares)
     line = '+'.join(['-' * (width * 3)] * 3)
     for r in rows:
-        print
+        print(
         ''.join(values[r + c].center(width) + ('|' if c in '36' else '')
-                for c in cols)
-        if r in 'CF': print
-        line
-    print
+                for c in cols))
+        if r in 'CF': print(line)
+    print()
 
 
 ################ Search ################
@@ -218,8 +217,12 @@ if __name__ == '__main__':
     test()
     solve_all(from_file("easy50.txt", '========'), "easy", None)
     solve_all(from_file("top95.txt"), "hard", None)
-    solve_all(from_file("hardest.txt"), "hardest", None)
+    solve_all(from_file("hardest.txt"), "hardest", 0.001)
     solve_all([random_puzzle() for _ in range(99)], "random", 100.0)
+
+    grid3 = '001563000000100800509000040190005007080000050657000002960300070300058400000970000'
+    display(solve(grid3))
+
 
 ## References used:
 ## http://www.scanraid.com/BasicStrategies.htm
