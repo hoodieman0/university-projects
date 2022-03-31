@@ -12,8 +12,15 @@ NOTE: Matrix Convention
 import tests as unit_tests
 
 class AnySudoku:
-    def __init__(self):
-        self.sideLength = None
+    def __init__(self, column=3, row=3, grid='001563000000100800509000040190005007080000050657000002960300070300058400000970000'):
+        self.column = column
+        self.row = row
+        self.grid = grid
+        self.sideLength = row * column
+        self.possibleValues = ''
+        for i in range(1, self.sideLength + 1):
+            self.possibleValues = self.possibleValues + str(i)
+
         self.squares = None
         self.unitList = None
         self.units = None
@@ -24,7 +31,6 @@ class AnySudoku:
         def cross(A: list[int], B: list[int]) -> list[tuple]:
             return [(a, b) for a in A for b in B]
 
-        self.sideLength = row * col
         cols = []
         rows = []
 
@@ -70,6 +76,81 @@ class AnySudoku:
         self.units = dict((square, [unit for unit in self.unitList if square in unit]) for square in self.squares)
         # all unique related (x,y) positions, not including key
         self.peers = dict((square, set(sum(self.units[square], [])) - set([square])) for square in self.squares)
+
+
+
+
+
+    def fill_grid(self):
+        """Convert grid to a dict of possible values, {square: digits}, or
+            return False if a contradiction is detected."""
+        ## To start, every square can be any digit; then assign values from the grid.
+        def assign_grid_values():
+            "Convert grid into a dict of {square: char} with '0' or '.' for empties."
+            chars = [char for char in self.grid if char in self.possibleValues or char in '0.']
+            assert len(chars) == len(self.squares)
+            return dict(zip(self.squares, chars))
+
+
+        values = dict((square, self.possibleValues) for square in self.squares)
+        for square, digit in assign_grid_values().items():
+            if digit in self.possibleValues and not self.assign(values, square, digit):
+                return False  ## (Fail if we can't assign d to square s.)
+        return values
+
+
+
+    """
+    This is mean value thingy, the original AI for the paper
+    """
+
+    def solve_values(self, values, square, digit):
+        """Eliminate all the other values (except d) from values[s] and propagate.
+        Return values, except return False if a contradiction is detected."""
+
+        other_values = values[square].replace(digit, '')
+        if all(self.eliminate(values, square, digit2) for digit2 in other_values):
+            return values
+        else:
+            return False
+
+
+
+    def eliminate_digit(self, values, square, digit):
+        """Eliminate d from values[s]; propagate when values or places <= 2.
+        Return values, except return False if a contradiction is detected."""
+        if digit not in values[square]:
+            return values  ## Already eliminated
+        values[square] = values[square].replace(digit, '')
+        ## (1) If a square s is reduced to one value d2, then eliminate d2 from the peers.
+        if len(values[square]) == 0:
+            return False  ## Contradiction: removed last value
+        elif len(values[square]) == 1:
+            digit2 = values[square]
+        if not all(self.eliminate(values, square2, digit2) for square2 in self.peers[square]):
+            return False
+
+        ## (2) If a unit u is reduced to only one place for a value d, then put it there.
+        for unit in self.units[square]:
+            digitPlaces = [square for square in unit if digit in values[square]]
+        if len(digitPlaces) == 0:
+            return False  ## Contradiction: no place for this value
+        elif len(digitPlaces) == 1:
+            # d can only be in one place in unit; assign it there
+            if not self.solve_values(values, digitPlaces[0], digit):
+                return False
+        return values
+
+    def display(self, values):
+        "Display these values as a 2-D grid."
+        width = 1 + max(len(values[s]) for s in self.squares)
+        line = '+'.join(['-' * (width * 3)] * 3)
+        for r in self.row:
+            print(
+                ''.join(values[r + c].center(width) + ('|' if c in '36' else '')
+                        for c in self.column))
+            if r in 'CF': print(line)
+        print()
 
 if __name__ == '__main__':
     unit_tests.create_grid_check_correct_dictionary()
