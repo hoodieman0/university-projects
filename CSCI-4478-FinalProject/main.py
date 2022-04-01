@@ -8,18 +8,25 @@ https://sudokudragon.com/sudokutheory.htm
 
 
 NOTE: Matrix Convention
+GREEDY SEARCH for least values
 """
 import tests as unit_tests
 
+max_values = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+
 class AnySudoku:
-    def __init__(self, column=3, row=3, grid='003020600900305001001806400008102900700000008006708200002609500800203009005010300'):
+    def __init__(self, column=3, row=3, grid='0'*81):
         self.column = column
         self.row = row
         self.grid = grid
         self.sideLength = row * column
+
+        # due to representation limits, there is max amount of numbers that can be represented
+        assert self.sideLength <= len(max_values)
+
         self.possibleValues = ''
-        for i in range(1, self.sideLength + 1):
-            self.possibleValues = self.possibleValues + str(i)
+        for i in range(0, self.sideLength):
+            self.possibleValues = self.possibleValues + max_values[i]
 
         self.squares = None
         self.unitList = None
@@ -28,7 +35,7 @@ class AnySudoku:
 
     def create_grid(self) -> None:
 
-        def cross(A: list[int], B: list[int]) -> list[tuple]:
+        def cross(A: list[str], B: list[str]) -> list[tuple]:
             return [(a, b) for a in A for b in B]
 
         cols = []
@@ -178,3 +185,7 @@ if __name__ == '__main__':
     x.create_grid()
     x.display_final(x.assign_grid_values())
     x.display(x.fill_grid())
+
+    y = AnySudoku(7, 5, '0'*1225)
+    y.create_grid()
+    y.display_final(y.assign_grid_values())
