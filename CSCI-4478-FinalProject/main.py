@@ -12,7 +12,7 @@ NOTE: Matrix Convention
 import tests as unit_tests
 
 class AnySudoku:
-    def __init__(self, column=3, row=3, grid='001563000000100800509000040190005007080000050657000002960300070300058400000970000'):
+    def __init__(self, column=3, row=3, grid='003020600900305001001806400008102900700000008006708200002609500800203009005010300'):
         self.column = column
         self.row = row
         self.grid = grid
@@ -26,7 +26,7 @@ class AnySudoku:
         self.units = None
         self.peers = None
 
-    def create_grid(self, row: int, col: int) -> None:
+    def create_grid(self) -> None:
 
         def cross(A: list[int], B: list[int]) -> list[tuple]:
             return [(a, b) for a in A for b in B]
@@ -46,14 +46,14 @@ class AnySudoku:
         temp = []
         for i in range(0, self.sideLength):
             temp.append(str(i))
-            if (i + 1) % row == 0:
+            if (i + 1) % self.row == 0:
                 colPosition.append(temp)
                 temp = []
 
         temp = []
         for i in range(0, self.sideLength):
             temp.append(str(i))
-            if (i + 1) % col == 0:
+            if (i + 1) % self.column == 0:
                 rowPosition.append(temp)
                 temp = []
 
@@ -80,23 +80,22 @@ class AnySudoku:
 
 
 
-
     def fill_grid(self):
         """Convert grid to a dict of possible values, {square: digits}, or
             return False if a contradiction is detected."""
         ## To start, every square can be any digit; then assign values from the grid.
-        def assign_grid_values():
-            "Convert grid into a dict of {square: char} with '0' or '.' for empties."
-            chars = [char for char in self.grid if char in self.possibleValues or char in '0.']
-            assert len(chars) == len(self.squares)
-            return dict(zip(self.squares, chars))
-
 
         values = dict((square, self.possibleValues) for square in self.squares)
-        for square, digit in assign_grid_values().items():
-            if digit in self.possibleValues and not self.assign(values, square, digit):
+        for square, digit in self.assign_grid_values().items():
+            if digit in self.possibleValues and not self.solve_values(values, square, digit):
                 return False  ## (Fail if we can't assign d to square s.)
         return values
+
+    def assign_grid_values(self):
+        "Convert grid into a dict of {square: char} with '0' or '.' for empties."
+        chars = [char for char in self.grid if char in self.possibleValues or char in '0.']
+        assert len(chars) == len(self.squares)
+        return dict(zip(self.squares, chars))
 
 
 
@@ -109,7 +108,7 @@ class AnySudoku:
         Return values, except return False if a contradiction is detected."""
 
         other_values = values[square].replace(digit, '')
-        if all(self.eliminate(values, square, digit2) for digit2 in other_values):
+        if all(self.eliminate_digit(values, square, digit2) for digit2 in other_values):
             return values
         else:
             return False
@@ -127,8 +126,8 @@ class AnySudoku:
             return False  ## Contradiction: removed last value
         elif len(values[square]) == 1:
             digit2 = values[square]
-        if not all(self.eliminate(values, square2, digit2) for square2 in self.peers[square]):
-            return False
+            if not all(self.eliminate_digit(values, square2, digit2) for square2 in self.peers[square]):
+                return False
 
         ## (2) If a unit u is reduced to only one place for a value d, then put it there.
         for unit in self.units[square]:
@@ -141,16 +140,41 @@ class AnySudoku:
                 return False
         return values
 
-    def display(self, values):
-        "Display these values as a 2-D grid."
-        width = 1 + max(len(values[s]) for s in self.squares)
-        line = '+'.join(['-' * (width * 3)] * 3)
-        for r in self.row:
-            print(
-                ''.join(values[r + c].center(width) + ('|' if c in '36' else '')
-                        for c in self.column))
-            if r in 'CF': print(line)
-        print()
+    # takes a dictionary of a sudoku puzzle and shows it in a 2D grid
+    # this one is easier to understand which values are unknown
+    def display(self, values: dict) -> None:
+        # row divider length
+        line = '+'.join(['-' * self.column] * self.row)
+        for c in range(0, self.sideLength):
+            print(''.join('(' + values[(str(c), str(r))] + ')'
+                          + ('|' if (r+1) % self.column == 0 and not (r+1) == self.sideLength else '')
+                          for r in range(0, self.sideLength)))
+
+            if ((c+1) % self.row == 0) and not (c+1) == self.sideLength:
+                print(line)
+
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    # takes a dictionary of a sudoku puzzle and shows it in a 2D grid
+    # this one is a polished version of display()
+    def display_final(self, values: dict) -> None:
+        # row divider length
+        line = '+ '.join(['- ' * self.column] * self.row)
+        for c in range(0, self.sideLength):
+            print(' '.join(values[(str(c), str(r))]
+                           + (' |' if (r+1) % self.column == 0 and not (r+1) == self.sideLength else '')
+                           for r in range(0, self.sideLength)))
+
+            if ((c+1) % self.row == 0) and not (c+1) == self.sideLength:
+                print(line)
+
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 if __name__ == '__main__':
     unit_tests.create_grid_check_correct_dictionary()
+    print()
+
+    x = AnySudoku(3, 2, '103040060203040301302460201050050102')
+    x.create_grid()
+    x.display_final(x.assign_grid_values())
+    x.display(x.fill_grid())
