@@ -1,7 +1,5 @@
 """
 Unique Features:
-Comments
-Any size grid
 Add Least-Constraining Value
 
 https://sudokudragon.com/sudokutheory.htm
@@ -183,7 +181,29 @@ class AnySudoku:
         # return the possible values with the digit eliminated
         return values
 
+    def dfs_solve(self) -> dict:
+        return self.depth_first_search(self.fill_grid())
 
+    # try all possible values
+    def depth_first_search(self, values: dict) -> dict:
+        # if there is no possible eliminations, fail
+        if values is False:
+            return False
+
+        # if there only one value for everything, the puzzle is solved
+        if all(len(values[square]) == 1 for square in self.squares):
+            return values
+
+        # get the square with the least amount of possibilities
+        n, s = min((len(values[square]), square) for square in self.squares if len(values[square]) > 1)
+        return self.some(self.depth_first_search(self.solve_values(values.copy(), s, digit)) for digit in values[s])
+
+    # return element of squence that is true
+    def some(self, sequence):
+        for element in sequence:
+            if element:
+                return element
+        return False
 
     # takes a dictionary of a sudoku puzzle and shows it in a 2D grid
     # this one is easier to understand which values are unknown
@@ -222,8 +242,4 @@ if __name__ == '__main__':
     x = AnySudoku(3, 2, '103040060203040301302460201050050102')
     x.create_grid()
     x.display_final(x.assign_grid_values())
-    x.display(x.fill_grid())
-
-    y = AnySudoku(7, 5, '0'*1225)
-    y.create_grid()
-    y.display_final(y.assign_grid_values())
+    x.display_final(x.dfs_solve())
