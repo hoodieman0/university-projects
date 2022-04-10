@@ -6,7 +6,7 @@ https://sudokudragon.com/sudokutheory.htm
 
 
 NOTE: Matrix Convention that starts at (0,0) because I can't fix an error
-GREEDY SEARCH for least values
+GREEDY SEARCH for least constraining values
 Uhh I added max values because 1. too much run time and 2. it had some implementation errors with the CSP
 '0' or '.' is considered empty
 """
@@ -29,10 +29,10 @@ class AnySudoku:
         for i in range(0, self.sideLength):
             self.possibleValues = self.possibleValues + max_values[i]
 
-        self.squares = None
-        self.unitList = None
-        self.units = None
-        self.peers = None
+        self.squares = None  # becomes list of tuples
+        self.unitList = None  # becomes list of list[tuple]
+        self.units = None  # becomes dict
+        self.peers = None  # becomes dict
 
 
 
@@ -147,7 +147,7 @@ class AnySudoku:
         # remove the digit
         values[square] = values[square].replace(digit, '')
 
-        # if a square has only one value left, remove it from its peers
+        # if a square has only one value left, remove it from its peers:
 
         # is there nothing in values left
         if len(values[square]) == 0:
@@ -164,7 +164,7 @@ class AnySudoku:
 
 
         # if there is only one place for the digit in the unit, put it there
-        # get all the places where digit2 can be in the unit
+        # get all the squares where digit2 can be in the unit
         for unit in self.units[square]:
             digitPlaces = [square for square in unit if digit in values[square]]
 
@@ -185,6 +185,7 @@ class AnySudoku:
         return self.depth_first_search(self.fill_grid())
 
     # try all possible values
+    # heuristic chooses the square with the smallest amount of possible values
     def depth_first_search(self, values: dict) -> dict:
         # if there is no possible eliminations, fail
         if values is False:
@@ -198,12 +199,79 @@ class AnySudoku:
         n, s = min((len(values[square]), square) for square in self.squares if len(values[square]) > 1)
         return self.some(self.depth_first_search(self.solve_values(values.copy(), s, digit)) for digit in values[s])
 
-    # return element of squence that is true
+    # return element of sequence that is true
+    # prevents iterative recursive function from failing when one of its multiple calls is False
     def some(self, sequence):
         for element in sequence:
             if element:
                 return element
         return False
+
+
+
+    def lcvs_solve(self) -> dict:
+        return self.least_constraining_values_search(self.fill_grid())
+
+    def least_constraining_values_search(self, values: dict) -> dict:
+        #hash table?
+        # which chooses first the value that imposes the fewest constraints on peers
+
+        # if there is no possible eliminations, fail
+        if values is False:
+            return False
+
+        # if there only one value for everything, the puzzle is solved
+        if all(len(values[square]) == 1 for square in self.squares):
+            return values
+
+        temp = dict((a, 0) for a in self.possibleValues)
+
+
+        for square in self.units:
+            for unit in self.units[square]:
+                for s in unit:
+                    for char in values.get(s):
+                        temp[char] = temp[char] + 1
+
+        least_value = min(temp, key=temp.get)
+        return self.some(self.least_constraining_values_search(self.solve_values(values.copy(), square2, least_value) for square2 in self.units[square]))
+
+        # find a way to change the square(s) in unit with the least_value
+        #   Could iterate through list of self.unitList and try every square with the condition that the least_value is in its values
+        # find a way to change which unit is considered
+        #   Could use iteration of self.unitList, but this only would check the current row/column/box
+
+        # n, s = min((len(values[square]), square) for square in self.squares if len(values[square]) > 1)
+        # return self.some(self.depth_first_search(self.solve_values(values.copy(), s, digit)) for digit in values[s])
+
+        # for each square
+        # get its units
+        # find the lowest occurring number in the unit
+        # assign it to the first available square
+        # do it again until solved or failure
+        # if failure, backtrack up
+        # return the new dict
+
+
+        # should be recursive
+        # needs proper fail condition
+        # make sure it backtracks right
+
+
+        """
+        for square in self.squares:
+            if least_value in values[square]:
+                new_values = self.solve_values(values, square, least_value)
+
+                n, s = min((len(values[square]), square) for square in self.squares if len(values[square]) > 1)
+                return self.some(
+                    self.depth_first_search(self.solve_values(values.copy(), s, digit)) for digit in values[s])
+
+        return self.least_constraining_values_search(self.solve_values(values.copy(), s, digit)) for digit in values[s])
+        return new_values
+        """
+
+
 
     # takes a dictionary of a sudoku puzzle and shows it in a 2D grid
     # this one is easier to understand which values are unknown
@@ -243,3 +311,4 @@ if __name__ == '__main__':
     x.create_grid()
     x.display_final(x.assign_grid_values())
     x.display_final(x.dfs_solve())
+    x.lcvs_solve()
