@@ -1,14 +1,12 @@
 """
-Unique Features:
-Add Least-Constraining Value
-
+Added functionality to Peter Norvig's Sudoku Solver:
 https://sudokudragon.com/sudokutheory.htm
 
+Creates a class that can be any grid size sudoku puzzle (max is 61 x 61 square)
+Additionally adds the heuristic of Least-Constraining Value to test its efficiency
 
-NOTE: Matrix Convention that starts at (0,0) because I can't fix an error
-GREEDY SEARCH for least constraining values
-Uhh I added max values because 1. too much run time and 2. it had some implementation errors with the CSP
-'0' or '.' is considered empty
+NOTE: Matrix Convention that starts at (0,0)
+NOTE: '0' or '.' is considered empty
 """
 import tests as unit_tests
 
@@ -286,10 +284,13 @@ class AnySudoku:
 
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
+    
+
 if __name__ == '__main__':
     unit_tests.create_grid_check_correct_dictionary()
     print()
 
+    """
     x = AnySudoku(3, 2, '103040060203040301302460201050050102')
     x.create_grid()
     x.display_final(x.assign_grid_values())
@@ -307,3 +308,4 @@ if __name__ == '__main__':
     print("LCVS Solve")
     y.display_final(y.lcvs_solve())
     print(y.dfs_solve() == y.lcvs_solve())
+    """
