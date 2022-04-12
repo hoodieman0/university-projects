@@ -48,7 +48,7 @@ class AnySudoku:
         rows = []
 
         # populate the rows can columns with values
-        for i in range(0, self.sideLength):  # TODO get cells to be represented starting at (1,1)
+        for i in range(0, self.sideLength):
             cols.append(str(i))
             rows.append(str(i))
 
@@ -185,7 +185,7 @@ class AnySudoku:
         return self.depth_first_search(self.fill_grid())
 
     # try all possible values
-    # heuristic chooses the square with the smallest amount of possible values
+    # heuristic chooses the square with the smallest amount of possible values and tries all values
     def depth_first_search(self, values: dict) -> dict:
         # if there is no possible eliminations, fail
         if values is False:
@@ -212,10 +212,9 @@ class AnySudoku:
     def lcvs_solve(self) -> dict:
         return self.least_constraining_values_search(self.fill_grid())
 
+    # a backtracking algorithm that tries all possible values
+    # heuristic assigns the digit that occurs the least in a unit to the square
     def least_constraining_values_search(self, values: dict) -> dict:
-        #hash table?
-        # which chooses first the value that imposes the fewest constraints on peers
-
         # if there is no possible eliminations, fail
         if values is False:
             return False
@@ -224,52 +223,36 @@ class AnySudoku:
         if all(len(values[square]) == 1 for square in self.squares):
             return values
 
-        temp = dict((a, 0) for a in self.possibleValues)
+        # hash map for the least value
+        valueSeen = dict((a, 0) for a in self.possibleValues)
 
-
-        for square in self.units:
-            for unit in self.units[square]:
-                for s in unit:
-                    for char in values.get(s):
-                        temp[char] = temp[char] + 1
-
-        least_value = min(temp, key=temp.get)
-        return self.some(self.least_constraining_values_search(self.solve_values(values.copy(), square2, least_value) for square2 in self.units[square]))
-
-        # find a way to change the square(s) in unit with the least_value
-        #   Could iterate through list of self.unitList and try every square with the condition that the least_value is in its values
-        # find a way to change which unit is considered
-        #   Could use iteration of self.unitList, but this only would check the current row/column/box
-
-        # n, s = min((len(values[square]), square) for square in self.squares if len(values[square]) > 1)
-        # return self.some(self.depth_first_search(self.solve_values(values.copy(), s, digit)) for digit in values[s])
-
-        # for each square
-        # get its units
-        # find the lowest occurring number in the unit
-        # assign it to the first available square
-        # do it again until solved or failure
-        # if failure, backtrack up
-        # return the new dict
-
-
-        # should be recursive
-        # needs proper fail condition
-        # make sure it backtracks right
-
-
-        """
+        # get a square
         for square in self.squares:
-            if least_value in values[square]:
-                new_values = self.solve_values(values, square, least_value)
+            # if the square has only one value, skip it
+            if len(values[square]) == 1:
+                continue
+            # get the peers associated with the square
+            for peer in self.peers[square]:
+                # if the square has a value, skip it
+                if len(values[peer]) == 1:
+                    continue
+                # for each possible value in the square
+                for char in values[peer]:
+                    # increase how many times it was seen by 1
+                    valueSeen[char] = valueSeen[char] + 1
 
-                n, s = min((len(values[square]), square) for square in self.squares if len(values[square]) > 1)
-                return self.some(
-                    self.depth_first_search(self.solve_values(values.copy(), s, digit)) for digit in values[s])
+            # filler value for loop
+            valueSeen['0'] = 100000000000
+            least_constraining_value = '0'
+            # this loop gets the minimum value that is seen at least 1 time
+            for v in valueSeen:
+                if valueSeen[v] == 0:
+                    continue
+                if valueSeen[v] < valueSeen[least_constraining_value]:
+                    least_constraining_value = v
 
-        return self.least_constraining_values_search(self.solve_values(values.copy(), s, digit)) for digit in values[s])
-        return new_values
-        """
+            for unit2 in self.units[square]:
+                return self.some(self.least_constraining_values_search(self.solve_values(values.copy(), square2, least_constraining_value)) for square2 in unit2)
 
 
 
@@ -310,5 +293,17 @@ if __name__ == '__main__':
     x = AnySudoku(3, 2, '103040060203040301302460201050050102')
     x.create_grid()
     x.display_final(x.assign_grid_values())
+    print("DFS Solve")
     x.display_final(x.dfs_solve())
-    x.lcvs_solve()
+    print("LCVS Solve")
+    x.display_final(x.lcvs_solve())
+    print(x.dfs_solve() == x.lcvs_solve())
+
+    y = AnySudoku(3, 3, '003020600900305001001806400008102900700000008006708200002609500800203009005010300')
+    y.create_grid()
+    # x.display_final(x.assign_grid_values())
+    print("DFS Solve")
+    y.display_final(y.dfs_solve())
+    print("LCVS Solve")
+    y.display_final(y.lcvs_solve())
+    print(y.dfs_solve() == y.lcvs_solve())
