@@ -1,6 +1,12 @@
 """
 Added functionality to Peter Norvig's Sudoku Solver:
+http://norvig.com/sudoku.html
+
+Useful information about the sizes and theory of Sudoku:
 https://sudokudragon.com/sudokutheory.htm
+
+Proof that a 9x9 Sudoku puzzle needs at least 17 clues to be unique:
+https://arxiv.org/pdf/1201.0749v2.pdf
 
 Creates a class that can be any grid size sudoku puzzle (max is 61 x 61 square)
 Additionally adds the heuristic of Least-Constraining Value to test its efficiency
@@ -8,6 +14,8 @@ Additionally adds the heuristic of Least-Constraining Value to test its efficien
 NOTE: Matrix Convention that starts at (0,0)
 NOTE: '0' or '.' is considered empty
 """
+import sys
+import time, random
 import tests as unit_tests
 
 max_values = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
@@ -31,8 +39,6 @@ class AnySudoku:
         self.unitList = None  # becomes list of list[tuple]
         self.units = None  # becomes dict
         self.peers = None  # becomes dict
-
-
 
     # fills class variables squares, unitList, units, and peers
     # makes the grid in a dictionary representation
@@ -273,22 +279,124 @@ class AnySudoku:
     # this one is a polished version of display()
     def display_final(self, values: dict) -> None:
         # row divider length
+        if not values:
+            print("Sudoku Not Solvable!")
+            return
+
         line = '+ '.join(['- ' * self.column] * self.row)
         for c in range(0, self.sideLength):
             print(' '.join(values[(str(c), str(r))]
                            + (' |' if (r+1) % self.column == 0 and not (r+1) == self.sideLength else '')
                            for r in range(0, self.sideLength)))
-
             if ((c+1) % self.row == 0) and not (c+1) == self.sideLength:
                 print(line)
 
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-    
+
+
+
+
+
+    # solve a sequence of grids using a Depth-First Search
+    # showif is in seconds
+    def solve_all_dfs(self, grids: list[str], name='', showif=0.0):
+
+        def time_solve(grid):
+            self.grid = grid
+            start = time.time()
+            values = self.dfs_solve()
+            t = time.time() - start
+
+            # display puzzles that are over showif seconds
+            if showif is not None and t > showif:
+                self.display_final(self.assign_grid_values())
+                if values: self.display(values)
+                print('(%.2f seconds)\n' % t)
+            return t, self.solved(values)
+
+        times, results = zip(*[time_solve(grid) for grid in grids])
+        N = len(grids)
+        if N > 1:
+            print("Solved %d of %d %s puzzles (avg %.2f secs (%d Hz), max %.2f secs)." % (
+                sum(results), N, name, sum(times) / N, N / sum(times), max(times)))
+
+    def solve_all_lcvs(self, grids, name='', showif=0.0):
+        """Attempt to solve a sequence of grids. Report results.
+        When showif is a number of seconds, display puzzles that take longer.
+        When showif is None, don't display any puzzles."""
+
+        def time_solve(grid):
+            self.grid = grid
+            start = time.time()
+            values = self.lcvs_solve()
+            t = time.time() - start
+            # display puzzles that are over showif seconds
+            if showif is not None and t > showif:
+                self.display_final(self.assign_grid_values())
+                if values: self.display(values)
+                print('(%.2f seconds)\n' % t)
+            return t, self.solved(values)
+
+        times, results = zip(*[time_solve(grid) for grid in grids])
+        N = len(grids)
+        if N > 1:
+            print("Solved %d of %d %s puzzles (avg %.2f secs (%d Hz), max %.2f secs)." % (
+                sum(results), N, name, sum(times) / N, N / sum(times), max(times)))
+
+
+    def solved(self, values: dict) -> bool:
+        def unitsolved(unit):
+            return set(values[s] for s in unit) == set(self.possibleValues)
+        # checks if both values exists and its units all have on of each possibleValue
+        return values is not False and all(unitsolved(unit) for unit in self.unitlist)
+
+    def from_file(self, filename: str, sep='\n') -> list[str]:
+        # reads a file, returns a list of strings for each puzzle, separated by sep
+        file = open(filename, 'r')
+        return file.read().strip().split(sep)
+
+    # returns a randomized puzzle string with at least numSquaresAssigned, restart on contradictions
+    # all puzzles are not guaranteed to be solvable, some have multiple solutions
+    def random_puzzle(self, numSquaresAssigned=1) -> str:
+        # create a grid where any square can be any value
+        values = dict((square, self.possibleValues) for square in self.squares)
+        for square in self.shuffled(self.squares):
+            if not self.solve_values(values, square, random.choice(values[square])):
+                break
+            ds = [values[square] for square in self.squares if len(values[square]) == 1]
+            if len(ds) >= numSquaresAssigned:
+                return ''.join(values[square] if len(values[square]) == 1 else '0' for square in self.squares)
+        return self.random_puzzle(numSquaresAssigned)  ## Give up and make a new puzzle
+
+    # randomizes the input seq
+    def shuffled(self, seq):
+
+        seq = list(seq)
+        random.shuffle(seq)
+        return seq
 
 if __name__ == '__main__':
     unit_tests.create_grid_check_correct_dictionary()
     print()
+
+
+    """
+    z = AnySudoku(3, 2, '0'*36)
+    z.create_grid()
+    z.grid = z.random_puzzle(14)
+    z.display_final(z.assign_grid_values())
+    z.display_final(z.dfs_solve())
+    z.display_final(z.lcvs_solve())
+    print(z.dfs_solve() == z.lcvs_solve())
+    """
+
+    """
+    x = AnySudoku(4, 4, '50F0000C40000G0703000705G0E000907E4020B00D0C01A000C8G00D7009460E0B000050080000G09503D200A0FG8000G000080E10400003A0D40G01C0B0950FC09A05063070EB0110000B07209000040F0D130000G650C9070000900B0000600037B000900FDE0A6A1050200G08097009000A08B02000F040G0000F60000208')
+    x.create_grid()
+    x.display_final(x.assign_grid_values())
+    x.display_final(x.dfs_solve())
+    """
 
     """
     x = AnySudoku(3, 2, '103040060203040301302460201050050102')
@@ -299,7 +407,10 @@ if __name__ == '__main__':
     print("LCVS Solve")
     x.display_final(x.lcvs_solve())
     print(x.dfs_solve() == x.lcvs_solve())
+    """
 
+
+    """
     y = AnySudoku(3, 3, '003020600900305001001806400008102900700000008006708200002609500800203009005010300')
     y.create_grid()
     # x.display_final(x.assign_grid_values())
