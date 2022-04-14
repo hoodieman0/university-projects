@@ -311,7 +311,7 @@ class AnySudoku:
             # display puzzles that are over showif seconds
             if showif is not None and t > showif:
                 self.display_final(self.assign_grid_values())
-                if values: self.display(values)
+                if values: self.display_final(values)
                 print('(%.2f seconds)\n' % t)
             return t, self.solved(values)
 
@@ -334,7 +334,7 @@ class AnySudoku:
             # display puzzles that are over showif seconds
             if showif is not None and t > showif:
                 self.display_final(self.assign_grid_values())
-                if values: self.display(values)
+                if values: self.display_final(values)
                 print('(%.2f seconds)\n' % t)
             return t, self.solved(values)
 
@@ -349,19 +349,14 @@ class AnySudoku:
         def unitsolved(unit):
             return set(values[s] for s in unit) == set(self.possibleValues)
         # checks if both values exists and its units all have on of each possibleValue
-        return values is not False and all(unitsolved(unit) for unit in self.unitlist)
-
-    def from_file(self, filename: str, sep='\n') -> list[str]:
-        # reads a file, returns a list of strings for each puzzle, separated by sep
-        file = open(filename, 'r')
-        return file.read().strip().split(sep)
+        return values is not False and all(unitsolved(unit) for unit in self.unitList)
 
     # returns a randomized puzzle string with at least numSquaresAssigned, restart on contradictions
     # all puzzles are not guaranteed to be solvable, some have multiple solutions
     def random_puzzle(self, numSquaresAssigned=1) -> str:
         # create a grid where any square can be any value
         values = dict((square, self.possibleValues) for square in self.squares)
-        for square in self.shuffled(self.squares):
+        for square in shuffled(self.squares):
             if not self.solve_values(values, square, random.choice(values[square])):
                 break
             ds = [values[square] for square in self.squares if len(values[square]) == 1]
@@ -369,9 +364,14 @@ class AnySudoku:
                 return ''.join(values[square] if len(values[square]) == 1 else '0' for square in self.squares)
         return self.random_puzzle(numSquaresAssigned)  ## Give up and make a new puzzle
 
-    # randomizes the input seq
-    def shuffled(self, seq):
 
+def from_file(filename: str, sep='\n') -> list[str]:
+    # reads a file, returns a list of strings for each puzzle, separated by sep
+    file = open(filename, 'r')
+    return file.read().strip().split(sep)
+
+# randomizes the input seq
+def shuffled(seq):
         seq = list(seq)
         random.shuffle(seq)
         return seq
@@ -379,7 +379,22 @@ class AnySudoku:
 if __name__ == '__main__':
     unit_tests.create_grid_check_correct_dictionary()
     print()
+    grid1 = AnySudoku(3, 3, '0'*81)
+    grid1.create_grid()
 
+    print("\n\n~Solve Using Depth-First Search~\n")
+
+    grid1.solve_all_dfs(from_file("easy50.txt", '========'), "easy", 0.001)
+    grid1.solve_all_dfs(from_file("top95.txt"), "hard", 0.001)
+    grid1.solve_all_dfs(from_file("hardest.txt"), "hardest", 0.001)
+    grid1.solve_all_dfs([grid1.random_puzzle() for _ in range(99)], "random", 100.0)
+
+    print("\n\n~Solve Using Least-Constraining Value Heuristic~\n")
+
+    grid1.solve_all_lcvs(from_file("easy50.txt", '========'), "easy", 0.001)
+    grid1.solve_all_lcvs(from_file("top95.txt"), "hard", 0.001)
+    grid1.solve_all_lcvs(from_file("hardest.txt"), "hardest", 0.001)
+    grid1.solve_all_lcvs([grid1.random_puzzle() for _ in range(99)], "random", 100.0)
 
     """
     z = AnySudoku(3, 2, '0'*36)
@@ -389,13 +404,6 @@ if __name__ == '__main__':
     z.display_final(z.dfs_solve())
     z.display_final(z.lcvs_solve())
     print(z.dfs_solve() == z.lcvs_solve())
-    """
-
-    """
-    x = AnySudoku(4, 4, '50F0000C40000G0703000705G0E000907E4020B00D0C01A000C8G00D7009460E0B000050080000G09503D200A0FG8000G000080E10400003A0D40G01C0B0950FC09A05063070EB0110000B07209000040F0D130000G650C9070000900B0000600037B000900FDE0A6A1050200G08097009000A08B02000F040G0000F60000208')
-    x.create_grid()
-    x.display_final(x.assign_grid_values())
-    x.display_final(x.dfs_solve())
     """
 
     """
@@ -419,4 +427,14 @@ if __name__ == '__main__':
     print("LCVS Solve")
     y.display_final(y.lcvs_solve())
     print(y.dfs_solve() == y.lcvs_solve())
+    """
+
+    """
+    # a 16x16 grid
+    # current implementation is not efficient enough so it hits recursion depth
+    
+    x = AnySudoku(4, 4, '50F0000C40000G0703000705G0E000907E4020B00D0C01A000C8G00D7009460E0B000050080000G09503D200A0FG8000G000080E10400003A0D40G01C0B0950FC09A05063070EB0110000B07209000040F0D130000G650C9070000900B0000600037B000900FDE0A6A1050200G08097009000A08B02000F040G0000F60000208')
+    x.create_grid()
+    x.display_final(x.assign_grid_values())
+    x.display_final(x.dfs_solve())
     """
