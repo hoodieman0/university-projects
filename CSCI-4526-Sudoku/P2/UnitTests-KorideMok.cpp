@@ -1,6 +1,6 @@
 // Written by James Mok and Niel Koride
 
-#include "Square-KorideMok.hpp"
+#include "UnitTests-KorideMok.hpp"
 
 // ---------------------------------------------------------------------
 // Helper function for TestStateFunctions()
@@ -8,11 +8,11 @@
 // Postcondition: Prints the before a mark and after a mark state of the State
 void
 statePrintTestCase(State* test){
-    cout << "~Before~" << endl;
+    cout <<"~Before~" <<endl;
     test->print();
-    cout << "!Mark!" << endl;
+    cout <<"!Mark!" <<endl;
     test->mark('1');
-    cout << "~After~" << endl;
+    cout << "~After~" <<endl;
     test->print();
 }
 // ---------------------------------------------------------------------
@@ -56,12 +56,12 @@ testStateFunctions(){
 
 void
 squarePrintTestCase(Square* test){
-    cout << "~Before~" << endl;
-    test->print();
+    cout << "~Before~\n" <<test <<endl;
+//    test->print();
     cout << "!Mark!" << endl;
     test->mark('1');
-    cout << "~After~" << endl;
-    test->print();
+    cout << "~After~\n" << test <<endl;
+//    test->print();
 }
 
 void

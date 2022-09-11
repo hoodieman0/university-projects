@@ -4,21 +4,9 @@
 #define P1_MOK_SQUARE_KORIDEMOK_H
 
 #include "tools.hpp"
+#include "State-KorideMok.hpp"
 
-class State {
-    private:
-        short possibilities;
-        char value;
-        bool fixed; //is part of the original puzzle
-
-    public:
-        State();
-        State(char);
-        ~State();
-        void mark(char);
-        char getValue() {return value;}
-        void const print();
-};
+ostream& print( ostream& );
 
 class Square{
     private:
@@ -28,17 +16,15 @@ class Square{
         vector<Square> buddies;
 
     public:
-        Square();
+        Square() { cout <<"Square Default Constructor" << endl; }
         Square(char, short, short);
-        ~Square();
-        void mark(char);
-        void getValue(); // for future use
-        void const print(); //follows matrix convention [rows, columns]
-
+        ~Square() { cout <<"Destroying Square " <<row <<", " <<col <<endl; }
+        void mark(char marker) { info.mark(marker); }
+        ostream& print(ostream&); //follows matrix convention [rows, columns]
 };
 
-ostream& operator <<( ostream&, Square&){
-
+ostream& operator <<( ostream& out, Square& sq){
+    return sq.print(out);
 }
 
 #endif P1_MOK_SQUARE_KORIDEMOK_H
