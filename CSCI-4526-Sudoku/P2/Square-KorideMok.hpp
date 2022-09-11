@@ -3,7 +3,7 @@
 #ifndef P1_MOK_SQUARE_KORIDEMOK_H
 #define P1_MOK_SQUARE_KORIDEMOK_H
 
-class Square {
+class State {
     private:
         short possibilities;
         char value;
@@ -11,11 +11,15 @@ class Square {
         //why is the order important?
 
     public:
-        Square();
-        Square(char);
-        ~Square();
+        State();
+        State(char);
+        ~State();
         void Mark(char);
         void Print();
+};
+
+class State{
+
 };
 
 #endif P1_MOK_SQUARE_KORIDEMOK_H

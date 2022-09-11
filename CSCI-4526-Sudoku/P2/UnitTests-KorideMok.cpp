@@ -4,11 +4,11 @@
 #include <iostream>
 
 // ---------------------------------------------------------------------
-// Helper function for TestSquareFunctions()
-// Precondition: Square object has been created
-// Postcondition: Prints the before a mark and after a mark state of the square
+// Helper function for TestStateFunctions()
+// Precondition: State object has been created
+// Postcondition: Prints the before a mark and after a mark state of the State
 void
-PrintTestCase(Square* test){
+PrintTestCase(State* test){
     std::cout << "~Before~" << std::endl;
     test->Print();
     std::cout << "!Mark!" << std::endl;
@@ -17,40 +17,40 @@ PrintTestCase(Square* test){
     test->Print();
 }
 // ---------------------------------------------------------------------
-// Tests all the functions related to the Square Class
+// Tests all the functions related to the State Class
 // No preconditions
 // Prints the state of each test object
 void
-TestSquareFunctions(){
-    std::cout << "Testing the Square class from Square-KorideMok.hpp" << std::endl;
+TestStateFunctions(){
+    std::cout << "Testing the State class from Square-KorideMok.hpp" << std::endl;
     std::cout << "Expected Output:" << std::endl;
     std::cout << "1. Null values" << std::endl;
-    std::cout << "2. Empty markable square" << std::endl;
-    std::cout << "3. Numbered unmarkable square" << std::endl;
-    std::cout << "4. Unmarked square with limited possibilities\n" << std::endl;
+    std::cout << "2. Empty markable State" << std::endl;
+    std::cout << "3. Numbered unmarkable State" << std::endl;
+    std::cout << "4. Unmarked State with limited possibilities\n" << std::endl;
 
 
     std::cout << "1. Null Value Test" << std::endl;
-    Square* objOne = new Square();
+    State* objOne = new State();
     PrintTestCase(objOne);
-    objOne->~Square();
+    objOne->~State();
     std::cout << std::endl;
 
-    std::cout << "2. Empty Square Test" << std::endl;
-    Square* objTwo = new Square('-');
+    std::cout << "2. Empty State Test" << std::endl;
+    State* objTwo = new State('-');
     PrintTestCase(objTwo);
-    objTwo->~Square();
+    objTwo->~State();
     std::cout << std::endl;
 
-    std::cout << "3. Fixed Square Test" << std::endl;
-    Square* objThree = new Square('9');
+    std::cout << "3. Fixed State Test" << std::endl;
+    State* objThree = new State('9');
     PrintTestCase(objThree);
-    objThree->~Square();
+    objThree->~State();
     std::cout << std::endl;
 
     std::cout << "4. Limited Possibilities Test" << std::endl;
-    Square* objFour = new Square('~');
+    State* objFour = new State('~');
     PrintTestCase(objFour);
-    objFour->~Square();
+    objFour->~State();
     std::cout << std::endl;
 }

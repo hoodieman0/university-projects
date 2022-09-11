@@ -5,6 +5,6 @@
 
 int main(){
     banner();
-    TestSquareFunctions();
+    TestStateFunctions();
     bye();
 }

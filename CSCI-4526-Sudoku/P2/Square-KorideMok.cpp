@@ -4,10 +4,10 @@
 #include <iostream>
 
 // ---------------------------------------------------------------------
-// Default Constructor for Square objects
+// Default Constructor for State objects
 // No precondition
-// Postconiditon: Null value square object is created
-Square::Square(){
+// Postconiditon: Null value State object is created
+State::State(){
     std::cout << "Default Constructor" << std::endl;
     value = '\0';
     fixed = false;
@@ -15,10 +15,10 @@ Square::Square(){
 }
 
 // ---------------------------------------------------------------------
-// Square Constructor
+// State Constructor
 // No precondition
-// Postcondition: Square object is created
-Square::Square(char startingValue){
+// Postcondition: State object is created
+State::State(char startingValue){
     value = startingValue;
     if (startingValue == '-'){
         possibilities = 0x3FE; //binary: 0011 1111 1110
@@ -37,20 +37,20 @@ Square::Square(char startingValue){
 }
 
 // ---------------------------------------------------------------------
-// Square Destructor
-// Precondition: Square object exists
-// Postcondition: Deletes Square object
-Square::~Square(){
+// State Destructor
+// Precondition: State object exists
+// Postcondition: Deletes State object
+State::~State(){
     std::cout << "Default Destructor" << std::endl;
 }
 
 // ---------------------------------------------------------------------
-// Marks the Square object with a valid character
-// Precondition: Square object exists
-// Postcondition: Changes square variable "value" to the given character
+// Marks the State object with a valid character
+// Precondition: State object exists
+// Postcondition: Changes State variable "value" to the given character
 // Failure: "Cannot Add Value"
 void
-Square::Mark(char ch){
+State::Mark(char ch){
     if (!this->fixed){
         value = ch;
     }
@@ -60,11 +60,11 @@ Square::Mark(char ch){
 }
 
 // ---------------------------------------------------------------------
-// Prints the variables of the Square object in a human-readable format
-// Preconditions: Square object exists
+// Prints the variables of the State object in a human-readable format
+// Preconditions: State object exists
 // Postconditions: Prints the variables to the console
 void
-Square::Print(){
+State::Print(){
     std::cout << "value: " << value << std::endl;
     std::cout << "fixed: " << std::boolalpha << fixed << std::endl;
     std::cout << "possibilities: ";
