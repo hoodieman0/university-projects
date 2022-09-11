@@ -1,7 +1,6 @@
 // Written by James Mok and Niel Koride
 
 #include "Square-KorideMok.hpp"
-#include <iostream>
 
 // ---------------------------------------------------------------------
 // Helper function for TestStateFunctions()
@@ -10,11 +9,11 @@
 void
 PrintTestCase(State* test){
     std::cout << "~Before~" << std::endl;
-    test->Print();
+    test->print();
     std::cout << "!Mark!" << std::endl;
-    test->Mark('1');
+    test->mark('1');
     std::cout << "~After~" << std::endl;
-    test->Print();
+    test->print();
 }
 // ---------------------------------------------------------------------
 // Tests all the functions related to the State Class

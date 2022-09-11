@@ -1,14 +1,16 @@
 // Written by James Mok and Niel Koride
 
 #include "Square-KorideMok.hpp"
-#include <iostream>
+
+ostream& print( ostream& );
 
 // ---------------------------------------------------------------------
 // Default Constructor for State objects
-// No precondition
+// Precondition: None
 // Postconiditon: Null value State object is created
-State::State(){
-    std::cout << "Default Constructor" << std::endl;
+State::
+State(){
+    cout <<"Default State Constructor" << endl;
     value = '\0';
     fixed = false;
     possibilities = 0;
@@ -16,9 +18,10 @@ State::State(){
 
 // ---------------------------------------------------------------------
 // State Constructor
-// No precondition
+// Precondition: None
 // Postcondition: State object is created
-State::State(char startingValue){
+State::
+State(char startingValue){
     value = startingValue;
     if (startingValue == '-'){
         possibilities = 0x3FE; //binary: 0011 1111 1110
@@ -40,8 +43,9 @@ State::State(char startingValue){
 // State Destructor
 // Precondition: State object exists
 // Postcondition: Deletes State object
-State::~State(){
-    std::cout << "Default Destructor" << std::endl;
+State::
+~State(){
+    cout <<"Default State Destructor" <<endl;
 }
 
 // ---------------------------------------------------------------------
@@ -49,13 +53,13 @@ State::~State(){
 // Precondition: State object exists
 // Postcondition: Changes State variable "value" to the given character
 // Failure: "Cannot Add Value"
-void
-State::Mark(char ch){
+void State::
+mark(char ch){
     if (!this->fixed){
         value = ch;
     }
     else{
-        std::cout << "Cannot Add Value" << std::endl;
+        cout <<"Cannot Add Value" <<endl;
     }
 }
 
@@ -63,23 +67,56 @@ State::Mark(char ch){
 // Prints the variables of the State object in a human-readable format
 // Preconditions: State object exists
 // Postconditions: Prints the variables to the console
-void
-State::Print(){
-    std::cout << "value: " << value << std::endl;
-    std::cout << "fixed: " << std::boolalpha << fixed << std::endl;
-    std::cout << "possibilities: ";
+void const State::
+print(){
+    cout <<"value: " <<value <<endl;
+    cout <<"fixed: " <<boolalpha <<fixed <<endl;
+    cout <<"possibilities: ";
 
     short temp = possibilities >> 1;
     short mask = 0x001;
     for (int counter = 1; counter <= 9; counter++){
         if ((temp & mask) == 1){
-            std::cout << counter;
+            cout << counter;
         }
         else{
-            std::cout << '-';
+            cout << '-';
         }
 
         temp = temp >> 1;
     }
-    std::cout << std::endl;
+    cout << endl;
+}
+
+// ---------------------------------------------------------------------
+// Default constructor for Square
+// Preconditions: None
+// Postconditions: None
+Square::
+Square(){
+    cout <<"Square Default Constructor" << endl;
+}
+
+Square::
+Square(char startingValue, short r, short c) : info(startingValue)
+{
+    row = r;
+    col = c;
+    cerr <<"Constructing Square " <<row <<", " <<col <<endl;
+}
+
+Square::
+~Square(){
+    cerr <<"Destroying Square " <<row <<", " <<col <<endl;
+}
+
+void Square::
+mark(char marker){
+    info.mark(marker);
+}
+
+void const Square::
+print(){
+    cout <<"Square [" <<row <<", " <<col <<"] ";
+    info.print();
 }
