@@ -18,7 +18,7 @@ class State {
         void Print();
 };
 
-class State{
+class Square{
 
 };
 
