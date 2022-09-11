@@ -33,10 +33,12 @@ class Square{
         ~Square();
         void mark(char);
         void getValue(); // for future use
-        void const print();
+        void const print(); //follows matrix convention [rows, columns]
 
 };
 
-ostream& operator <<( ostream&, Square&);
+ostream& operator <<( ostream&, Square&){
+
+}
 
 #endif P1_MOK_SQUARE_KORIDEMOK_H

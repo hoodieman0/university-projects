@@ -59,19 +59,18 @@ mark(char ch){
         value = ch;
     }
     else{
-        cout <<"Cannot Add Value" <<endl;
+        cerr <<"Cannot Add Value" <<endl;
     }
 }
 
 // ---------------------------------------------------------------------
 // Prints the variables of the State object in a human-readable format
 // Preconditions: State object exists
-// Postconditions: Prints the variables to the console
+// Postconditions: Prints State's variables to the console
 void const State::
 print(){
-    cout <<"value: " <<value <<endl;
-    cout <<"fixed: " <<boolalpha <<fixed <<endl;
-    cout <<"possibilities: ";
+    cout <<"value: " <<value <<" fixed: " <<boolalpha <<fixed;
+    cout <<" possibilities: ";
 
     short temp = possibilities >> 1;
     short mask = 0x001;
@@ -80,12 +79,12 @@ print(){
             cout << counter;
         }
         else{
-            cout << '-';
+            cout <<'-';
         }
 
         temp = temp >> 1;
     }
-    cout << endl;
+    cout <<endl;
 }
 
 // ---------------------------------------------------------------------
@@ -97,26 +96,42 @@ Square(){
     cout <<"Square Default Constructor" << endl;
 }
 
+// ---------------------------------------------------------------------
+// Constructor for Square
+// Preconditions: None
+// Postconditions: A square object with a State, row, and column is created
 Square::
 Square(char startingValue, short r, short c) : info(startingValue)
 {
     row = r;
     col = c;
-    cerr <<"Constructing Square " <<row <<", " <<col <<endl;
+    cout <<"Constructing Square " <<row <<", " <<col <<endl;
 }
-
+// ---------------------------------------------------------------------
+// Default destructor for Square
+// Preconditions: Square object exists
+// Postconditions: Square object is deleted
 Square::
 ~Square(){
-    cerr <<"Destroying Square " <<row <<", " <<col <<endl;
+    cout <<"Destroying Square " <<row <<", " <<col <<endl;
 }
 
+// ---------------------------------------------------------------------
+// Marks the specific Square with a given char
+// Preconditions: Square object exists
+// Postconditions: Square's State's value is changed to 'marker'
 void Square::
 mark(char marker){
     info.mark(marker);
 }
 
+// ---------------------------------------------------------------------
+// Prints the values of the Square object in a human-readable format
+// Preconditions: Square object exists
+// Postconditions: Prints Square's variables to the console
 void const Square::
 print(){
     cout <<"Square [" <<row <<", " <<col <<"] ";
     info.print();
+    //cout << this;
 }

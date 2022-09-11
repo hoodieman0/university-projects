@@ -5,6 +5,7 @@
 
 #include "tools.hpp"
 
-void TestStateFunctions();
+void testStateFunctions();
+void testSquareFunctions();
 
 #endif P1_MOK_UNITTESTS_KORIDEMOK_H
