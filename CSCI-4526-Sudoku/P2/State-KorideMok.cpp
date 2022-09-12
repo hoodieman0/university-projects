@@ -41,21 +41,21 @@ mark(char ch){
 // Preconditions: State object exists
 // Postconditions: Prints State's variables to the console
 void const State::
-print(){
-    cout <<"value: " <<value <<" fixed: " <<boolalpha <<fixed;
-    cout <<" possibilities: ";
+print( ostream& out ){
+    out <<"value: " <<value <<" fixed: " <<boolalpha <<fixed;
+    out <<" possibilities: ";
 
     short temp = possibilities >> 1;
     short mask = 0x001;
     for (int counter = 1; counter <= 9; counter++){
         if ((temp & mask) == 1){
-            cout << counter;
+            out << counter;
         }
         else{
-            cout <<'-';
+            out <<'-';
         }
 
         temp = temp >> 1;
     }
-    cout <<endl;
+    out <<endl;
 }

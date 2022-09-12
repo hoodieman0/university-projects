@@ -26,6 +26,6 @@ print(ostream& out){
 //    cout <<"Square [" <<row <<", " <<col <<"] ";
 //    info.print();
     out <<"Square [" <<row <<", " <<col <<"] ";
-    info.print();
+    info.print( out );
     return out;
 }

@@ -8,12 +8,12 @@
 // Postcondition: Prints the before a mark and after a mark state of the State
 void
 statePrintTestCase(State* test){
-    cout <<"~Before~" <<endl;
-    test->print();
+    cout <<"~Before~" << test << endl;
+//    test->print();
     cout <<"!Mark!" <<endl;
     test->mark('1');
-    cout << "~After~" <<endl;
-    test->print();
+    cout << "~After~" << test << endl;
+//    test->print();
 }
 // ---------------------------------------------------------------------
 // Tests all the functions related to the State Class
@@ -56,11 +56,11 @@ testStateFunctions(){
 
 void
 squarePrintTestCase(Square* test){
-    cout << "~Before~\n" <<test <<endl;
+    cout << "~Before~\n" <<*test <<endl;
 //    test->print();
     cout << "!Mark!" << endl;
     test->mark('1');
-    cout << "~After~\n" << test <<endl;
+    cout << "~After~\n" << *test <<endl;
 //    test->print();
 }
 

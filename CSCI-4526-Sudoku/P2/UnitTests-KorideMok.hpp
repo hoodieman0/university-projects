@@ -10,4 +10,4 @@
 void testStateFunctions();
 void testSquareFunctions();
 
-#endif P1_MOK_UNITTESTS_KORIDEMOK_H
+#endif //P1_MOK_UNITTESTS_KORIDEMOK_H

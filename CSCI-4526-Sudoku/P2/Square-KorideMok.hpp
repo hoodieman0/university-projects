@@ -23,7 +23,7 @@ class Square{
         ostream& print(ostream&); //follows matrix convention [rows, columns]
 };
 
-ostream& operator <<( ostream& out, Square& sq){
+inline ostream& operator <<( ostream& out, Square& sq){
     return sq.print(out);
 }
 
