@@ -25,5 +25,4 @@ inline ostream& operator <<(ostream& out, State& state) {
     return out;
 }
 
-
 #endif STATE_KORIDEMOK_H
