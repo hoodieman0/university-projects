@@ -8,12 +8,10 @@
 // Postcondition: Prints the before a mark and after a mark state of the State
 void
 statePrintTestCase(State* test){
-    cout <<"~Before~" << test << endl;
-//    test->print();
+    cout <<"~Before~\n" <<*test;
     cout <<"!Mark!" <<endl;
     test->mark('1');
-    cout << "~After~" << test << endl;
-//    test->print();
+    cout << "~After~\n" <<*test << endl;
 }
 // ---------------------------------------------------------------------
 // Tests all the functions related to the State Class
@@ -26,7 +24,7 @@ testStateFunctions(){
     cout << "1. Null values" << endl;
     cout << "2. Empty markable State" << endl;
     cout << "3. Numbered unmarkable State" << endl;
-    cout << "4. Unmarked State with limited possibilities\n" << endl;
+    cout << "4. Unmarked State with limited poslist\n" << endl;
 
 
     cout << "1. Null Value Test" << endl;
@@ -56,12 +54,10 @@ testStateFunctions(){
 
 void
 squarePrintTestCase(Square* test){
-    cout << "~Before~\n" <<*test <<endl;
-//    test->print();
+    cout << "~Before~\n" <<*test;
     cout << "!Mark!" << endl;
     test->mark('1');
-    cout << "~After~\n" << *test <<endl;
-//    test->print();
+    cout << "~After~\n" <<*test <<endl;
 }
 
 void
@@ -85,7 +81,7 @@ testSquareFunctions(){
     cout <<endl;
 
     cout <<"3. Unmarkable Square Test" <<endl;
-    Square* obj3 = new Square('1', 7, 3);
+    Square* obj3 = new Square('5', 7, 3);
     squarePrintTestCase(obj3);
     obj3->~Square();
     cout <<endl;

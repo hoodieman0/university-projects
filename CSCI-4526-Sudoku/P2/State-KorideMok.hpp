@@ -1,15 +1,15 @@
 // Written by James Mok and Niel Koride
 
-#ifndef CSCI_4526_SUDOKU_PROJECT_MASTER_STATE_KORIDEMOK_HPP
-#define CSCI_4526_SUDOKU_PROJECT_MASTER_STATE_KORIDEMOK_HPP
+#ifndef STATE_KORIDEMOK_H
+#define STATE_KORIDEMOK_H
 
 #include "tools.hpp"
 
 class State {
 private:
-    short possibilities = 0x3FE;
+    short poslist = 0x3FE;
     char value;
-    bool fixed; //is part of the original puzzle
+    bool fixed = false; //is part of the original puzzle
 
 public:
     State() { cout <<"Default State Constructor" << endl; }
@@ -26,4 +26,4 @@ inline ostream& operator <<(ostream& out, State& state) {
 }
 
 
-#endif //CSCI_4526_SUDOKU_PROJECT_MASTER_STATE_KORIDEMOK_HPP
+#endif STATE_KORIDEMOK_H

@@ -2,15 +2,12 @@
 
 #include "Square-KorideMok.hpp"
 
-
-
-
 // ---------------------------------------------------------------------
 // Constructor for Square
 // Preconditions: None
 // Postconditions: A square object with a State, row, and column is created
 Square::
-Square(char startingValue, short r, short c) : info(startingValue)
+Square(char input, short r, short c) : info(input)
 {
     row = r;
     col = c;
@@ -23,8 +20,6 @@ Square(char startingValue, short r, short c) : info(startingValue)
 // Postconditions: Prints Square's variables to the console
 ostream& Square::
 print(ostream& out){
-//    cout <<"Square [" <<row <<", " <<col <<"] ";
-//    info.print();
     out <<"Square [" <<row <<", " <<col <<"] ";
     info.print( out );
     return out;

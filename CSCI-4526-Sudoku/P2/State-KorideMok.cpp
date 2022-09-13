@@ -7,16 +7,16 @@
 // Precondition: None
 // Postcondition: State object is created
 State::
-State(char startingValue){
-    value = startingValue;
+State(char input){
+    value = input;
     //unit test value
-    if (startingValue == '~'){
-        possibilities = 0x0f2;
+    if (input == '~'){
+        poslist = 0x0f2;
         fixed = false;
         value = '-';
     }
-    else{
-        possibilities = 0x000;
+    else if (input != '-'){
+        poslist = 0x000;
         fixed = true;
     }
 }
@@ -32,7 +32,7 @@ mark(char ch){
         value = ch;
     }
     else{
-        cerr <<"Cannot Add Value" <<endl;   //TODO change possibilities with this
+        cout <<"Cannot Add Value" <<endl;   //TODO change poslist with this
     }
 }
 
@@ -45,7 +45,7 @@ print( ostream& out ){
     out <<"value: " <<value <<" fixed: " <<boolalpha <<fixed;
     out <<" possibilities: ";
 
-    short temp = possibilities >> 1;
+    short temp = poslist >> 1;
     short mask = 0x001;
     for (int counter = 1; counter <= 9; counter++){
         if ((temp & mask) == 1){

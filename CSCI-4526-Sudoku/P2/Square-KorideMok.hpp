@@ -1,12 +1,12 @@
 // Written by James Mok and Niel Koride
 
-#ifndef P1_MOK_SQUARE_KORIDEMOK_H
-#define P1_MOK_SQUARE_KORIDEMOK_H
+#ifndef SQUARE_KORIDEMOK_H
+#define SQUARE_KORIDEMOK_H
 
 #include "tools.hpp"
 #include "State-KorideMok.hpp"
 
-ostream& print( ostream& );
+ostream& print( ostream& out);
 
 class Square{
     private:
@@ -27,4 +27,4 @@ inline ostream& operator <<( ostream& out, Square& sq){
     return sq.print(out);
 }
 
-#endif P1_MOK_SQUARE_KORIDEMOK_H
+#endif SQUARE_KORIDEMOK_H
