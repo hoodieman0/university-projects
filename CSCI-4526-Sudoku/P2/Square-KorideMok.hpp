@@ -1,21 +1,30 @@
-// Written by James Mok and Niel Koride
+// Written by James Mok and Neelakanta Bharadwaj Koride
 
-#ifndef P1_MOK_SQUARE_KORIDEMOK_H
-#define P1_MOK_SQUARE_KORIDEMOK_H
+#ifndef SQUARE_KORIDEMOK_H
+#define SQUARE_KORIDEMOK_H
 
-class Square {
+#include "tools.hpp"
+#include "State-KorideMok.hpp"
+
+ostream& print( ostream& out);
+
+class Square{
     private:
-        short possibilities;
-        char value;
-        bool fixed; //is part of the original puzzle
-        //why is the order important?
+        State info;
+        short row;
+        short col;
+        vector<Square> buddies;
 
     public:
-        Square();
-        Square(char);
-        ~Square();
-        void Mark(char);
-        void Print();
+        Square() { cout <<"Square Default Constructor" << endl; }
+        Square(char, short, short);
+        ~Square() { cout <<"Destroying Square " <<row <<", " <<col <<endl; }
+        void mark(char marker) { info.mark(marker); }
+        ostream& print(ostream&); //follows matrix convention [rows, columns]
 };
 
-#endif P1_MOK_SQUARE_KORIDEMOK_H
+inline ostream& operator <<( ostream& out, Square& sq){
+    return sq.print(out);
+}
+
+#endif SQUARE_KORIDEMOK_H

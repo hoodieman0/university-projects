@@ -1,56 +1,88 @@
-// Written by James Mok and Niel Koride
+// Written by James Mok and Neelakanta Bharadwaj Koride
 
-#include "Square-KorideMok.hpp"
-#include <iostream>
+#include "UnitTests-KorideMok.hpp"
 
 // ---------------------------------------------------------------------
-// Helper function for TestSquareFunctions()
-// Precondition: Square object has been created
-// Postcondition: Prints the before a mark and after a mark state of the square
+// Helper function for TestStateFunctions()
+// Precondition: State object has been created
+// Postcondition: Prints the before a mark and after a mark state of the State
 void
-PrintTestCase(Square* test){
-    std::cout << "~Before~" << std::endl;
-    test->Print();
-    std::cout << "!Mark!" << std::endl;
-    test->Mark('1');
-    std::cout << "~After~" << std::endl;
-    test->Print();
+statePrintTestCase(State* test){
+    cout <<"~Before~\n" <<*test;
+    cout <<"!Mark!" <<endl;
+    test->mark('1');
+    cout << "~After~\n" <<*test << endl;
 }
 // ---------------------------------------------------------------------
-// Tests all the functions related to the Square Class
+// Tests all the functions related to the State Class
 // No preconditions
 // Prints the state of each test object
 void
-TestSquareFunctions(){
-    std::cout << "Testing the Square class from Square-KorideMok.hpp" << std::endl;
-    std::cout << "Expected Output:" << std::endl;
-    std::cout << "1. Null values" << std::endl;
-    std::cout << "2. Empty markable square" << std::endl;
-    std::cout << "3. Numbered unmarkable square" << std::endl;
-    std::cout << "4. Unmarked square with limited possibilities\n" << std::endl;
+testStateFunctions(){
+    cout << "Testing the State class from Square-KorideMok.hpp" << endl;
+    cout << "Expected Output:" << endl;
+    cout << "1. Null values" << endl;
+    cout << "2. Empty markable State" << endl;
+    cout << "3. Numbered unmarkable State" << endl;
+    cout << "4. Unmarked State with limited poslist\n" << endl;
 
 
-    std::cout << "1. Null Value Test" << std::endl;
-    Square* objOne = new Square();
-    PrintTestCase(objOne);
-    objOne->~Square();
-    std::cout << std::endl;
+    cout << "1. Null Value Test" << endl;
+    State* objOne = new State();
+    statePrintTestCase(objOne);
+    objOne->~State();
+    cout << endl;
 
-    std::cout << "2. Empty Square Test" << std::endl;
-    Square* objTwo = new Square('-');
-    PrintTestCase(objTwo);
-    objTwo->~Square();
-    std::cout << std::endl;
+    cout << "2. Empty State Test" << endl;
+    State* objTwo = new State('-');
+    statePrintTestCase(objTwo);
+    objTwo->~State();
+    cout << endl;
 
-    std::cout << "3. Fixed Square Test" << std::endl;
-    Square* objThree = new Square('9');
-    PrintTestCase(objThree);
-    objThree->~Square();
-    std::cout << std::endl;
+    cout << "3. Fixed State Test" << endl;
+    State* objThree = new State('9');
+    statePrintTestCase(objThree);
+    objThree->~State();
+    cout << endl;
 
-    std::cout << "4. Limited Possibilities Test" << std::endl;
-    Square* objFour = new Square('~');
-    PrintTestCase(objFour);
-    objFour->~Square();
-    std::cout << std::endl;
+    cout << "4. Limited Possibilities Test" << endl;
+    State* objFour = new State('~');
+    statePrintTestCase(objFour);
+    objFour->~State();
+    cout << endl;
+}
+
+void
+squarePrintTestCase(Square* test){
+    cout << "~Before~\n" <<*test;
+    cout << "!Mark!" << endl;
+    test->mark('1');
+    cout << "~After~\n" <<*test <<endl;
+}
+
+void
+testSquareFunctions(){
+    cout <<"Testing the Square class from Square-KorideMok.hpp" <<endl;
+    cout <<"Expected Output:" <<endl;
+    cout <<"1. Null values" <<endl;
+    cout <<"2. Square [5,1] is created and marked" <<endl;
+    cout <<"3. Square [7,3] is created and unmarkable\n" <<endl;
+
+    cout <<"1. Null Value Test" <<endl;
+    Square* obj1 = new Square();
+    squarePrintTestCase(obj1);
+    obj1->~Square();
+    cout << endl;
+
+    cout <<"2. Markable Square Test" <<endl;
+    Square* obj2 = new Square('-', 5, 1);
+    squarePrintTestCase(obj2);
+    obj2->~Square();
+    cout <<endl;
+
+    cout <<"3. Unmarkable Square Test" <<endl;
+    Square* obj3 = new Square('5', 7, 3);
+    squarePrintTestCase(obj3);
+    obj3->~Square();
+    cout <<endl;
 }

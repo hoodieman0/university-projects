@@ -1,8 +1,13 @@
-// Written by James Mok and Niel Koride
+// Written by James Mok and Neelakanta Bharadwaj Koride
 
-#ifndef P1_MOK_UNITTESTS_KORIDEMOK_H
-#define P1_MOK_UNITTESTS_KORIDEMOK_H
+#ifndef UNITTESTS_KORIDEMOK_H
+#define UNITTESTS_KORIDEMOK_H
 
-void TestSquareFunctions();
+#include "tools.hpp"
+#include "State-KorideMok.hpp"
+#include "Square-KorideMok.hpp"
 
-#endif P1_MOK_UNITTESTS_KORIDEMOK_H
+void testStateFunctions();
+void testSquareFunctions();
+
+#endif //UNITTESTS_KORIDEMOK_H
