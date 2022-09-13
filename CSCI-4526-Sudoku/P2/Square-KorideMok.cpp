@@ -1,4 +1,4 @@
-// Written by James Mok and Niel Koride
+// Written by James Mok and Neelakanta Bharadwaj Koride
 
 #include "Square-KorideMok.hpp"
 

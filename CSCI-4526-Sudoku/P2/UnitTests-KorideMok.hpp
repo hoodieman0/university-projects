@@ -1,4 +1,4 @@
-// Written by James Mok and Niel Koride
+// Written by James Mok and Neelakanta Bharadwaj Koride
 
 #ifndef UNITTESTS_KORIDEMOK_H
 #define UNITTESTS_KORIDEMOK_H

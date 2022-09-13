@@ -1,4 +1,4 @@
-// Written by James Mok and Niel Koride
+// Written by James Mok and Neelakanta Bharadwaj Koride
 
 #ifndef SQUARE_KORIDEMOK_H
 #define SQUARE_KORIDEMOK_H
