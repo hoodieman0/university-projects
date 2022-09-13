@@ -7,7 +7,7 @@
 #include "State-KorideMok.hpp"
 #include "Square-KorideMok.hpp"
 
-void testStateFunctions();
-void testSquareFunctions();
+void testStateFunctions(ostream&);
+void testSquareFunctions(ostream&);
 
 #endif //UNITTESTS_KORIDEMOK_H
