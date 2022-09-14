@@ -11,15 +11,15 @@ ostream& print( ostream& out);
 class Square{
     private:
         State info;
-        short row;
-        short col;
-        vector<Square> buddies;
+        short row = 0;
+        short col = 0;
+        vector<Square*> buddies;
 
     public:
         Square() { cout <<"Square Default Constructor" << endl; }
         Square(char, short, short);
         ~Square() { cout <<"Destroying Square " <<row <<", " <<col <<endl; }
-        void mark(char marker) { info.mark(marker); }
+        void mark(char);
         ostream& print(ostream&); //follows matrix convention [rows, columns]
 };
 

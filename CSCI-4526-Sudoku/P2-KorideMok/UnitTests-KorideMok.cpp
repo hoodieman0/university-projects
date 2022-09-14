@@ -10,7 +10,7 @@ void
 statePrintTestCase(ostream& out, State* test){
     out <<"~Before~\n" <<*test;
     out <<"!Mark 1!" <<endl;
-    test->mark('1');
+    test->mark('1', 0xFFF);
     out << "~After~\n" <<*test << endl;
 }
 // ---------------------------------------------------------------------
@@ -23,13 +23,13 @@ testStateFunctions(ostream& out){
           "-----------------------------------------------------" <<endl;
     out << "Testing the State class from Square-KorideMok.hpp" << endl;
     out << "Expected Output:" << endl;
-    out << "1. Null values" << endl;
+    out << "1. Default values" << endl;
     out << "2. Empty markable State" << endl;
     out << "3. Numbered unmarkable State" << endl;
     out << "4. Unmarked State with limited poslist\n" << endl;
 
 
-    out << "1. Null Value Test" << endl;
+    out << "1. Default Value Test" << endl;
     State* objOne = new State();
     statePrintTestCase(out, objOne);
     objOne->~State();
@@ -58,8 +58,8 @@ testStateFunctions(ostream& out){
 void
 squarePrintTestCase(ostream& out, Square* test){
     out << "~Before~\n" <<*test;
-    out << "!Mark 1!" << endl;
-    test->mark('1');
+    out << "!Mark 5!" << endl;
+    test->mark('5');
     out << "~After~\n" <<*test <<endl;
 }
 
@@ -69,11 +69,11 @@ testSquareFunctions(ostream& out){
           "-----------------------------------------------------" <<endl;
     out <<"Testing the Square class from Square-KorideMok.hpp" <<endl;
     out <<"Expected Output:" <<endl;
-    out <<"1. Null values" <<endl;
+    out <<"1. Default values" <<endl;
     out <<"2. Square [5,1] is created and marked" <<endl;
     out <<"3. Square [7,3] is created and unmarkable\n" <<endl;
 
-    out <<"1. Null Value Test" <<endl;
+    out <<"1. Default Value Test" <<endl;
     Square* obj1 = new Square();
     squarePrintTestCase(out, obj1);
     obj1->~Square();

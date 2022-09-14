@@ -7,15 +7,15 @@
 
 class State {
 private:
-    short poslist = 0x3FE;
-    char value;
+    short poslist = 0x3FE; //0011 1111 1110
+    char value = '-';
     bool fixed = false; //is part of the original puzzle
 
 public:
     State() { cout <<"Default State Constructor" << endl; }
     State(char);
     ~State() { cout <<"Default State Destructor" <<endl; }
-    void mark(char);
+    void mark(char, short);
     char getValue() {return value;}
     void const print( ostream& out );
 };

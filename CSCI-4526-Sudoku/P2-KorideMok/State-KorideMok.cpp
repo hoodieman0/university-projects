@@ -27,12 +27,13 @@ State(char input){
 // Postcondition: Changes State variable "value" to the given character
 // Failure: "Cannot Add Value"
 void State::
-mark(char ch){
-    if (!this->fixed){
+mark(char ch, short mask){
+    if (!fixed){
         value = ch;
+        poslist = poslist & mask;
     }
     else{
-        cout <<"Cannot Add Value" <<endl;   //TODO change poslist with this
+        cout <<"Cannot Add Value" <<endl;
     }
 }
 

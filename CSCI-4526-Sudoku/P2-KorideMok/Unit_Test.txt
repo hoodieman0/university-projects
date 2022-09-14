@@ -1,0 +1,71 @@
+----------------------------------------------------------------------------------------------------------
+Testing the State class from Square-KorideMok.hpp
+Expected Output:
+1. Default values
+2. Empty markable State
+3. Numbered unmarkable State
+4. Unmarked State with limited poslist
+
+1. Default Value Test
+~Before~
+value: - fixed: false possibilities: 123456789
+!Mark 1!
+~After~
+value: 1 fixed: false possibilities: 123456789
+
+
+2. Empty State Test
+~Before~
+value: - fixed: false possibilities: 123456789
+!Mark 1!
+~After~
+value: 1 fixed: false possibilities: 123456789
+
+
+3. Fixed State Test
+~Before~
+value: 9 fixed: true possibilities: ---------
+!Mark 1!
+~After~
+value: 9 fixed: true possibilities: ---------
+
+
+4. Limited Possibilities Test
+~Before~
+value: - fixed: false possibilities: 1--4567--
+!Mark 1!
+~After~
+value: 1 fixed: false possibilities: 1--4567--
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+Testing the Square class from Square-KorideMok.hpp
+Expected Output:
+1. Default values
+2. Square [5,1] is created and marked
+3. Square [7,3] is created and unmarkable
+
+1. Default Value Test
+~Before~
+Square [0, 0] value: - fixed: false possibilities: 123456789
+!Mark 5!
+~After~
+Square [0, 0] value: 5 fixed: false possibilities: 1234-6789
+
+
+2. Markable Square Test
+~Before~
+Square [5, 1] value: - fixed: false possibilities: 123456789
+!Mark 5!
+~After~
+Square [5, 1] value: 5 fixed: false possibilities: 1234-6789
+
+
+3. Unmarkable Square Test
+~Before~
+Square [7, 3] value: 5 fixed: true possibilities: ---------
+!Mark 5!
+~After~
+Square [7, 3] value: 5 fixed: true possibilities: ---------
+
+----------------------------------------------------------------------------------------------------------

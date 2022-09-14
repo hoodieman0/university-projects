@@ -16,17 +16,17 @@ int main(){
     }
     else {
         //---------------Begin State Test---------------
-        cout <<"Begin State Test\n---------------------------------------------------" <<endl;
+        cout <<"~Begin State Test~\n---------------------------------------------------" <<endl;
         testStateFunctions(STREAM);
-        cout <<"\nState Test Completed Successfully\n-----------------------------------------"
+        cout <<"\n~State Test Completed Successfully~\n-----------------------------------------"
                "----------" <<endl;
 
 
         //---------------Begin Square Test---------------
 
-        cout <<"Begin Square Test\n---------------------------------------------------" <<endl;
+        cout <<"~Begin Square Test~\n---------------------------------------------------" <<endl;
         testSquareFunctions(STREAM);
-        cout <<"\nSquare Test Completed Successfully\n-----------------------------------------"
+        cout <<"\n~Square Test Completed Successfully~\n-----------------------------------------"
                "----------" <<endl;
         unit_test.close();
     }
