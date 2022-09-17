@@ -1,8 +1,10 @@
 // Written by James Mok and Niel Koride
 
-#ifndef P1_MOK_UNITTESTS_KORIDEMOK_H
-#define P1_MOK_UNITTESTS_KORIDEMOK_H
+#ifndef UNITTESTS_H
+#define UNITTESTS_H
 
-void TestSquareFunctions();
+#include "tools.hpp"
 
-#endif P1_MOK_UNITTESTS_KORIDEMOK_H
+void testStateFunctions(ostream&);
+
+#endif
