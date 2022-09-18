@@ -1,0 +1,61 @@
+"C:\Users\hoodi\OneDrive\Documents\1New Haven\5_Fifth Semester\CSCI-4526 Advanced C++\CSCI-4526-Sudoku-Project-Master\cmake-build-debug\P1-KorideMok.exe"
+
+----------------------------------------------------------------
+        James Mok
+        CSCI-4526: Advanced C++
+        Sat Sep 17 2022 21:42:08
+----------------------------------------------------------------
+~Begin State Test~
+---------------------------------------------------
+Testing the State class from State-KorideMok.hpp
+Expected Output:
+1. Null values
+2. Empty markable State
+3. Numbered unmarkable State
+4. Unmarked State with limited possibilities
+
+1. Null Value Test
+Default State Constructor
+~Before~
+value: - fixed: false possibilities: 123456789
+!Mark!
+~After~
+value: 1 fixed: false possibilities: ---------
+Default State Destructor
+
+2. Empty State Test
+~Before~
+value: - fixed: false possibilities: 123456789
+!Mark!
+~After~
+value: 1 fixed: false possibilities: ---------
+Default State Destructor
+
+3. Fixed State Test
+~Before~
+value: 9 fixed: true possibilities: ---------
+!Mark!
+Cannot Add Value
+~After~
+value: 9 fixed: true possibilities: ---------
+Default State Destructor
+
+4. Limited Possibilities Test
+~Before~
+value: - fixed: false possibilities: 1--4567--
+!Mark!
+~After~
+value: 1 fixed: false possibilities: ---------
+Default State Destructor
+
+Default State Destructor
+Default State Destructor
+Default State Destructor
+Default State Destructor
+
+~State Test Completed Successfully~
+---------------------------------------------------
+
+Normal termination.
+
+Process finished with exit code 0

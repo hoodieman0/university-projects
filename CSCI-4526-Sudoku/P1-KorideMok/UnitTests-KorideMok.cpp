@@ -11,12 +11,13 @@ PrintTestCase(ostream& out, State test){
     out << "~Before~\n" <<test <<endl;
     out << "!Mark!" << endl;
     test.mark('1');
-    out << "~After~" <<test <<endl;
+    out << "~After~\n" <<test <<endl;
 }
+
 // ---------------------------------------------------------------------
 // Tests all the functions related to the State Class
-// No preconditions
-// Prints the state of each test object
+// Preconditions: State class is defined
+// Postconditions: Prints the given state tests
 void
 testStateFunctions(ostream& out){
     out << "Testing the State class from State-KorideMok.hpp" << endl;

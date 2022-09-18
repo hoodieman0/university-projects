@@ -1,7 +1,7 @@
 // Written by James Mok and Neelakanta Bharadwaj Koride
 
-#ifndef STATE_KORIDEMOK_H
-#define STATE_KORIDEMOK_H
+#ifndef STATE_H
+#define STATE_H
 
 #include "tools.hpp"
 
@@ -12,17 +12,16 @@ private:
     bool fixed = false; //is part of the original puzzle
 
 public:
-    State() { cout <<"Default State Constructor" << endl; }
+    inline State() { cout <<"Default State Constructor" << endl; }
     State(char);
-    ~State() { cout <<"Default State Destructor" <<endl; }
-    void mark(char, short);
-    char getValue() {return value;}
-    void const print( ostream& out );
+    inline ~State() { cout <<"Default State Destructor" <<endl; }
+    void mark(char);
+    inline char getValue() {return value;}
+    ostream& print(ostream&);
 };
 
-inline ostream& operator <<(ostream& out, State& state) {
-    state.print(out);
-    return out;
+inline ostream& operator <<(ostream& out, State& st){
+    return st.print(out);
 }
 
-#endif STATE_KORIDEMOK_H
+#endif

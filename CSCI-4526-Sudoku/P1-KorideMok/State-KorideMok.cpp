@@ -30,7 +30,7 @@ State(char input){
 // Failure: "Cannot Add Value"
 void State::
 mark(char ch){
-    if (!this->fixed){
+    if (!fixed){
         value = ch;
         poslist = 0;
     }
@@ -42,7 +42,7 @@ mark(char ch){
 // ---------------------------------------------------------------------
 // Prints the variables of the State object in a human-readable format
 // Preconditions: State object exists
-// Postconditions: Prints the variables to the console
+// Postconditions: Prints the variables to the ostream
 ostream& State::
 print( ostream& out ){
     out <<"value: " <<value <<" fixed: " <<boolalpha <<fixed;

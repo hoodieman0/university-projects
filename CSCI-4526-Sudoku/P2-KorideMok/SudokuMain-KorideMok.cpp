@@ -4,7 +4,7 @@
 #include "tools.hpp"
 
 
-#define FILE "Unit_Test.txt"
+#define FILE "Output.txt"
 #define STREAM cout
 // if file output is wanted, use 'unit_test' variable
 
