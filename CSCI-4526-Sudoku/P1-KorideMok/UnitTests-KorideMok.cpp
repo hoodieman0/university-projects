@@ -1,56 +1,50 @@
 // Written by James Mok and Niel Koride
 
-#include "Square-KorideMok.hpp"
-#include <iostream>
+#include "State-KorideMok.hpp"
 
 // ---------------------------------------------------------------------
-// Helper function for TestSquareFunctions()
-// Precondition: Square object has been created
-// Postcondition: Prints the before a mark and after a mark state of the square
+// Helper function for TestStateFunctions()
+// Precondition: State object has been created
+// Postcondition: Prints the before a mark and after a mark state of the State
 void
-PrintTestCase(Square* test){
-    std::cout << "~Before~" << std::endl;
-    test->Print();
-    std::cout << "!Mark!" << std::endl;
-    test->Mark('1');
-    std::cout << "~After~" << std::endl;
-    test->Print();
+PrintTestCase(ostream& out, State test){
+    out << "~Before~\n" <<test <<endl;
+    out << "!Mark!" << endl;
+    test.mark('1');
+    out << "~After~\n" <<test <<endl;
 }
+
 // ---------------------------------------------------------------------
-// Tests all the functions related to the Square Class
-// No preconditions
-// Prints the state of each test object
+// Tests all the functions related to the State Class
+// Preconditions: State class is defined
+// Postconditions: Prints the given state tests
 void
-TestSquareFunctions(){
-    std::cout << "Testing the Square class from Square-KorideMok.hpp" << std::endl;
-    std::cout << "Expected Output:" << std::endl;
-    std::cout << "1. Null values" << std::endl;
-    std::cout << "2. Empty markable square" << std::endl;
-    std::cout << "3. Numbered unmarkable square" << std::endl;
-    std::cout << "4. Unmarked square with limited possibilities\n" << std::endl;
+testStateFunctions(ostream& out){
+    out << "Testing the State class from State-KorideMok.hpp" << endl;
+    out << "Expected Output:" << endl;
+    out << "1. Null values" << endl;
+    out << "2. Empty markable State" << endl;
+    out << "3. Numbered unmarkable State" << endl;
+    out << "4. Unmarked State with limited possibilities\n" << endl;
 
 
-    std::cout << "1. Null Value Test" << std::endl;
-    Square* objOne = new Square();
-    PrintTestCase(objOne);
-    objOne->~Square();
-    std::cout << std::endl;
+    out << "1. Null Value Test" << endl;
+    State objOne;
+    PrintTestCase(out, objOne);
+    out << endl;
 
-    std::cout << "2. Empty Square Test" << std::endl;
-    Square* objTwo = new Square('-');
-    PrintTestCase(objTwo);
-    objTwo->~Square();
-    std::cout << std::endl;
+    out << "2. Empty State Test" << endl;
+    State objTwo('-');
+    PrintTestCase(out, objTwo);
+    out << endl;
 
-    std::cout << "3. Fixed Square Test" << std::endl;
-    Square* objThree = new Square('9');
-    PrintTestCase(objThree);
-    objThree->~Square();
-    std::cout << std::endl;
+    out << "3. Fixed State Test" << endl;
+    State objThree('9');
+    PrintTestCase(out, objThree);
+    out << endl;
 
-    std::cout << "4. Limited Possibilities Test" << std::endl;
-    Square* objFour = new Square('~');
-    PrintTestCase(objFour);
-    objFour->~Square();
-    std::cout << std::endl;
+    out << "4. Limited Possibilities Test" << endl;
+    State objFour('~');
+    PrintTestCase(out, objFour);
+    out << endl;
 }
