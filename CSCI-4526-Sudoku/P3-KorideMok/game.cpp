@@ -12,7 +12,7 @@ Game(string filename){
         char x;
         file>>x;
 
-        string types = "TtDdSs";
+        string types = "TtDdSs"; //TODO change P2
         if (types.find(x)) {
             gameType = x;
         }
@@ -37,8 +37,19 @@ run(){
     char legal_menu[] {"MURSQ"};
     for(;;){
         cout <<"What Would You Like To Do? " <<endl;
-        menu_c("Menu", 6, menu, legal_menu);
+        char x = menu_c("Menu", 6, menu, legal_menu);
+
+        switch (x) {
+            case 'M': continue;
+            case 'U': continue;
+            case 'R': continue;
+            case 'S': continue;
+            case 'Q': break;
+            default: break;
+        }
+        break;
     }
+    cout <<"~Quitting Game~" <<endl;
 }
 
 

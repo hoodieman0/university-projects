@@ -142,7 +142,7 @@ oclock( char* hour) {
 // ----------------------------------------------------------------------------
 // Display a menu then read an alphabetic menu choice character.               
 char 
-menu_c( const char* title, int n, const char* menu[], char* legal ){
+menu_c( const char* title, int n, const char* menu[], char* valid ){
     int k;
     char choice;
     
