@@ -20,6 +20,7 @@ class Game{
         int n = 9;
         char gameType = 't';
         ifstream file;
+
     public:
         Game(string);
         void run();
