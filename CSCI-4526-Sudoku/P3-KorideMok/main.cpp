@@ -1,14 +1,12 @@
 #include "game.hpp"
-#include <iostream>
-#include <string>
+#include "tools.hpp"
 
 int main(){
-    std::string filename;
-    std::cout<<"Enter filename"<<std::endl;
-    std::cin>>filename;
-    Game* obj;
-    obj = new Game(filename);
-    obj->run();
+    string filename;
+    cout<<"Enter Filename: " <<endl;
+    cin>>filename;
+    Game obj(filename);
+    obj.run();
 
     return 0;
 }
