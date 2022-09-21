@@ -7,3 +7,62 @@ Save -> Record the state of the board
 Restore -> Restore a previous board state
 Quit -> exit the game
 
+
+Console Output:
+
+"C:\Users\hoodi\OneDrive\Documents\1New Haven\5_Fifth Semester\CSCI-4526 Advanced C++\CSCI-4526-Sudoku-Project-Master\cmake-build-debug\P3-KorideMok.exe"
+
+----------------------------------------------------------------
+        James Mok and Neelakanta Bharadwaj Koride
+        CSCI-4526: Advanced C++
+        Tue Sep 20 2022 20:28:05
+----------------------------------------------------------------
+Enter Filename:input.txt
+ input.txt
+What Would You Like To Do?
+
+Menu
+
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
+
+ Enter code of desired item:m
+ Invalid Command
+
+What Would You Like To Do?
+
+Menu
+
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
+
+ Enter code of desired item:M
+ Input Row:1
+ Input Column:3
+ Input Value:9
+
+What Would You Like To Do?
+
+Menu
+
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
+
+ Enter code of desired item:Q
+ ~Quitting Game~
+Normal termination.
+
+
+Process finished with exit code 0
