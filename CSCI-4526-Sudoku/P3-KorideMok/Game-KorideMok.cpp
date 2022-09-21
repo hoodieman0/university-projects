@@ -37,9 +37,8 @@ void Game::
 run(){
     char legal_menu[] {"MURSQ"};
     for(;;){
-        cout <<"What Would You Like To Do? " <<endl;
+        cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 6, menu, legal_menu);
-
         switch (x) {
             case 'M': continue;
             case 'U': continue;

@@ -1,8 +1,6 @@
 #include "Game-KorideMok.hpp"
 #include "tools.hpp"
 
-//TODO MORE CTORS, MORE CONSTS AND STATICS
-
 int main(){
     banner();
 
