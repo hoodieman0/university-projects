@@ -1,5 +1,7 @@
-#include "game.hpp"
+#include "Game-KorideMok.hpp"
 
+const char* Game::
+menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 
 // ---------------------------------------------------------------------
 // Game Constructor
@@ -19,7 +21,6 @@ Game(string filename){
         else{
             fatal("!Invalid Game Type!");
         }
-
     }
     else {
         fatal("!Could Not Open Game File!");
@@ -45,7 +46,7 @@ run(){
             case 'R': continue;
             case 'S': continue;
             case 'Q': break;
-            default: break;
+            default: cout<< "Invalid Command" <<endl; continue;
         }
         break;
     }

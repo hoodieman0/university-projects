@@ -8,7 +8,7 @@ class Board;
 
 class Game{
     private:
-        inline static const char* menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
+        const static char* menu[6];
         Board* puzzle;
         int n = 9;
         char gameType = 't';
