@@ -1,0 +1,9 @@
+
+Interactive Inputs:
+Mark -> Mark a specified square on the board
+Undo -> Undo a mark
+Redo -> Redo an undo mark
+Save -> Record the state of the board
+Restore -> Restore a previous board state
+Quit -> exit the game
+
