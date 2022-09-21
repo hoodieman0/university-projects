@@ -40,7 +40,17 @@ run(){
         cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 6, menu, legal_menu);
         switch (x) {
-            case 'M': continue;
+            case 'M':
+                short r, c;
+                char value;
+                cout <<"Input Row: ";
+                cin >> r;
+                cout <<"Input Column: ";
+                cin >> c;
+                cout <<"Input Value: ";
+                cin >> value;
+                //puzzle->mark(r, c, value);
+                continue;
             case 'U': continue;
             case 'R': continue;
             case 'S': continue;
