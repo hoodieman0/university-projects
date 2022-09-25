@@ -1,3 +1,5 @@
+// Written by James Mok and Neelakanta Bharadwaj Koride
+
 #include "Game-KorideMok.hpp"
 
 const char* Game::
@@ -35,10 +37,10 @@ Game(string filename){
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    char legal_menu[] {"MURSQ"};
+    char legal[] {"MURSQ"};
     for(;;){
         cout <<"\nWhat Would You Like To Do? " <<endl;
-        char x = menu_c("Menu", 6, menu, legal_menu);
+        char x = menu_c("Menu", 6, menu, legal);
         switch (x) {
             case 'M':
                 short r, c;

@@ -1,3 +1,4 @@
+// Written by James Mok and Neelakanta Bharadwaj Koride
 
 #ifndef GAME_HPP
 #define GAME_HPP
