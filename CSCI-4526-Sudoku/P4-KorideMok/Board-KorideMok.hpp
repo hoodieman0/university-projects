@@ -1,25 +1,24 @@
-#include "tools.hpp";
-#include "Square-KorideMok.hpp";
+// Written by James Mok and Neelakanta Bharadwaj Koride
+
+#include "tools.hpp"
+#include "Square-KorideMok.hpp"
+
 
 class Board{
-private:
-    int N; // Size of the puzzle
-    int NSquares[10];
-    ifstream& file;
-    short int left;
-    void getPuzzle();
+    private:
+        int n = 9; // Size of the puzzle
+        Square bd[81]; //TODO changable array size
+        ifstream& file;
+        short left;
+        void getPuzzle();
 
-
-public:
-    ~Board(){cout<<"Trace Comment"<<endl;}
-    Board(int n, ifstream& puzfile);
-    Square& sub(int j, int k);
-    void static print();
-
-
-
-
+    public:
+        Board(int, ifstream&);
+        inline ~Board(){ cout <<"~Destroying Board~" <<endl; }
+        inline Square& sub(int j, int k){ return bd[(j - 1) * 9 + (k + 1)]; }
+        ostream& print(ostream&);
 };
+
 inline ostream& operator<<(ostream& out,Board& b){
-    Board::print();
+    return b.print(out);
 }
