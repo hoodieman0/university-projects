@@ -18,16 +18,22 @@ Board(int n, ifstream& puzfile) : n(n), file(puzfile) {
 void Board::
 getPuzzle() {
     char x;
+    string line;
+    int index = 0;
     string types = "123456789-";
+    
     for (int j = 0; j < n; j++){
+        getline(file, line);
         for (int k = 0; k < n; k++){
-            file >> x;
+            x = line[k];
+
             if (types.find(x)){
                 Square temp(x, j, k);
-
+                bd[index] = temp;
+                index++;
             }
+            else { fatal("!INVALID CHARACTER IN FILE!"); }
         }
-
     }
 }
 
