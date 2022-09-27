@@ -10,7 +10,7 @@ menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 // Precondition: A valid game file exists
 // Postcondition: Game object is created
 Game::
-Game(string filename){
+Game(string filename) {
     file.open(filename);
     if (file.is_open()){
         char x;
@@ -19,15 +19,19 @@ Game(string filename){
         string types = "TtDdSs"; //TODO change P2
         if (types.find(x)) {
             gameType = x;
+            int n;
+            switch(tolower(gameType)){
+                case 't': n = 9; break;
+                case 'd': n = 9; break;
+                case 's': n = 6; break;
+                default: fatal("!Invalid Game Type!");
+            }
+            Board temp(n, file);
+            puzzle = &temp;
         }
-        else{
-            fatal("!Invalid Game Type!");
-        }
+        else{ fatal("!Invalid Game Type!"); }
     }
-    else {
-        fatal("!Could Not Open Game File!");
-    }
-    file.close();
+    else { fatal("!Could Not Open Game File!"); }
 }
 
 
