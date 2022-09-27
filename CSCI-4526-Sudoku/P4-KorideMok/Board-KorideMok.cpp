@@ -24,11 +24,10 @@ getPuzzle() {
     string types = "123456789-";
 
     for (int j = 0; j < n; j++){
-        getline(file, line); //gets up to and discards '\n'
+        file >> line; //does not account for beginning gameType char
         for (int k = 0; k < n; k++){
             x = line[k];
-
-            if (types.find(x)){
+            if (types.find(x) != -1){
                 Square temp(x, j, k);
                 bd[index] = temp;
                 index++;
@@ -47,8 +46,8 @@ getPuzzle() {
 ostream& Board::
 print(ostream& out) {
     for (int j = 0; j < n*n; j++){
-        out <<" " <<bd[j] <<" ";
-        if (j % 9 == 0){ //TODO make sure this works
+        out <<" " <<bd[j] <<"\n ";
+        if ((j+1) % 9 == 0){
             out << "\n";
         }
     }
