@@ -29,6 +29,6 @@ mark(char marker){
 // Postconditions: Prints Square's variables to the console
 ostream& Square::
 print(ostream& out){
-    out <<"Square [" <<row <<", " <<col <<"] " << info;
+    out <<"Square [" <<row+1 <<", " <<col+1 <<"] " << info;
     return out;
 }
