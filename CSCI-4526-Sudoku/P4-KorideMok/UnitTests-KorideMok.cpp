@@ -110,8 +110,7 @@ testBoardFunctions(ostream& out){
     out <<"Testing the Board class from Board-KorideMok.hpp" <<endl;
     out <<"Expected Output:" <<endl;
     out <<"1. GetPuzzle initializes board" <<endl;
-    out <<"2. sub gets Square [1,1]" <<endl;
-    out <<"3. sub gets Square [2,4]\n" <<endl;
+    out <<"2. Sub Function indexes correctly\n" <<endl;
     /* Unit Test Input File
       t
 --3-2-6--
@@ -125,18 +124,19 @@ testBoardFunctions(ostream& out){
 --5-1-3--
       */
     ifstream ifs("P4input.txt");
-    ifs.get();
+    ifs.get(); //discard 't'
 
     out <<"1. GetPuzzle and Constructor Test" <<endl;
     Board puzzle(9, ifs);
     out <<puzzle <<endl;
     out <<"~Board Object Created~" <<endl;
 
-    out <<"\n2. sub gets Square [1,1] Test" <<endl;
-    out <<puzzle.sub(1, 1) <<endl;
-
-    out <<"\n3. sub gets Square [2,4] Test" <<endl;
-    out <<puzzle.sub(2, 4) <<endl;
+    out <<"\n2. Sub Function Test" <<endl;
+    for(int i = 1; i < 10; i++){
+        for (int j = 1; j < 10; j++){
+            out << puzzle.sub(i, j) << endl;
+        }
+    }
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
 }
