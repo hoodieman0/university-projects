@@ -9,7 +9,7 @@
 // Postconditions: Prints Square's variables to the console
 Square::
 Square(char input, short r, short c) : info(input), row(r), col(c){
-    cout <<"Constructing Square" <<row << ", " <<col <<endl;
+    //cout <<"Constructing Square " <<row << ", " <<col <<endl;
 }
 
 void Square::

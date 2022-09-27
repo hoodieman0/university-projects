@@ -16,9 +16,9 @@ class Square{
         vector<Square*> buddies;
 
     public:
-        inline Square() { cout <<"Square Default Constructor" << endl; }
+        inline Square() { }//cout <<"Square Default Constructor" << endl; }
         Square(char, short, short);
-        inline ~Square() { cout <<"Destroying Square " <<row <<", " <<col <<endl; }
+        inline ~Square() { }//cout <<"Destroying Square " <<row <<", " <<col <<endl; }
         void mark(char);
         ostream& print(ostream&); //follows matrix convention [rows, columns]
 };
