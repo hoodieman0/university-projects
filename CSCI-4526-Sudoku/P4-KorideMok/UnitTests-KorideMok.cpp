@@ -111,7 +111,7 @@ testBoardFunctions(ostream& out){
     out <<"Expected Output:" <<endl;
     out <<"1. GetPuzzle initializes board" <<endl;
     out <<"2. sub gets Square [1,1]" <<endl;
-    out <<"3. sub gets Square [2,4]" <<endl;
+    out <<"3. sub gets Square [2,4]\n" <<endl;
     /* Unit Test Input File
       t
 --3-2-6--
@@ -132,12 +132,11 @@ testBoardFunctions(ostream& out){
     out <<puzzle <<endl;
     out <<"~Board Object Created~" <<endl;
 
-    out <<"2. sub gets Square [1,1] Test" <<endl;
-    puzzle.sub(1, 1);
-    out <<endl;
+    out <<"\n2. sub gets Square [1,1] Test" <<endl;
+    out <<puzzle.sub(1, 1) <<endl;
 
-    out <<"3. sub gets Square [2,4] Test" <<endl;
-    puzzle.sub(2, 4);
+    out <<"\n3. sub gets Square [2,4] Test" <<endl;
+    out <<puzzle.sub(2, 4) <<endl;
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
 }
