@@ -4,8 +4,7 @@
 #define GAME_HPP
 
 #include "tools.hpp"
-
-class Board;
+#include "Board-KorideMok.hpp"
 
 class Game{
     private:
