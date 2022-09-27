@@ -2,14 +2,14 @@
 
 #include "tools.hpp"
 #include "Square-KorideMok.hpp"
-
+#pragma once
 
 class Board{
     private:
         int n = 9; // Size of the puzzle
         Square bd[81]; //TODO changable array size
         ifstream& file;
-        short left;
+        short left = 81;
         void getPuzzle();
 
     public:
