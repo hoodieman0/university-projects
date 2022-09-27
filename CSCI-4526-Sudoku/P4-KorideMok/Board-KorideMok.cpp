@@ -7,7 +7,7 @@
 // Preconditions: Game object exists
 // Postconditions: Board object is created
 Board::
-Board(int n, ifstream& puzfile) : n(n), file(puzfile) {
+Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
     cout << "~Creating Board~" <<endl;
 }
 
@@ -21,9 +21,9 @@ getPuzzle() {
     string line;
     int index = 0;
     string types = "123456789-";
-    
+
     for (int j = 0; j < n; j++){
-        getline(file, line);
+        getline(file, line); //gets up to and discards '\n'
         for (int k = 0; k < n; k++){
             x = line[k];
 
@@ -31,6 +31,8 @@ getPuzzle() {
                 Square temp(x, j, k);
                 bd[index] = temp;
                 index++;
+
+                if (x != '-'){ left--; }
             }
             else { fatal("!INVALID CHARACTER IN FILE!"); }
         }
