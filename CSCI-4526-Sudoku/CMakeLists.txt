@@ -52,4 +52,6 @@ add_executable(P4-KorideMok
         P4-KorideMok/State-KorideMok.hpp
         P4-KorideMok/State-KorideMok.cpp
         P4-KorideMok/Game-KorideMok.hpp
-        P4-KorideMok/Game-KorideMok.cpp)
+        P4-KorideMok/Game-KorideMok.cpp
+        P4-KorideMok/Board-KorideMok.hpp
+        P4-KorideMok/Board-KorideMok.cpp)
