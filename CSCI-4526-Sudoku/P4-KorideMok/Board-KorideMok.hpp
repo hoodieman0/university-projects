@@ -7,7 +7,7 @@
 class Board{
     private:
         int n = 9; // Size of the puzzle
-        Square bd[81]; //TODO changable array size
+        Square bd[81];
         ifstream& file;
         short left = 81;
         void getPuzzle();
@@ -15,7 +15,7 @@ class Board{
     public:
         Board(int, ifstream&);
         inline ~Board(){ cout <<"~Destroying Board~" <<endl; }
-        inline Square& sub(int j, int k){ return bd[(j - 1) * 9 + (k + 1)]; }
+        inline Square& sub(int j, int k){ return bd[(j - 1)* 9 + (k - 1)]; }
         ostream& print(ostream&);
 };
 
