@@ -1,8 +1,8 @@
 #include "UnitTests-KorideMok.hpp"
 #include "tools.hpp"
 
-#define FILE "Output.txt"
-#define STREAM cout
+#define FILE "P4output.txt"
+#define STREAM unit_test
 // if file output is wanted, use 'unit_test' variable
 
 int main(){
@@ -10,14 +10,14 @@ int main(){
 
     ofstream unit_test(FILE);
 
-    cout <<"~Begin Square Test~\n---------------------------------------------------" <<endl;
+    STREAM <<"~Begin Square Test~\n---------------------------------------------------" <<endl;
     testSquareFunctions(STREAM);
-    cout <<"\n~Square Test Completed Successfully~\n-----------------------------------------"
+    STREAM <<"\n~Square Test Completed Successfully~\n-----------------------------------------"
            "----------" <<endl;
 
-    cout <<"~Begin Board Test~\n---------------------------------------------------" <<endl;
+    STREAM <<"~Begin Board Test~\n---------------------------------------------------" <<endl;
     testBoardFunctions(STREAM);
-    cout <<"\n~Board Test Completed Successfully~\n-----------------------------------------"
+    STREAM <<"\n~Board Test Completed Successfully~\n-----------------------------------------"
            "----------" <<endl;
 
     unit_test.close();
