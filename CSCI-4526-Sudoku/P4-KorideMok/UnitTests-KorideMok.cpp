@@ -124,8 +124,8 @@ testBoardFunctions(ostream& out){
 8--2-3--9
 --5-1-3--
       */
-    ifstream ifs;
-    ifs.open("input.txt");
+    ifstream ifs("P4input.txt");
+    ifs.get();
 
     out <<"1. GetPuzzle and Constructor Test" <<endl;
     Board puzzle(9, ifs);
