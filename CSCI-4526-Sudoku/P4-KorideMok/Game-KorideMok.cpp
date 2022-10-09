@@ -26,8 +26,7 @@ Game(string filename) {
                 case 's': n = 6; break;
                 default: fatal("!Invalid Game Type!");
             }
-            Board temp(n, file);
-            puzzle = &temp;
+            puzzle = new Board(n, file);
         }
         else{ fatal("!Invalid Game Type!"); }
     }
