@@ -7,7 +7,7 @@
 class Board{
     private:
         int n = 9; // Size of the puzzle
-        Square bd[81];
+        Square * bd;
         ifstream& file;
         short left = 81;
         void getPuzzle();

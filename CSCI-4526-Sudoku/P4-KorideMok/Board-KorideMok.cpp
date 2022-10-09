@@ -8,6 +8,7 @@
 // Postconditions: Board object is created
 Board::
 Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
+    bd = new Square[n*n];
     getPuzzle();
     cout << "~Creating Board~" <<endl;
 }
