@@ -11,14 +11,17 @@ Square(char input, short r, short c) : info(input), row(r), col(c){
     //cout <<"Constructing Square " <<row << ", " <<col <<endl;
 }
 
+// ---------------------------------------------------------------------
+// Changes the value of square
+// Preconditions: Square object exists
+// Postconditions: if marker is in legal, value = marker, else no change
 void Square::
 mark(char marker){
-    string temp(1,marker);
-    string valid = "123456789";
-    if(valid.find(marker)) {
-        info.mark(marker);
-    }
-    else{ cout <<"Invalid Input" <<endl; }
+
+    string legal = "123456789";
+    int result = legal.find(marker);
+    if (result == string::npos) cout <<"Invalid Input" <<endl;
+    else info.mark(marker);
 }
 
 // ---------------------------------------------------------------------
