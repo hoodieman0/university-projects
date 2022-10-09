@@ -42,9 +42,7 @@ getPuzzle() {
 
 void Board::
 mark(int r, int c, char value) {
-    cout<< bd[0];
-    bd[0].mark(value);
-    cout <<bd[0];
+    sub(r, c).mark(value);
 }
 
 // ---------------------------------------------------------------------
