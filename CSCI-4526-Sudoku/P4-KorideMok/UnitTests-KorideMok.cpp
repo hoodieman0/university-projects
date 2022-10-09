@@ -110,7 +110,8 @@ testBoardFunctions(ostream& out, char * filename){
     out <<"Testing the Board class from Board-KorideMok.hpp" <<endl;
     out <<"Expected Output:" <<endl;
     out <<"1. GetPuzzle initializes board" <<endl;
-    out <<"2. Sub Function indexes correctly\n" <<endl;
+    out <<"2. Sub Function indexes correctly" <<endl;
+    out <<"3. Mark Function properly marks square\n" <<endl;
     /* "P4input.txt" Unit Test Input File
       t
 --3-2-6--
@@ -139,7 +140,11 @@ testBoardFunctions(ostream& out, char * filename){
         }
     }
 
+    out <<"\n3. Mark square (1, 1) with '1'" <<endl;
+    out <<puzzle.sub(1, 1) <<endl;
     puzzle.mark(1, 1, '1');
+    out <<puzzle.sub(1, 1) <<endl;
+
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
 }
