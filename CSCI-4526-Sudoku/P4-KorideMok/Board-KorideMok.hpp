@@ -14,8 +14,8 @@ class Board{
 
     public:
         Board(int, ifstream&);
-        inline ~Board(){ cout <<"~Destroying Board~" <<endl; }
-        inline Square& sub(int j, int k){ return bd[(j - 1)* 9 + (k - 1)]; }
+        ~Board(){ cout <<"~Destroying Board~" <<endl; }
+        Square& sub(int j, int k){ return bd[(j - 1)* n + (k - 1)]; }
         ostream& print(ostream&);
 };
 
