@@ -8,14 +8,15 @@
 // Postconditions: Board object is created
 Board::
 Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
+    bd = new Square[n*n];
     getPuzzle();
     cout << "~Creating Board~" <<endl;
 }
 
 // ---------------------------------------------------------------------
-// Constructor for Board
-// Preconditions: Game object exists
-// Postconditions: Board object is created
+// Reads the ifstream to create initialize squares
+// Preconditions: ifstream has valid file
+// Postconditions: bd is filled with Square objects reflecting file
 void Board::
 getPuzzle() {
     char x;
@@ -37,6 +38,11 @@ getPuzzle() {
             else { fatal("!INVALID CHARACTER IN FILE!"); }
         }
     }
+}
+
+void Board::
+mark(int r, int c, char value) {
+    sub(r, c).mark(value);
 }
 
 // ---------------------------------------------------------------------

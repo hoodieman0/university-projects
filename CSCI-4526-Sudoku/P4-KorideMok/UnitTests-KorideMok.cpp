@@ -101,17 +101,18 @@ testSquareFunctions(ostream& out){
 
 // ---------------------------------------------------------------------
 // Tests all the functions related to the Board Class
-// Preconditions: Game, Board, Square, and State class are defined,
+// Preconditions: Board, Square, and State class are defined,
 // Postconditions: Prints the given Board tests
 void
-testBoardFunctions(ostream& out){
+testBoardFunctions(ostream& out, char * filename){
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
     out <<"Testing the Board class from Board-KorideMok.hpp" <<endl;
     out <<"Expected Output:" <<endl;
     out <<"1. GetPuzzle initializes board" <<endl;
-    out <<"2. Sub Function indexes correctly\n" <<endl;
-    /* Unit Test Input File
+    out <<"2. Sub Function indexes correctly" <<endl;
+    out <<"3. Mark Function properly marks square\n" <<endl;
+    /* "P4input.txt" Unit Test Input File
       t
 --3-2-6--
 9--3-5--1
@@ -123,7 +124,8 @@ testBoardFunctions(ostream& out){
 8--2-3--9
 --5-1-3--
       */
-    ifstream ifs("P4input.txt");
+
+    ifstream ifs(filename);
     ifs.get(); //discard 't'
 
     out <<"1. GetPuzzle and Constructor Test" <<endl;
@@ -137,6 +139,12 @@ testBoardFunctions(ostream& out){
             out << puzzle.sub(i, j) << endl;
         }
     }
+
+    out <<"\n3. Mark square (1, 1) with '1'" <<endl;
+    out <<puzzle.sub(1, 1) <<endl;
+    puzzle.mark(1, 1, '1');
+    out <<puzzle.sub(1, 1) <<endl;
+
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
 }

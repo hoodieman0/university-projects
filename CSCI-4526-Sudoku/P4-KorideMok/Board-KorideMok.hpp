@@ -7,15 +7,16 @@
 class Board{
     private:
         int n = 9; // Size of the puzzle
-        Square bd[81];
+        Square * bd;
         ifstream& file;
         short left = 81;
         void getPuzzle();
 
     public:
         Board(int, ifstream&);
-        inline ~Board(){ cout <<"~Destroying Board~" <<endl; }
-        inline Square& sub(int j, int k){ return bd[(j - 1)* 9 + (k - 1)]; }
+        ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
+        Square& sub(int j, int k){ return bd[(j - 1)* n + (k - 1)]; }
+        void mark(int, int, char);
         ostream& print(ostream&);
 };
 

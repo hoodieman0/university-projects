@@ -11,6 +11,6 @@
 
 void testStateFunctions(ostream&); //P1
 void testSquareFunctions(ostream&); //P2
-void testBoardFunctions(ostream&); //P4
+void testBoardFunctions(ostream&, char*); //P4
 
 #endif

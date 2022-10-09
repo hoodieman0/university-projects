@@ -6,8 +6,6 @@
 #include "tools.hpp"
 #include "State-KorideMok.hpp"
 
-ostream& print( ostream& out);
-
 class Square{
     private:
         State info;
@@ -16,9 +14,9 @@ class Square{
         vector<Square*> buddies;
 
     public:
-        inline Square() { }//cout <<"Square Default Constructor" << endl; }
+        Square() { }//cout <<"Square Default Constructor" << endl; }
         Square(char, short, short);
-        inline ~Square() { }//cout <<"Destroying Square " <<row <<", " <<col <<endl; }
+        ~Square() { }//cout <<"Destroying Square " <<row <<", " <<col <<endl; }
         void mark(char);
         ostream& print(ostream&); //follows matrix convention [rows, columns]
 };
