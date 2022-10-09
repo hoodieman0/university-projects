@@ -54,7 +54,7 @@ run(){
                 cin >> c;
                 cout <<"Input Value: ";
                 cin >> value;
-                //puzzle->mark(r, c, value);
+                puzzle->mark(r, c, value);
                 continue;
             case 'U': continue;
             case 'R': continue;

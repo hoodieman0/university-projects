@@ -138,6 +138,8 @@ testBoardFunctions(ostream& out, char * filename){
             out << puzzle.sub(i, j) << endl;
         }
     }
+
+    puzzle.mark(1, 1, '1');
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
 }

@@ -16,7 +16,7 @@ Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
 // ---------------------------------------------------------------------
 // Reads the ifstream to create initialize squares
 // Preconditions: ifstream has valid file
-// Postconditions: bd is filled with Square objects reflecting file 
+// Postconditions: bd is filled with Square objects reflecting file
 void Board::
 getPuzzle() {
     char x;
@@ -40,7 +40,12 @@ getPuzzle() {
     }
 }
 
-
+void Board::
+mark(int r, int c, char value) {
+    cout<< bd[0];
+    bd[0].mark(value);
+    cout <<bd[0];
+}
 
 // ---------------------------------------------------------------------
 // Prints the state of the board
