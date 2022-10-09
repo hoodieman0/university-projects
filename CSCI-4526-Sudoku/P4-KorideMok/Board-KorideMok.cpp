@@ -14,9 +14,9 @@ Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
 }
 
 // ---------------------------------------------------------------------
-// Constructor for Board
-// Preconditions: Game object exists
-// Postconditions: Board object is created
+// Reads the ifstream to create initialize squares
+// Preconditions: ifstream has valid file
+// Postconditions: bd is filled with Square objects reflecting file 
 void Board::
 getPuzzle() {
     char x;
@@ -39,6 +39,8 @@ getPuzzle() {
         }
     }
 }
+
+
 
 // ---------------------------------------------------------------------
 // Prints the state of the board
