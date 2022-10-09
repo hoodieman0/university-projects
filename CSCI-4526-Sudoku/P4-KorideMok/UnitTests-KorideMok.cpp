@@ -104,7 +104,7 @@ testSquareFunctions(ostream& out){
 // Preconditions: Board, Square, and State class are defined,
 // Postconditions: Prints the given Board tests
 void
-testBoardFunctions(ostream& out, char * input){
+testBoardFunctions(ostream& out, char * filename){
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
     out <<"Testing the Board class from Board-KorideMok.hpp" <<endl;
@@ -123,7 +123,8 @@ testBoardFunctions(ostream& out, char * input){
 8--2-3--9
 --5-1-3--
       */
-    ifstream ifs(input);
+
+    ifstream ifs(filename);
     ifs.get(); //discard 't'
 
     out <<"1. GetPuzzle and Constructor Test" <<endl;
