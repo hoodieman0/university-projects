@@ -12,11 +12,11 @@ private:
     bool fixed = false; //is part of the original puzzle
 
 public:
-    inline State() { }//cout <<"Default State Constructor" << endl; }
+    State() { }//cout <<"Default State Constructor" << endl; }
     State(char);
-    inline ~State() { }//cout <<"Default State Destructor" <<endl; }
+    ~State() { }//cout <<"Default State Destructor" <<endl; }
     void mark(char);
-    inline char getValue() {return value;}
+    char getValue() {return value;}
     ostream& print(ostream&);
 };
 
