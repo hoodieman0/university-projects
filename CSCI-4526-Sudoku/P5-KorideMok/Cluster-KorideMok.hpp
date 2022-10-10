@@ -5,15 +5,14 @@
 
 #include "tools.hpp"
 #include "Square-KorideMok.hpp"
-#include "Board-KorideMok.hpp" //TODO REMOVE
 
 class Cluster{
     private:
-        ClusterType type; //TODO CHANGE
+        const char* type;
         Square* clstr[9];
 
     public:
-        Cluster(ClusterType, Square**);
+        Cluster(const char*, Square* []);
         void shoop(char);
         ostream& print(ostream&);
 };

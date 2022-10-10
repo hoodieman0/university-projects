@@ -3,7 +3,7 @@
 #include "Cluster-KorideMok.hpp"
 
 
-Cluster::Cluster(ClusterType type, Square* arr[9]) : type(type){
+Cluster::Cluster(const char* type, Square* arr[9]) : type(type){
     for (int index = 0; index < 9; index++){
         clstr[index] = arr[index];
         clstr[index]->addCluster(this);

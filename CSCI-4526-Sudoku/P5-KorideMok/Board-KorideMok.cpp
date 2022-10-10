@@ -2,7 +2,7 @@
 
 #include "Board-KorideMok.hpp"
 
-static const string clusterTypes[3] = {"row", "col", "box"};
+static const char* clusterT[3] = {"ROW", "COLUMN", "BOX"};
 
 // ---------------------------------------------------------------------
 // Constructor for Board
@@ -64,7 +64,7 @@ createRow(short r) {
     Square* arr[9];
     for (short c = 0; c < 9; c++) { arr[c] = &sub(r, c+1); }
 
-    Cluster* temp = new Cluster(ClusterType::ROW, arr);
+    Cluster* temp = new Cluster(clusterT[0], arr);
     buddies.push_back(temp);
 }
 
@@ -73,7 +73,7 @@ createCol(short c) {
     Square* arr[9];
     for (short r = 0; r < 9; r++) { arr[r] = &sub(r+1, c); }
 
-    Cluster* temp = new Cluster(ClusterType::COLUMN, arr);
+    Cluster* temp = new Cluster(clusterT[1], arr);
     buddies.push_back(temp);
 }
 
@@ -85,7 +85,7 @@ createBox(short r, short c) {
         for (short h = c; h < c + 3; h++) { arr[index] = &sub(r, c); index++; }
     }
 
-    Cluster* temp = new Cluster(ClusterType::BOX, arr);
+    Cluster* temp = new Cluster(clusterT[2], arr);
     buddies.push_back(temp);
 }
 
