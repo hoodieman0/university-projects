@@ -12,14 +12,9 @@ int main(int argc, char * const argv[]){
     if(argc != 2){ cout<< argc; fatal("!Incorrect Amount Of Arguments!"); }
     ofstream unit_test(FILE);
 
-//    STREAM <<"~Begin Square Test~\n---------------------------------------------------" <<endl;
-//    testSquareFunctions(STREAM);
-//    STREAM <<"\n~Square Test Completed Successfully~\n-----------------------------------------"
-//           "----------" <<endl;
-
-    STREAM <<"~Begin Board Test~\n---------------------------------------------------" <<endl;
-    testBoardFunctions(STREAM, argv[1]);
-    STREAM <<"\n~Board Test Completed Successfully~\n-----------------------------------------"
+    STREAM <<"~Begin Cluster Test~\n---------------------------------------------------" <<endl;
+    testP5(STREAM, argv[1]);
+    STREAM <<"\n~Cluster Test Completed Successfully~\n-----------------------------------------"
            "----------" <<endl;
 
     unit_test.close();
