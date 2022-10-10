@@ -54,17 +54,14 @@ makeClusters() {
 
     for (short k = 1; k < 10; k++) {
         createRow(k);
-        Cluster a(ClusterType::ROW, arr);
+        Cluster* a(ClusterType::ROW, arr);
+        buddies.push_back(a);
     }
-        createCol(k);
-        createBox(k, k);
-    }
-
 }
 
 void Board::
 createRow(short r) {
-    for (int c = 0; c < 9; c++) { sub(r, c); }
+    for (short c = 0; c < 9; c++) { sub(r, c); }
 }
 
 void Board::

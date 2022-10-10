@@ -24,7 +24,7 @@ class Board{
     public:
         Board(int, ifstream&);
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
-        Square& sub(int r, int c){ return bd[(r - 1)* n + (c - 1)]; }
+        Square& sub(short r, short c){ return bd[(r - 1)* n + (c - 1)]; }
         void mark(int, int, char);
         ostream& print(ostream&);
 };
