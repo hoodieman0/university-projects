@@ -181,7 +181,7 @@ testClusterFunctions(ostream& out, char* filename){
 
     out <<"\n2. Shoop Function Test" <<endl;
     out <<"Using test 1 squares, mark [9, 9] with '1'\n" <<endl;
-    puzzle.mark(9, 9, '4');
+    puzzle.mark(9, 9, '1');
     puzzle.printClusters(out);
 
     out <<"-----------------------------------------------------"

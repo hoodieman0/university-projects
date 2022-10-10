@@ -25,7 +25,10 @@ inline void testP2(ostream& out) {
 inline void testP3(ostream& out) { }
 inline void testP4(ostream& out) { }
 inline void testP5(ostream& out, char* filename) {
+    out <<"~Begin Cluster Test~\n---------------------------------------------------" <<endl;
     testClusterFunctions(out, filename);
+    out <<"\n~Cluster Test Completed Successfully~\n-----------------------------------------"
+      "----------" <<endl;
 }
 
 #endif
