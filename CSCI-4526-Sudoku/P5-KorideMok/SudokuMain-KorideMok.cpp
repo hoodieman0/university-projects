@@ -11,11 +11,8 @@ int main(int argc, char * const argv[]){
 
     if(argc != 2){ fatal("!Incorrect Amount Of Arguments!"); }
     ofstream unit_test(FILE);
-
-    STREAM <<"~Begin Cluster Test~\n---------------------------------------------------" <<endl;
+    
     testP5(STREAM, argv[1]);
-    STREAM <<"\n~Cluster Test Completed Successfully~\n-----------------------------------------"
-           "----------" <<endl;
 
     unit_test.close();
 
