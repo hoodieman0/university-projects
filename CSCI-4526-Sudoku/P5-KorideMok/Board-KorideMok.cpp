@@ -53,6 +53,8 @@ makeClusters() {
     for (short k = 1; k < 10; k++) {
         createRow(k);
         createCol(k);
+    }
+    for (short k = 1; k < 10; k = k +3) {
         for(short h = 1; h < 10; h = h + 3){
             createBox(k, h);
         }
@@ -82,7 +84,7 @@ createBox(short r, short c) {
     Square *arr[9];
     short index = 0;
     for (short k = r; k < r + 3; k++) {
-        for (short h = c; h < c + 3; h++) { arr[index] = &sub(r, c); index++; }
+        for (short h = c; h < c + 3; h++) { arr[index] = &sub(k, h); index++; }
     }
 
     Cluster* temp = new Cluster(clusterT[2], arr);
