@@ -50,28 +50,43 @@ mark(int r, int c, char value) {
 
 void Board::
 makeClusters() {
-    Square* arr[9];
-
     for (short k = 1; k < 10; k++) {
         createRow(k);
-        Cluster* a(ClusterType::ROW, arr);
-        buddies.push_back(a);
+        createCol(k);
+        for(short h = 1; h < 10; h = h + 3){
+            createBox(k, h);
+        }
     }
 }
 
 void Board::
 createRow(short r) {
-    for (short c = 0; c < 9; c++) { sub(r, c); }
+    Square* arr[9];
+    for (short c = 0; c < 9; c++) { arr[c] = &sub(r, c+1); }
+
+    Cluster* temp = new Cluster(ClusterType::ROW, arr);
+    buddies.push_back(temp);
 }
 
 void Board::
 createCol(short c) {
+    Square* arr[9];
+    for (short r = 0; r < 9; r++) { arr[r] = &sub(r+1, c); }
 
+    Cluster* temp = new Cluster(ClusterType::COLUMN, arr);
+    buddies.push_back(temp);
 }
 
 void Board::
 createBox(short r, short c) {
+    Square *arr[9];
+    short index = 0;
+    for (short k = r; k < r + 3; k++) {
+        for (short h = c; h < c + 3; h++) { arr[index] = &sub(r, c); index++; }
+    }
 
+    Cluster* temp = new Cluster(ClusterType::BOX, arr);
+    buddies.push_back(temp);
 }
 
 // ---------------------------------------------------------------------
