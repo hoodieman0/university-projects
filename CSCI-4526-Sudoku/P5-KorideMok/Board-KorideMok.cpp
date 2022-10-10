@@ -41,6 +41,7 @@ getPuzzle() {
             else { fatal("!INVALID CHARACTER IN FILE!"); }
         }
     }
+    file.close();
 }
 
 void Board::
@@ -103,5 +104,12 @@ print(ostream& out) {
             out << "\n";
         }
     }
+    return out;
+}
+
+ostream& Board::
+printClusters(ostream& out) {
+    int i = 1;
+    for (Cluster* cl : buddies) { out <<"Cluster " <<i <<": " <<*cl; i++; }
     return out;
 }

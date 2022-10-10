@@ -27,6 +27,7 @@ class Board{
         Square& sub(short r, short c){ return bd[(r - 1)* n + (c - 1)]; }
         void mark(int, int, char);
         ostream& print(ostream&);
+        ostream& printClusters(ostream&);
 };
 
 inline ostream& operator<<(ostream& out, Board& b){
