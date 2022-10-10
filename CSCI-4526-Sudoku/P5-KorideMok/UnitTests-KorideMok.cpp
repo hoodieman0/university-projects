@@ -148,3 +148,42 @@ testBoardFunctions(ostream& out, char * filename){
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
 }
+
+void
+testClusterFunctions(ostream& out, char* filename){
+    out <<"-----------------------------------------------------"
+          "-----------------------------------------------------" <<endl;
+    out << "Testing the Cluster class from Cluster-KorideMok.hpp" << endl;
+    out << "Expected Output:" << endl;
+    out << "1. Create all clusters" << endl;
+    out << "2. Remove value from all related clusters\n" << endl;
+    /* "P4input.txt" Unit Test Input File
+      t
+4-6--7---
+-9-5-6-7-
+------58-
+---9--34-
+3-------8
+-78--4---
+-17------
+-8-2-9-6-
+9--7--84-
+
+      */
+
+    out <<"1. Creation of clusters" <<endl;
+    ifstream ifs(filename);
+    ifs.get(); //discard 't'
+
+    Board puzzle(9, ifs);
+    puzzle.printClusters(out);
+
+
+    out <<"\n2. Shoop Function Test" <<endl;
+    out <<"Using test 1 squares, mark [9, 9] with '1'\n" <<endl;
+    puzzle.mark(9, 9, '4');
+    puzzle.printClusters(out);
+
+    out <<"-----------------------------------------------------"
+          "-----------------------------------------------------" <<endl;
+}

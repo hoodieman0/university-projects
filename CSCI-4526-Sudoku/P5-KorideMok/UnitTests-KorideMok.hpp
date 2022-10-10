@@ -12,5 +12,20 @@
 void testStateFunctions(ostream&); //P1
 void testSquareFunctions(ostream&); //P2
 void testBoardFunctions(ostream&, char*); //P4
+void testClusterFunctions(ostream&, char*); //P5
+
+inline void testP1(ostream& out) { testSquareFunctions(out); }
+inline void testP2(ostream& out) {
+    testSquareFunctions(out);
+    out <<"-----------------------------------------------------"
+          "-----------------------------------------------------" <<endl;
+    testStateFunctions(out);
+}
+
+inline void testP3(ostream& out) { }
+inline void testP4(ostream& out) { }
+inline void testP5(ostream& out, char* filename) {
+    testClusterFunctions(out, filename);
+}
 
 #endif
