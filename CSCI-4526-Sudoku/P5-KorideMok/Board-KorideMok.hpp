@@ -2,7 +2,10 @@
 
 #include "tools.hpp"
 #include "Square-KorideMok.hpp"
+#include "Cluster-KorideMok.hpp"
 #pragma once
+
+enum class ClusterType {ROW, COLUMN, BOX};
 
 class Board{
     private:
@@ -10,16 +13,22 @@ class Board{
         Square * bd;
         ifstream& file;
         short left = 81;
+        vector<Cluster*> buddies;
+
         void getPuzzle();
+        void makeClusters();
+        void createRow(short);
+        void createCol(short);
+        void createBox(short, short);
 
     public:
         Board(int, ifstream&);
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
-        Square& sub(int j, int k){ return bd[(j - 1)* n + (k - 1)]; }
+        Square& sub(int r, int c){ return bd[(r - 1)* n + (c - 1)]; }
         void mark(int, int, char);
         ostream& print(ostream&);
 };
 
-inline ostream& operator<<(ostream& out,Board& b){
+inline ostream& operator<<(ostream& out, Board& b){
     return b.print(out);
 }
