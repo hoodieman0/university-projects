@@ -21,5 +21,5 @@ ostream& Cluster::print(ostream& out) {
     out << type <<endl;
     for (Square* square : clstr) { out <<square <<endl; }
     out <<endl;
-
+    return out;
 }
