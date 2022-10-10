@@ -30,6 +30,10 @@ mark(char ch){
     }
 }
 
+void State::turnOff(short n) {
+    poslist = poslist & n;
+}
+
 // ---------------------------------------------------------------------
 // Prints the variables of the State object in a human-readable format
 // Preconditions: State object exists

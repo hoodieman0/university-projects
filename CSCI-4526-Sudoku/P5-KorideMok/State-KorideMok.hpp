@@ -16,7 +16,8 @@ public:
     State(char);
     ~State() { }//cout <<"Default State Destructor" <<endl; }
     void mark(char);
-    char getValue() {return value;}
+    char getValue() { return value; }
+    void turnOff(short);
     ostream& print(ostream&);
 };
 
