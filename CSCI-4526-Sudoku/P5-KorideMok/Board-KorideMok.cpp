@@ -2,6 +2,8 @@
 
 #include "Board-KorideMok.hpp"
 
+static const string clusterTypes[3] = {"row", "col", "box"};
+
 // ---------------------------------------------------------------------
 // Constructor for Board
 // Preconditions: Game object exists
@@ -10,6 +12,7 @@ Board::
 Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
     bd = new Square[n*n];
     getPuzzle();
+    makeClusters();
     cout << "~Creating Board~" <<endl;
 }
 
@@ -43,6 +46,35 @@ getPuzzle() {
 void Board::
 mark(int r, int c, char value) {
     sub(r, c).mark(value);
+}
+
+void Board::
+makeClusters() {
+    Square* arr[9];
+
+    for (short k = 1; k < 10; k++) {
+        createRow(k);
+        Cluster a(ClusterType::ROW, arr);
+    }
+        createCol(k);
+        createBox(k, k);
+    }
+
+}
+
+void Board::
+createRow(short r) {
+    for (int c = 0; c < 9; c++) { sub(r, c); }
+}
+
+void Board::
+createCol(short c) {
+
+}
+
+void Board::
+createBox(short r, short c) {
+
 }
 
 // ---------------------------------------------------------------------
