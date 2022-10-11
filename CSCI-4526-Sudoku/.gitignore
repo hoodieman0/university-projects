@@ -2,3 +2,11 @@
 cmake-build-debug/
 
 cmake-build-release/
+
+.cmake/api/v1/query/
+
+.cmake/api/v1/reply/
+
+CMakeFiles/
+
+P4-KorideMok/CMakeLists.txt
