@@ -1,0 +1,163 @@
+----------------------------------------------------------------
+        James Mok and Neelakanta Bharadwaj Koride
+        CSCI-4526: Advanced C++
+        Fri Oct 14 2022 22:06:05
+----------------------------------------------------------------
+
+~Begin Square Test~
+---------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+Testing the Square class from Square-KorideMok.hpp
+Expected Output:
+1. Default values
+2. Square [5,1] is created and marked
+3. Square [7,3] is created and unmarkable
+4. Square[9, 5] is created and validates input
+
+1. Default Value Test
+~Before~
+Square [0, 0] value: - fixed: false possibilities: 123456789
+!Mark 5!
+~After~
+Square [0, 0] value: 5 fixed: false possibilities: ---------
+
+2. Markable Square Test
+~Before~
+Square [5, 1] value: - fixed: false possibilities: 123456789
+!Mark 5!
+~After~
+Square [5, 1] value: 5 fixed: false possibilities: ---------
+
+3. Unmarkable Square Test
+~Before~
+Square [7, 3] value: 5 fixed: true possibilities: ---------
+!Mark 5!
+~After~
+Square [7, 3] value: 5 fixed: true possibilities: ---------
+
+4. Input Validation Test
+~Before~
+Square [9, 5] value: - fixed: false possibilities: 123456789
+!Mark 0!
+!Mark ~!
+~After~
+Square [9, 5] value: - fixed: false possibilities: 123456789
+----------------------------------------------------------------------------------------------------------
+
+~Square Test Completed Successfully~
+---------------------------------------------------
+~Begin Board Test~
+---------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+Testing the Board class from Board-KorideMok.hpp
+Expected Output:
+1. GetPuzzle initializes board
+2. Sub Function indexes correctly
+3. Mark Function properly marks square
+
+1. GetPuzzle and Constructor Test
+ Square [0, 0] value: - fixed: false possibilities: 123456789
+  Square [0, 1] value: - fixed: false possibilities: 123456789
+  Square [0, 2] value: 3 fixed: true possibilities: ---------
+  Square [0, 3] value: - fixed: false possibilities: 123456789
+  Square [0, 4] value: 2 fixed: true possibilities: ---------
+  Square [0, 5] value: - fixed: false possibilities: 123456789
+  Square [0, 6] value: 6 fixed: true possibilities: ---------
+  Square [0, 7] value: - fixed: false possibilities: 123456789
+  Square [0, 8] value: - fixed: false possibilities: 123456789
+ 
+ Square [1, 0] value: 9 fixed: true possibilities: ---------
+  Square [1, 1] value: - fixed: false possibilities: 123456789
+  Square [1, 2] value: - fixed: false possibilities: 123456789
+  Square [1, 3] value: 3 fixed: true possibilities: ---------
+  Square [1, 4] value: - fixed: false possibilities: 123456789
+  Square [1, 5] value: 5 fixed: true possibilities: ---------
+  Square [1, 6] value: - fixed: false possibilities: 123456789
+  Square [1, 7] value: - fixed: false possibilities: 123456789
+  Square [1, 8] value: 1 fixed: true possibilities: ---------
+ 
+ Square [2, 0] value: - fixed: false possibilities: 123456789
+  Square [2, 1] value: - fixed: false possibilities: 123456789
+  Square [2, 2] value: 1 fixed: true possibilities: ---------
+  Square [2, 3] value: 8 fixed: true possibilities: ---------
+  Square [2, 4] value: - fixed: false possibilities: 123456789
+  Square [2, 5] value: 6 fixed: true possibilities: ---------
+  Square [2, 6] value: 4 fixed: true possibilities: ---------
+  Square [2, 7] value: - fixed: false possibilities: 123456789
+  Square [2, 8] value: - fixed: false possibilities: 123456789
+ 
+ Square [3, 0] value: - fixed: false possibilities: 123456789
+  Square [3, 1] value: - fixed: false possibilities: 123456789
+  Square [3, 2] value: 8 fixed: true possibilities: ---------
+  Square [3, 3] value: 1 fixed: true possibilities: ---------
+  Square [3, 4] value: - fixed: false possibilities: 123456789
+  Square [3, 5] value: 2 fixed: true possibilities: ---------
+  Square [3, 6] value: 9 fixed: true possibilities: ---------
+  Square [3, 7] value: - fixed: false possibilities: 123456789
+  Square [3, 8] value: - fixed: false possibilities: 123456789
+ 
+ Square [4, 0] value: 7 fixed: true possibilities: ---------
+  Square [4, 1] value: - fixed: false possibilities: 123456789
+  Square [4, 2] value: - fixed: false possibilities: 123456789
+  Square [4, 3] value: - fixed: false possibilities: 123456789
+  Square [4, 4] value: - fixed: false possibilities: 123456789
+  Square [4, 5] value: - fixed: false possibilities: 123456789
+  Square [4, 6] value: - fixed: false possibilities: 123456789
+  Square [4, 7] value: - fixed: false possibilities: 123456789
+  Square [4, 8] value: 8 fixed: true possibilities: ---------
+ 
+ Square [5, 0] value: - fixed: false possibilities: 123456789
+  Square [5, 1] value: - fixed: false possibilities: 123456789
+  Square [5, 2] value: 6 fixed: true possibilities: ---------
+  Square [5, 3] value: 7 fixed: true possibilities: ---------
+  Square [5, 4] value: - fixed: false possibilities: 123456789
+  Square [5, 5] value: 8 fixed: true possibilities: ---------
+  Square [5, 6] value: 2 fixed: true possibilities: ---------
+  Square [5, 7] value: - fixed: false possibilities: 123456789
+  Square [5, 8] value: - fixed: false possibilities: 123456789
+ 
+ Square [6, 0] value: - fixed: false possibilities: 123456789
+  Square [6, 1] value: - fixed: false possibilities: 123456789
+  Square [6, 2] value: 2 fixed: true possibilities: ---------
+  Square [6, 3] value: 6 fixed: true possibilities: ---------
+  Square [6, 4] value: - fixed: false possibilities: 123456789
+  Square [6, 5] value: 9 fixed: true possibilities: ---------
+  Square [6, 6] value: 5 fixed: true possibilities: ---------
+  Square [6, 7] value: - fixed: false possibilities: 123456789
+  Square [6, 8] value: - fixed: false possibilities: 123456789
+ 
+ Square [7, 0] value: 8 fixed: true possibilities: ---------
+  Square [7, 1] value: - fixed: false possibilities: 123456789
+  Square [7, 2] value: - fixed: false possibilities: 123456789
+  Square [7, 3] value: 2 fixed: true possibilities: ---------
+  Square [7, 4] value: - fixed: false possibilities: 123456789
+  Square [7, 5] value: 3 fixed: true possibilities: ---------
+  Square [7, 6] value: - fixed: false possibilities: 123456789
+  Square [7, 7] value: - fixed: false possibilities: 123456789
+  Square [7, 8] value: 9 fixed: true possibilities: ---------
+ 
+ Square [8, 0] value: - fixed: false possibilities: 123456789
+  Square [8, 1] value: - fixed: false possibilities: 123456789
+  Square [8, 2] value: 5 fixed: true possibilities: ---------
+  Square [8, 3] value: - fixed: false possibilities: 123456789
+  Square [8, 4] value: 1 fixed: true possibilities: ---------
+  Square [8, 5] value: - fixed: false possibilities: 123456789
+  Square [8, 6] value: 3 fixed: true possibilities: ---------
+  Square [8, 7] value: - fixed: false possibilities: 123456789
+  Square [8, 8] value: - fixed: false possibilities: 123456789
+ 
+
+~Board Object Created~
+
+2. Get Square [5, 9] Test
+Square [4, 8] value: 8 fixed: true possibilities: ---------
+
+3. Mark square [1, 1] with '1'
+Square [0, 0] value: - fixed: false possibilities: 123456789
+Square [0, 0] value: 1 fixed: false possibilities: ---------
+----------------------------------------------------------------------------------------------------------
+
+~Board Test Completed Successfully~
+---------------------------------------------------
+
+Normal termination.
