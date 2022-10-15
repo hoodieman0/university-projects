@@ -19,22 +19,6 @@ Game(char* filename){
     file>>x;
     if (types.find(x) == string::npos) fatal("!Invalid Game Type!");
     gameType = x;
-
-//    if (file.is_open()){
-//        char x;
-//        file>>x;
-//
-//        string types = "TtDdSs"; //TODO change P2
-//        if (types.find(x)) {
-//            gameType = x;
-//        }
-//        else{
-//            fatal("!Invalid Game Type!");
-//        }
-//    }
-//    else {
-//        fatal("!Could Not Open Game File!");
-//    }
 }
 
 
