@@ -9,7 +9,7 @@
 int main(int argc, char * const argv[]){
     banner();
 
-    if(argc != 2){ fatal("!Incorrect Amount Of Arguments!"); }
+    if (argc != 2){ fatal("!Incorrect Amount Of Arguments!"); }
     ofstream unit_test(FILE);
 
     testP5(STREAM, argv[1]);

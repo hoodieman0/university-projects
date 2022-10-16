@@ -13,9 +13,9 @@ Square(char input, short r, short c) : State(input), row(r), col(c){
 }
 
 // ---------------------------------------------------------------------
-// Changes the value of square
+// Changes the value of square's state
 // Preconditions: Square object exists
-// Postconditions: if marker is in legal, value = marker, else no change
+// Postconditions: if marker is in legal and not in another cluster, value = marker, else no change
 void Square::
 mark(char marker){
     string legal = "123456789";

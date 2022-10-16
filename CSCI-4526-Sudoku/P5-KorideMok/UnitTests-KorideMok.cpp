@@ -112,17 +112,17 @@ testBoardFunctions(ostream& out, char* filename){
     out <<"1. GetPuzzle initializes board" <<endl;
     out <<"2. Sub Function indexes correctly" <<endl;
     out <<"3. Mark Function properly marks square\n" <<endl;
-    /* "P4input.txt" Unit Test Input File
+    /* "puzt.txt" Unit Test Input File
       t
---3-2-6--
-9--3-5--1
---18-64--
---81-29--
-7-------8
---67-82--
---26-95--
-8--2-3--9
---5-1-3--
+4-6--7---
+-9-5-6-7-
+------58-
+---9--34-
+3-------8
+-78--4---
+-17------
+-8-2-9-6-
+9--7--84-
       */
 
     ifstream ifs(filename);
@@ -140,10 +140,10 @@ testBoardFunctions(ostream& out, char* filename){
         }
     }
 
-    out <<"\n3. Mark square (1, 1) with '1'" <<endl;
-    out <<puzzle.sub(1, 1) <<endl;
-    puzzle.mark(1, 1, '1');
-    out <<puzzle.sub(1, 1) <<endl;
+    out <<"\n3. Mark square (1, 2) with '2'" <<endl;
+    out <<puzzle.sub(1, 2) <<endl;
+    puzzle.mark(1, 2, '2');
+    out <<puzzle.sub(1, 2) <<endl;
 
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
