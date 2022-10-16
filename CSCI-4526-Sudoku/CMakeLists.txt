@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(P1-KorideMok
         P2-KorideMok
         P3-KorideMok
-        P4-KorideMok)
+        P4-KorideMok
+        P5-KorideMok)
 
 add_executable(P1-KorideMok
         P1-KorideMok/SudokuMain-KorideMok.cpp
@@ -55,3 +56,20 @@ add_executable(P4-KorideMok
         P4-KorideMok/Game-KorideMok.cpp
         P4-KorideMok/Board-KorideMok.hpp
         P4-KorideMok/Board-KorideMok.cpp)
+
+add_executable(P5-KorideMok
+        P5-KorideMok/Square-KorideMok.cpp
+        P5-KorideMok/Square-KorideMok.hpp
+        P5-KorideMok/SudokuMain-KorideMok.cpp
+        P5-KorideMok/tools.cpp
+        P5-KorideMok/tools.hpp
+        P5-KorideMok/UnitTests-KorideMok.cpp
+        P5-KorideMok/UnitTests-KorideMok.hpp
+        P5-KorideMok/State-KorideMok.hpp
+        P5-KorideMok/State-KorideMok.cpp
+        P5-KorideMok/Game-KorideMok.hpp
+        P5-KorideMok/Game-KorideMok.cpp
+        P5-KorideMok/Board-KorideMok.hpp
+        P5-KorideMok/Board-KorideMok.cpp
+        P5-KorideMok/Cluster-KorideMok.hpp
+        P5-KorideMok/Cluster-KorideMok.cpp)

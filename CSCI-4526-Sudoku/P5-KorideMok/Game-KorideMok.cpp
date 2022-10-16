@@ -2,7 +2,7 @@
 
 #include "Game-KorideMok.hpp"
 
-const string Game::
+const char* Game::
 menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 
 // ---------------------------------------------------------------------
@@ -10,15 +10,27 @@ menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 // Precondition: A valid game file exists
 // Postcondition: Game object is created
 Game::
-Game(char* filename){
+Game(string filename) {
     file.open(filename);
-    if (!file.is_open()) fatal("!Could Not Open Game File!");
+    if (file.is_open()){
+        char x;
+        file>>x;
 
-    string types = "TtDdSs";
-    char x;
-    file>>x;
-    if (types.find(x) == string::npos) fatal("!Invalid Game Type!");
-    gameType = x;
+        string types = "TtDdSs"; //TODO change P2
+        if (types.find(x)) {
+            gameType = x;
+            int n;
+            switch(tolower(gameType)){
+                case 't': n = 9; break;
+                case 'd': n = 9; break;
+                case 's': n = 6; break;
+                default: fatal("!Invalid Game Type!");
+            }
+            puzzle = new Board(n, file);
+        }
+        else{ fatal("!Invalid Game Type!"); }
+    }
+    else { fatal("!Could Not Open Game File!"); }
 }
 
 
@@ -28,10 +40,10 @@ Game(char* filename){
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    char legalMenu[] { "MURSQ" };
+    char legal[] {"MURSQ"};
     for(;;){
         cout <<"\nWhat Would You Like To Do? " <<endl;
-        char x = menu_c("Menu", 6, menu, legalMenu);
+        char x = menu_c("Menu", 6, menu, legal);
         switch (x) {
             case 'M':
                 short r, c;
@@ -42,7 +54,7 @@ run(){
                 cin >> c;
                 cout <<"Input Value: ";
                 cin >> value;
-                //puzzle->mark(r, c, value);
+                puzzle->mark(r, c, value);
                 continue;
             case 'U': continue;
             case 'R': continue;

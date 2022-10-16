@@ -10,14 +10,14 @@ void
 statePrintTestCase(ostream& out, State test){
     out <<"~Before~\n" <<test;
     out <<"!Mark 1!" <<endl;
-    test.mark('1');
+    test.markState('1');
     out << "~After~\n" <<test << endl;
 }
 
 // ---------------------------------------------------------------------
 // Tests all the functions related to the State Class
 // Preconditions: State class is defined
-// Postconditions: Prints the given state tests
+// Postconditions: Sends the given state tests to the ostream
 void
 testStateFunctions(ostream& out){
     out <<"-----------------------------------------------------"
@@ -60,7 +60,7 @@ squarePrintTestCase(ostream& out, Square test){
 // ---------------------------------------------------------------------
 // Tests all the functions related to the Square Class
 // Preconditions: Square and State class is defined
-// Postconditions: Prints the given Square tests
+// Postconditions: Sends the given Square tests to the ostream
 void
 testSquareFunctions(ostream& out){
     out <<"-----------------------------------------------------"
@@ -70,7 +70,7 @@ testSquareFunctions(ostream& out){
     out <<"1. Default values" <<endl;
     out <<"2. Square [5,1] is created and marked" <<endl;
     out <<"3. Square [7,3] is created and unmarkable" <<endl;
-    out <<"4. Square[9, 5] is created and validates input\n" <<endl;
+    out <<"4. Square [9, 5] is created and validates input\n" <<endl;
 
     out <<"1. Default Value Test" <<endl;
     Square obj1;
@@ -101,10 +101,10 @@ testSquareFunctions(ostream& out){
 
 // ---------------------------------------------------------------------
 // Tests all the functions related to the Board Class
-// Preconditions: Board, Square, and State class are defined,
-// Postconditions: Prints the given Board tests
+// Preconditions: Board and Square class are defined, there is a valid input file
+// Postconditions: Sends the given Board tests to the ostream
 void
-testBoardFunctions(ostream& out, char * filename){
+testBoardFunctions(ostream& out, char* filename){
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
     out <<"Testing the Board class from Board-KorideMok.hpp" <<endl;
@@ -112,17 +112,17 @@ testBoardFunctions(ostream& out, char * filename){
     out <<"1. GetPuzzle initializes board" <<endl;
     out <<"2. Sub Function indexes correctly" <<endl;
     out <<"3. Mark Function properly marks square\n" <<endl;
-    /* "P4input.txt" Unit Test Input File
+    /* "puzt.txt" Unit Test Input File
       t
---3-2-6--
-9--3-5--1
---18-64--
---81-29--
-7-------8
---67-82--
---26-95--
-8--2-3--9
---5-1-3--
+4-6--7---
+-9-5-6-7-
+------58-
+---9--34-
+3-------8
+-78--4---
+-17------
+-8-2-9-6-
+9--7--84-
       */
 
     ifstream ifs(filename);
@@ -133,14 +133,67 @@ testBoardFunctions(ostream& out, char * filename){
     out <<puzzle <<endl;
     out <<"~Board Object Created~" <<endl;
 
-    out <<"\n2. Get Square [5, 9] Test" <<endl;
-    out << puzzle.sub(5, 9) << endl;
+    out <<"\n2. Sub Function Test" <<endl;
+    for(int i = 1; i < 10; i++){
+        for (int j = 1; j < 10; j++){
+            out << puzzle.sub(i, j) << endl;
+        }
+    }
+
+    out <<"\n3. Mark square (1, 2) with '2'" <<endl;
+    out <<puzzle.sub(1, 2) <<endl;
+    puzzle.mark(1, 2, '2');
+    out <<puzzle.sub(1, 2) <<endl;
+
+    out <<"-----------------------------------------------------"
+          "-----------------------------------------------------" <<endl;
+}
+
+// ---------------------------------------------------------------------
+// Tests all the functions related to the Cluster Class
+// Preconditions: Cluster, Board, and Square class are defined, there is a valid input file
+// Postconditions: Sends the given Cluster tests to the ostream
+void
+testClusterFunctions(ostream& out, char* filename){
+    out <<"-----------------------------------------------------"
+          "-----------------------------------------------------" <<endl;
+    out << "Testing the Cluster class from Cluster-KorideMok.hpp" <<endl;
+    out << "Expected Output:" <<endl;
+    out << "1. Create all clusters" <<endl;
+    out << "2. Remove value from all related clusters" <<endl;
+    out << "3. Make sure char is a valid mark\n" <<endl;
+    /* "puzt.txt" Unit Test Input File
+      t
+4-6--7---
+-9-5-6-7-
+------58-
+---9--34-
+3-------8
+-78--4---
+-17------
+-8-2-9-6-
+9--7--84-
+
+      */
+
+    out <<"1. Creation of clusters" <<endl;
+    ifstream ifs(filename);
+    ifs.get(); //discard 't'
+
+    Board puzzle(9, ifs);
+    out <<"Board made successfully!" <<endl;
 
 
-    out <<"\n3. Mark square [1, 1] with '1'" <<endl;
-    out <<puzzle.sub(1, 1) <<endl;
-    puzzle.mark(1, 1, '1');
-    out <<puzzle.sub(1, 1) <<endl;
+    out <<"\n2. Shoop Function Test" <<endl;
+    out <<"Using test 1's board, mark [9, 9] with '1'\n" <<endl;
+    puzzle.mark(9, 9, '1');
+    puzzle.printClusters(out);
+
+    out <<"\n3. Valid Input Test" <<endl;
+    out <<"Marking [8, 9] with '1' (invalid)..." <<endl;
+    puzzle.mark(8, 9, '1');
+    out <<"\nMarking [9, 9] with ';' (invalid)..." <<endl;
+    puzzle.mark(9, 9, ';');
 
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;

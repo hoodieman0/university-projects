@@ -14,13 +14,9 @@ Square(char input, short r, short c) : info(input), row(r), col(c){
 
 void Square::
 mark(char marker){
-    string temp(1,marker);
-    regex reg ("[1-9]");
-    smatch result;
-    if(regex_search(temp, result, reg)) {
-        info.mark(marker);
-    }
-    else{ cout <<"Invalid Input" <<endl; }
+    string legal = "123456789";
+    if(legal.find(marker) == string::npos) { cout <<"Invalid Input" <<endl; return; }
+    info.mark(marker);
 }
 
 // ---------------------------------------------------------------------

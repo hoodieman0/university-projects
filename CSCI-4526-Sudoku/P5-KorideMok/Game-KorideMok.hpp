@@ -4,20 +4,18 @@
 #define GAME_HPP
 
 #include "tools.hpp"
-
-class Board;
+#include "Board-KorideMok.hpp"
 
 class Game{
     private:
-        const static string menu[6];
+        const static char* menu[6];
         Board* puzzle;
         int n = 9;
         char gameType = 't';
         ifstream file;
 
     public:
-        Game(char*);
-        ~Game() { delete puzzle; }
+        Game(string);
         void run();
 };
 
