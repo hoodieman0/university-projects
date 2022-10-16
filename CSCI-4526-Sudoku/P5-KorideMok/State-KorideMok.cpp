@@ -20,17 +20,17 @@ State(char input) : value(input){
 // Postcondition: Changes State variable "value" to the given character
 // Failure: "Cannot Add Value"
 void State::
-mark(char ch){
-    if (!fixed){
-        value = ch;
-        poslist = 0;
-    }
-    else{
-        cout <<"Cannot Add Value" <<endl;
-    }
+markState(char ch){
+    if (fixed) cout <<"Cannot Add Value" <<endl;
+    value = ch;
+    poslist = 0;
 }
 
-void State::turnOff(short n) {
+// ---------------------------------------------------------------------
+// given a mask n, use bitwise and to remove the desired bits
+// Preconditions: state object exists
+// Postconditions: the bit at the position of the bitwise inverse of n is turned to 0
+void State::turnOffBit(short n) {
     poslist = poslist & n;
 }
 
@@ -39,7 +39,7 @@ void State::turnOff(short n) {
 // Preconditions: State object exists
 // Postconditions: Prints State's variables to the ostream
 ostream& State::
-print( ostream& out ){
+printState( ostream& out ){
     out <<"value: " <<value <<" fixed: " <<boolalpha <<fixed;
     out <<" possibilities: ";
 

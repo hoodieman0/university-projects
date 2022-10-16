@@ -14,6 +14,7 @@ class Cluster{
     public:
         Cluster(const char*, Square* []);
         void shoop(char);
+        bool isValid(char);
         ostream& print(ostream&);
 };
 

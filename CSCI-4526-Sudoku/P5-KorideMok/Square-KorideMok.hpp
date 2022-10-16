@@ -8,26 +8,26 @@
 
 class Cluster;
 
-class Square{
+class Square : private State{
     private:
-        State info;
         short row = 0;
         short col = 0;
         vector<Cluster*> buddies;
 
     public:
-        Square() { }//cout <<"Square Default Constructor" << endl; }
+        Square() = default;
         Square(char, short, short);
-        ~Square() { }//cout <<"Destroying Square " <<row <<", " <<col <<endl; }
+        ~Square() = default;
         void mark(char);
-        void addCluster(Cluster* clus) { buddies.push_back(clus); }
+        char getState() const { return getValue(); }
+        void addCluster(Cluster* cl) { buddies.push_back(cl); }
         void shoop(char);
         void turnOff(int);
-        ostream& print(ostream&); //follows matrix convention [rows, columns]
+        ostream& printSquare(ostream&); //follows matrix convention [rows, columns]
 };
 
 inline ostream& operator <<( ostream& out, Square& sq){
-    return sq.print(out);
+    return sq.printSquare(out);
 }
 
 #endif

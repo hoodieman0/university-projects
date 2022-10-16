@@ -10,14 +10,14 @@ void
 statePrintTestCase(ostream& out, State test){
     out <<"~Before~\n" <<test;
     out <<"!Mark 1!" <<endl;
-    test.mark('1');
+    test.markState('1');
     out << "~After~\n" <<test << endl;
 }
 
 // ---------------------------------------------------------------------
 // Tests all the functions related to the State Class
 // Preconditions: State class is defined
-// Postconditions: Prints the given state tests
+// Postconditions: Sends the given state tests to the ostream
 void
 testStateFunctions(ostream& out){
     out <<"-----------------------------------------------------"
@@ -60,7 +60,7 @@ squarePrintTestCase(ostream& out, Square test){
 // ---------------------------------------------------------------------
 // Tests all the functions related to the Square Class
 // Preconditions: Square and State class is defined
-// Postconditions: Prints the given Square tests
+// Postconditions: Sends the given Square tests to the ostream
 void
 testSquareFunctions(ostream& out){
     out <<"-----------------------------------------------------"
@@ -70,7 +70,7 @@ testSquareFunctions(ostream& out){
     out <<"1. Default values" <<endl;
     out <<"2. Square [5,1] is created and marked" <<endl;
     out <<"3. Square [7,3] is created and unmarkable" <<endl;
-    out <<"4. Square[9, 5] is created and validates input\n" <<endl;
+    out <<"4. Square [9, 5] is created and validates input\n" <<endl;
 
     out <<"1. Default Value Test" <<endl;
     Square obj1;
@@ -101,10 +101,10 @@ testSquareFunctions(ostream& out){
 
 // ---------------------------------------------------------------------
 // Tests all the functions related to the Board Class
-// Preconditions: Board, Square, and State class are defined,
-// Postconditions: Prints the given Board tests
+// Preconditions: Board and Square class are defined, there is a valid input file
+// Postconditions: Sends the given Board tests to the ostream
 void
-testBoardFunctions(ostream& out, char * filename){
+testBoardFunctions(ostream& out, char* filename){
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
     out <<"Testing the Board class from Board-KorideMok.hpp" <<endl;
@@ -149,15 +149,20 @@ testBoardFunctions(ostream& out, char * filename){
           "-----------------------------------------------------" <<endl;
 }
 
+// ---------------------------------------------------------------------
+// Tests all the functions related to the Cluster Class
+// Preconditions: Cluster, Board, and Square class are defined, there is a valid input file
+// Postconditions: Sends the given Cluster tests to the ostream
 void
 testClusterFunctions(ostream& out, char* filename){
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
-    out << "Testing the Cluster class from Cluster-KorideMok.hpp" << endl;
-    out << "Expected Output:" << endl;
-    out << "1. Create all clusters" << endl;
-    out << "2. Remove value from all related clusters\n" << endl;
-    /* "P4input.txt" Unit Test Input File
+    out << "Testing the Cluster class from Cluster-KorideMok.hpp" <<endl;
+    out << "Expected Output:" <<endl;
+    out << "1. Create all clusters" <<endl;
+    out << "2. Remove value from all related clusters" <<endl;
+    out << "3. Make sure char is a valid mark\n" <<endl;
+    /* "puzt.txt" Unit Test Input File
       t
 4-6--7---
 -9-5-6-7-
@@ -176,13 +181,19 @@ testClusterFunctions(ostream& out, char* filename){
     ifs.get(); //discard 't'
 
     Board puzzle(9, ifs);
-    puzzle.printClusters(out);
+    out <<"Board made successfully!" <<endl;
 
 
     out <<"\n2. Shoop Function Test" <<endl;
-    out <<"Using test 1 squares, mark [9, 9] with '1'\n" <<endl;
+    out <<"Using test 1's board, mark [9, 9] with '1'\n" <<endl;
     puzzle.mark(9, 9, '1');
     puzzle.printClusters(out);
+
+    out <<"\n3. Valid Input Test" <<endl;
+    out <<"Marking [8, 9] with '1' (invalid)..." <<endl;
+    puzzle.mark(8, 9, '1');
+    out <<"\nMarking [9, 9] with ';' (invalid)..." <<endl;
+    puzzle.mark(9, 9, ';');
 
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;

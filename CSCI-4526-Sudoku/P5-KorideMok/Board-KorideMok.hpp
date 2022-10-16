@@ -25,7 +25,7 @@ class Board{
         Board(int, ifstream&);
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
         Square& sub(short r, short c){ return bd[(r - 1)* n + (c - 1)]; }
-        void mark(int, int, char);
+        void mark(short r, short c, char value) { sub(r, c).mark(value); }
         ostream& print(ostream&);
         ostream& printClusters(ostream&);
 };

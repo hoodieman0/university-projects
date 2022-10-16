@@ -12,17 +12,17 @@ private:
     bool fixed = false; //is part of the original puzzle
 
 public:
-    State() { }//cout <<"Default State Constructor" << endl; }
+    State() = default;
     State(char);
-    ~State() { }//cout <<"Default State Destructor" <<endl; }
-    void mark(char);
-    char getValue() { return value; }
-    void turnOff(short);
-    ostream& print(ostream&);
+    ~State() = default;
+    void markState(char);
+    char getValue() const { return value; }
+    void turnOffBit(short);
+    ostream& printState(ostream&);
 };
 
 inline ostream& operator <<(ostream& out, State& st){
-    return st.print(out);
+    return st.printState(out);
 }
 
 #endif
