@@ -9,7 +9,7 @@
 // Postconditions: Prints Square's variables to the console
 Square::
 Square(char input, short r, short c) : info(input), row(r), col(c){
-    //cout <<"Constructing Square " <<row << ", " <<col <<endl;
+    //cout <<"Constructing Square [" <<row << ", " <<col <<"]" <<endl;
 }
 
 // ---------------------------------------------------------------------
@@ -18,14 +18,10 @@ Square(char input, short r, short c) : info(input), row(r), col(c){
 // Postconditions: if marker is in legal, value = marker, else no change
 void Square::
 mark(char marker){
-
     string legal = "123456789";
-    int result = legal.find(marker);
-    if (result == string::npos) cout <<"Invalid Input" <<endl;
-    else {
-        info.mark(marker);
-        shoop(marker);
-    }
+    if(legal.find(marker) == string::npos) { cout <<"Invalid Input" <<endl; return; }
+    info.mark(marker);
+    shoop(marker);
 }
 
 void Square::

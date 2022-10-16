@@ -31,14 +31,13 @@ getPuzzle() {
         file >> line; //does not account for beginning gameType char
         for (int k = 0; k < n; k++){
             x = line[k];
-            if (types.find(x) != -1){
-                Square temp(x, j, k);
-                bd[index] = temp;
-                index++;
+            if (types.find(x) == string::npos) fatal("!INVALID CHARACTER IN FILE!");
 
-                if (x != '-'){ left--; }
-            }
-            else { fatal("!INVALID CHARACTER IN FILE!"); }
+            Square temp(x, j, k);
+            bd[index] = temp;
+            index++;
+
+            if (x != '-') left--;
         }
     }
     file.close();
