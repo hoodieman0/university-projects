@@ -14,7 +14,7 @@ void testSquareFunctions(ostream&); //P2
 void testBoardFunctions(ostream&, char*); //P4
 void testClusterFunctions(ostream&, char*); //P5
 
-void
+inline void
 testP1(ostream& out) {
     out <<"~Begin State Test~\n---------------------------------------------------" <<endl;
     testSquareFunctions(out);
@@ -22,7 +22,7 @@ testP1(ostream& out) {
           "----------" <<endl;
 }
 
-void
+inline void
 testP2(ostream& out) {
     out <<"~Begin Square Test~\n---------------------------------------------------" <<endl;
     testSquareFunctions(out);
@@ -35,7 +35,7 @@ testP2(ostream& out) {
           "----------" <<endl;
 }
 
-void
+inline void
 testP3(ostream& out, const char* filename) {
     out <<"~Begin Game Test~\n---------------------------------------------------" <<endl;
     Game obj(filename);
@@ -44,7 +44,7 @@ testP3(ostream& out, const char* filename) {
           "----------" <<endl;
 }
 
-void
+inline void
 testP4(ostream& out, char* filename) {
     out <<"~Begin Board Test~\n---------------------------------------------------" <<endl;
     testBoardFunctions(out, filename);
@@ -52,7 +52,7 @@ testP4(ostream& out, char* filename) {
           "----------" <<endl;
 }
 
-void
+inline void
 testP5(ostream& out, char* filename) {
     out <<"~Begin Cluster Test~\n---------------------------------------------------" <<endl;
     testClusterFunctions(out, filename);
