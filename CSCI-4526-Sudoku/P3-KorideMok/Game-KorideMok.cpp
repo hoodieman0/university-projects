@@ -1,6 +1,8 @@
+// Written by James Mok and Neelakanta Bharadwaj Koride
+
 #include "Game-KorideMok.hpp"
 
-const char* Game::
+const string Game::
 menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 
 // ---------------------------------------------------------------------
@@ -8,24 +10,15 @@ menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 // Precondition: A valid game file exists
 // Postcondition: Game object is created
 Game::
-Game(string filename){ //TODO change from string to ifstream
-    file.open(filename); //TODO file validation in main,
-    if (file.is_open()){
-        char x;
-        file>>x;
+Game(char* filename){
+    file.open(filename);
+    if (!file.is_open()) fatal("!Could Not Open Game File!");
 
-        string types = "TtDdSs"; //TODO change P2
-        if (types.find(x)) {
-            gameType = x;
-        }
-        else{
-            fatal("!Invalid Game Type!");
-        }
-    }
-    else {
-        fatal("!Could Not Open Game File!");
-    }
-    file.close(); //TODO change this
+    string types = "TtDdSs";
+    char x;
+    file>>x;
+    if (types.find(x) == string::npos) fatal("!Invalid Game Type!");
+    gameType = x;
 }
 
 
@@ -35,10 +28,10 @@ Game(string filename){ //TODO change from string to ifstream
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    char legal_menu[] {"MURSQ"}; //TODO please make camelCase and shorter
+    char legalMenu[] { "MURSQ" };
     for(;;){
         cout <<"\nWhat Would You Like To Do? " <<endl;
-        char x = menu_c("Menu", 6, menu, legal_menu);
+        char x = menu_c("Menu", 6, menu, legalMenu);
         switch (x) {
             case 'M':
                 short r, c;
