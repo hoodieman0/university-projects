@@ -23,11 +23,11 @@ class Square : private State{
         void addCluster(Cluster* cl) { buddies.push_back(cl); }
         void shoop(char);
         void turnOff(int);
-        ostream& printSquare(ostream&); //follows matrix convention [rows, columns]
+        ostream& print(ostream&); //follows matrix convention [rows, columns]
 };
 
 inline ostream& operator <<( ostream& out, Square& sq){
-    return sq.printSquare(out);
+    return sq.print(out);
 }
 
 #endif

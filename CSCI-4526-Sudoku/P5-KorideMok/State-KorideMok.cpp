@@ -20,7 +20,7 @@ State(char input) : value(input){
 // Postcondition: Changes State variable "value" to the given character
 // Failure: "Cannot Add Value"
 void State::
-markState(char ch){
+mark(char ch){
     if (fixed) cout <<"Cannot Add Value" <<endl;
     value = ch;
     poslist = 0;
@@ -39,7 +39,7 @@ void State::turnOffBit(short n) {
 // Preconditions: State object exists
 // Postconditions: Prints State's variables to the ostream
 ostream& State::
-printState( ostream& out ){
+print( ostream& out ){
     out <<"value: " <<value <<" fixed: " <<boolalpha <<fixed;
     out <<" possibilities: ";
 

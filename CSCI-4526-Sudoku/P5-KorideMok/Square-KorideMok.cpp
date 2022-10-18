@@ -27,7 +27,7 @@ mark(char marker){
             return; }
     }
     shoop(marker);
-    markState(marker);
+    State::mark(marker);
 }
 
 // ---------------------------------------------------------------------
@@ -43,7 +43,8 @@ shoop(char val) {
 // Turns of the n bit in this square
 // Preconditions: square object exists
 // Postconditions: calls State::turnOffBit: n bit is turned off for this square
-void Square::turnOff(int n) {
+void Square::
+turnOff(int n) {
     short mask = 0x001;
     mask = mask << n;
     mask = ~mask;
@@ -55,8 +56,8 @@ void Square::turnOff(int n) {
 // Preconditions: Square object exists
 // Postconditions: Prints Square's variables to the console
 ostream& Square::
-printSquare(ostream& out){
-    out <<"Square [" <<row+1 <<", " <<col+1 <<"] ";//State;
-    printState(out);
+print(ostream& out){
+    out <<"Square [" <<row+1 <<", " <<col+1 <<"] ";
+    State::print(out);
     return out;
 }

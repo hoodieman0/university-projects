@@ -10,7 +10,7 @@ void
 statePrintTestCase(ostream& out, State test){
     out <<"~Before~\n" <<test;
     out <<"!Mark 1!" <<endl;
-    test.markState('1');
+    test.mark('1');
     out << "~After~\n" <<test << endl;
 }
 

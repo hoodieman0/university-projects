@@ -15,14 +15,14 @@ public:
     State() = default;
     State(char);
     ~State() = default;
-    void markState(char);
+    void mark(char);
     char getValue() const { return value; }
     void turnOffBit(short);
-    ostream& printState(ostream&);
+    ostream& print(ostream&);
 };
 
 inline ostream& operator <<(ostream& out, State& st){
-    return st.printState(out);
+    return st.print(out);
 }
 
 #endif
