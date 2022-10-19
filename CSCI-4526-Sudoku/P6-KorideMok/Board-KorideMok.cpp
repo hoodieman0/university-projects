@@ -2,14 +2,14 @@
 
 #include "Board-KorideMok.hpp"
 
-static const char* clusterT[3] = {"ROW", "COLUMN", "BOX"};
+static const string clusterT[3] = {"ROW", "COLUMN", "BOX"};
 
 // ---------------------------------------------------------------------
 // Constructor for Board
 // Preconditions: Game object exists
 // Postconditions: Board object is created
 Board::
-Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
+Board(int n, int clstr, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
     bd = new Square[n*n];
     getPuzzle();
     makeClusters();
@@ -127,3 +127,20 @@ printClusters(ostream& out) {
     for (Cluster* cl : buddies) { out <<"Cluster " <<i <<": " <<*cl; i++; }
     return out;
 }
+
+/* Can I implement this for visualization purposes?
+ *
+// ---------------------------------------------------------------------
+// Prints the state of the board
+// Preconditions: Game object exists, getPuzzle has been run
+// Postconditions: All squares and their values of the board are outputted
+ostream& Board::
+print(ostream& out) {
+    for (int j = 0; j < n*n; j++){
+        out <<bd[j].getState() <<" ";
+        if ((j+1) % 9 == 0){
+            out << "\n ";
+        }
+    }
+    return out;
+ */
