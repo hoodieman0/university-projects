@@ -3,7 +3,7 @@
 #include "Game-KorideMok.hpp"
 
 const char* Game::
-menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
+menu[7] = {"Print", "Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 
 // ---------------------------------------------------------------------
 // Game Constructor
@@ -12,26 +12,24 @@ menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 Game::
 Game(string filename) {
     file.open(filename);
-    if (file.is_open()){
-        char x;
-        file>>x;
+    if (!file.is_open()) fatal("!Could Not Open Game File!");
+    char x;
+    file>>x;
 
-        string types = "TtDdSs"; //TODO change P2
-        if (types.find(x)) {
-            gameType = x;
-            int n;
-            switch(tolower(gameType)){
-                case 't': n = 9; break;
-                case 'd': n = 9; break;
-                case 's': n = 6; break;
-                default: fatal("!Invalid Game Type!");
-            }
-            puzzle = new Board(n, file);
-        }
-        else{ fatal("!Invalid Game Type!"); }
+    string types = "TtDdSs";
+    if (types.find(x) == string::npos) fatal("!INVALID CHARACTER IN FILE!");
+
+    gameType = x;
+    int size = 9;
+    int clstr = 27;
+    switch(tolower(gameType)){
+        case 't': puzzle = new Board(size, clstr, file); break;
+        case 'd': clstr = 29; puzzle = new DiagBoard(size, clstr, file); break;
+        case 's': size = 6; break;
+        default: fatal("!Invalid Game Type!");
     }
-    else { fatal("!Could Not Open Game File!"); }
 }
+
 
 
 // ---------------------------------------------------------------------
@@ -40,11 +38,12 @@ Game(string filename) {
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    char legal[] {"MURSQ"};
+    char legal[] {"PMURSQ"};
     for(;;){
         cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 6, menu, legal);
-        switch (x) {
+        switch (toupper(x)) {
+            case 'P': cout <<*puzzle <<endl; continue;
             case 'M':
                 short r, c;
                 char value;
