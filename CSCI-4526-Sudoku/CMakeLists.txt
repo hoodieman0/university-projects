@@ -90,4 +90,6 @@ add_executable(P6-KorideMok
         P6-KorideMok/Board-KorideMok.hpp
         P6-KorideMok/Board-KorideMok.cpp
         P6-KorideMok/Cluster-KorideMok.hpp
-        P6-KorideMok/Cluster-KorideMok.cpp)
+        P6-KorideMok/Cluster-KorideMok.cpp
+        P6-KorideMok/DiagBoard-KorideMok.hpp
+        P6-KorideMok/DiagBoard-KorideMok.cpp)
