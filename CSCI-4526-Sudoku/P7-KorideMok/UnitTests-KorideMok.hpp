@@ -72,4 +72,11 @@ testP6(ostream& out, char* filename){
           "----------" <<endl;
 }
 
+inline void
+testP7(ostream& out, char* filename){
+    testP2(out);
+    testP4(out, filename);
+    testP3(out, filename);
+}
+
 #endif
