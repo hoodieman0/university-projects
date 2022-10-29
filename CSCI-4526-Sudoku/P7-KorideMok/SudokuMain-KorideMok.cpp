@@ -1,5 +1,6 @@
 #include "UnitTests-KorideMok.hpp"
 #include "tools.hpp"
+#include "Exceptions.hpp"
 
 #define FILE "P7output.txt"
 #define STREAM cout
@@ -9,7 +10,14 @@
 int main(int argc, char* const argv[]){
     banner();
 
-    if (argc != 2){ fatal("!Incorrect Amount Of Arguments!"); }
+    try{
+        if (argc != 2){ throw StreamException(); }
+    }
+    catch (Exception e) {
+        cerr << e << endl;
+        fatal("Incorrect Amount Of Arguments");
+    }
+
     ofstream unit_test(FILE);
 
     testP6(STREAM, argv[1]);
