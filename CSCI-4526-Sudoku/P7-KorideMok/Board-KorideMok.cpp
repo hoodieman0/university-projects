@@ -31,8 +31,13 @@ getPuzzle() {
         file >> line; //does not account for beginning gameType char
         for (int k = 0; k < n; k++){
             x = line[k];
-            if (types.find(x) == string::npos) fatal("!INVALID CHARACTER IN FILE!");
-
+            try {
+                if (types.find(x) == string::npos) throw InvalidChar(x);
+            }
+            catch (Exception e){
+                cerr << e << endl;
+                fatal("Invalid Character In File");
+            }
             Square temp(x, j, k);
             bd[index] = temp;
             index++;

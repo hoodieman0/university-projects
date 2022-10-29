@@ -3,6 +3,7 @@
 #include "tools.hpp"
 #include "Square-KorideMok.hpp"
 #include "Cluster-KorideMok.hpp"
+#include "Exceptions.hpp"
 #pragma once
 
 enum class ClusterType {ROW, COLUMN, BOX, DIAGONAL};
