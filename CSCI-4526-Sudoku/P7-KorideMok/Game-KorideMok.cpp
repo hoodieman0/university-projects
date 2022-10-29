@@ -60,7 +60,13 @@ run(){
                 cin >> c;
                 cout <<"Input Value: ";
                 cin >> value;
-                puzzle->mark(r, c, value);
+                try{
+                    puzzle->mark(r, c, value);
+                }
+                catch(Exception e){
+                    cout << e << endl;
+                }
+
                 continue;
             case 'U': continue;
             case 'R': continue;

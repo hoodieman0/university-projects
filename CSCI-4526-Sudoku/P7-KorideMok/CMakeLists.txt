@@ -19,6 +19,8 @@ add_executable(P7-KorideMok
         P7-KorideMok/Game-KorideMok.cpp
         P7-KorideMok/Board-KorideMok.hpp
         P7-KorideMok/Board-KorideMok.cpp
+        P7-KorideMok/Cluster-KorideMok.hpp
+        P7-KorideMok/Cluster-KorideMok.cpp
         P7-KorideMok/DiagBoard-KorideMok.hpp
         P7-KorideMok/DiagBoard-KorideMok.cpp
         P7-KorideMok/Exceptions.hpp

@@ -10,7 +10,12 @@ void
 statePrintTestCase(ostream& out, State test){
     out <<"~Before~\n" <<test;
     out <<"!Mark 1!" <<endl;
-    test.mark('1');
+    try {
+        test.mark('1');
+    }
+    catch (Exception e){
+        out << e << endl;
+    }
     out << "~After~\n" <<test << endl;
 }
 
@@ -53,7 +58,12 @@ void
 squarePrintTestCase(ostream& out, Square test){
     out << "~Before~\n" <<test <<endl;
     out << "!Mark 5!" << endl;
-    test.mark('5');
+    try {
+        test.mark('5');
+    }
+    catch (Exception e){
+        out << e << endl;
+    }
     out << "~After~\n" <<test <<endl;
 }
 
@@ -91,9 +101,20 @@ testSquareFunctions(ostream& out){
     Square obj4('-', 9, 5);
     out << "~Before~\n" <<obj4 <<endl;
     out << "!Mark 0!" << endl;
-    obj4.mark('0');
+    try {
+        obj4.mark('0');
+    }
+    catch (Exception e){
+        cerr << e << endl;
+    }
+
     out << "!Mark ~!" << endl;
-    obj4.mark('~');
+    try {
+        obj4.mark('~');
+    }
+    catch (Exception e){
+        cerr << e << endl;
+    }
     out << "~After~\n" <<obj4 <<endl;
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
@@ -142,7 +163,8 @@ testBoardFunctions(ostream& out, char* filename){
 
     out <<"\n3. Mark square (1, 2) with '2'" <<endl;
     out <<puzzle.sub(1, 2) <<endl;
-    puzzle.mark(1, 2, '2');
+    try { puzzle.mark(1, 2, '2'); }
+    catch (Exception e) { out << e << endl; }
     out <<puzzle.sub(1, 2) <<endl;
 
     out <<"-----------------------------------------------------"
@@ -190,9 +212,12 @@ testClusterFunctions(ostream& out, char* filename){
 
     out <<"\n3. Valid Input Test" <<endl;
     out <<"Marking [8, 9] with '1' (invalid)..." <<endl;
-    puzzle.mark(8, 9, '1');
+    try { puzzle.mark(8, 9, '1'); }
+    catch (Exception& e){ out <<"!" <<e <<"!" << endl; }
+
     out <<"\nMarking [9, 9] with ';' (invalid)..." <<endl;
-    puzzle.mark(9, 9, ';');
+    try { puzzle.mark(9, 9, ';'); }
+    catch (Exception& e ) { cerr << e << endl;}
 
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
@@ -231,13 +256,26 @@ void testDiagonalFunctions(ostream& out, char* filename){
     out <<"[1, 9] with '3'\n[4, 6] with '5'\n[2, 7] with '9'\n" <<endl;
     out <<"[5, 5] with '2'" <<endl;
 
-    puzzle->mark(9, 9, '1');
-    puzzle->mark(5, 5, '8');
-    puzzle->mark(3, 3, '1');
-    puzzle->mark(1, 9, '1');
-    puzzle->mark(4, 6, '5');
-    puzzle->mark(2, 7, '9');
-    puzzle->mark(5, 5, '2');
+    try { puzzle->mark(9, 9, '1'); }
+    catch (Exception e) { out << e << endl; }
+
+    try{ puzzle->mark(5, 5, '8'); }
+    catch (Exception e) { out << e << endl; }
+
+    try { puzzle->mark(3, 3, '1'); }
+    catch (Exception e) { out << e << endl; }
+
+    try{ puzzle->mark(1, 9, '1'); }
+    catch (Exception e) { out << e << endl; }
+
+    try{ puzzle->mark(4, 6, '5'); }
+    catch (Exception e) { out << e << endl; }
+
+    try { puzzle->mark(2, 7, '9'); }
+    catch (Exception e) { out << e << endl; }
+
+    try{ puzzle->mark(5, 5, '2'); }
+    catch (Exception e) { out << e << endl; }
 
     puzzle->printClusters(out);
 
