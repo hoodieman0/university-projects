@@ -58,7 +58,7 @@ class InvalidChar : public StreamException{
         InvalidChar(char c) : StreamException(201,"Char From Stream Is Invalid"),
                                 input(c) {}
         ~InvalidChar() = default;
-        virtual ostream& print(ostream&);
+        ostream& print(ostream&) override;
 };
 
 class GameException : public Exception{
@@ -76,10 +76,10 @@ class InvalidMark : public GameException{
         InvalidMark(char c) : GameException(301, "Cannot Mark This Square"),
                                 input(c) {}
         ~InvalidMark() = default;
-        virtual ostream& print(ostream&);
+        ostream& print(ostream&) override;
 };
 
-inline ostream& operator<< (ostream& out, Exception e){
+inline ostream& operator<< (ostream& out, Exception& e){
     return e.print(out);
 }
 
