@@ -107,6 +107,15 @@ createBox(short r, short c) {
     buddies.push_back(temp);
 }
 
+void Board::mark(short r, short c, char value) {
+    try{
+        sub(r, c).mark(value);
+    }
+    catch (Exception e){
+        cerr << e << endl;
+    }
+}
+
 // ---------------------------------------------------------------------
 // Prints the state of the board
 // Preconditions: Game object exists, getPuzzle has been run

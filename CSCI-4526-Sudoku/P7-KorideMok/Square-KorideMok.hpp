@@ -5,10 +5,11 @@
 
 #include "tools.hpp"
 #include "State-KorideMok.hpp"
+#include "Exceptions.hpp"
 
 class Cluster;
 
-class Square : private State{
+class Square : private State{ //TODO see if can be protected
     private:
         short row = 0;
         short col = 0;

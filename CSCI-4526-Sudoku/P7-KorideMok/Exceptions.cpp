@@ -32,6 +32,6 @@ print(ostream& out) {
 ostream& InvalidMark::
 print(ostream& out) {
     out << "Error Code (" << code << ") " << error << endl;
-    out << "Character \'" << input << "\' Cannot Be Used To Mark" << endl;
+    out << "Character \'" << input << "\' Cannot Be Used To Mark Here" << endl;
     return out;
 }
