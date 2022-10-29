@@ -20,9 +20,9 @@ State(char input) : value(input){
 // Postcondition: Changes State variable "value" to the given character
 // Failure: "Cannot Add Value"
 void State::
-mark(char ch){
-    if (fixed) cout <<"Cannot Add Value" <<endl;
-    value = ch;
+mark(char c){
+    if (fixed) throw InvalidMark(c); //TODO change exception to be more specific
+    value = c;
     poslist = 0;
 }
 
