@@ -13,19 +13,17 @@ int main(int argc, char* const argv[]){
     try{
         if (argc != 2){ throw StreamException(); }
     }
-    catch (Exception e) {
+    catch (Exception& e) {
         cerr << e << endl;
         fatal("Incorrect Amount Of Arguments");
     }
 
     ofstream unit_test(FILE);
-
-    testP6(STREAM, argv[1]);
-
+    testP7(STREAM, argv[1]);
     unit_test.close();
 
-    Game obj(argv[1]);
-    obj.run();
+//    Game obj(argv[1]);
+//    obj.run();
 
     bye();
 }

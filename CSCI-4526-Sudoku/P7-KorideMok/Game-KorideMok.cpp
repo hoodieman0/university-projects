@@ -30,7 +30,7 @@ Game(string filename) {
             default: throw StreamException(); //fatal("!Invalid Game Type!");
         }
     }
-    catch (Exception e){
+    catch (Exception& e){
         cerr << e << endl;
         fatal("Could Not Create Game Object");
     }
@@ -63,7 +63,7 @@ run(){
                 try{
                     puzzle->mark(r, c, value);
                 }
-                catch(Exception e){
+                catch(Exception& e){
                     cout << e << endl;
                 }
 

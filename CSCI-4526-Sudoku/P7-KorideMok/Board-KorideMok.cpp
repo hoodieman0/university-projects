@@ -34,7 +34,7 @@ getPuzzle() {
             try {
                 if (types.find(x) == string::npos) throw InvalidChar(x);
             }
-            catch (Exception e){
+            catch (Exception& e){
                 cerr << e << endl;
                 fatal("Invalid Character In File");
             }
