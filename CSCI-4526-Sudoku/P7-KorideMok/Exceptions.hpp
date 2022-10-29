@@ -33,7 +33,7 @@
 
 
 class Exception {
-    protected:
+    public:
         int code = 100;
         string error = "Generic Exception";
 
@@ -43,14 +43,14 @@ class Exception {
         virtual ostream& print(ostream&);
 };
 
-class StreamException : protected Exception{
+class StreamException : public Exception{
     public:
         StreamException(int code=200, string s="Invalid Stream Exception") : Exception(code, s) {};
         ~StreamException() = default;
         virtual ostream& print(ostream&);
 };
 
-class InvalidChar : protected StreamException{
+class InvalidChar : public StreamException{
     private:
         char input = '0';
 
@@ -61,7 +61,7 @@ class InvalidChar : protected StreamException{
         virtual ostream& print(ostream&);
 };
 
-class GameException : protected Exception{
+class GameException : public Exception{
     private:
     public:
         GameException(int code=300, string s="Game Logic Exception") : Exception(code, s) {}
@@ -69,11 +69,11 @@ class GameException : protected Exception{
         virtual ostream& print(ostream&);
 };
 
-class InvalidMark : protected GameException{
+class InvalidMark : public GameException{
     private:
         char input = '0';
     public:
-        InvalidMark(char c) : GameException(301, "Cannot Mark With This Square"),
+        InvalidMark(char c) : GameException(301, "Cannot Mark This Square"),
                                 input(c) {}
         ~InvalidMark() = default;
         virtual ostream& print(ostream&);
