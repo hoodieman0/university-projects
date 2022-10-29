@@ -6,6 +6,7 @@
 #include "tools.hpp"
 #include "Board-KorideMok.hpp"
 #include "DiagBoard-KorideMok.hpp"
+#include "Exceptions.hpp"
 
 class Game{
     private:

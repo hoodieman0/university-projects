@@ -11,23 +11,30 @@ menu[7] = {"Print", "Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
 // Postcondition: Game object is created
 Game::
 Game(string filename) {
-    file.open(filename);
-    if (!file.is_open()) fatal("!Could Not Open Game File!");
-    char x;
-    file>>x;
+    try{
+        file.open(filename);
+        if (!file.is_open()) throw StreamException();//fatal("!Could Not Open Game File!");
+        char x;
+        file>>x;
 
-    string types = "TtDdSs";
-    if (types.find(x) == string::npos) fatal("!INVALID CHARACTER IN FILE!");
+        string types = "TtDdSs";
+        if (types.find(x) == string::npos) throw InvalidChar(x);
 
-    gameType = x;
-    int size = 9;
-    int clstr = 27;
-    switch(tolower(gameType)){
-        case 't': puzzle = new Board(size, clstr, file); break;
-        case 'd': clstr = 29; puzzle = new DiagBoard(size, clstr, file); break;
-        case 's': size = 6; break;
-        default: fatal("!Invalid Game Type!");
+        gameType = x;
+        int size = 9;
+        int clstr = 27;
+        switch(tolower(gameType)){
+            case 't': puzzle = new Board(size, clstr, file); break;
+            case 'd': clstr = 29; puzzle = new DiagBoard(size, clstr, file); break;
+            case 's': size = 6; break;
+            default: throw StreamException(); //fatal("!Invalid Game Type!");
+        }
     }
+    catch (Exception e){
+        cerr << e << endl;
+        fatal("Could Not Create Game Object");
+    }
+
 }
 
 
@@ -43,7 +50,7 @@ run(){
         cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 6, menu, legal);
         switch (toupper(x)) {
-            case 'P': cout <<*puzzle <<endl; continue;
+            case 'P': cout <<*puzzle <<endl; continue; //TODO see if print is necessary
             case 'M':
                 short r, c;
                 char value;
