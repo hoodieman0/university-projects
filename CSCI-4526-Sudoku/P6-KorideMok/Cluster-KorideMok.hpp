@@ -8,11 +8,11 @@
 
 class Cluster{
     private:
-        const char* type;
+        const string type;
         Square* clstr[9];
 
     public:
-        Cluster(const char*, Square* []);
+        Cluster(const string, Square* []);
         void shoop(char);
         bool isValid(char);
         ostream& print(ostream&);

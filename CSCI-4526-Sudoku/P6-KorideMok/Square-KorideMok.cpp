@@ -8,8 +8,8 @@
 // Preconditions: Square object exists
 // Postconditions: Prints Square's variables to the console
 Square::
-Square(char input, short r, short c) : info(input), row(r), col(c){
-    //cout <<"Constructing Square [" <<row << ", " <<col <<"]" <<endl;
+Square(char input, short r, short c) : State(input), row(r), col(c){
+    //cout <<"Constructing Square " <<row << ", " <<col <<endl;
 }
 
 // ---------------------------------------------------------------------

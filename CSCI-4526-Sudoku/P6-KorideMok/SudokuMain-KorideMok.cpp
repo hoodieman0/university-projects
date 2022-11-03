@@ -1,7 +1,7 @@
 #include "UnitTests-KorideMok.hpp"
 #include "tools.hpp"
 
-#define FILE "P5output.txt"
+#define FILE "P6output.txt"
 #define STREAM cout
 // if file output is wanted, use 'unit_test' variable
 
@@ -12,9 +12,14 @@ int main(int argc, char* const argv[]){
     if (argc != 2){ fatal("!Incorrect Amount Of Arguments!"); }
     ofstream unit_test(FILE);
 
-    testP5(STREAM, argv[1]);
+    testP6(STREAM, argv[1]);
 
     unit_test.close();
 
+    Game obj(argv[1]);
+    obj.run();
+
     bye();
 }
+
+//TODO make unit tests use assert functions

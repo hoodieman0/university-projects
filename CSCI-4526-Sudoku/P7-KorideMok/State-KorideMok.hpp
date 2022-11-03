@@ -3,6 +3,7 @@
 #ifndef STATE_H
 #define STATE_H
 
+#include "Exceptions.hpp"
 #include "tools.hpp"
 
 class State {

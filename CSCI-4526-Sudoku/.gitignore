@@ -3,10 +3,16 @@ cmake-build-debug/
 
 cmake-build-release/
 
-.cmake/api/v1/query/
+CMakeFiles/
 
 .cmake/api/v1/reply/
 
-CMakeFiles/
+.cmake/api/v1/query/
+
+P4-KorideMok/CMakeLists.txt
+
+.cmake/api/v1/query/
+
+.cmake/api/v1/reply/
 
 P4-KorideMok/CMakeLists.txt

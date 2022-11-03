@@ -7,7 +7,9 @@ include_directories(P1-KorideMok
         P2-KorideMok
         P3-KorideMok
         P4-KorideMok
-        P5-KorideMok)
+        P5-KorideMok
+        P6-KorideMok
+        P7-KorideMok)
 
 add_executable(P1-KorideMok
         P1-KorideMok/SudokuMain-KorideMok.cpp
@@ -73,3 +75,43 @@ add_executable(P5-KorideMok
         P5-KorideMok/Board-KorideMok.cpp
         P5-KorideMok/Cluster-KorideMok.hpp
         P5-KorideMok/Cluster-KorideMok.cpp)
+
+add_executable(P6-KorideMok
+        P6-KorideMok/Square-KorideMok.cpp
+        P6-KorideMok/Square-KorideMok.hpp
+        P6-KorideMok/SudokuMain-KorideMok.cpp
+        P6-KorideMok/tools.cpp
+        P6-KorideMok/tools.hpp
+        P6-KorideMok/UnitTests-KorideMok.cpp
+        P6-KorideMok/UnitTests-KorideMok.hpp
+        P6-KorideMok/State-KorideMok.hpp
+        P6-KorideMok/State-KorideMok.cpp
+        P6-KorideMok/Game-KorideMok.hpp
+        P6-KorideMok/Game-KorideMok.cpp
+        P6-KorideMok/Board-KorideMok.hpp
+        P6-KorideMok/Board-KorideMok.cpp
+        P6-KorideMok/Cluster-KorideMok.hpp
+        P6-KorideMok/Cluster-KorideMok.cpp
+        P6-KorideMok/DiagBoard-KorideMok.hpp
+        P6-KorideMok/DiagBoard-KorideMok.cpp)
+
+add_executable(P7-KorideMok
+        P7-KorideMok/Square-KorideMok.cpp
+        P7-KorideMok/Square-KorideMok.hpp
+        P7-KorideMok/SudokuMain-KorideMok.cpp
+        P7-KorideMok/tools.cpp
+        P7-KorideMok/tools.hpp
+        P7-KorideMok/UnitTests-KorideMok.cpp
+        P7-KorideMok/UnitTests-KorideMok.hpp
+        P7-KorideMok/State-KorideMok.hpp
+        P7-KorideMok/State-KorideMok.cpp
+        P7-KorideMok/Game-KorideMok.hpp
+        P7-KorideMok/Game-KorideMok.cpp
+        P7-KorideMok/Board-KorideMok.hpp
+        P7-KorideMok/Board-KorideMok.cpp
+        P7-KorideMok/Cluster-KorideMok.hpp
+        P7-KorideMok/Cluster-KorideMok.cpp
+        P7-KorideMok/DiagBoard-KorideMok.hpp
+        P7-KorideMok/DiagBoard-KorideMok.cpp
+        P7-KorideMok/Exceptions.hpp
+        P7-KorideMok/Exceptions.cpp)

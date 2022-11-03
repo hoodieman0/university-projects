@@ -6,8 +6,9 @@ int main(int argc, char * const argv[]){
     banner();
 
     if(argc != 2){ fatal("!Incorrect Amount Of Arguments!"); }
-
-    Game obj(argv[1]);
+    //usage: program-name input-file
+    //ifstream & into game
+    Game obj (argv[1]);
     obj.run();
 
     bye();

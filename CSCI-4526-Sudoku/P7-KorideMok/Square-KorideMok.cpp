@@ -8,8 +8,8 @@
 // Preconditions: Square object exists
 // Postconditions: Prints Square's variables to the console
 Square::
-Square(char input, short r, short c) : info(input), row(r), col(c){
-    //cout <<"Constructing Square [" <<row << ", " <<col <<"]" <<endl;
+Square(char input, short r, short c) : State(input), row(r), col(c){
+    //cout <<"Constructing Square " <<row << ", " <<col <<endl;
 }
 
 // ---------------------------------------------------------------------
@@ -19,12 +19,10 @@ Square(char input, short r, short c) : info(input), row(r), col(c){
 void Square::
 mark(char marker){
     string legal = "123456789";
-    if (legal.find(marker) == string::npos) { cout <<"!Invalid Input!" <<endl; return; }
+    if (legal.find(marker) == string::npos) { throw InvalidMark(marker); }
 
     for (Cluster* cl : buddies) {
-        if (!cl->isValid(marker)) {
-            cout <<marker <<" is already in this cluster!" <<endl;
-            return; }
+        if (!cl->isValid(marker)) { throw InvalidMark(marker); }
     }
     shoop(marker);
     State::mark(marker);

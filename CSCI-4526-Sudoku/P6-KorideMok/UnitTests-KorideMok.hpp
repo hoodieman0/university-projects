@@ -8,11 +8,13 @@
 #include "Square-KorideMok.hpp" //P2
 #include "Game-KorideMok.hpp" //P3
 #include "Board-KorideMok.hpp" //P4
+#include "DiagBoard-KorideMok.hpp" //P6
 
 void testStateFunctions(ostream&); //P1
 void testSquareFunctions(ostream&); //P2
 void testBoardFunctions(ostream&, char*); //P4
 void testClusterFunctions(ostream&, char*); //P5
+void testDiagonalFunctions(ostream&, char*); //P6
 
 inline void
 testP1(ostream& out) {
@@ -58,6 +60,16 @@ testP5(ostream& out, char* filename) {
     testClusterFunctions(out, filename);
     out <<"\n~Cluster Test Completed Successfully~\n-----------------------------------------"
       "----------" <<endl;
+}
+
+inline void
+testP6(ostream& out, char* filename){
+    testP5(out, filename);
+
+    out <<"~Begin Diagonal Test~\n---------------------------------------------------" <<endl;
+    testDiagonalFunctions(out, filename);
+    out <<"\n~Diagonal Test Completed Successfully~\n-----------------------------------------"
+          "----------" <<endl;
 }
 
 #endif

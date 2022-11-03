@@ -10,7 +10,12 @@ void
 statePrintTestCase(ostream& out, State test){
     out <<"~Before~\n" <<test;
     out <<"!Mark 1!" <<endl;
-    test.mark('1');
+    try {
+        test.mark('1');
+    }
+    catch (Exception& e){
+        out << e << endl;
+    }
     out << "~After~\n" <<test << endl;
 }
 
@@ -53,7 +58,12 @@ void
 squarePrintTestCase(ostream& out, Square test){
     out << "~Before~\n" <<test <<endl;
     out << "!Mark 5!" << endl;
-    test.mark('5');
+    try {
+        test.mark('5');
+    }
+    catch (Exception& e){
+        out << e << endl;
+    }
     out << "~After~\n" <<test <<endl;
 }
 
@@ -91,9 +101,20 @@ testSquareFunctions(ostream& out){
     Square obj4('-', 9, 5);
     out << "~Before~\n" <<obj4 <<endl;
     out << "!Mark 0!" << endl;
-    obj4.mark('0');
+    try {
+        obj4.mark('0');
+    }
+    catch (Exception& e){
+        out << e << endl;
+    }
+
     out << "!Mark ~!" << endl;
-    obj4.mark('~');
+    try {
+        obj4.mark('~');
+    }
+    catch (Exception& e){
+        out << e << endl;
+    }
     out << "~After~\n" <<obj4 <<endl;
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
@@ -112,7 +133,7 @@ testBoardFunctions(ostream& out, char* filename){
     out <<"1. GetPuzzle initializes board" <<endl;
     out <<"2. Sub Function indexes correctly" <<endl;
     out <<"3. Mark Function properly marks square\n" <<endl;
-    /* "puzt.txt" Unit Test Input File
+    /* "puzd.txt" Unit Test Input File
       t
 4-6--7---
 -9-5-6-7-
@@ -129,17 +150,22 @@ testBoardFunctions(ostream& out, char* filename){
     ifs.get(); //discard 't'
 
     out <<"1. GetPuzzle and Constructor Test" <<endl;
-    Board puzzle(9, ifs);
+    Board puzzle(9, 27, ifs);
     out <<puzzle <<endl;
     out <<"~Board Object Created~" <<endl;
 
-    out <<"\n2. Get Square [5, 9] Test" <<endl;
-    out << puzzle.sub(5, 9) << endl;
+    out <<"\n2. Sub Function Test" <<endl;
+    for(int i = 1; i < 10; i++){
+        for (int j = 1; j < 10; j++){
+            out << puzzle.sub(i, j) << endl;
+        }
+    }
 
-    out <<"\n3. Mark square [1, 1] with '1'" <<endl;
-    out <<puzzle.sub(1, 1) <<endl;
-    puzzle.mark(1, 1, '1');
-    out <<puzzle.sub(1, 1) <<endl;
+    out <<"\n3. Mark square (1, 2) with '2'" <<endl;
+    out <<puzzle.sub(1, 2) <<endl;
+    try { puzzle.mark(1, 2, '2'); }
+    catch (Exception& e) { out << e << endl; }
+    out <<puzzle.sub(1, 2) <<endl;
 
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
@@ -158,7 +184,7 @@ testClusterFunctions(ostream& out, char* filename){
     out << "1. Create all clusters" <<endl;
     out << "2. Remove value from all related clusters" <<endl;
     out << "3. Make sure char is a valid mark\n" <<endl;
-    /* "puzt.txt" Unit Test Input File
+    /* "puzd.txt" Unit Test Input File
       t
 4-6--7---
 -9-5-6-7-
@@ -169,14 +195,13 @@ testClusterFunctions(ostream& out, char* filename){
 -17------
 -8-2-9-6-
 9--7--84-
-
       */
 
     out <<"1. Creation of clusters" <<endl;
     ifstream ifs(filename);
     ifs.get(); //discard 't'
 
-    Board puzzle(9, ifs);
+    Board puzzle(9, 27,ifs);
     out <<"Board made successfully!" <<endl;
 
 
@@ -187,9 +212,76 @@ testClusterFunctions(ostream& out, char* filename){
 
     out <<"\n3. Valid Input Test" <<endl;
     out <<"Marking [8, 9] with '1' (invalid)..." <<endl;
-    puzzle.mark(8, 9, '1');
+    try { puzzle.mark(8, 9, '1'); }
+    catch (Exception& e){ out <<"!" <<e <<"!" << endl; }
+
     out <<"\nMarking [9, 9] with ';' (invalid)..." <<endl;
-    puzzle.mark(9, 9, ';');
+    try { puzzle.mark(9, 9, ';'); }
+    catch (Exception& e ) { out << e << endl;}
+
+    out <<"-----------------------------------------------------"
+          "-----------------------------------------------------" <<endl;
+}
+
+void testDiagonalFunctions(ostream& out, char* filename){
+    out <<"-----------------------------------------------------"
+          "-----------------------------------------------------" <<endl;
+    out << "Testing the Diagonal class from DiagBoard-KorideMok.hpp" <<endl;
+    out << "Expected Output:" <<endl;
+    out << "1. Create all clusters" <<endl;
+    out << "2. Mark overlapping squares\n" <<endl;
+    /* "puzd.txt" Unit Test Input File
+      d
+4-6--7---
+-9-5-6-7-
+------58-
+---9--34-
+3-------8
+-78--4---
+-17------
+-8-2-9-6-
+9--7--84-
+      */
+    out <<"1. Creation of diagonal clusters" <<endl;
+    ifstream ifs(filename);
+    ifs.get(); //discard 'd'
+
+    Board* puzzle = new DiagBoard(9, 29, ifs);
+    puzzle->printClusters(out);
+    out <<"Board made successfully!" <<endl;
+
+    out <<"\n2. Mark Overlapping Test" <<endl;
+    out <<"Using test 1's board, mark the following: " <<endl;
+    out <<"[9, 9] with '1'\n[5, 5] with '1'\n[3, 3] with '1'\n" <<endl;
+    out <<"[1, 9] with '3'\n[4, 6] with '5'\n[2, 7] with '9'\n" <<endl;
+    out <<"[5, 5] with '2'" <<endl;
+
+    try { puzzle->mark(9, 9, '1'); }
+    catch (Exception& e) { out << e << endl; }
+
+    try{ puzzle->mark(5, 5, '8'); }
+    catch (Exception& e) { out << e << endl; }
+
+    try { puzzle->mark(3, 3, '1'); }
+    catch (Exception& e) { out << e << endl; }
+
+    try{ puzzle->mark(1, 9, '1'); }
+    catch (Exception& e) { out << e << endl; }
+
+    try{ puzzle->mark(4, 6, '5'); }
+    catch (Exception& e) { out << e << endl; }
+
+    try { puzzle->mark(2, 7, '9'); }
+    catch (Exception& e) { out << e << endl; }
+
+    try{ puzzle->mark(5, 5, '2'); }
+    catch (Exception& e) { out << e << endl; }
+
+    puzzle->printClusters(out);
+
+    out <<"[9, 9] with '1'\n[5, 5] with '8'\n[3, 3] with '1'\n" <<endl;
+    out <<"[1, 9] with '1'\n[4, 6] with '5'\n[2, 7] with '9'\n" <<endl;
+    out <<"[5, 5] with '2'" <<endl;
 
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;

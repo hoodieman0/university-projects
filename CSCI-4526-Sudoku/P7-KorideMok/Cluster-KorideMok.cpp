@@ -6,7 +6,7 @@
 // Constructor for the Cluster class
 // Preconditions: there is a valid array of Square objects
 // Postconditions: adds the created cluster to each square in the array
-Cluster::Cluster(const char* type, Square* arr[9]) : type(type){
+Cluster::Cluster(const string type, Square* arr[9]) : type(type){
     for (int index = 0; index < 9; index++){
         clstr[index] = arr[index];
         clstr[index]->addCluster(this);
