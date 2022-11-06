@@ -6,17 +6,17 @@
 
 class Board{
     private:
-        int n = 9; // Size of the puzzle
-        Square * bd;
+        short n; // Size of the puzzle
+        Square* bd;
         ifstream& file;
-        short left = 81;
+        short left;
         void getPuzzle();
 
     public:
-        Board(int, ifstream&);
+        Board(short, ifstream&);
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
         Square& sub(int j, int k){ return bd[(j - 1)* n + (k - 1)]; }
-        void mark(int, int, char);
+        void mark(int r, int c, char value) { sub(r, c).mark(value); }
         ostream& print(ostream&);
 };
 
