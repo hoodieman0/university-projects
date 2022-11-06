@@ -2,27 +2,20 @@
 
 #include "Game-KorideMok.hpp"
 
-const string Game::
-menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
-
 // ---------------------------------------------------------------------
 // Game Constructor
 // Precondition: A valid game file exists
 // Postcondition: Game object is created
 Game::
-Game(char* filename){
-    file.open(filename);
-    if (!file.is_open()) fatal("!Could Not Open Game File!");
-
+Game(ifstream& ifs) : file(ifs){
     string types = "TtDdSs";
-    char x;
-    file>>x;
-    if (types.find(x) == string::npos) fatal("!Invalid Game Type!");
-    gameType = x;
-    switch(tolower(gameType)){
-        case 't': n = 9; break;
-        case 'd': n = 9; break;
-        case 's': n = 6; break;
+    file>>gameType;
+    cerr << gameType;
+    if (types.find(gameType) == string::npos) fatal("Invalid Game Type");
+    switch(toupper(gameType)){
+        case 'T': n = 9; break;
+        case 'D': n = 9; break;
+        case 'S': n = 6; break;
     }
 
     puzzle = new Board(n, file);
@@ -35,31 +28,24 @@ Game(char* filename){
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    char legalMenu[] { "MURSQ" };
+    char legalMenu[] { "MmUuRrSsQq" };
     for(;;){
         cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 6, menu, legalMenu);
-        switch (x) {
+        switch (toupper(x)) {
             case 'M':
                 short r, c;
                 char value;
-                cout <<"Input Row: ";
-                cin >> r;
-                cout <<"Input Column: ";
-                cin >> c;
-                cout <<"Input Value: ";
-                cin >> value;
+                cout <<"Input 'Row' 'Column' 'Value': ";
+                cin >> r >> c >> value;
                 puzzle->mark(r, c, value);
-                continue;
+                continue; //immediately goes to the for loop
             case 'U': continue;
             case 'R': continue;
             case 'S': continue;
-            case 'Q': break;
-            default: cout<< "Invalid Command" <<endl; continue;
+            case 'Q': return;
         }
-        break;
     }
-    cout <<"~Quitting Game~" <<endl;
 }
 
 
