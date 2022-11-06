@@ -2,32 +2,22 @@
 
 #include "Game-KorideMok.hpp"
 
-const char* Game::
-menu[7] = {"Print", "Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
-
 // ---------------------------------------------------------------------
 // Game Constructor
 // Precondition: A valid game file exists
 // Postcondition: Game object is created
 Game::
-Game(string filename) {
-    file.open(filename);
-    if (!file.is_open()) fatal("!Could Not Open Game File!");
-    char x;
-    file>>x;
-
+Game(ifstream& file) : file(file) {
+    short clstr;
     string types = "TtDdSs";
-    if (types.find(x) == string::npos) fatal("!INVALID CHARACTER IN FILE!");
-
-    gameType = x;
-    int size = 9;
-    int clstr = 27;
-    switch(tolower(gameType)){
-        case 't': puzzle = new Board(size, clstr, file); break;
-        case 'd': clstr = 29; puzzle = new DiagBoard(size, clstr, file); break;
-        case 's': size = 6; break;
-        default: fatal("!Invalid Game Type!");
+    file>>gameType;
+    if (types.find(gameType) == string::npos) fatal("Invalid Game Type");
+    switch(toupper(gameType)){
+        case 'T': n = 9; clstr = 27; break;
+        case 'D': n = 9; clstr = 29; break;
+        case 'S': n = 6; clstr = 18; break;
     }
+    puzzle = new Board(n, clstr, file);
 }
 
 
@@ -38,32 +28,25 @@ Game(string filename) {
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    char legal[] {"PMURSQ"};
+    char legal[] {"PpMmUuRrSsQq"};
     for(;;){
         cout <<"\nWhat Would You Like To Do? " <<endl;
-        char x = menu_c("Menu", 6, menu, legal);
+        char x = menu_c("Menu", 7, menu, legal);
         switch (toupper(x)) {
             case 'P': cout <<*puzzle <<endl; continue;
             case 'M':
                 short r, c;
                 char value;
-                cout <<"Input Row: ";
-                cin >> r;
-                cout <<"Input Column: ";
-                cin >> c;
-                cout <<"Input Value: ";
-                cin >> value;
+                cout <<"Input 'Row' 'Column' 'Value': ";
+                cin >> r >> c >> value;
                 puzzle->mark(r, c, value);
-                continue;
+                continue; //continues the for loop
             case 'U': continue;
             case 'R': continue;
             case 'S': continue;
-            case 'Q': break;
-            default: cout<< "Invalid Command" <<endl; continue;
+            case 'Q': return;
         }
-        break;
     }
-    cout <<"~Quitting Game~" <<endl;
 }
 
 

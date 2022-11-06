@@ -9,17 +9,15 @@
 int main(int argc, char* const argv[]){
     banner();
 
-    if (argc != 2){ fatal("!Incorrect Amount Of Arguments!"); }
-    ofstream unit_test(FILE);
+    if(argc != 2){ fatal("Incorrect Amount Of Arguments\nUsage: program-name input-file"); }
 
-    testP6(STREAM, argv[1]);
+    ifstream ifs(argv[1]);
+    if (!ifs.is_open()) { fatal("Unable To Open Input-File"); }
 
-    unit_test.close();
-
-    Game obj(argv[1]);
+    cout <<"~Starting Game~" <<endl;
+    Game obj(ifs);
     obj.run();
+    cout <<"~Quitting Game~" <<endl;
 
     bye();
 }
-
-//TODO make unit tests use assert functions

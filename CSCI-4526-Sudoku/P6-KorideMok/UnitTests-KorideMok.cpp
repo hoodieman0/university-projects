@@ -186,7 +186,7 @@ testClusterFunctions(ostream& out, char* filename){
     out <<"\n2. Shoop Function Test" <<endl;
     out <<"Using test 1's board, mark [9, 9] with '1'\n" <<endl;
     puzzle.mark(9, 9, '1');
-    puzzle.printClusters(out);
+    cout << puzzle << endl;
 
     out <<"\n3. Valid Input Test" <<endl;
     out <<"Marking [8, 9] with '1' (invalid)..." <<endl;
@@ -222,7 +222,7 @@ void testDiagonalFunctions(ostream& out, char* filename){
     ifs.get(); //discard 'd'
 
     Board* puzzle = new DiagBoard(9, 29, ifs);
-    puzzle->printClusters(out);
+    cout << puzzle << endl;
     out <<"Board made successfully!" <<endl;
 
     out <<"\n2. Mark Overlapping Test" <<endl;
@@ -239,7 +239,7 @@ void testDiagonalFunctions(ostream& out, char* filename){
     puzzle->mark(2, 7, '9');
     puzzle->mark(5, 5, '2');
 
-    puzzle->printClusters(out);
+    cout << puzzle << endl;
 
     out <<"[9, 9] with '1'\n[5, 5] with '8'\n[3, 3] with '1'\n" <<endl;
     out <<"[1, 9] with '1'\n[4, 6] with '5'\n[2, 7] with '9'\n" <<endl;

@@ -37,7 +37,7 @@ run(){
                 cout <<"Input 'Row' 'Column' 'Value': ";
                 cin >> r >> c >> value;
                 puzzle->mark(r, c, value);
-                continue;
+                continue; //continues the for loop
             case 'U': continue;
             case 'R': continue;
             case 'S': continue;

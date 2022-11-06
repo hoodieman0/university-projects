@@ -6,7 +6,7 @@
 #include "tools.hpp"
 
 class State {
-private:
+protected:
     short poslist = 0x3FE; //0011 1111 1110
     char value = '-';
     bool fixed = false; //is part of the original puzzle
