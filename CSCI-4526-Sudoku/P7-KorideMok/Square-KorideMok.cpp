@@ -18,15 +18,15 @@ Square(const char input, const short r, const short c) : State(input), row(r), c
 void Square::
 mark(const char marker){
     string legal = "123456789";
-    if (legal.find(marker) == string::npos) { cout <<"Invalid Input!" <<endl; return; }
+    if (legal.find(marker) == string::npos) throw InvalidMarkerException(marker);
+
+    if (fixed) throw MarkFixedException(row+1, col+1);
 
     for (Cluster* cl : buddies) {
-        if (!cl->isValid(marker)) {
-            cout <<marker <<" is already in this cluster!" <<endl;
-            return; }
+        if (!cl->isValid(marker)) throw ExistingValueException(marker, row+1, col+1);
     }
+
     shoop(marker);
-    if (fixed) cout <<"Cannot Mark A Fixed Value" <<endl;
     value = marker;
     poslist = 0;
 }
@@ -36,8 +36,8 @@ mark(const char marker){
 // Preconditions: Square object has valid cluster objects
 // Postconditions: Cluster::shoop is called: val bit turned off for each square in the three clusters
 void Square::
-shoop(const char val) {
-    for (Cluster* cl : buddies) { cl->shoop(val); }
+shoop(const char val) { //does not need input validation because mark() takes care of it
+    for (Cluster* cl : buddies) cl->shoop(val);
 }
 
 // ---------------------------------------------------------------------

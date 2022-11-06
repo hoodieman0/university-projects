@@ -25,7 +25,7 @@ class Board{
         Board(short, short, ifstream&);
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
         Square& sub(const short r, const short c) const { return bd[(r - 1)* n + (c - 1)]; }
-        void mark(const short r, const short c, const char value) const { sub(r, c).mark(value); }
+        void mark(const short, const short, const char) const;
         ostream& print(ostream&) const ;
 };
 

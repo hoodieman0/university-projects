@@ -1,23 +1,32 @@
-#include "UnitTests-KorideMok.hpp"
 #include "tools.hpp"
-
-#define FILE "P6output.txt"
-#define STREAM cout
-// if file output is wanted, use 'unit_test' variable
+#include "Game-KorideMok.hpp"
+#include "Exceptions.hpp"
 
 // argv[1] is the file name used in Board class
 int main(int argc, char* const argv[]){
     banner();
+    try {
+        if(argc != 2) throw IncorrectUsageException();
 
-    if(argc != 2){ fatal("Incorrect Amount Of Arguments\nUsage: program-name input-file"); }
+        ifstream ifs(argv[1]);
+        if (!ifs.is_open()) throw BadOpenException();
 
-    ifstream ifs(argv[1]);
-    if (!ifs.is_open()) { fatal("Unable To Open Input-File"); }
-
-    cout <<"~Starting Game~" <<endl;
-    Game obj(ifs);
-    obj.run();
-    cout <<"~Quitting Game~" <<endl;
+        cout <<"~Starting Game~" <<endl;
+        Game obj(ifs);
+        obj.run();
+        cout <<"~Quitting Game~" <<endl;
+    }
+    catch(StreamException& e) {
+        cerr <<e <<endl;
+        fatal("");
+    }
+    catch (GameException& e){
+        cerr <<e <<endl;
+        fatal("");
+    }
+    catch(...){
+        fatal("General Exception");
+    }
 
     bye();
 }

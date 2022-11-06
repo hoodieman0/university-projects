@@ -6,7 +6,8 @@
 // Constructor for the Cluster class
 // Preconditions: there is a valid array of Square objects
 // Postconditions: adds the created cluster to each square in the array
-Cluster::Cluster(const string type, Square* arr[9]) : type(type){
+Cluster::
+Cluster(const string type, Square* arr[9]) : type(type){
     for (int index = 0; index < 9; index++){
         clstr[index] = arr[index];
         clstr[index]->addCluster(this);
@@ -20,7 +21,7 @@ Cluster::Cluster(const string type, Square* arr[9]) : type(type){
 void Cluster::
 shoop(const char val){
     const int n = val - '0';
-    for (Square* square : clstr) { square->turnOff(n); }
+    for (Square* square : clstr) square->turnOff(n);
 }
 
 // ---------------------------------------------------------------------
@@ -30,7 +31,7 @@ shoop(const char val){
 const bool Cluster::
 isValid(const char val) const{
     for (Square* square : clstr) {
-        if (square->getValue() == val) { return false; }
+        if (square->getValue() == val) return false;
     }
     return true;
 }
@@ -39,8 +40,9 @@ isValid(const char val) const{
 // Prints the Cluster values in a human-readable format
 // Preconditions: board object exists
 // Postconditions: Sends the cluster to the ostream
-ostream& Cluster::print(ostream& out) const {
+ostream& Cluster::
+print(ostream& out) const {
     out << type <<endl;
-    for (Square* square : clstr) { out <<*square <<endl; }
+    for (Square* square : clstr) out <<*square <<endl;
     return out;
 }

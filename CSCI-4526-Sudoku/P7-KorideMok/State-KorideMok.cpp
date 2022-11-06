@@ -21,7 +21,7 @@ State(const char input) : value(input){
 // Failure: "Cannot Add Value"
 void State::
 mark(const char ch){
-    if (fixed) cout <<"Cannot Mark A Fixed Value" <<endl;
+    if (fixed) throw MarkFixedException();
     value = ch;
     poslist = 0;
 }

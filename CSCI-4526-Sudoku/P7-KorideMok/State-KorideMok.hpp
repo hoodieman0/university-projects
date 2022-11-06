@@ -4,6 +4,7 @@
 #define STATE_H
 
 #include "tools.hpp"
+#include "Exceptions.hpp"
 
 class State {
 protected:

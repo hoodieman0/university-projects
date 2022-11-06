@@ -30,7 +30,7 @@ getPuzzle() {
         file.get(x); //discard newline
         for (short c = 0; c < n; c++){
             file.get(x);
-            if (types.find(x) == string::npos) fatal("INVALID CHARACTER IN FILE");
+            if (types.find(x) == string::npos) throw InvalidCharException(x);
             sub(r+1, c+1) = Square(x, r ,c);
             if (x != '-') left--;
         }
@@ -96,6 +96,12 @@ createBox(const short r, const short c) {
 
     Cluster* temp = new Cluster(clusterT[(int)ClusterType::BOX], arr);
     buddies.push_back(temp);
+}
+
+void Board::
+mark(const short r, const short c, const char value) const {
+    if (r < 1 || r > n || c < 1 || c > n) throw InvalidPositionException(r, c);
+    sub(r, c).mark(value);
 }
 
 // ---------------------------------------------------------------------
