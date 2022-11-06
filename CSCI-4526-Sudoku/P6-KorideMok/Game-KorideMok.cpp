@@ -12,12 +12,11 @@ Game(ifstream& file) : file(file) {
     string types = "TtDdSs";
     file>>gameType;
     if (types.find(gameType) == string::npos) fatal("Invalid Game Type");
-    switch(toupper(gameType)){
-        case 'T': n = 9; clstr = 27; break;
-        case 'D': n = 9; clstr = 29; break;
-        case 'S': n = 6; clstr = 18; break;
+    switch(tolower(gameType)){
+        case 't': n = 9; clstr = 27; puzzle = new Board(n, clstr, file); break;
+        case 'd': n = 9; clstr = 29; puzzle = new DiagBoard(n, clstr, file); break;
+        case 's': n = 6; clstr = 18; puzzle = new Board(n, clstr, file); break;
     }
-    puzzle = new Board(n, clstr, file);
 }
 
 
