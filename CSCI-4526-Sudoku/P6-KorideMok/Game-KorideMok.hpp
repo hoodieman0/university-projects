@@ -9,7 +9,7 @@
 
 class Game{
     private:
-        const string menu[7] {"Print", "Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
+        static const string menu[7];
         Board* puzzle;
         short n;
         char gameType;

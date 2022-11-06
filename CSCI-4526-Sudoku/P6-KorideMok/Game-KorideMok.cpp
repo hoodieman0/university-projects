@@ -2,6 +2,9 @@
 
 #include "Game-KorideMok.hpp"
 
+const string Game::
+menu[7] = {"Print", "Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
+
 // ---------------------------------------------------------------------
 // Game Constructor
 // Precondition: A valid game file exists
@@ -9,7 +12,7 @@
 Game::
 Game(ifstream& file) : file(file) {
     short clstr;
-    string types = "TtDdSs";
+    const static string types = "TtDdSs";
     file>>gameType;
     if (types.find(gameType) == string::npos) fatal("Invalid Game Type");
     switch(tolower(gameType)){
@@ -27,7 +30,7 @@ Game(ifstream& file) : file(file) {
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    char legal[] {"PpMmUuRrSsQq"};
+    const static char legal[] {"PpMmUuRrSsQq"};
     for(;;){
         cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 7, menu, legal);

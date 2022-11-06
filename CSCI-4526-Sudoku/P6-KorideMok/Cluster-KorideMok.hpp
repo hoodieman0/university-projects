@@ -12,10 +12,10 @@ class Cluster{
         Square* clstr[9];
 
     public:
-        Cluster(const string, Square* []);
+        Cluster(string, Square* []);
         void shoop(char);
-        bool isValid(char);
-        ostream& print(ostream&);
+        const bool isValid(char) const;
+        ostream& print(ostream&) const;
 };
 
 inline ostream& operator <<( ostream& out, Cluster& cl){

@@ -5,7 +5,7 @@
 #include "Cluster-KorideMok.hpp"
 #pragma once
 
-enum class ClusterType {ROW, COLUMN, BOX, DIAGONAL};
+enum class ClusterType {ROW=0, COLUMN, BOX, DIAGONAL};
 
 class Board{
     protected:
@@ -24,9 +24,9 @@ class Board{
     public:
         Board(short, short, ifstream&);
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
-        Square& sub(short r, short c){ return bd[(r - 1)* n + (c - 1)]; }
-        void mark(short r, short c, char value) { sub(r, c).mark(value); }
-        ostream& print(ostream&);
+        Square& sub(const short r, const short c) const { return bd[(r - 1)* n + (c - 1)]; }
+        void mark(const short r, const short c, const char value) const { sub(r, c).mark(value); }
+        ostream& print(ostream&) const ;
 };
 
 inline ostream& operator<<(ostream& out, Board& b){

@@ -19,8 +19,8 @@ createDiagonal() {
         topArr[row] = &sub(row+1, row+1);
         botArr[row] = &sub(row+1, 9-row);
     }
-    Cluster* tempOne = new Cluster("DIAGONAL", topArr);
-    Cluster* tempTwo = new Cluster("DIAGONAL", botArr);
+    Cluster* tempOne = new Cluster(clusterT[(int)ClusterType::DIAGONAL], topArr);
+    Cluster* tempTwo = new Cluster(clusterT[(int)ClusterType::DIAGONAL], botArr);
     Board::buddies.push_back(tempOne);
     Board::buddies.push_back(tempTwo);
 }

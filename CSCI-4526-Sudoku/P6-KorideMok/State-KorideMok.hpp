@@ -12,13 +12,11 @@ protected:
     bool fixed = false; //is part of the original puzzle
 
 public:
-    State() = default;
-    State(char);
+    State(char='-');
     ~State() = default;
     void mark(char);
     char getValue() const { return value; }
-    void turnOffBit(short);
-    ostream& print(ostream&);
+    ostream& print(ostream&) const;
 };
 
 inline ostream& operator <<(ostream& out, State& st){
