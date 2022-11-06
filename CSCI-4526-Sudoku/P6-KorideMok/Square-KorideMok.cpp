@@ -26,7 +26,9 @@ mark(const char marker){
             return; }
     }
     shoop(marker);
-    State::mark(marker);
+    if (fixed) cout <<"Cannot Mark A Fixed Value" <<endl;
+    value = marker;
+    poslist = 0;
 }
 
 // ---------------------------------------------------------------------

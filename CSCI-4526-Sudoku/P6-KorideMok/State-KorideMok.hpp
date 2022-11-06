@@ -14,7 +14,7 @@ protected:
 public:
     State(char='-');
     ~State() = default;
-    void mark(char);
+    virtual void mark(char);
     char getValue() const { return value; }
     ostream& print(ostream&) const;
 };
