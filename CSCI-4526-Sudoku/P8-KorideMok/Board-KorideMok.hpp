@@ -1,9 +1,11 @@
 // Written by James Mok and Neelakanta Bharadwaj Koride
 
+#pragma once
+
 #include "tools.hpp"
 #include "Square-KorideMok.hpp"
 #include "Cluster-KorideMok.hpp"
-#pragma once
+#include "CanView/CanView.hpp"
 
 enum class ClusterType {ROW=0, COLUMN, BOX, DIAGONAL};
 
