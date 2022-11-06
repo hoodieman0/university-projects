@@ -10,6 +10,8 @@ int main(int argc, char* const argv[]){
     ifstream ifs(argv[1]);
     if (!ifs.is_open()) { fatal("Unable To Open Input-File"); }
 
+    testBoardFunctions(cout, argv[1]);
+
     cout <<"~Starting Game~" <<endl;
     Game obj(ifs);
     obj.run();

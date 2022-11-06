@@ -111,8 +111,7 @@ print(ostream& out) {
 
     int k = 1;
     for (Cluster* cl : buddies) {
-        out <<"Cluster " <<k++ <<": " <<*cl;
-        if (k % n == 0) out << "\n";
+        out <<"Cluster " <<k++ <<": " <<*cl << endl;
     }
 
     return out;
