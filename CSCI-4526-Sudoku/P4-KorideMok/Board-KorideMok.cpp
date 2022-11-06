@@ -27,7 +27,6 @@ getPuzzle() {
         file.get(x); //discard newline
         for (short c = 0; c < n; c++){
             file.get(x);
-            cerr << x;
             if (types.find(x) == string::npos) fatal("INVALID CHARACTER IN FILE");
             sub(r, c) = Square(x, r ,c);
             if (x != '-') left--;
