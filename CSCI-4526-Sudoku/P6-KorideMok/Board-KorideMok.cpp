@@ -113,7 +113,8 @@ print(ostream& out) {
 
     int k = 1;
     for (Cluster* cl : buddies) {
-        out <<"Cluster " <<k++ <<": " <<*cl <<endl;
+        out << "Cluster " << k++ << ": " << *cl << endl;
+    }
 
     return out;
 }
