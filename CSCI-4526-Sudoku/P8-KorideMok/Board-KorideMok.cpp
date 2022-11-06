@@ -111,7 +111,16 @@ getMarkChar(int row, int col) const {
 
 string Board::
 getPossibilityString(int row, int col) const {
-    string s(1, sub(row, col).getValue());
+    short list = sub(row, col).getPosList();
+    list = list >> 1;
+
+    string s;
+    short mask = 0x001;
+    for (int counter = 1; counter <= 9; counter++){
+        if ((list & mask) == 1){ s += counter; }
+        else{ s += '-'; }
+        list = list >> 1;
+    }
     return s;
 }
 

@@ -17,6 +17,7 @@ public:
     ~State() = default;
     virtual void mark(char);
     char getValue() const { return value; }
+    char getPosList() const { return poslist; }
     ostream& print(ostream&) const;
 };
 
