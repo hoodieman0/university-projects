@@ -1,6 +1,6 @@
 // Written by James Mok
 
-#include "Exceptions.hpp"
+#include "Exceptions-KorideMok.hpp"
 
 ostream& StreamException::
 print(ostream& out) const {

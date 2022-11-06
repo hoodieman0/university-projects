@@ -1,6 +1,6 @@
 #include "tools.hpp"
 #include "Game-KorideMok.hpp"
-#include "Exceptions.hpp"
+#include "Exceptions-KorideMok.hpp"
 
 // argv[1] is the file name used in Board class
 int main(int argc, char* const argv[]){

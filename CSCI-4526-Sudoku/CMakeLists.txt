@@ -113,5 +113,5 @@ add_executable(P7-KorideMok
         P7-KorideMok/Cluster-KorideMok.cpp
         P7-KorideMok/DiagBoard-KorideMok.hpp
         P7-KorideMok/DiagBoard-KorideMok.cpp
-        P7-KorideMok/Exceptions.hpp
-        P7-KorideMok/Exceptions.cpp)
+        P7-KorideMok/Exceptions-KorideMok.hpp
+        P7-KorideMok/Exceptions-KorideMok.cpp)
