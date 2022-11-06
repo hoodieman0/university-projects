@@ -9,14 +9,14 @@ class Board;
 
 class Game{
     private:
-        const static string menu[6];
+        const string menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};;
         Board* puzzle;
         int n = 9;
         char gameType = 't';
-        ifstream file;
+        ifstream& file;
 
     public:
-        Game(char*);
+        Game(ifstream&);
         ~Game() { delete puzzle; }
         void run();
 };
