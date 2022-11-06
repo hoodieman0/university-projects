@@ -9,12 +9,15 @@
 int main(int argc, char* const argv[]){
     banner();
 
-    if (argc != 2){ fatal("!Incorrect Amount Of Arguments!"); }
-    ofstream unit_test(FILE);
+    if(argc != 2){ fatal("Incorrect Amount Of Arguments\nUsage: program-name input-file"); }
 
-    testP5(STREAM, argv[1]);
+    ifstream ifs(argv[1]);
+    if (!ifs.is_open()) { fatal("Unable To Open Input-File"); }
 
-    unit_test.close();
+    cout <<"~Starting Game~" <<endl;
+    Game obj(ifs);
+    obj.run();
+    cout <<"~Quitting Game~" <<endl;
 
     bye();
 }
