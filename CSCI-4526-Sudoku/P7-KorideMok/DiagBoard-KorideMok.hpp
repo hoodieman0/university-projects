@@ -8,7 +8,7 @@
 class DiagBoard : public Board {
     public:
         DiagBoard() = default;
-        DiagBoard(int, int, ifstream&);
+        DiagBoard(short, short, ifstream&);
         ~DiagBoard() = default;
         void createDiagonal();
 };

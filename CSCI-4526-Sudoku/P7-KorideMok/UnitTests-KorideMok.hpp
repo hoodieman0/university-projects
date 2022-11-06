@@ -40,7 +40,8 @@ testP2(ostream& out) {
 inline void
 testP3(ostream& out, const char* filename) {
     out <<"~Begin Game Test~\n---------------------------------------------------" <<endl;
-    Game obj(filename);
+    ifstream ifs(filename);
+    Game obj(ifs);
     obj.run();
     out <<"\n~Game Test Completed Successfully~\n-----------------------------------------"
           "----------" <<endl;
@@ -70,13 +71,6 @@ testP6(ostream& out, char* filename){
     testDiagonalFunctions(out, filename);
     out <<"\n~Diagonal Test Completed Successfully~\n-----------------------------------------"
           "----------" <<endl;
-}
-
-inline void
-testP7(ostream& out, char* filename){
-    testP2(out);
-    testP4(out, filename);
-    testP3(out, filename);
 }
 
 #endif

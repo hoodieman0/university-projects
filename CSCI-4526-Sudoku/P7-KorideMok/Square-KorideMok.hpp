@@ -5,11 +5,10 @@
 
 #include "tools.hpp"
 #include "State-KorideMok.hpp"
-#include "Exceptions.hpp"
 
 class Cluster;
 
-class Square : private State{ //TODO see if can be protected
+class Square : private State{
     private:
         short row = 0;
         short col = 0;
@@ -20,11 +19,11 @@ class Square : private State{ //TODO see if can be protected
         Square(char, short, short);
         ~Square() = default;
         void mark(char);
-        char getState() const { return getValue(); }
+        const char getValue() const { return value; }
         void addCluster(Cluster* cl) { buddies.push_back(cl); }
         void shoop(char);
         void turnOff(int);
-        ostream& print(ostream&); //follows matrix convention [rows, columns]
+        ostream& print(ostream&) const; //follows matrix convention [rows, columns]
 };
 
 inline ostream& operator <<( ostream& out, Square& sq){

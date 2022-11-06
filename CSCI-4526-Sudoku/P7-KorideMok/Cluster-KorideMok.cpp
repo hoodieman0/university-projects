@@ -18,8 +18,8 @@ Cluster::Cluster(const string type, Square* arr[9]) : type(type){
 // Preconditions: board object exists
 // Postconditions: State::poslist of each Square has its 'val' bit turned off
 void Cluster::
-shoop(char val){
-    int n = val - '0';
+shoop(const char val){
+    const int n = val - '0';
     for (Square* square : clstr) { square->turnOff(n); }
 }
 
@@ -27,10 +27,10 @@ shoop(char val){
 // Checks to see if val is not used in other squares
 // Preconditions: board object exists
 // Postconditions: return false if val appears in another square, else return true
-bool Cluster::
-isValid(char val){
+const bool Cluster::
+isValid(const char val) const{
     for (Square* square : clstr) {
-        if (square->getState() == val) { return false; }
+        if (square->getValue() == val) { return false; }
     }
     return true;
 }
@@ -39,9 +39,8 @@ isValid(char val){
 // Prints the Cluster values in a human-readable format
 // Preconditions: board object exists
 // Postconditions: Sends the cluster to the ostream
-ostream& Cluster::print(ostream& out) {
+ostream& Cluster::print(ostream& out) const {
     out << type <<endl;
     for (Square* square : clstr) { out <<*square <<endl; }
-    out <<endl;
     return out;
 }

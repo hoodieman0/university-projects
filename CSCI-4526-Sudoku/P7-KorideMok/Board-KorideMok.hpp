@@ -3,17 +3,16 @@
 #include "tools.hpp"
 #include "Square-KorideMok.hpp"
 #include "Cluster-KorideMok.hpp"
-#include "Exceptions.hpp"
 #pragma once
 
-enum class ClusterType {ROW, COLUMN, BOX, DIAGONAL};
+enum class ClusterType {ROW=0, COLUMN, BOX, DIAGONAL};
 
 class Board{
-    private:
-        int n = 9; // Size of the puzzle
-        Square * bd;
+    protected:
+        short n; // Size of the puzzle
+        Square* bd;
         ifstream& file;
-        short left = 81;
+        short left;
         vector<Cluster*> buddies;
 
         void getPuzzle();
@@ -23,14 +22,11 @@ class Board{
         void createBox(short, short);
 
     public:
-        Board(int, int, ifstream&);
-        ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; } //TODO make cluster* unique_ptr
-        Square& sub(short r, short c){ return bd[(r - 1)* n + (c - 1)]; }
-        void mark(short r, short c, char value) { sub(r, c).mark(value); }
-        ostream& print(ostream&);
-        ostream& printClusters(ostream&); //TODO remove before release
-
-        friend class DiagBoard;
+        Board(short, short, ifstream&);
+        ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
+        Square& sub(const short r, const short c) const { return bd[(r - 1)* n + (c - 1)]; }
+        void mark(const short r, const short c, const char value) const { sub(r, c).mark(value); }
+        ostream& print(ostream&) const ;
 };
 
 inline ostream& operator<<(ostream& out, Board& b){
