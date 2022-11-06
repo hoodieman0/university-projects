@@ -46,7 +46,7 @@ void Square::
 turnOff(int n) {
     short mask = 0x001;
     mask = mask << n;
-    mask = ~mask;
+    mask = ~mask; //TODO protected inheritance to not create turnOffBit()
     turnOffBit(mask);
 }
 

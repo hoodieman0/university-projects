@@ -8,8 +8,8 @@
 class DiagBoard : public Board {
     public:
         DiagBoard() = default;
-        DiagBoard(int, int, ifstream&);
-        ~DiagBoard() = default;
+        DiagBoard(short, short, ifstream&);
+        ~DiagBoard() = default; //{delete[] Board::bd; }; //TODO check this
         void createDiagonal();
 };
 

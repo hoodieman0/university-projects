@@ -5,7 +5,7 @@
 static const string clusterT[4] = {"ROW", "COLUMN", "BOX", "DIAGONAL"};
 
 DiagBoard::
-DiagBoard(int n, int clstr, ifstream& file) : Board(n, clstr, file) {
+DiagBoard(short n, short clstr, ifstream& file) : Board(n, clstr, file) {
     //Is knowing the amount of clusters important if I am making a diagonal board?
     cout << "~Adding Diagonals~" <<endl;
     createDiagonal();
