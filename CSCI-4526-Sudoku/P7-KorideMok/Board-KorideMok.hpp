@@ -24,7 +24,7 @@ class Board{
 
     public:
         Board(int, int, ifstream&);
-        ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
+        ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; } //TODO make cluster* unique_ptr
         Square& sub(short r, short c){ return bd[(r - 1)* n + (c - 1)]; }
         void mark(short r, short c, char value) { sub(r, c).mark(value); }
         ostream& print(ostream&);

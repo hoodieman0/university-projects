@@ -183,7 +183,7 @@ testClusterFunctions(ostream& out, char* filename){
     out <<"\n2. Shoop Function Test" <<endl;
     out <<"Using test 1's board, mark [9, 9] with '1'\n" <<endl;
     puzzle.mark(9, 9, '1');
-    puzzle.printClusters(out);
+    out << puzzle << endl;
 
     out <<"\n3. Valid Input Test" <<endl;
     out <<"Marking [8, 9] with '1' (invalid)..." <<endl;

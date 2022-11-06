@@ -88,7 +88,7 @@ createCol(short c) {
 // Postconditions: the cluster for the box [r, c] is created and put into buddies
 void Board::
 createBox(short r, short c) {
-    Square *arr[9];
+    Square* arr[9];
     short index = 0;
     for (short k = r; k < r + 3; k++) {
         for (short h = c; h < c + 3; h++) { arr[index] = &sub(k, h); index++; }
@@ -106,20 +106,14 @@ ostream& Board::
 print(ostream& out) {
     for (int j = 0; j < n*n; j++){
         out <<" " <<bd[j] <<"\n ";
-        if ((j+1) % 9 == 0){
-            out << "\n";
-        }
+        if ((j+1) % n == 0) out << "\n";
     }
-    return out;
-}
 
-// ---------------------------------------------------------------------
-// Prints the clusters of the board. This function is used for the unit test
-// Preconditions: board object exists
-// Postconditions: Sends each cluster to the ostream
-ostream& Board::
-printClusters(ostream& out) {
-    int i = 1;
-    for (Cluster* cl : buddies) { out <<"Cluster " <<i <<": " <<*cl; i++; }
+    int k = 1;
+    for (Cluster* cl : buddies) {
+        out <<"Cluster " <<k++ <<": " <<*cl;
+        if (k % n == 0) out << "\n";
+    }
+
     return out;
 }

@@ -44,7 +44,7 @@ ostream& Board::
 print(ostream& out) {
     for (int j = 0; j < n*n; j++){
         out <<" " <<bd[j] <<"\n ";
-        if ((j+1) % 9 == 0) out << "\n";
+        if ((j+1) % n == 0) out << "\n";
     }
     return out;
 }
