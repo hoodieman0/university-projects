@@ -1,1017 +1,29 @@
-"C:\Users\hoodi\OneDrive\Documents\1New Haven\5_Fifth Semester\CSCI-4526 Advanced C++\CSCI-4526-Sudoku-Project-Master\cmake-build-debug\P6-KorideMok.exe" puzd.txt
+1. Test normal boards can be created.
+2. Test diagonal boards can be created.
+3. Mark [5, 5] with 4, 9, and 2
+
+text file:
+d
+4-6--7---
+-9-5-6-7-
+------58-
+---9--34-
+3-------8
+-78--4---
+-17------
+-8-2-9-6-
+9--7--84-
+
+
+"C:\Users\hoodi\OneDrive\Documents\1New Haven\5_Fifth Semester\CSCI-4526 Advanced C++\CSCI-4526-Sudoku-Project-Master\Executables\P6-KorideMok.exe" puzt.txt
 
 ----------------------------------------------------------------
         James Mok and Neelakanta Bharadwaj Koride
         CSCI-4526: Advanced C++
-        Wed Oct 19 2022 01:56:47
+        Sun Nov 06 2022 03:24:45
 ----------------------------------------------------------------
-~Begin Cluster Test~
----------------------------------------------------
-----------------------------------------------------------------------------------------------------------
-Testing the Cluster class from Cluster-KorideMok.hpp
-Expected Output:
-1. Create all clusters
-2. Remove value from all related clusters
-3. Make sure char is a valid mark
-
-1. Creation of clusters
+~Starting Game~
 ~Creating Board~
-Board made successfully!
-
-2. Shoop Function Test
-Using test 1's board, mark [9, 9] with '1'
-
-Cluster 1: ROW
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [1, 5] value: - fixed: false possibilities: 123456789
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [1, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 2: COLUMN
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-
-Cluster 3: ROW
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [2, 5] value: - fixed: false possibilities: 123456789
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [2, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 4: COLUMN
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [5, 2] value: - fixed: false possibilities: 123456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: -23456789
-
-Cluster 5: ROW
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: 123456789
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [3, 5] value: - fixed: false possibilities: 123456789
-Square [3, 6] value: - fixed: false possibilities: 123456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [3, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 6: COLUMN
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: 123456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [5, 3] value: - fixed: false possibilities: 123456789
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [9, 3] value: - fixed: false possibilities: -23456789
-
-Cluster 7: ROW
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [4, 5] value: - fixed: false possibilities: 123456789
-Square [4, 6] value: - fixed: false possibilities: 123456789
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [4, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 8: COLUMN
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [5, 4] value: - fixed: false possibilities: 123456789
-Square [6, 4] value: - fixed: false possibilities: 123456789
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-
-Cluster 9: ROW
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [5, 2] value: - fixed: false possibilities: 123456789
-Square [5, 3] value: - fixed: false possibilities: 123456789
-Square [5, 4] value: - fixed: false possibilities: 123456789
-Square [5, 5] value: - fixed: false possibilities: 123456789
-Square [5, 6] value: - fixed: false possibilities: 123456789
-Square [5, 7] value: - fixed: false possibilities: 123456789
-Square [5, 8] value: - fixed: false possibilities: 123456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-
-Cluster 10: COLUMN
-Square [1, 5] value: - fixed: false possibilities: 123456789
-Square [2, 5] value: - fixed: false possibilities: 123456789
-Square [3, 5] value: - fixed: false possibilities: 123456789
-Square [4, 5] value: - fixed: false possibilities: 123456789
-Square [5, 5] value: - fixed: false possibilities: 123456789
-Square [6, 5] value: - fixed: false possibilities: 123456789
-Square [7, 5] value: - fixed: false possibilities: 123456789
-Square [8, 5] value: - fixed: false possibilities: 123456789
-Square [9, 5] value: - fixed: false possibilities: -23456789
-
-Cluster 11: ROW
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-Square [6, 4] value: - fixed: false possibilities: 123456789
-Square [6, 5] value: - fixed: false possibilities: 123456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [6, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 12: COLUMN
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [3, 6] value: - fixed: false possibilities: 123456789
-Square [4, 6] value: - fixed: false possibilities: 123456789
-Square [5, 6] value: - fixed: false possibilities: 123456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [9, 6] value: - fixed: false possibilities: -23456789
-
-Cluster 13: ROW
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [7, 5] value: - fixed: false possibilities: 123456789
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [7, 7] value: - fixed: false possibilities: -23456789
-Square [7, 8] value: - fixed: false possibilities: -23456789
-Square [7, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 14: COLUMN
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [5, 7] value: - fixed: false possibilities: 123456789
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [7, 7] value: - fixed: false possibilities: -23456789
-Square [8, 7] value: - fixed: false possibilities: -23456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-
-Cluster 15: ROW
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [8, 5] value: - fixed: false possibilities: 123456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [8, 7] value: - fixed: false possibilities: -23456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [8, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 16: COLUMN
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [5, 8] value: - fixed: false possibilities: 123456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [7, 8] value: - fixed: false possibilities: -23456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-
-Cluster 17: ROW
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: -23456789
-Square [9, 3] value: - fixed: false possibilities: -23456789
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-Square [9, 5] value: - fixed: false possibilities: -23456789
-Square [9, 6] value: - fixed: false possibilities: -23456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-Square [9, 9] value: 1 fixed: false possibilities: ---------
-
-Cluster 18: COLUMN
-Square [1, 9] value: - fixed: false possibilities: -23456789
-Square [2, 9] value: - fixed: false possibilities: -23456789
-Square [3, 9] value: - fixed: false possibilities: -23456789
-Square [4, 9] value: - fixed: false possibilities: -23456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-Square [6, 9] value: - fixed: false possibilities: -23456789
-Square [7, 9] value: - fixed: false possibilities: -23456789
-Square [8, 9] value: - fixed: false possibilities: -23456789
-Square [9, 9] value: 1 fixed: false possibilities: ---------
-
-Cluster 19: BOX
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: 123456789
-
-Cluster 20: BOX
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [1, 5] value: - fixed: false possibilities: 123456789
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [2, 5] value: - fixed: false possibilities: 123456789
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [3, 5] value: - fixed: false possibilities: 123456789
-Square [3, 6] value: - fixed: false possibilities: 123456789
-
-Cluster 21: BOX
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [1, 9] value: - fixed: false possibilities: -23456789
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [2, 9] value: - fixed: false possibilities: -23456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [3, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 22: BOX
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [5, 2] value: - fixed: false possibilities: 123456789
-Square [5, 3] value: - fixed: false possibilities: 123456789
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-
-Cluster 23: BOX
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [4, 5] value: - fixed: false possibilities: 123456789
-Square [4, 6] value: - fixed: false possibilities: 123456789
-Square [5, 4] value: - fixed: false possibilities: 123456789
-Square [5, 5] value: - fixed: false possibilities: 123456789
-Square [5, 6] value: - fixed: false possibilities: 123456789
-Square [6, 4] value: - fixed: false possibilities: 123456789
-Square [6, 5] value: - fixed: false possibilities: 123456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-
-Cluster 24: BOX
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [4, 9] value: - fixed: false possibilities: -23456789
-Square [5, 7] value: - fixed: false possibilities: 123456789
-Square [5, 8] value: - fixed: false possibilities: 123456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [6, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 25: BOX
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: -23456789
-Square [9, 3] value: - fixed: false possibilities: -23456789
-
-Cluster 26: BOX
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [7, 5] value: - fixed: false possibilities: 123456789
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [8, 5] value: - fixed: false possibilities: 123456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-Square [9, 5] value: - fixed: false possibilities: -23456789
-Square [9, 6] value: - fixed: false possibilities: -23456789
-
-Cluster 27: BOX
-Square [7, 7] value: - fixed: false possibilities: -23456789
-Square [7, 8] value: - fixed: false possibilities: -23456789
-Square [7, 9] value: - fixed: false possibilities: -23456789
-Square [8, 7] value: - fixed: false possibilities: -23456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [8, 9] value: - fixed: false possibilities: -23456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-Square [9, 9] value: 1 fixed: false possibilities: ---------
-
-
-3. Valid Input Test
-Marking [8, 9] with '1' (invalid)...
-1 is already in this cluster!
-
-Marking [9, 9] with ';' (invalid)...
-!Invalid Input!
-----------------------------------------------------------------------------------------------------------
-~Destroying Board~
-
-~Cluster Test Completed Successfully~
----------------------------------------------------
-~Begin Diagonal Test~
----------------------------------------------------
-----------------------------------------------------------------------------------------------------------
-Testing the Diagonal class from DiagBoard-KorideMok.hpp
-Expected Output:
-1. Create all clusters
-2. Mark overlapping squares
-
-1. Creation of diagonal clusters
-~Creating Board~
-~Adding Diagonals~
-Cluster 1: ROW
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [1, 5] value: - fixed: false possibilities: 123456789
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [1, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 2: COLUMN
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-
-Cluster 3: ROW
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [2, 5] value: - fixed: false possibilities: 123456789
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [2, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 4: COLUMN
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [5, 2] value: - fixed: false possibilities: 123456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: 123456789
-
-Cluster 5: ROW
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: 123456789
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [3, 5] value: - fixed: false possibilities: 123456789
-Square [3, 6] value: - fixed: false possibilities: 123456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [3, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 6: COLUMN
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: 123456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [5, 3] value: - fixed: false possibilities: 123456789
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [9, 3] value: - fixed: false possibilities: 123456789
-
-Cluster 7: ROW
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [4, 5] value: - fixed: false possibilities: 123456789
-Square [4, 6] value: - fixed: false possibilities: 123456789
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [4, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 8: COLUMN
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [5, 4] value: - fixed: false possibilities: 123456789
-Square [6, 4] value: - fixed: false possibilities: 123456789
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-
-Cluster 9: ROW
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [5, 2] value: - fixed: false possibilities: 123456789
-Square [5, 3] value: - fixed: false possibilities: 123456789
-Square [5, 4] value: - fixed: false possibilities: 123456789
-Square [5, 5] value: - fixed: false possibilities: 123456789
-Square [5, 6] value: - fixed: false possibilities: 123456789
-Square [5, 7] value: - fixed: false possibilities: 123456789
-Square [5, 8] value: - fixed: false possibilities: 123456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-
-Cluster 10: COLUMN
-Square [1, 5] value: - fixed: false possibilities: 123456789
-Square [2, 5] value: - fixed: false possibilities: 123456789
-Square [3, 5] value: - fixed: false possibilities: 123456789
-Square [4, 5] value: - fixed: false possibilities: 123456789
-Square [5, 5] value: - fixed: false possibilities: 123456789
-Square [6, 5] value: - fixed: false possibilities: 123456789
-Square [7, 5] value: - fixed: false possibilities: 123456789
-Square [8, 5] value: - fixed: false possibilities: 123456789
-Square [9, 5] value: - fixed: false possibilities: 123456789
-
-Cluster 11: ROW
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-Square [6, 4] value: - fixed: false possibilities: 123456789
-Square [6, 5] value: - fixed: false possibilities: 123456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [6, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 12: COLUMN
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [3, 6] value: - fixed: false possibilities: 123456789
-Square [4, 6] value: - fixed: false possibilities: 123456789
-Square [5, 6] value: - fixed: false possibilities: 123456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [9, 6] value: - fixed: false possibilities: 123456789
-
-Cluster 13: ROW
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [7, 5] value: - fixed: false possibilities: 123456789
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [7, 7] value: - fixed: false possibilities: 123456789
-Square [7, 8] value: - fixed: false possibilities: 123456789
-Square [7, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 14: COLUMN
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [5, 7] value: - fixed: false possibilities: 123456789
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [7, 7] value: - fixed: false possibilities: 123456789
-Square [8, 7] value: - fixed: false possibilities: 123456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-
-Cluster 15: ROW
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [8, 5] value: - fixed: false possibilities: 123456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [8, 7] value: - fixed: false possibilities: 123456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [8, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 16: COLUMN
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [5, 8] value: - fixed: false possibilities: 123456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [7, 8] value: - fixed: false possibilities: 123456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-
-Cluster 17: ROW
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: 123456789
-Square [9, 3] value: - fixed: false possibilities: 123456789
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-Square [9, 5] value: - fixed: false possibilities: 123456789
-Square [9, 6] value: - fixed: false possibilities: 123456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-Square [9, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 18: COLUMN
-Square [1, 9] value: - fixed: false possibilities: 123456789
-Square [2, 9] value: - fixed: false possibilities: 123456789
-Square [3, 9] value: - fixed: false possibilities: 123456789
-Square [4, 9] value: - fixed: false possibilities: 123456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-Square [6, 9] value: - fixed: false possibilities: 123456789
-Square [7, 9] value: - fixed: false possibilities: 123456789
-Square [8, 9] value: - fixed: false possibilities: 123456789
-Square [9, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 19: BOX
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: 123456789
-
-Cluster 20: BOX
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [1, 5] value: - fixed: false possibilities: 123456789
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [2, 5] value: - fixed: false possibilities: 123456789
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [3, 5] value: - fixed: false possibilities: 123456789
-Square [3, 6] value: - fixed: false possibilities: 123456789
-
-Cluster 21: BOX
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [1, 9] value: - fixed: false possibilities: 123456789
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [2, 9] value: - fixed: false possibilities: 123456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [3, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 22: BOX
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [5, 2] value: - fixed: false possibilities: 123456789
-Square [5, 3] value: - fixed: false possibilities: 123456789
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-
-Cluster 23: BOX
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [4, 5] value: - fixed: false possibilities: 123456789
-Square [4, 6] value: - fixed: false possibilities: 123456789
-Square [5, 4] value: - fixed: false possibilities: 123456789
-Square [5, 5] value: - fixed: false possibilities: 123456789
-Square [5, 6] value: - fixed: false possibilities: 123456789
-Square [6, 4] value: - fixed: false possibilities: 123456789
-Square [6, 5] value: - fixed: false possibilities: 123456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-
-Cluster 24: BOX
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [4, 9] value: - fixed: false possibilities: 123456789
-Square [5, 7] value: - fixed: false possibilities: 123456789
-Square [5, 8] value: - fixed: false possibilities: 123456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [6, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 25: BOX
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: 123456789
-Square [9, 3] value: - fixed: false possibilities: 123456789
-
-Cluster 26: BOX
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [7, 5] value: - fixed: false possibilities: 123456789
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [8, 5] value: - fixed: false possibilities: 123456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-Square [9, 5] value: - fixed: false possibilities: 123456789
-Square [9, 6] value: - fixed: false possibilities: 123456789
-
-Cluster 27: BOX
-Square [7, 7] value: - fixed: false possibilities: 123456789
-Square [7, 8] value: - fixed: false possibilities: 123456789
-Square [7, 9] value: - fixed: false possibilities: 123456789
-Square [8, 7] value: - fixed: false possibilities: 123456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [8, 9] value: - fixed: false possibilities: 123456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-Square [9, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 28: DIAGONAL
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [3, 3] value: - fixed: false possibilities: 123456789
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [5, 5] value: - fixed: false possibilities: 123456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-Square [7, 7] value: - fixed: false possibilities: 123456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [9, 9] value: - fixed: false possibilities: 123456789
-
-Cluster 29: DIAGONAL
-Square [1, 9] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [4, 6] value: - fixed: false possibilities: 123456789
-Square [5, 5] value: - fixed: false possibilities: 123456789
-Square [6, 4] value: - fixed: false possibilities: 123456789
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-
-Board made successfully!
-
-2. Mark Overlapping Test
-Using test 1's board, mark the following:
-[9, 9] with '1'
-[5, 5] with '1'
-[3, 3] with '1'
-
-[1, 9] with '3'
-[4, 6] with '5'
-[2, 7] with '9'
-
-[5, 5] with '2'
-8 is already in this cluster!
-1 is already in this cluster!
-1 is already in this cluster!
-5 is already in this cluster!
-9 is already in this cluster!
-Cluster 1: ROW
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [1, 5] value: - fixed: false possibilities: 1-3456789
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [1, 9] value: - fixed: false possibilities: --3456789
-
-Cluster 2: COLUMN
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-
-Cluster 3: ROW
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [2, 5] value: - fixed: false possibilities: 1-3456789
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [2, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 4: COLUMN
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [5, 2] value: - fixed: false possibilities: 1-3456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: -23456789
-
-Cluster 5: ROW
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: --3456789
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [3, 5] value: - fixed: false possibilities: 1-3456789
-Square [3, 6] value: - fixed: false possibilities: 123456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [3, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 6: COLUMN
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: --3456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [5, 3] value: - fixed: false possibilities: 1-3456789
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [9, 3] value: - fixed: false possibilities: -23456789
-
-Cluster 7: ROW
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [4, 5] value: - fixed: false possibilities: 1-3456789
-Square [4, 6] value: - fixed: false possibilities: 1-3456789
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [4, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 8: COLUMN
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [5, 4] value: - fixed: false possibilities: 1-3456789
-Square [6, 4] value: - fixed: false possibilities: 1-3456789
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-
-Cluster 9: ROW
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [5, 2] value: - fixed: false possibilities: 1-3456789
-Square [5, 3] value: - fixed: false possibilities: 1-3456789
-Square [5, 4] value: - fixed: false possibilities: 1-3456789
-Square [5, 5] value: 2 fixed: false possibilities: ---------
-Square [5, 6] value: - fixed: false possibilities: 1-3456789
-Square [5, 7] value: - fixed: false possibilities: 1-3456789
-Square [5, 8] value: - fixed: false possibilities: 1-3456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-
-Cluster 10: COLUMN
-Square [1, 5] value: - fixed: false possibilities: 1-3456789
-Square [2, 5] value: - fixed: false possibilities: 1-3456789
-Square [3, 5] value: - fixed: false possibilities: 1-3456789
-Square [4, 5] value: - fixed: false possibilities: 1-3456789
-Square [5, 5] value: 2 fixed: false possibilities: ---------
-Square [6, 5] value: - fixed: false possibilities: 1-3456789
-Square [7, 5] value: - fixed: false possibilities: 1-3456789
-Square [8, 5] value: - fixed: false possibilities: 1-3456789
-Square [9, 5] value: - fixed: false possibilities: --3456789
-
-Cluster 11: ROW
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-Square [6, 4] value: - fixed: false possibilities: 1-3456789
-Square [6, 5] value: - fixed: false possibilities: 1-3456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [6, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 12: COLUMN
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [3, 6] value: - fixed: false possibilities: 123456789
-Square [4, 6] value: - fixed: false possibilities: 1-3456789
-Square [5, 6] value: - fixed: false possibilities: 1-3456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [9, 6] value: - fixed: false possibilities: -23456789
-
-Cluster 13: ROW
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [7, 5] value: - fixed: false possibilities: 1-3456789
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [7, 7] value: - fixed: false possibilities: --3456789
-Square [7, 8] value: - fixed: false possibilities: -23456789
-Square [7, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 14: COLUMN
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [5, 7] value: - fixed: false possibilities: 1-3456789
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [7, 7] value: - fixed: false possibilities: --3456789
-Square [8, 7] value: - fixed: false possibilities: -23456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-
-Cluster 15: ROW
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [8, 5] value: - fixed: false possibilities: 1-3456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [8, 7] value: - fixed: false possibilities: -23456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [8, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 16: COLUMN
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [5, 8] value: - fixed: false possibilities: 1-3456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [7, 8] value: - fixed: false possibilities: -23456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-
-Cluster 17: ROW
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: -23456789
-Square [9, 3] value: - fixed: false possibilities: -23456789
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-Square [9, 5] value: - fixed: false possibilities: --3456789
-Square [9, 6] value: - fixed: false possibilities: -23456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-Square [9, 9] value: 1 fixed: false possibilities: ---------
-
-Cluster 18: COLUMN
-Square [1, 9] value: - fixed: false possibilities: --3456789
-Square [2, 9] value: - fixed: false possibilities: -23456789
-Square [3, 9] value: - fixed: false possibilities: -23456789
-Square [4, 9] value: - fixed: false possibilities: -23456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-Square [6, 9] value: - fixed: false possibilities: -23456789
-Square [7, 9] value: - fixed: false possibilities: -23456789
-Square [8, 9] value: - fixed: false possibilities: -23456789
-Square [9, 9] value: 1 fixed: false possibilities: ---------
-
-Cluster 19: BOX
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [1, 2] value: - fixed: false possibilities: 123456789
-Square [1, 3] value: 6 fixed: true possibilities: ---------
-Square [2, 1] value: - fixed: false possibilities: 123456789
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [2, 3] value: - fixed: false possibilities: 123456789
-Square [3, 1] value: - fixed: false possibilities: 123456789
-Square [3, 2] value: - fixed: false possibilities: 123456789
-Square [3, 3] value: - fixed: false possibilities: --3456789
-
-Cluster 20: BOX
-Square [1, 4] value: - fixed: false possibilities: 123456789
-Square [1, 5] value: - fixed: false possibilities: 1-3456789
-Square [1, 6] value: 7 fixed: true possibilities: ---------
-Square [2, 4] value: 5 fixed: true possibilities: ---------
-Square [2, 5] value: - fixed: false possibilities: 1-3456789
-Square [2, 6] value: 6 fixed: true possibilities: ---------
-Square [3, 4] value: - fixed: false possibilities: 123456789
-Square [3, 5] value: - fixed: false possibilities: 1-3456789
-Square [3, 6] value: - fixed: false possibilities: 123456789
-
-Cluster 21: BOX
-Square [1, 7] value: - fixed: false possibilities: 123456789
-Square [1, 8] value: - fixed: false possibilities: 123456789
-Square [1, 9] value: - fixed: false possibilities: --3456789
-Square [2, 7] value: - fixed: false possibilities: 123456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [2, 9] value: - fixed: false possibilities: -23456789
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [3, 8] value: 8 fixed: true possibilities: ---------
-Square [3, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 22: BOX
-Square [4, 1] value: - fixed: false possibilities: 123456789
-Square [4, 2] value: - fixed: false possibilities: 123456789
-Square [4, 3] value: - fixed: false possibilities: 123456789
-Square [5, 1] value: 3 fixed: true possibilities: ---------
-Square [5, 2] value: - fixed: false possibilities: 1-3456789
-Square [5, 3] value: - fixed: false possibilities: 1-3456789
-Square [6, 1] value: - fixed: false possibilities: 123456789
-Square [6, 2] value: 7 fixed: true possibilities: ---------
-Square [6, 3] value: 8 fixed: true possibilities: ---------
-
-Cluster 23: BOX
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [4, 5] value: - fixed: false possibilities: 1-3456789
-Square [4, 6] value: - fixed: false possibilities: 1-3456789
-Square [5, 4] value: - fixed: false possibilities: 1-3456789
-Square [5, 5] value: 2 fixed: false possibilities: ---------
-Square [5, 6] value: - fixed: false possibilities: 1-3456789
-Square [6, 4] value: - fixed: false possibilities: 1-3456789
-Square [6, 5] value: - fixed: false possibilities: 1-3456789
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-
-Cluster 24: BOX
-Square [4, 7] value: 3 fixed: true possibilities: ---------
-Square [4, 8] value: 4 fixed: true possibilities: ---------
-Square [4, 9] value: - fixed: false possibilities: -23456789
-Square [5, 7] value: - fixed: false possibilities: 1-3456789
-Square [5, 8] value: - fixed: false possibilities: 1-3456789
-Square [5, 9] value: 8 fixed: true possibilities: ---------
-Square [6, 7] value: - fixed: false possibilities: 123456789
-Square [6, 8] value: - fixed: false possibilities: 123456789
-Square [6, 9] value: - fixed: false possibilities: -23456789
-
-Cluster 25: BOX
-Square [7, 1] value: - fixed: false possibilities: 123456789
-Square [7, 2] value: 1 fixed: true possibilities: ---------
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [8, 1] value: - fixed: false possibilities: 123456789
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [8, 3] value: - fixed: false possibilities: 123456789
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-Square [9, 2] value: - fixed: false possibilities: -23456789
-Square [9, 3] value: - fixed: false possibilities: -23456789
-
-Cluster 26: BOX
-Square [7, 4] value: - fixed: false possibilities: 123456789
-Square [7, 5] value: - fixed: false possibilities: 1-3456789
-Square [7, 6] value: - fixed: false possibilities: 123456789
-Square [8, 4] value: 2 fixed: true possibilities: ---------
-Square [8, 5] value: - fixed: false possibilities: 1-3456789
-Square [8, 6] value: 9 fixed: true possibilities: ---------
-Square [9, 4] value: 7 fixed: true possibilities: ---------
-Square [9, 5] value: - fixed: false possibilities: --3456789
-Square [9, 6] value: - fixed: false possibilities: -23456789
-
-Cluster 27: BOX
-Square [7, 7] value: - fixed: false possibilities: --3456789
-Square [7, 8] value: - fixed: false possibilities: -23456789
-Square [7, 9] value: - fixed: false possibilities: -23456789
-Square [8, 7] value: - fixed: false possibilities: -23456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [8, 9] value: - fixed: false possibilities: -23456789
-Square [9, 7] value: 8 fixed: true possibilities: ---------
-Square [9, 8] value: 4 fixed: true possibilities: ---------
-Square [9, 9] value: 1 fixed: false possibilities: ---------
-
-Cluster 28: DIAGONAL
-Square [1, 1] value: 4 fixed: true possibilities: ---------
-Square [2, 2] value: 9 fixed: true possibilities: ---------
-Square [3, 3] value: - fixed: false possibilities: --3456789
-Square [4, 4] value: 9 fixed: true possibilities: ---------
-Square [5, 5] value: 2 fixed: false possibilities: ---------
-Square [6, 6] value: 4 fixed: true possibilities: ---------
-Square [7, 7] value: - fixed: false possibilities: --3456789
-Square [8, 8] value: 6 fixed: true possibilities: ---------
-Square [9, 9] value: 1 fixed: false possibilities: ---------
-
-Cluster 29: DIAGONAL
-Square [1, 9] value: - fixed: false possibilities: --3456789
-Square [2, 8] value: 7 fixed: true possibilities: ---------
-Square [3, 7] value: 5 fixed: true possibilities: ---------
-Square [4, 6] value: - fixed: false possibilities: 1-3456789
-Square [5, 5] value: 2 fixed: false possibilities: ---------
-Square [6, 4] value: - fixed: false possibilities: 1-3456789
-Square [7, 3] value: 7 fixed: true possibilities: ---------
-Square [8, 2] value: 8 fixed: true possibilities: ---------
-Square [9, 1] value: 9 fixed: true possibilities: ---------
-
-[9, 9] with '1'
-[5, 5] with '8'
-[3, 3] with '1'
-
-[1, 9] with '1'
-[4, 6] with '5'
-[2, 7] with '9'
-
-[5, 5] with '2'
-----------------------------------------------------------------------------------------------------------
-
-~Diagonal Test Completed Successfully~
----------------------------------------------------
-~Creating Board~
-~Adding Diagonals~ <- indicates diagonal class works
 
 What Would You Like To Do?
 
@@ -1023,40 +35,916 @@ Menu
          Redo
          Save
          Restore
+         Quit
 
- Enter code of desired item:Q
- ~Quitting Game~
+ Enter code of desired item:p
+  Square [1, 1] value: 4 fixed: true possibilities: ---------
+  Square [1, 2] value: - fixed: false possibilities: 123456789
+  Square [1, 3] value: 6 fixed: true possibilities: ---------
+  Square [1, 4] value: - fixed: false possibilities: 123456789
+  Square [1, 5] value: - fixed: false possibilities: 123456789
+  Square [1, 6] value: 7 fixed: true possibilities: ---------
+  Square [1, 7] value: - fixed: false possibilities: 123456789
+  Square [1, 8] value: - fixed: false possibilities: 123456789
+  Square [1, 9] value: - fixed: false possibilities: 123456789
 
-Normal termination.
+ Square [2, 1] value: - fixed: false possibilities: 123456789
+  Square [2, 2] value: 9 fixed: true possibilities: ---------
+  Square [2, 3] value: - fixed: false possibilities: 123456789
+  Square [2, 4] value: 5 fixed: true possibilities: ---------
+  Square [2, 5] value: - fixed: false possibilities: 123456789
+  Square [2, 6] value: 6 fixed: true possibilities: ---------
+  Square [2, 7] value: - fixed: false possibilities: 123456789
+  Square [2, 8] value: 7 fixed: true possibilities: ---------
+  Square [2, 9] value: - fixed: false possibilities: 123456789
 
-Process finished with exit code 0
+ Square [3, 1] value: - fixed: false possibilities: 123456789
+  Square [3, 2] value: - fixed: false possibilities: 123456789
+  Square [3, 3] value: - fixed: false possibilities: 123456789
+  Square [3, 4] value: - fixed: false possibilities: 123456789
+  Square [3, 5] value: - fixed: false possibilities: 123456789
+  Square [3, 6] value: - fixed: false possibilities: 123456789
+  Square [3, 7] value: 5 fixed: true possibilities: ---------
+  Square [3, 8] value: 8 fixed: true possibilities: ---------
+  Square [3, 9] value: - fixed: false possibilities: 123456789
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-regular board test
+ Square [4, 1] value: - fixed: false possibilities: 123456789
+  Square [4, 2] value: - fixed: false possibilities: 123456789
+  Square [4, 3] value: - fixed: false possibilities: 123456789
+  Square [4, 4] value: 9 fixed: true possibilities: ---------
+  Square [4, 5] value: - fixed: false possibilities: 123456789
+  Square [4, 6] value: - fixed: false possibilities: 123456789
+  Square [4, 7] value: 3 fixed: true possibilities: ---------
+  Square [4, 8] value: 4 fixed: true possibilities: ---------
+  Square [4, 9] value: - fixed: false possibilities: 123456789
 
-"C:\Users\hoodi\OneDrive\Documents\1New Haven\5_Fifth Semester\CSCI-4526 Advanced C++\CSCI-4526-Sudoku-Project-Master\cmake-build-debug\P6-KorideMok.exe" puzd.txt
+ Square [5, 1] value: 3 fixed: true possibilities: ---------
+  Square [5, 2] value: - fixed: false possibilities: 123456789
+  Square [5, 3] value: - fixed: false possibilities: 123456789
+  Square [5, 4] value: - fixed: false possibilities: 123456789
+  Square [5, 5] value: - fixed: false possibilities: 123456789
+  Square [5, 6] value: - fixed: false possibilities: 123456789
+  Square [5, 7] value: - fixed: false possibilities: 123456789
+  Square [5, 8] value: - fixed: false possibilities: 123456789
+  Square [5, 9] value: 8 fixed: true possibilities: ---------
 
-----------------------------------------------------------------
-James Mok and Neelakanta Bharadwaj Koride
-        CSCI-4526: Advanced C++
-Wed Oct 19 2022 01:54:18
-----------------------------------------------------------------
-~Creating Board~ <-indicates the normal board class works
+ Square [6, 1] value: - fixed: false possibilities: 123456789
+  Square [6, 2] value: 7 fixed: true possibilities: ---------
+  Square [6, 3] value: 8 fixed: true possibilities: ---------
+  Square [6, 4] value: - fixed: false possibilities: 123456789
+  Square [6, 5] value: - fixed: false possibilities: 123456789
+  Square [6, 6] value: 4 fixed: true possibilities: ---------
+  Square [6, 7] value: - fixed: false possibilities: 123456789
+  Square [6, 8] value: - fixed: false possibilities: 123456789
+  Square [6, 9] value: - fixed: false possibilities: 123456789
+
+ Square [7, 1] value: - fixed: false possibilities: 123456789
+  Square [7, 2] value: 1 fixed: true possibilities: ---------
+  Square [7, 3] value: 7 fixed: true possibilities: ---------
+  Square [7, 4] value: - fixed: false possibilities: 123456789
+  Square [7, 5] value: - fixed: false possibilities: 123456789
+  Square [7, 6] value: - fixed: false possibilities: 123456789
+  Square [7, 7] value: - fixed: false possibilities: 123456789
+  Square [7, 8] value: - fixed: false possibilities: 123456789
+  Square [7, 9] value: - fixed: false possibilities: 123456789
+
+ Square [8, 1] value: - fixed: false possibilities: 123456789
+  Square [8, 2] value: 8 fixed: true possibilities: ---------
+  Square [8, 3] value: - fixed: false possibilities: 123456789
+  Square [8, 4] value: 2 fixed: true possibilities: ---------
+  Square [8, 5] value: - fixed: false possibilities: 123456789
+  Square [8, 6] value: 9 fixed: true possibilities: ---------
+  Square [8, 7] value: - fixed: false possibilities: 123456789
+  Square [8, 8] value: 6 fixed: true possibilities: ---------
+  Square [8, 9] value: - fixed: false possibilities: 123456789
+
+ Square [9, 1] value: 9 fixed: true possibilities: ---------
+  Square [9, 2] value: - fixed: false possibilities: 123456789
+  Square [9, 3] value: - fixed: false possibilities: 123456789
+  Square [9, 4] value: 7 fixed: true possibilities: ---------
+  Square [9, 5] value: - fixed: false possibilities: 123456789
+  Square [9, 6] value: - fixed: false possibilities: 123456789
+  Square [9, 7] value: 8 fixed: true possibilities: ---------
+  Square [9, 8] value: 4 fixed: true possibilities: ---------
+  Square [9, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 1: ROW
+Square [1, 1] value: 4 fixed: true possibilities: ---------
+Square [1, 2] value: - fixed: false possibilities: 123456789
+Square [1, 3] value: 6 fixed: true possibilities: ---------
+Square [1, 4] value: - fixed: false possibilities: 123456789
+Square [1, 5] value: - fixed: false possibilities: 123456789
+Square [1, 6] value: 7 fixed: true possibilities: ---------
+Square [1, 7] value: - fixed: false possibilities: 123456789
+Square [1, 8] value: - fixed: false possibilities: 123456789
+Square [1, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 2: COLUMN
+Square [1, 1] value: 4 fixed: true possibilities: ---------
+Square [2, 1] value: - fixed: false possibilities: 123456789
+Square [3, 1] value: - fixed: false possibilities: 123456789
+Square [4, 1] value: - fixed: false possibilities: 123456789
+Square [5, 1] value: 3 fixed: true possibilities: ---------
+Square [6, 1] value: - fixed: false possibilities: 123456789
+Square [7, 1] value: - fixed: false possibilities: 123456789
+Square [8, 1] value: - fixed: false possibilities: 123456789
+Square [9, 1] value: 9 fixed: true possibilities: ---------
+
+Cluster 3: ROW
+Square [2, 1] value: - fixed: false possibilities: 123456789
+Square [2, 2] value: 9 fixed: true possibilities: ---------
+Square [2, 3] value: - fixed: false possibilities: 123456789
+Square [2, 4] value: 5 fixed: true possibilities: ---------
+Square [2, 5] value: - fixed: false possibilities: 123456789
+Square [2, 6] value: 6 fixed: true possibilities: ---------
+Square [2, 7] value: - fixed: false possibilities: 123456789
+Square [2, 8] value: 7 fixed: true possibilities: ---------
+Square [2, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 4: COLUMN
+Square [1, 2] value: - fixed: false possibilities: 123456789
+Square [2, 2] value: 9 fixed: true possibilities: ---------
+Square [3, 2] value: - fixed: false possibilities: 123456789
+Square [4, 2] value: - fixed: false possibilities: 123456789
+Square [5, 2] value: - fixed: false possibilities: 123456789
+Square [6, 2] value: 7 fixed: true possibilities: ---------
+Square [7, 2] value: 1 fixed: true possibilities: ---------
+Square [8, 2] value: 8 fixed: true possibilities: ---------
+Square [9, 2] value: - fixed: false possibilities: 123456789
+
+Cluster 5: ROW
+Square [3, 1] value: - fixed: false possibilities: 123456789
+Square [3, 2] value: - fixed: false possibilities: 123456789
+Square [3, 3] value: - fixed: false possibilities: 123456789
+Square [3, 4] value: - fixed: false possibilities: 123456789
+Square [3, 5] value: - fixed: false possibilities: 123456789
+Square [3, 6] value: - fixed: false possibilities: 123456789
+Square [3, 7] value: 5 fixed: true possibilities: ---------
+Square [3, 8] value: 8 fixed: true possibilities: ---------
+Square [3, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 6: COLUMN
+Square [1, 3] value: 6 fixed: true possibilities: ---------
+Square [2, 3] value: - fixed: false possibilities: 123456789
+Square [3, 3] value: - fixed: false possibilities: 123456789
+Square [4, 3] value: - fixed: false possibilities: 123456789
+Square [5, 3] value: - fixed: false possibilities: 123456789
+Square [6, 3] value: 8 fixed: true possibilities: ---------
+Square [7, 3] value: 7 fixed: true possibilities: ---------
+Square [8, 3] value: - fixed: false possibilities: 123456789
+Square [9, 3] value: - fixed: false possibilities: 123456789
+
+Cluster 7: ROW
+Square [4, 1] value: - fixed: false possibilities: 123456789
+Square [4, 2] value: - fixed: false possibilities: 123456789
+Square [4, 3] value: - fixed: false possibilities: 123456789
+Square [4, 4] value: 9 fixed: true possibilities: ---------
+Square [4, 5] value: - fixed: false possibilities: 123456789
+Square [4, 6] value: - fixed: false possibilities: 123456789
+Square [4, 7] value: 3 fixed: true possibilities: ---------
+Square [4, 8] value: 4 fixed: true possibilities: ---------
+Square [4, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 8: COLUMN
+Square [1, 4] value: - fixed: false possibilities: 123456789
+Square [2, 4] value: 5 fixed: true possibilities: ---------
+Square [3, 4] value: - fixed: false possibilities: 123456789
+Square [4, 4] value: 9 fixed: true possibilities: ---------
+Square [5, 4] value: - fixed: false possibilities: 123456789
+Square [6, 4] value: - fixed: false possibilities: 123456789
+Square [7, 4] value: - fixed: false possibilities: 123456789
+Square [8, 4] value: 2 fixed: true possibilities: ---------
+Square [9, 4] value: 7 fixed: true possibilities: ---------
+
+Cluster 9: ROW
+Square [5, 1] value: 3 fixed: true possibilities: ---------
+Square [5, 2] value: - fixed: false possibilities: 123456789
+Square [5, 3] value: - fixed: false possibilities: 123456789
+Square [5, 4] value: - fixed: false possibilities: 123456789
+Square [5, 5] value: - fixed: false possibilities: 123456789
+Square [5, 6] value: - fixed: false possibilities: 123456789
+Square [5, 7] value: - fixed: false possibilities: 123456789
+Square [5, 8] value: - fixed: false possibilities: 123456789
+Square [5, 9] value: 8 fixed: true possibilities: ---------
+
+Cluster 10: COLUMN
+Square [1, 5] value: - fixed: false possibilities: 123456789
+Square [2, 5] value: - fixed: false possibilities: 123456789
+Square [3, 5] value: - fixed: false possibilities: 123456789
+Square [4, 5] value: - fixed: false possibilities: 123456789
+Square [5, 5] value: - fixed: false possibilities: 123456789
+Square [6, 5] value: - fixed: false possibilities: 123456789
+Square [7, 5] value: - fixed: false possibilities: 123456789
+Square [8, 5] value: - fixed: false possibilities: 123456789
+Square [9, 5] value: - fixed: false possibilities: 123456789
+
+Cluster 11: ROW
+Square [6, 1] value: - fixed: false possibilities: 123456789
+Square [6, 2] value: 7 fixed: true possibilities: ---------
+Square [6, 3] value: 8 fixed: true possibilities: ---------
+Square [6, 4] value: - fixed: false possibilities: 123456789
+Square [6, 5] value: - fixed: false possibilities: 123456789
+Square [6, 6] value: 4 fixed: true possibilities: ---------
+Square [6, 7] value: - fixed: false possibilities: 123456789
+Square [6, 8] value: - fixed: false possibilities: 123456789
+Square [6, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 12: COLUMN
+Square [1, 6] value: 7 fixed: true possibilities: ---------
+Square [2, 6] value: 6 fixed: true possibilities: ---------
+Square [3, 6] value: - fixed: false possibilities: 123456789
+Square [4, 6] value: - fixed: false possibilities: 123456789
+Square [5, 6] value: - fixed: false possibilities: 123456789
+Square [6, 6] value: 4 fixed: true possibilities: ---------
+Square [7, 6] value: - fixed: false possibilities: 123456789
+Square [8, 6] value: 9 fixed: true possibilities: ---------
+Square [9, 6] value: - fixed: false possibilities: 123456789
+
+Cluster 13: ROW
+Square [7, 1] value: - fixed: false possibilities: 123456789
+Square [7, 2] value: 1 fixed: true possibilities: ---------
+Square [7, 3] value: 7 fixed: true possibilities: ---------
+Square [7, 4] value: - fixed: false possibilities: 123456789
+Square [7, 5] value: - fixed: false possibilities: 123456789
+Square [7, 6] value: - fixed: false possibilities: 123456789
+Square [7, 7] value: - fixed: false possibilities: 123456789
+Square [7, 8] value: - fixed: false possibilities: 123456789
+Square [7, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 14: COLUMN
+Square [1, 7] value: - fixed: false possibilities: 123456789
+Square [2, 7] value: - fixed: false possibilities: 123456789
+Square [3, 7] value: 5 fixed: true possibilities: ---------
+Square [4, 7] value: 3 fixed: true possibilities: ---------
+Square [5, 7] value: - fixed: false possibilities: 123456789
+Square [6, 7] value: - fixed: false possibilities: 123456789
+Square [7, 7] value: - fixed: false possibilities: 123456789
+Square [8, 7] value: - fixed: false possibilities: 123456789
+Square [9, 7] value: 8 fixed: true possibilities: ---------
+
+Cluster 15: ROW
+Square [8, 1] value: - fixed: false possibilities: 123456789
+Square [8, 2] value: 8 fixed: true possibilities: ---------
+Square [8, 3] value: - fixed: false possibilities: 123456789
+Square [8, 4] value: 2 fixed: true possibilities: ---------
+Square [8, 5] value: - fixed: false possibilities: 123456789
+Square [8, 6] value: 9 fixed: true possibilities: ---------
+Square [8, 7] value: - fixed: false possibilities: 123456789
+Square [8, 8] value: 6 fixed: true possibilities: ---------
+Square [8, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 16: COLUMN
+Square [1, 8] value: - fixed: false possibilities: 123456789
+Square [2, 8] value: 7 fixed: true possibilities: ---------
+Square [3, 8] value: 8 fixed: true possibilities: ---------
+Square [4, 8] value: 4 fixed: true possibilities: ---------
+Square [5, 8] value: - fixed: false possibilities: 123456789
+Square [6, 8] value: - fixed: false possibilities: 123456789
+Square [7, 8] value: - fixed: false possibilities: 123456789
+Square [8, 8] value: 6 fixed: true possibilities: ---------
+Square [9, 8] value: 4 fixed: true possibilities: ---------
+
+Cluster 17: ROW
+Square [9, 1] value: 9 fixed: true possibilities: ---------
+Square [9, 2] value: - fixed: false possibilities: 123456789
+Square [9, 3] value: - fixed: false possibilities: 123456789
+Square [9, 4] value: 7 fixed: true possibilities: ---------
+Square [9, 5] value: - fixed: false possibilities: 123456789
+Square [9, 6] value: - fixed: false possibilities: 123456789
+Square [9, 7] value: 8 fixed: true possibilities: ---------
+Square [9, 8] value: 4 fixed: true possibilities: ---------
+Square [9, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 18: COLUMN
+Square [1, 9] value: - fixed: false possibilities: 123456789
+Square [2, 9] value: - fixed: false possibilities: 123456789
+Square [3, 9] value: - fixed: false possibilities: 123456789
+Square [4, 9] value: - fixed: false possibilities: 123456789
+Square [5, 9] value: 8 fixed: true possibilities: ---------
+Square [6, 9] value: - fixed: false possibilities: 123456789
+Square [7, 9] value: - fixed: false possibilities: 123456789
+Square [8, 9] value: - fixed: false possibilities: 123456789
+Square [9, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 19: BOX
+Square [1, 1] value: 4 fixed: true possibilities: ---------
+Square [1, 2] value: - fixed: false possibilities: 123456789
+Square [1, 3] value: 6 fixed: true possibilities: ---------
+Square [2, 1] value: - fixed: false possibilities: 123456789
+Square [2, 2] value: 9 fixed: true possibilities: ---------
+Square [2, 3] value: - fixed: false possibilities: 123456789
+Square [3, 1] value: - fixed: false possibilities: 123456789
+Square [3, 2] value: - fixed: false possibilities: 123456789
+Square [3, 3] value: - fixed: false possibilities: 123456789
+
+Cluster 20: BOX
+Square [1, 4] value: - fixed: false possibilities: 123456789
+Square [1, 5] value: - fixed: false possibilities: 123456789
+Square [1, 6] value: 7 fixed: true possibilities: ---------
+Square [2, 4] value: 5 fixed: true possibilities: ---------
+Square [2, 5] value: - fixed: false possibilities: 123456789
+Square [2, 6] value: 6 fixed: true possibilities: ---------
+Square [3, 4] value: - fixed: false possibilities: 123456789
+Square [3, 5] value: - fixed: false possibilities: 123456789
+Square [3, 6] value: - fixed: false possibilities: 123456789
+
+Cluster 21: BOX
+Square [1, 7] value: - fixed: false possibilities: 123456789
+Square [1, 8] value: - fixed: false possibilities: 123456789
+Square [1, 9] value: - fixed: false possibilities: 123456789
+Square [2, 7] value: - fixed: false possibilities: 123456789
+Square [2, 8] value: 7 fixed: true possibilities: ---------
+Square [2, 9] value: - fixed: false possibilities: 123456789
+Square [3, 7] value: 5 fixed: true possibilities: ---------
+Square [3, 8] value: 8 fixed: true possibilities: ---------
+Square [3, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 22: BOX
+Square [4, 1] value: - fixed: false possibilities: 123456789
+Square [4, 2] value: - fixed: false possibilities: 123456789
+Square [4, 3] value: - fixed: false possibilities: 123456789
+Square [5, 1] value: 3 fixed: true possibilities: ---------
+Square [5, 2] value: - fixed: false possibilities: 123456789
+Square [5, 3] value: - fixed: false possibilities: 123456789
+Square [6, 1] value: - fixed: false possibilities: 123456789
+Square [6, 2] value: 7 fixed: true possibilities: ---------
+Square [6, 3] value: 8 fixed: true possibilities: ---------
+
+Cluster 23: BOX
+Square [4, 4] value: 9 fixed: true possibilities: ---------
+Square [4, 5] value: - fixed: false possibilities: 123456789
+Square [4, 6] value: - fixed: false possibilities: 123456789
+Square [5, 4] value: - fixed: false possibilities: 123456789
+Square [5, 5] value: - fixed: false possibilities: 123456789
+Square [5, 6] value: - fixed: false possibilities: 123456789
+Square [6, 4] value: - fixed: false possibilities: 123456789
+Square [6, 5] value: - fixed: false possibilities: 123456789
+Square [6, 6] value: 4 fixed: true possibilities: ---------
+
+Cluster 24: BOX
+Square [4, 7] value: 3 fixed: true possibilities: ---------
+Square [4, 8] value: 4 fixed: true possibilities: ---------
+Square [4, 9] value: - fixed: false possibilities: 123456789
+Square [5, 7] value: - fixed: false possibilities: 123456789
+Square [5, 8] value: - fixed: false possibilities: 123456789
+Square [5, 9] value: 8 fixed: true possibilities: ---------
+Square [6, 7] value: - fixed: false possibilities: 123456789
+Square [6, 8] value: - fixed: false possibilities: 123456789
+Square [6, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 25: BOX
+Square [7, 1] value: - fixed: false possibilities: 123456789
+Square [7, 2] value: 1 fixed: true possibilities: ---------
+Square [7, 3] value: 7 fixed: true possibilities: ---------
+Square [8, 1] value: - fixed: false possibilities: 123456789
+Square [8, 2] value: 8 fixed: true possibilities: ---------
+Square [8, 3] value: - fixed: false possibilities: 123456789
+Square [9, 1] value: 9 fixed: true possibilities: ---------
+Square [9, 2] value: - fixed: false possibilities: 123456789
+Square [9, 3] value: - fixed: false possibilities: 123456789
+
+Cluster 26: BOX
+Square [7, 4] value: - fixed: false possibilities: 123456789
+Square [7, 5] value: - fixed: false possibilities: 123456789
+Square [7, 6] value: - fixed: false possibilities: 123456789
+Square [8, 4] value: 2 fixed: true possibilities: ---------
+Square [8, 5] value: - fixed: false possibilities: 123456789
+Square [8, 6] value: 9 fixed: true possibilities: ---------
+Square [9, 4] value: 7 fixed: true possibilities: ---------
+Square [9, 5] value: - fixed: false possibilities: 123456789
+Square [9, 6] value: - fixed: false possibilities: 123456789
+
+Cluster 27: BOX
+Square [7, 7] value: - fixed: false possibilities: 123456789
+Square [7, 8] value: - fixed: false possibilities: 123456789
+Square [7, 9] value: - fixed: false possibilities: 123456789
+Square [8, 7] value: - fixed: false possibilities: 123456789
+Square [8, 8] value: 6 fixed: true possibilities: ---------
+Square [8, 9] value: - fixed: false possibilities: 123456789
+Square [9, 7] value: 8 fixed: true possibilities: ---------
+Square [9, 8] value: 4 fixed: true possibilities: ---------
+Square [9, 9] value: - fixed: false possibilities: 123456789
+
+
 
 What Would You Like To Do?
 
 Menu
 
-        Print
-Mark
-        Undo
-Redo
-        Save
-Restore
+         Print
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
 
-        Enter code of desired item:Q
-        ~Quitting Game~
+ Enter code of desired item:q
+ ~Quitting Game~
+Normal termination.
 
-        Normal termination.
+
+Process finished with exit code 0
+
+
+=======================================================================================================================
+"C:\Users\hoodi\OneDrive\Documents\1New Haven\5_Fifth Semester\CSCI-4526 Advanced C++\CSCI-4526-Sudoku-Project-Master\Executables\P6-KorideMok.exe" puzd.txt
+
+----------------------------------------------------------------
+        James Mok and Neelakanta Bharadwaj Koride
+        CSCI-4526: Advanced C++
+        Sun Nov 06 2022 12:26:07
+----------------------------------------------------------------
+~Starting Game~
+~Creating Board~
+~Adding Diagonals~
+
+What Would You Like To Do?
+
+Menu
+
+         Print
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
+
+ Enter code of desired item:p
+  Square [1, 1] value: 4 fixed: true possibilities: ---------
+  Square [1, 2] value: - fixed: false possibilities: 123456789
+  Square [1, 3] value: 6 fixed: true possibilities: ---------
+  Square [1, 4] value: - fixed: false possibilities: 123456789
+  Square [1, 5] value: - fixed: false possibilities: 123456789
+  Square [1, 6] value: 7 fixed: true possibilities: ---------
+  Square [1, 7] value: - fixed: false possibilities: 123456789
+  Square [1, 8] value: - fixed: false possibilities: 123456789
+  Square [1, 9] value: - fixed: false possibilities: 123456789
+
+ Square [2, 1] value: - fixed: false possibilities: 123456789
+  Square [2, 2] value: 9 fixed: true possibilities: ---------
+  Square [2, 3] value: - fixed: false possibilities: 123456789
+  Square [2, 4] value: 5 fixed: true possibilities: ---------
+  Square [2, 5] value: - fixed: false possibilities: 123456789
+  Square [2, 6] value: 6 fixed: true possibilities: ---------
+  Square [2, 7] value: - fixed: false possibilities: 123456789
+  Square [2, 8] value: 7 fixed: true possibilities: ---------
+  Square [2, 9] value: - fixed: false possibilities: 123456789
+
+ Square [3, 1] value: - fixed: false possibilities: 123456789
+  Square [3, 2] value: - fixed: false possibilities: 123456789
+  Square [3, 3] value: - fixed: false possibilities: 123456789
+  Square [3, 4] value: - fixed: false possibilities: 123456789
+  Square [3, 5] value: - fixed: false possibilities: 123456789
+  Square [3, 6] value: - fixed: false possibilities: 123456789
+  Square [3, 7] value: 5 fixed: true possibilities: ---------
+  Square [3, 8] value: 8 fixed: true possibilities: ---------
+  Square [3, 9] value: - fixed: false possibilities: 123456789
+
+ Square [4, 1] value: - fixed: false possibilities: 123456789
+  Square [4, 2] value: - fixed: false possibilities: 123456789
+  Square [4, 3] value: - fixed: false possibilities: 123456789
+  Square [4, 4] value: 9 fixed: true possibilities: ---------
+  Square [4, 5] value: - fixed: false possibilities: 123456789
+  Square [4, 6] value: - fixed: false possibilities: 123456789
+  Square [4, 7] value: 3 fixed: true possibilities: ---------
+  Square [4, 8] value: 4 fixed: true possibilities: ---------
+  Square [4, 9] value: - fixed: false possibilities: 123456789
+
+ Square [5, 1] value: 3 fixed: true possibilities: ---------
+  Square [5, 2] value: - fixed: false possibilities: 123456789
+  Square [5, 3] value: - fixed: false possibilities: 123456789
+  Square [5, 4] value: - fixed: false possibilities: 123456789
+  Square [5, 5] value: - fixed: false possibilities: 123456789
+  Square [5, 6] value: - fixed: false possibilities: 123456789
+  Square [5, 7] value: - fixed: false possibilities: 123456789
+  Square [5, 8] value: - fixed: false possibilities: 123456789
+  Square [5, 9] value: 8 fixed: true possibilities: ---------
+
+ Square [6, 1] value: - fixed: false possibilities: 123456789
+  Square [6, 2] value: 7 fixed: true possibilities: ---------
+  Square [6, 3] value: 8 fixed: true possibilities: ---------
+  Square [6, 4] value: - fixed: false possibilities: 123456789
+  Square [6, 5] value: - fixed: false possibilities: 123456789
+  Square [6, 6] value: 4 fixed: true possibilities: ---------
+  Square [6, 7] value: - fixed: false possibilities: 123456789
+  Square [6, 8] value: - fixed: false possibilities: 123456789
+  Square [6, 9] value: - fixed: false possibilities: 123456789
+
+ Square [7, 1] value: - fixed: false possibilities: 123456789
+  Square [7, 2] value: 1 fixed: true possibilities: ---------
+  Square [7, 3] value: 7 fixed: true possibilities: ---------
+  Square [7, 4] value: - fixed: false possibilities: 123456789
+  Square [7, 5] value: - fixed: false possibilities: 123456789
+  Square [7, 6] value: - fixed: false possibilities: 123456789
+  Square [7, 7] value: - fixed: false possibilities: 123456789
+  Square [7, 8] value: - fixed: false possibilities: 123456789
+  Square [7, 9] value: - fixed: false possibilities: 123456789
+
+ Square [8, 1] value: - fixed: false possibilities: 123456789
+  Square [8, 2] value: 8 fixed: true possibilities: ---------
+  Square [8, 3] value: - fixed: false possibilities: 123456789
+  Square [8, 4] value: 2 fixed: true possibilities: ---------
+  Square [8, 5] value: - fixed: false possibilities: 123456789
+  Square [8, 6] value: 9 fixed: true possibilities: ---------
+  Square [8, 7] value: - fixed: false possibilities: 123456789
+  Square [8, 8] value: 6 fixed: true possibilities: ---------
+  Square [8, 9] value: - fixed: false possibilities: 123456789
+
+ Square [9, 1] value: 9 fixed: true possibilities: ---------
+  Square [9, 2] value: - fixed: false possibilities: 123456789
+  Square [9, 3] value: - fixed: false possibilities: 123456789
+  Square [9, 4] value: 7 fixed: true possibilities: ---------
+  Square [9, 5] value: - fixed: false possibilities: 123456789
+  Square [9, 6] value: - fixed: false possibilities: 123456789
+  Square [9, 7] value: 8 fixed: true possibilities: ---------
+  Square [9, 8] value: 4 fixed: true possibilities: ---------
+  Square [9, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 1: ROW
+Square [1, 1] value: 4 fixed: true possibilities: ---------
+Square [1, 2] value: - fixed: false possibilities: 123456789
+Square [1, 3] value: 6 fixed: true possibilities: ---------
+Square [1, 4] value: - fixed: false possibilities: 123456789
+Square [1, 5] value: - fixed: false possibilities: 123456789
+Square [1, 6] value: 7 fixed: true possibilities: ---------
+Square [1, 7] value: - fixed: false possibilities: 123456789
+Square [1, 8] value: - fixed: false possibilities: 123456789
+Square [1, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 2: COLUMN
+Square [1, 1] value: 4 fixed: true possibilities: ---------
+Square [2, 1] value: - fixed: false possibilities: 123456789
+Square [3, 1] value: - fixed: false possibilities: 123456789
+Square [4, 1] value: - fixed: false possibilities: 123456789
+Square [5, 1] value: 3 fixed: true possibilities: ---------
+Square [6, 1] value: - fixed: false possibilities: 123456789
+Square [7, 1] value: - fixed: false possibilities: 123456789
+Square [8, 1] value: - fixed: false possibilities: 123456789
+Square [9, 1] value: 9 fixed: true possibilities: ---------
+
+Cluster 3: ROW
+Square [2, 1] value: - fixed: false possibilities: 123456789
+Square [2, 2] value: 9 fixed: true possibilities: ---------
+Square [2, 3] value: - fixed: false possibilities: 123456789
+Square [2, 4] value: 5 fixed: true possibilities: ---------
+Square [2, 5] value: - fixed: false possibilities: 123456789
+Square [2, 6] value: 6 fixed: true possibilities: ---------
+Square [2, 7] value: - fixed: false possibilities: 123456789
+Square [2, 8] value: 7 fixed: true possibilities: ---------
+Square [2, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 4: COLUMN
+Square [1, 2] value: - fixed: false possibilities: 123456789
+Square [2, 2] value: 9 fixed: true possibilities: ---------
+Square [3, 2] value: - fixed: false possibilities: 123456789
+Square [4, 2] value: - fixed: false possibilities: 123456789
+Square [5, 2] value: - fixed: false possibilities: 123456789
+Square [6, 2] value: 7 fixed: true possibilities: ---------
+Square [7, 2] value: 1 fixed: true possibilities: ---------
+Square [8, 2] value: 8 fixed: true possibilities: ---------
+Square [9, 2] value: - fixed: false possibilities: 123456789
+
+Cluster 5: ROW
+Square [3, 1] value: - fixed: false possibilities: 123456789
+Square [3, 2] value: - fixed: false possibilities: 123456789
+Square [3, 3] value: - fixed: false possibilities: 123456789
+Square [3, 4] value: - fixed: false possibilities: 123456789
+Square [3, 5] value: - fixed: false possibilities: 123456789
+Square [3, 6] value: - fixed: false possibilities: 123456789
+Square [3, 7] value: 5 fixed: true possibilities: ---------
+Square [3, 8] value: 8 fixed: true possibilities: ---------
+Square [3, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 6: COLUMN
+Square [1, 3] value: 6 fixed: true possibilities: ---------
+Square [2, 3] value: - fixed: false possibilities: 123456789
+Square [3, 3] value: - fixed: false possibilities: 123456789
+Square [4, 3] value: - fixed: false possibilities: 123456789
+Square [5, 3] value: - fixed: false possibilities: 123456789
+Square [6, 3] value: 8 fixed: true possibilities: ---------
+Square [7, 3] value: 7 fixed: true possibilities: ---------
+Square [8, 3] value: - fixed: false possibilities: 123456789
+Square [9, 3] value: - fixed: false possibilities: 123456789
+
+Cluster 7: ROW
+Square [4, 1] value: - fixed: false possibilities: 123456789
+Square [4, 2] value: - fixed: false possibilities: 123456789
+Square [4, 3] value: - fixed: false possibilities: 123456789
+Square [4, 4] value: 9 fixed: true possibilities: ---------
+Square [4, 5] value: - fixed: false possibilities: 123456789
+Square [4, 6] value: - fixed: false possibilities: 123456789
+Square [4, 7] value: 3 fixed: true possibilities: ---------
+Square [4, 8] value: 4 fixed: true possibilities: ---------
+Square [4, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 8: COLUMN
+Square [1, 4] value: - fixed: false possibilities: 123456789
+Square [2, 4] value: 5 fixed: true possibilities: ---------
+Square [3, 4] value: - fixed: false possibilities: 123456789
+Square [4, 4] value: 9 fixed: true possibilities: ---------
+Square [5, 4] value: - fixed: false possibilities: 123456789
+Square [6, 4] value: - fixed: false possibilities: 123456789
+Square [7, 4] value: - fixed: false possibilities: 123456789
+Square [8, 4] value: 2 fixed: true possibilities: ---------
+Square [9, 4] value: 7 fixed: true possibilities: ---------
+
+Cluster 9: ROW
+Square [5, 1] value: 3 fixed: true possibilities: ---------
+Square [5, 2] value: - fixed: false possibilities: 123456789
+Square [5, 3] value: - fixed: false possibilities: 123456789
+Square [5, 4] value: - fixed: false possibilities: 123456789
+Square [5, 5] value: - fixed: false possibilities: 123456789
+Square [5, 6] value: - fixed: false possibilities: 123456789
+Square [5, 7] value: - fixed: false possibilities: 123456789
+Square [5, 8] value: - fixed: false possibilities: 123456789
+Square [5, 9] value: 8 fixed: true possibilities: ---------
+
+Cluster 10: COLUMN
+Square [1, 5] value: - fixed: false possibilities: 123456789
+Square [2, 5] value: - fixed: false possibilities: 123456789
+Square [3, 5] value: - fixed: false possibilities: 123456789
+Square [4, 5] value: - fixed: false possibilities: 123456789
+Square [5, 5] value: - fixed: false possibilities: 123456789
+Square [6, 5] value: - fixed: false possibilities: 123456789
+Square [7, 5] value: - fixed: false possibilities: 123456789
+Square [8, 5] value: - fixed: false possibilities: 123456789
+Square [9, 5] value: - fixed: false possibilities: 123456789
+
+Cluster 11: ROW
+Square [6, 1] value: - fixed: false possibilities: 123456789
+Square [6, 2] value: 7 fixed: true possibilities: ---------
+Square [6, 3] value: 8 fixed: true possibilities: ---------
+Square [6, 4] value: - fixed: false possibilities: 123456789
+Square [6, 5] value: - fixed: false possibilities: 123456789
+Square [6, 6] value: 4 fixed: true possibilities: ---------
+Square [6, 7] value: - fixed: false possibilities: 123456789
+Square [6, 8] value: - fixed: false possibilities: 123456789
+Square [6, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 12: COLUMN
+Square [1, 6] value: 7 fixed: true possibilities: ---------
+Square [2, 6] value: 6 fixed: true possibilities: ---------
+Square [3, 6] value: - fixed: false possibilities: 123456789
+Square [4, 6] value: - fixed: false possibilities: 123456789
+Square [5, 6] value: - fixed: false possibilities: 123456789
+Square [6, 6] value: 4 fixed: true possibilities: ---------
+Square [7, 6] value: - fixed: false possibilities: 123456789
+Square [8, 6] value: 9 fixed: true possibilities: ---------
+Square [9, 6] value: - fixed: false possibilities: 123456789
+
+Cluster 13: ROW
+Square [7, 1] value: - fixed: false possibilities: 123456789
+Square [7, 2] value: 1 fixed: true possibilities: ---------
+Square [7, 3] value: 7 fixed: true possibilities: ---------
+Square [7, 4] value: - fixed: false possibilities: 123456789
+Square [7, 5] value: - fixed: false possibilities: 123456789
+Square [7, 6] value: - fixed: false possibilities: 123456789
+Square [7, 7] value: - fixed: false possibilities: 123456789
+Square [7, 8] value: - fixed: false possibilities: 123456789
+Square [7, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 14: COLUMN
+Square [1, 7] value: - fixed: false possibilities: 123456789
+Square [2, 7] value: - fixed: false possibilities: 123456789
+Square [3, 7] value: 5 fixed: true possibilities: ---------
+Square [4, 7] value: 3 fixed: true possibilities: ---------
+Square [5, 7] value: - fixed: false possibilities: 123456789
+Square [6, 7] value: - fixed: false possibilities: 123456789
+Square [7, 7] value: - fixed: false possibilities: 123456789
+Square [8, 7] value: - fixed: false possibilities: 123456789
+Square [9, 7] value: 8 fixed: true possibilities: ---------
+
+Cluster 15: ROW
+Square [8, 1] value: - fixed: false possibilities: 123456789
+Square [8, 2] value: 8 fixed: true possibilities: ---------
+Square [8, 3] value: - fixed: false possibilities: 123456789
+Square [8, 4] value: 2 fixed: true possibilities: ---------
+Square [8, 5] value: - fixed: false possibilities: 123456789
+Square [8, 6] value: 9 fixed: true possibilities: ---------
+Square [8, 7] value: - fixed: false possibilities: 123456789
+Square [8, 8] value: 6 fixed: true possibilities: ---------
+Square [8, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 16: COLUMN
+Square [1, 8] value: - fixed: false possibilities: 123456789
+Square [2, 8] value: 7 fixed: true possibilities: ---------
+Square [3, 8] value: 8 fixed: true possibilities: ---------
+Square [4, 8] value: 4 fixed: true possibilities: ---------
+Square [5, 8] value: - fixed: false possibilities: 123456789
+Square [6, 8] value: - fixed: false possibilities: 123456789
+Square [7, 8] value: - fixed: false possibilities: 123456789
+Square [8, 8] value: 6 fixed: true possibilities: ---------
+Square [9, 8] value: 4 fixed: true possibilities: ---------
+
+Cluster 17: ROW
+Square [9, 1] value: 9 fixed: true possibilities: ---------
+Square [9, 2] value: - fixed: false possibilities: 123456789
+Square [9, 3] value: - fixed: false possibilities: 123456789
+Square [9, 4] value: 7 fixed: true possibilities: ---------
+Square [9, 5] value: - fixed: false possibilities: 123456789
+Square [9, 6] value: - fixed: false possibilities: 123456789
+Square [9, 7] value: 8 fixed: true possibilities: ---------
+Square [9, 8] value: 4 fixed: true possibilities: ---------
+Square [9, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 18: COLUMN
+Square [1, 9] value: - fixed: false possibilities: 123456789
+Square [2, 9] value: - fixed: false possibilities: 123456789
+Square [3, 9] value: - fixed: false possibilities: 123456789
+Square [4, 9] value: - fixed: false possibilities: 123456789
+Square [5, 9] value: 8 fixed: true possibilities: ---------
+Square [6, 9] value: - fixed: false possibilities: 123456789
+Square [7, 9] value: - fixed: false possibilities: 123456789
+Square [8, 9] value: - fixed: false possibilities: 123456789
+Square [9, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 19: BOX
+Square [1, 1] value: 4 fixed: true possibilities: ---------
+Square [1, 2] value: - fixed: false possibilities: 123456789
+Square [1, 3] value: 6 fixed: true possibilities: ---------
+Square [2, 1] value: - fixed: false possibilities: 123456789
+Square [2, 2] value: 9 fixed: true possibilities: ---------
+Square [2, 3] value: - fixed: false possibilities: 123456789
+Square [3, 1] value: - fixed: false possibilities: 123456789
+Square [3, 2] value: - fixed: false possibilities: 123456789
+Square [3, 3] value: - fixed: false possibilities: 123456789
+
+Cluster 20: BOX
+Square [1, 4] value: - fixed: false possibilities: 123456789
+Square [1, 5] value: - fixed: false possibilities: 123456789
+Square [1, 6] value: 7 fixed: true possibilities: ---------
+Square [2, 4] value: 5 fixed: true possibilities: ---------
+Square [2, 5] value: - fixed: false possibilities: 123456789
+Square [2, 6] value: 6 fixed: true possibilities: ---------
+Square [3, 4] value: - fixed: false possibilities: 123456789
+Square [3, 5] value: - fixed: false possibilities: 123456789
+Square [3, 6] value: - fixed: false possibilities: 123456789
+
+Cluster 21: BOX
+Square [1, 7] value: - fixed: false possibilities: 123456789
+Square [1, 8] value: - fixed: false possibilities: 123456789
+Square [1, 9] value: - fixed: false possibilities: 123456789
+Square [2, 7] value: - fixed: false possibilities: 123456789
+Square [2, 8] value: 7 fixed: true possibilities: ---------
+Square [2, 9] value: - fixed: false possibilities: 123456789
+Square [3, 7] value: 5 fixed: true possibilities: ---------
+Square [3, 8] value: 8 fixed: true possibilities: ---------
+Square [3, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 22: BOX
+Square [4, 1] value: - fixed: false possibilities: 123456789
+Square [4, 2] value: - fixed: false possibilities: 123456789
+Square [4, 3] value: - fixed: false possibilities: 123456789
+Square [5, 1] value: 3 fixed: true possibilities: ---------
+Square [5, 2] value: - fixed: false possibilities: 123456789
+Square [5, 3] value: - fixed: false possibilities: 123456789
+Square [6, 1] value: - fixed: false possibilities: 123456789
+Square [6, 2] value: 7 fixed: true possibilities: ---------
+Square [6, 3] value: 8 fixed: true possibilities: ---------
+
+Cluster 23: BOX
+Square [4, 4] value: 9 fixed: true possibilities: ---------
+Square [4, 5] value: - fixed: false possibilities: 123456789
+Square [4, 6] value: - fixed: false possibilities: 123456789
+Square [5, 4] value: - fixed: false possibilities: 123456789
+Square [5, 5] value: - fixed: false possibilities: 123456789
+Square [5, 6] value: - fixed: false possibilities: 123456789
+Square [6, 4] value: - fixed: false possibilities: 123456789
+Square [6, 5] value: - fixed: false possibilities: 123456789
+Square [6, 6] value: 4 fixed: true possibilities: ---------
+
+Cluster 24: BOX
+Square [4, 7] value: 3 fixed: true possibilities: ---------
+Square [4, 8] value: 4 fixed: true possibilities: ---------
+Square [4, 9] value: - fixed: false possibilities: 123456789
+Square [5, 7] value: - fixed: false possibilities: 123456789
+Square [5, 8] value: - fixed: false possibilities: 123456789
+Square [5, 9] value: 8 fixed: true possibilities: ---------
+Square [6, 7] value: - fixed: false possibilities: 123456789
+Square [6, 8] value: - fixed: false possibilities: 123456789
+Square [6, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 25: BOX
+Square [7, 1] value: - fixed: false possibilities: 123456789
+Square [7, 2] value: 1 fixed: true possibilities: ---------
+Square [7, 3] value: 7 fixed: true possibilities: ---------
+Square [8, 1] value: - fixed: false possibilities: 123456789
+Square [8, 2] value: 8 fixed: true possibilities: ---------
+Square [8, 3] value: - fixed: false possibilities: 123456789
+Square [9, 1] value: 9 fixed: true possibilities: ---------
+Square [9, 2] value: - fixed: false possibilities: 123456789
+Square [9, 3] value: - fixed: false possibilities: 123456789
+
+Cluster 26: BOX
+Square [7, 4] value: - fixed: false possibilities: 123456789
+Square [7, 5] value: - fixed: false possibilities: 123456789
+Square [7, 6] value: - fixed: false possibilities: 123456789
+Square [8, 4] value: 2 fixed: true possibilities: ---------
+Square [8, 5] value: - fixed: false possibilities: 123456789
+Square [8, 6] value: 9 fixed: true possibilities: ---------
+Square [9, 4] value: 7 fixed: true possibilities: ---------
+Square [9, 5] value: - fixed: false possibilities: 123456789
+Square [9, 6] value: - fixed: false possibilities: 123456789
+
+Cluster 27: BOX
+Square [7, 7] value: - fixed: false possibilities: 123456789
+Square [7, 8] value: - fixed: false possibilities: 123456789
+Square [7, 9] value: - fixed: false possibilities: 123456789
+Square [8, 7] value: - fixed: false possibilities: 123456789
+Square [8, 8] value: 6 fixed: true possibilities: ---------
+Square [8, 9] value: - fixed: false possibilities: 123456789
+Square [9, 7] value: 8 fixed: true possibilities: ---------
+Square [9, 8] value: 4 fixed: true possibilities: ---------
+Square [9, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 28: DIAGONAL
+Square [1, 1] value: 4 fixed: true possibilities: ---------
+Square [2, 2] value: 9 fixed: true possibilities: ---------
+Square [3, 3] value: - fixed: false possibilities: 123456789
+Square [4, 4] value: 9 fixed: true possibilities: ---------
+Square [5, 5] value: - fixed: false possibilities: 123456789
+Square [6, 6] value: 4 fixed: true possibilities: ---------
+Square [7, 7] value: - fixed: false possibilities: 123456789
+Square [8, 8] value: 6 fixed: true possibilities: ---------
+Square [9, 9] value: - fixed: false possibilities: 123456789
+
+Cluster 29: DIAGONAL
+Square [1, 9] value: - fixed: false possibilities: 123456789
+Square [2, 8] value: 7 fixed: true possibilities: ---------
+Square [3, 7] value: 5 fixed: true possibilities: ---------
+Square [4, 6] value: - fixed: false possibilities: 123456789
+Square [5, 5] value: - fixed: false possibilities: 123456789
+Square [6, 4] value: - fixed: false possibilities: 123456789
+Square [7, 3] value: 7 fixed: true possibilities: ---------
+Square [8, 2] value: 8 fixed: true possibilities: ---------
+Square [9, 1] value: 9 fixed: true possibilities: ---------
+
+
+
+What Would You Like To Do?
+
+Menu
+
+         Print
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
+
+ Enter code of desired item:m
+ Input 'Row' 'Column' 'Value':5 5 4
+ 4 is already in this cluster!
+
+What Would You Like To Do?
+
+Menu
+
+         Print
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
+
+ Enter code of desired item:m
+ Input 'Row' 'Column' 'Value':5 5 9
+ 9 is already in this cluster!
+
+What Would You Like To Do?
+
+Menu
+
+         Print
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
+
+ Enter code of desired item:m
+ Input 'Row' 'Column' 'Value':5 5 2
+
+What Would You Like To Do?
+
+Menu
+
+         Print
+         Mark
+         Undo
+         Redo
+         Save
+         Restore
+         Quit
+
+ Enter code of desired item:q
+ ~Quitting Game~
+
+Normal termination.
 
 Process finished with exit code 0

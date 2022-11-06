@@ -14,7 +14,7 @@ Game(ifstream& file) : file(file) {
     short clstr;
     const static string types = "TtDdSs";
     file>>gameType;
-    if (types.find(gameType) == string::npos) fatal("Invalid Game Type");
+    if (types.find(gameType) == string::npos) throw InvalidGameTypeException(gameType);
     switch(tolower(gameType)){
         case 't': n = 9; clstr = 27; puzzle = new Board(n, clstr, file); break;
         case 'd': n = 9; clstr = 29; puzzle = new DiagBoard(n, clstr, file); break;
@@ -41,7 +41,8 @@ run(){
                 char value;
                 cout <<"Input 'Row' 'Column' 'Value': ";
                 cin >> r >> c >> value;
-                puzzle->mark(r, c, value);
+                try{ puzzle->mark(r, c, value); }
+                catch(GameException& e) { cout <<e << endl; }
                 continue; //continues the for loop
             case 'U': continue;
             case 'R': continue;

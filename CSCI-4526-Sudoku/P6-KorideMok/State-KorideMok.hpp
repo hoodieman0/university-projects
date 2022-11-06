@@ -6,19 +6,17 @@
 #include "tools.hpp"
 
 class State {
-private:
+protected:
     short poslist = 0x3FE; //0011 1111 1110
     char value = '-';
     bool fixed = false; //is part of the original puzzle
 
 public:
-    State() = default;
-    State(char);
+    State(char='-');
     ~State() = default;
-    void mark(char);
+    virtual void mark(char);
     char getValue() const { return value; }
-    void turnOffBit(short);
-    ostream& print(ostream&);
+    ostream& print(ostream&) const;
 };
 
 inline ostream& operator <<(ostream& out, State& st){

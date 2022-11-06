@@ -17,8 +17,7 @@ cleanline( istream& is ) {
 // --------------------------------------------------------------------------- 
 // Used to flush the cin buffer as in cin >> x >> flush;  or cin >> flush;    
 istream&
-flush( istream& is )
-{
+flush( istream& is ) {
     return is.seekg( 0, ios::end );
 }
 
@@ -34,8 +33,8 @@ ostream& general( ostream& os ){       // Use: cout <<fixed <<x <<general <<y;
 // ---------------------------------------------------------------------------- 
 // Print a neat header on the output.                                        
 void 
-fbanner( ostream& fout )
-{   char date[16], time[10];
+fbanner( ostream& fout ) {
+    char date[16], time[10];
     when(date, time);
     fout << "\n----------------------------------------------------------------\n"
          << "\t" << NAME 
@@ -50,8 +49,7 @@ void bye( void ) { cerr << "\nNormal termination.\n" ; }
 // --------------------------------------------------------------------------
 //  Print message and wait for the user to type a newline.                     
 void 
-hold( void )                                    
-{     
+hold( void ) {
      cerr << endl << endl << " Press 'Enter' to continue...";
      cin >> flush;
      cin.get();
@@ -62,11 +60,9 @@ hold( void )
 // this is a handy function for messages of all sorts.  
 //  It formats, prints, and rings the bell.                   
 //  It accepts a format priored by a variable number of data items to print.
-
 void
-say (const char* format, ...)
-{   va_list vargs;                               // optional arguments 
-
+say (const char* format, ...) {
+    va_list vargs;                      // optional arguments
     va_start(vargs, format);
     vfprintf(stderr, format, vargs);
     fprintf(stderr, "\n");
@@ -75,12 +71,12 @@ say (const char* format, ...)
 // ---------------------------------------------------------------------------- 
 //  Error handling and error recovery functions.                                
 //-----------------------------------------------------------------------------
-// h is function is for error messages.  
+// This function is for error messages.
 //    It takes a format argument priored by any number of data arguments.
 //    It formats and prints an error message, then exits.                
 void
-fatal (const string& msg)
-{   cout << flush;
+fatal (const string& msg) {
+    cout << flush;
     cerr << msg;
     cerr << "\nError exit\n";
     exit(1);
@@ -140,30 +136,31 @@ oclock( char* hour) {
 // ----------------------------------------------------------------------------
 //  Menu handling                           
 // ----------------------------------------------------------------------------
-// Display a menu then read an alphabetic menu choice character.               
+// Display a menu then read an alphabetic menu choice character.
 char 
-menu_c( const char* title, int n, const char* menu[], char* valid ){
+menu_c( const string title, int n, const string menu[], const string valid) {
     int k;
     char choice;
     
     cout << endl << title << endl << endl ;
-    for( k=0; k<n; ++k ) 
-        cout << "\t " << menu[k] << endl;
-    cout << endl <<" Enter code of desired item: ";
-    cin >> choice;   
+    for(;;) {
+        for( k=0; k<n; ++k )  cout << "\t " << menu[k] << endl;
+        cout << endl <<" Enter code of desired item: ";
+        cin >> choice;
+        if ( valid.find(choice) != string::npos ) break;
+        cout << "\n Illegal choice or input error; try again.\n";
+    }
     return choice;
 }                                                                                                                       
 
 // ----------------------------------------------------------------------------
 // Display a menu then read and validate a numeric menu choice.                
-int menu( const char* title, int n, const char* menu[] ){
+int menu( string title, int n, const string menu[] ) {
     int choice;
 
     cout << endl << title << endl << endl ;
     for(;;) {   
-        for( int k=0; k<n; ++k )
-            cout << "\t " << (k+1) << ". " << menu[k] << endl;
-
+        for( int k=0; k<n; ++k ) cout << "\t " << (k+1) << ". " << menu[k] << endl;
         cout << endl <<" Enter number of desired item: ";
         cin >> choice >> flush;
         if ( 0 < choice && choice <= n) break;
@@ -171,5 +168,3 @@ int menu( const char* title, int n, const char* menu[] ){
     }
     return choice; 
 }                                
-
-

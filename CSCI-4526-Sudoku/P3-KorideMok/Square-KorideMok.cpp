@@ -9,7 +9,7 @@
 // Postconditions: Prints Square's variables to the console
 Square::
 Square(char input, short r, short c) : info(input), row(r), col(c){
-    cout <<"Constructing Square" <<row << ", " <<col <<endl;
+    cout <<"Constructing Square" <<row+1 << ", " <<col+1 <<endl;
 }
 
 void Square::
@@ -25,6 +25,6 @@ mark(char marker){
 // Postconditions: Prints Square's variables to the console
 ostream& Square::
 print(ostream& out){
-    out <<"Square [" <<row <<", " <<col <<"] " << info;
+    out <<"Square [" <<row+1 <<", " <<col+1 <<"] " << info;
     return out;
 }

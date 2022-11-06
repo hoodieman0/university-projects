@@ -4,20 +4,20 @@
 #define STATE_H
 
 #include "tools.hpp"
+#include "Exceptions.hpp"
 
 class State {
-private:
+protected:
     short poslist = 0x3FE; //0011 1111 1110
     char value = '-';
     bool fixed = false; //is part of the original puzzle
 
 public:
-    State() { }//cout <<"Default State Constructor" << endl; }
-    State(char);
-    ~State() { }//cout <<"Default State Destructor" <<endl; }
-    void mark(char);
-    char getValue() { return value; }
-    ostream& print(ostream&);
+    State(char='-');
+    ~State() = default;
+    virtual void mark(char);
+    char getValue() const { return value; }
+    ostream& print(ostream&) const;
 };
 
 inline ostream& operator <<(ostream& out, State& st){

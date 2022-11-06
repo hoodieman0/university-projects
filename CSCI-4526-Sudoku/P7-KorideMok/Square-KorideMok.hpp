@@ -8,7 +8,7 @@
 
 class Cluster;
 
-class Square : private State{
+class Square : public State{
     private:
         short row = 0;
         short col = 0;
@@ -19,7 +19,6 @@ class Square : private State{
         Square(char, short, short);
         ~Square() = default;
         void mark(char);
-        const char getValue() const { return value; }
         void addCluster(Cluster* cl) { buddies.push_back(cl); }
         void shoop(char);
         void turnOff(int);
