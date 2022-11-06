@@ -26,7 +26,7 @@ mark(char ch){
         poslist = 0;
     }
     else{
-        cout <<"Cannot Add Value" <<endl;
+        cout <<"Cannot Mark A Fixed Value" <<endl;
     }
 }
 

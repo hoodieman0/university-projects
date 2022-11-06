@@ -133,17 +133,13 @@ testBoardFunctions(ostream& out, char* filename){
     out <<puzzle <<endl;
     out <<"~Board Object Created~" <<endl;
 
-    out <<"\n2. Sub Function Test" <<endl;
-    for(int i = 1; i < 10; i++){
-        for (int j = 1; j < 10; j++){
-            out << puzzle.sub(i, j) << endl;
-        }
-    }
+    out <<"\n2. Get Square [5, 9] Test" <<endl;
+    out << puzzle.sub(5, 9) << endl;
 
-    out <<"\n3. Mark square (1, 2) with '2'" <<endl;
-    out <<puzzle.sub(1, 2) <<endl;
-    puzzle.mark(1, 2, '2');
-    out <<puzzle.sub(1, 2) <<endl;
+    out <<"\n3. Mark square [1, 1] with '1'" <<endl;
+    out <<puzzle.sub(1, 1) <<endl;
+    puzzle.mark(1, 1, '1');
+    out <<puzzle.sub(1, 1) <<endl;
 
     out <<"-----------------------------------------------------"
           "-----------------------------------------------------" <<endl;
@@ -187,7 +183,7 @@ testClusterFunctions(ostream& out, char* filename){
     out <<"\n2. Shoop Function Test" <<endl;
     out <<"Using test 1's board, mark [9, 9] with '1'\n" <<endl;
     puzzle.mark(9, 9, '1');
-    puzzle.printClusters(out);
+    out << puzzle << endl;
 
     out <<"\n3. Valid Input Test" <<endl;
     out <<"Marking [8, 9] with '1' (invalid)..." <<endl;

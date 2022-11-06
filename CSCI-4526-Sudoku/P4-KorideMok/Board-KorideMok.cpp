@@ -7,7 +7,7 @@
 // Preconditions: Game object exists
 // Postconditions: Board object is created
 Board::
-Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
+Board(short n, ifstream& file) : n(n), file(file), left(n*n) {
     bd = new Square[n*n];
     getPuzzle();
     cout << "~Creating Board~" <<endl;
@@ -20,29 +20,20 @@ Board(int n, ifstream& puzfile) : n(n), file(puzfile), left(n*n) {
 void Board::
 getPuzzle() {
     char x;
-    string line;
-    int index = 0;
     string types = "123456789-";
 
-    for (int j = 0; j < n; j++){
-        file >> line; //does not account for beginning gameType char
-        for (int k = 0; k < n; k++){
-            x = line[k];
-            if (types.find(x) == string::npos) fatal("!INVALID CHARACTER IN FILE!");
-
-            Square temp(x, j, k);
-            bd[index] = temp;
-            index++;
-
+    //depends on initial char being read already
+    for (short r = 0; r < n; r++){
+        file.get(x); //discard newline
+        for (short c = 0; c < n; c++){
+            file.get(x);
+            if (types.find(x) == string::npos) fatal("INVALID CHARACTER IN FILE");
+            sub(r+1, c+1) = Square(x, r ,c);
             if (x != '-') left--;
             }
         }
-    file.close();
-}
-
-void Board::
-mark(int r, int c, char value) {
-    sub(r, c).mark(value);
+    x = file.get(); //is the eof check necessary?
+    if (file.eof()) return;
 }
 
 // ---------------------------------------------------------------------
@@ -53,9 +44,7 @@ ostream& Board::
 print(ostream& out) {
     for (int j = 0; j < n*n; j++){
         out <<" " <<bd[j] <<"\n ";
-        if ((j+1) % 9 == 0){
-            out << "\n";
-        }
+        if ((j+1) % n == 0) out << "\n";
     }
     return out;
 }

@@ -9,10 +9,10 @@ enum class ClusterType {ROW, COLUMN, BOX};
 
 class Board{
     private:
-        int n = 9; // Size of the puzzle
-        Square * bd;
+        short n; // Size of the puzzle
+        Square* bd;
         ifstream& file;
-        short left = 81;
+        short left;
         vector<Cluster*> buddies;
 
         void getPuzzle();
@@ -22,12 +22,11 @@ class Board{
         void createBox(short, short);
 
     public:
-        Board(int, ifstream&);
+        Board(short, ifstream&);
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
         Square& sub(short r, short c){ return bd[(r - 1)* n + (c - 1)]; }
         void mark(short r, short c, char value) { sub(r, c).mark(value); }
         ostream& print(ostream&);
-        ostream& printClusters(ostream&);
 };
 
 inline ostream& operator<<(ostream& out, Board& b){

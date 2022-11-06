@@ -9,7 +9,6 @@
 // Postconditions: Prints Square's variables to the console
 Square::
 Square(char input, short r, short c) : State(input), row(r), col(c){
-    //cout <<"Constructing Square " <<row << ", " <<col <<endl;
 }
 
 // ---------------------------------------------------------------------
@@ -19,7 +18,7 @@ Square(char input, short r, short c) : State(input), row(r), col(c){
 void Square::
 mark(char marker){
     string legal = "123456789";
-    if (legal.find(marker) == string::npos) { cout <<"!Invalid Input!" <<endl; return; }
+    if (legal.find(marker) == string::npos) { cout <<"Invalid Input!" <<endl; return; }
 
     for (Cluster* cl : buddies) {
         if (!cl->isValid(marker)) {

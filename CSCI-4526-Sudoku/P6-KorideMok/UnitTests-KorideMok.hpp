@@ -40,7 +40,8 @@ testP2(ostream& out) {
 inline void
 testP3(ostream& out, const char* filename) {
     out <<"~Begin Game Test~\n---------------------------------------------------" <<endl;
-    Game obj(filename);
+    ifstream ifs(filename);
+    Game obj(ifs);
     obj.run();
     out <<"\n~Game Test Completed Successfully~\n-----------------------------------------"
           "----------" <<endl;
