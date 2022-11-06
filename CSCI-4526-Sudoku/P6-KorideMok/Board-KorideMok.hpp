@@ -8,7 +8,7 @@
 enum class ClusterType {ROW, COLUMN, BOX, DIAGONAL};
 
 class Board{
-    private:
+    protected:
         short n; // Size of the puzzle
         Square* bd;
         ifstream& file;
@@ -27,8 +27,6 @@ class Board{
         Square& sub(short r, short c){ return bd[(r - 1)* n + (c - 1)]; }
         void mark(short r, short c, char value) { sub(r, c).mark(value); }
         ostream& print(ostream&);
-
-        friend class DiagBoard; //TODO is this necessary?
 };
 
 inline ostream& operator<<(ostream& out, Board& b){
