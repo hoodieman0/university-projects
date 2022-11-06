@@ -10,7 +10,6 @@ Game::
 Game(ifstream& ifs) : file(ifs){
     string types = "TtDdSs";
     file>>gameType;
-    cerr << gameType;
     if (types.find(gameType) == string::npos) fatal("Invalid Game Type");
     switch(toupper(gameType)){
         case 'T': n = 9; break;
