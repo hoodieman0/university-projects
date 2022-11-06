@@ -6,8 +6,6 @@ int main(int argc, char* const argv[]){
     banner();
 
     if(argc != 2){ fatal("Incorrect Amount Of Arguments\nUsage: program-name input-file"); }
-    //usage: program-name input-file
-    //ifstream & into game
 
     ifstream ifs(argv[1]);
     if (!ifs.is_open()) { fatal("Unable To Open Input-File"); }
