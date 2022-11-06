@@ -9,10 +9,10 @@ class Board;
 
 class Game{
     private:
-        const string menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};;
+        const string menu[6] = {"Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
         Board* puzzle;
-        int n = 9;
-        char gameType = 't';
+        short n;
+        char gameType;
         ifstream& file;
 
     public:
