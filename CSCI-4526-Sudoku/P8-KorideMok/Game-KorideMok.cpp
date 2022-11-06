@@ -16,7 +16,7 @@ Game(ifstream& file) : file(file) {
     file>>gameType;
     if (types.find(gameType) == string::npos) throw InvalidGameTypeException(gameType);
     switch(tolower(gameType)){
-        case 't': n = 9; clstr = 27; puzzle = new Board(n, clstr, file); break;
+        case 't': n = 9; clstr = 27; puzzle = new Board(n, clstr, file);
         case 'd': n = 9; clstr = 29; puzzle = new DiagBoard(n, clstr, file); break;
         case 's': n = 6; clstr = 18; puzzle = new Board(n, clstr, file); break;
     }
@@ -30,8 +30,10 @@ Game(ifstream& file) : file(file) {
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    const static char legal[] {"PpMmUuRrSsQq"};
+    const static char legal[] { "PpMmUuRrSsQq" };
+    Viewer fancyView(9, 9, *puzzle);
     for(;;){
+        fancyView.show(cout);
         cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 7, menu, legal);
         switch (toupper(x)) {
@@ -51,5 +53,3 @@ run(){
         }
     }
 }
-
-

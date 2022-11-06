@@ -104,6 +104,17 @@ mark(const short r, const short c, const char value) const {
     sub(r, c).mark(value);
 }
 
+char Board::
+getMarkChar(int row, int col) const {
+    return sub(row, col).getValue();
+}
+
+string Board::
+getPossibilityString(int row, int col) const {
+    string s(1, sub(row, col).getValue());
+    return s;
+}
+
 // ---------------------------------------------------------------------
 // Prints the state of the board
 // Preconditions: Game object exists, getPuzzle has been run

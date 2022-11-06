@@ -9,7 +9,7 @@
 
 enum class ClusterType {ROW=0, COLUMN, BOX, DIAGONAL};
 
-class Board{
+class Board : public CanView{
     protected:
         short n; // Size of the puzzle
         Square* bd;
@@ -28,6 +28,8 @@ class Board{
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
         Square& sub(const short r, const short c) const { return bd[(r - 1)* n + (c - 1)]; }
         void mark(const short, const short, const char) const;
+        char getMarkChar(int row, int col) const override;
+        string getPossibilityString(int row, int col) const override;
         ostream& print(ostream&) const ;
 };
 
