@@ -136,4 +136,15 @@ add_executable(P8-KorideMok
         P8-KorideMok/DiagBoard-KorideMok.hpp
         P8-KorideMok/DiagBoard-KorideMok.cpp
         P8-KorideMok/Exceptions-KorideMok.hpp
-        P8-KorideMok/Exceptions-KorideMok.cpp)
+        P8-KorideMok/Exceptions-KorideMok.cpp
+        P8-KorideMok/CanView/Viewer.hpp
+        P8-KorideMok/CanView/Viewer.cpp
+        P8-KorideMok/CanView/Canvas.hpp
+        P8-KorideMok/CanView/Canvas.cpp
+        P8-KorideMok/CanView/CanView.hpp
+        P8-KorideMok/CanView/GridChar.hpp
+        P8-KorideMok/CanView/GridChar.cpp
+        P8-KorideMok/CanView/MixedChar.hpp
+        P8-KorideMok/CanView/MixedChar.cpp
+
+        )
