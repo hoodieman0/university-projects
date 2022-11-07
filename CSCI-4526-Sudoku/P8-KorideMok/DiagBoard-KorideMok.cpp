@@ -4,6 +4,10 @@
 
 static const string clusterT[4] = {"ROW", "COLUMN", "BOX", "DIAGONAL"};
 
+// ---------------------------------------------------------------------
+// Constructor for DiagBoard
+// Preconditions: Game object exists
+// Postconditions: creates a DiagBoard object
 DiagBoard::
 DiagBoard(short n, short clstr, ifstream& file) : Board(n, clstr, file) {
     //Is knowing the amount of clusters important if I am making a diagonal board?
@@ -11,6 +15,10 @@ DiagBoard(short n, short clstr, ifstream& file) : Board(n, clstr, file) {
     createDiagonal();
 }
 
+// ---------------------------------------------------------------------
+// Creates the diagonal clusters for a diagonal board
+// Preconditions: Board object exists
+// Postconditions: adds two diagonal clusters to buddies
 void DiagBoard::
 createDiagonal() {
     Square* topArr[9];

@@ -98,17 +98,29 @@ createBox(const short r, const short c) {
     buddies.push_back(temp);
 }
 
+// ---------------------------------------------------------------------
+// marks the square at the given position with the inputted value
+// Preconditions: Game object exists
+// Postconditions: mark the square with the value, if out of bounds throw exception
 void Board::
 mark(const short r, const short c, const char value) const {
     if (r < 1 || r > n || c < 1 || c > n) throw InvalidPositionException(r, c);
     sub(r, c).mark(value);
 }
 
+// ---------------------------------------------------------------------
+// Gets the value of the square at the given position
+// Preconditions: Game object exists
+// Postconditions: return Square::value
 char Board::
 getMarkChar(int row, int col) const {
     return sub(row, col).getValue();
 }
 
+// ---------------------------------------------------------------------
+// Converts the binary Square::poslist to a string and returns it
+// Preconditions: Game object exists
+// Postconditions: return a string with all possible values for the square
 string Board::
 getPossibilityString(int row, int col) const {
     short list = sub(row, col).getPosList();

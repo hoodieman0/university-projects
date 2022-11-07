@@ -98,6 +98,10 @@ createBox(const short r, const short c) {
     buddies.push_back(temp);
 }
 
+// ---------------------------------------------------------------------
+// marks the square at the given position with the inputted value
+// Preconditions: Game object exists
+// Postconditions: mark the square with the value, if out of bounds throw exception
 void Board::
 mark(const short r, const short c, const char value) const {
     if (r < 1 || r > n || c < 1 || c > n) throw InvalidPositionException(r, c);
