@@ -32,7 +32,7 @@ print(ostream& out) const {
 ostream& InvalidCharException::
 print(ostream& out) const {
     out << "Error Code (" << code << ") " << error << endl;
-    out << "Character \'" << input << "\' In Input File Cannot Be Used In A Sudoku Square" << endl;
+    out << "Character \'" << input << "\' In Input File At Line " <<line <<" Cannot Be Used In A Sudoku Square" << endl;
     return out;
 }
 

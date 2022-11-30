@@ -61,9 +61,10 @@ class InvalidGameTypeException : public StreamException{
 class InvalidCharException : public StreamException{
     private:
         char input;
+        int line;
 
     public:
-        InvalidCharException(const char c) : StreamException(104,"InvalidCharException"), input(c) {}
+        InvalidCharException(const char c, const int line) : StreamException(104,"InvalidCharException"), input(c), line(line) {}
         ~InvalidCharException()=default;
         ostream& print(ostream&) const override;
 };
