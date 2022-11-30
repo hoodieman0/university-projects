@@ -6,7 +6,7 @@
 #include "tools.hpp"
 #include "Board-KorideMok.hpp"
 #include "DiagBoard-KorideMok.hpp"
-#include "CanView/Viewer.hpp"
+#include "Viewer.hpp"
 
 class Game{
     private:
