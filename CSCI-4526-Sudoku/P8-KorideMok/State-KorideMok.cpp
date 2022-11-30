@@ -26,6 +26,19 @@ mark(const char ch){
     poslist = 0;
 }
 
+string State::getPosList() const{
+    short list = poslist >> 1;
+
+    string s;
+    short mask = 0x001;
+    for (int counter = 1; counter <= 9; counter++){
+        if ((list & mask) == 1){ s += counter + 48; }
+        else{ s += '-'; }
+        list = list >> 1;
+    }
+    return s;
+}
+
 // ---------------------------------------------------------------------
 // Prints the variables of the State object in a human-readable format
 // Preconditions: State object exists
