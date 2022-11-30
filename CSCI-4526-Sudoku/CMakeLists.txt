@@ -146,5 +146,4 @@ add_executable(P8-KorideMok
         P8-KorideMok/CanView/GridChar.cpp
         P8-KorideMok/CanView/MixedChar.hpp
         P8-KorideMok/CanView/MixedChar.cpp
-
         )

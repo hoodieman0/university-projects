@@ -131,7 +131,11 @@ GridChar::GridChar() {
 }
 
 const char* GridChar::getUtfChar(int a, int b, int c, int d){
-	const char* uch = utfChar[a][b][c][d];
-	if (uch==NULL) fatal("Undefined utfChar[%d][%d][%d][%d]", a, b, c, d);
-	return uch;
+    const char* uch = utfChar[a][b][c][d];
+    if (uch==NULL) {
+        string errorChar = "[" +to_string(a) + "][" + to_string(b) + "][" + to_string(c) + "][" + to_string(d) + "]";
+        fatal("Undefined utfChar " + errorChar);
+    }
+    return uch;
 }
+
