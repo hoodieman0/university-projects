@@ -18,3 +18,9 @@ P4-KorideMok/CMakeLists.txt
 P4-KorideMok/CMakeLists.txt
 
 P8-KorideMok/.vscode/
+
+*.gch
+
+*.o
+
+*.exe
