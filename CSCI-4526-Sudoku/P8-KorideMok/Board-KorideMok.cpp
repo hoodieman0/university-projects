@@ -27,10 +27,10 @@ getPuzzle() {
 
     //depends on initial char being read already
     for (short r = 0; r < n; r++){
-        file.get(x); //discard newline
+        file>> x; //discard newline
         for (short c = 0; c < n; c++){
-            file.get(x);
-            if (types.find(x) == string::npos) throw InvalidCharException(x);
+            file>> x;
+            if (types.find(x) == string::npos) throw InvalidCharException(x, r);
             sub(r+1, c+1) = Square(x, r ,c);
             if (x != '-') left--;
         }
@@ -117,24 +117,6 @@ getMarkChar(int row, int col) const {
     return sub(row, col).getValue();
 }
 
-// ---------------------------------------------------------------------
-// Converts the binary Square::poslist to a string and returns it
-// Preconditions: Game object exists
-// Postconditions: return a string with all possible values for the square
-string Board::
-getPossibilityString(int row, int col) const {
-    short list = sub(row, col).getPosList();
-    list = list >> 1;
-
-    string s;
-    short mask = 0x001;
-    for (int counter = 1; counter <= 9; counter++){
-        if ((list & mask) == 1){ s += counter; }
-        else{ s += '-'; }
-        list = list >> 1;
-    }
-    return s;
-}
 
 // ---------------------------------------------------------------------
 // Prints the state of the board
