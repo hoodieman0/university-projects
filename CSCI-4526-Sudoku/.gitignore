@@ -24,3 +24,7 @@ P8-KorideMok/.vscode/
 *.o
 
 *.exe
+
+.vscode/
+
+*.stackdump
