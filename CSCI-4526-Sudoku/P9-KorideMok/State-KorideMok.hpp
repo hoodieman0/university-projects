@@ -17,6 +17,7 @@ public:
     ~State() = default;
     virtual void mark(char);
     char getValue() const { return value; }
+    bool getFixed() const { return fixed; }
     string getPosList() const;
 
     //I hate setters, but in order to use Undo/Redo it is necessary for
