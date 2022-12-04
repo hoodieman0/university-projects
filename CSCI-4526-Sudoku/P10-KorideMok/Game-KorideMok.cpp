@@ -36,6 +36,9 @@ run(){
     char value;
     Frame* frame;
     State arr[81];
+    string fileName;
+    ofstream saveFile;
+    ifstream inputFile;
 
     for(;;){
         fancyView.show(cout);
@@ -94,9 +97,25 @@ run(){
                 puzzle->restoreState(frame);
                 continue;
 
-            case 'S': continue;
+            case 'S': 
+                cout <<"Type The Name Of The File To Save To: ";
+                cin>> fileName;
+                saveFile.open(fileName);
+                undo.top()->serialize(saveFile);
+                cout <<"Game Saved Successfully!" <<endl;
+                continue;
 
             case 'E': 
+                cout <<"Type The Name Of The File To Restore: ";
+                cin>> fileName;
+                inputFile.open(fileName);
+                frame = new Frame();
+                frame->realize(inputFile);
+                undo.zap();
+                redo.zap();
+                puzzle->restoreState(frame);
+                cout <<"Game Restored Successfully!" <<endl;
+                continue;
 
             case 'Q': return;
         }
