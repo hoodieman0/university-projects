@@ -12,7 +12,7 @@ class Frame{
 
     public:
         Frame()=delete;
-        Frame(State*);
+        Frame(State arr[81]);
         ~Frame()=default;
         State getState(int index) { return arr[index]; }
 };

@@ -3,8 +3,8 @@
 #include "Frame-KorideMok.hpp"
 
 Frame::
-Frame(State* input){
+Frame(State arr[81]){
     for (int i = 0; i < 81; i++){
-        arr[i] = input[i];
+        arr[i] = arr[i];
     }
 }
