@@ -12,7 +12,7 @@ class Stack : private vector<Frame*>{
         ~Stack()=default;
         void pop() { vector::pop_back(); }
         Frame* top() { return vector::back(); }
-        void push(Frame* f) { vector::push_back(f); }
+        void push(Frame* frame) { vector::push_back(frame); }
         int size() { return vector::size(); }
         void zap() { while (!vector::empty()) vector::pop_back(); }
 
