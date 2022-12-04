@@ -13,7 +13,6 @@ Board(const short n, const short clstr, ifstream& file) : n(n), file(file), left
     bd = new Square[n*n];
     getPuzzle();
     makeClusters();
-    cout << "~Creating Board~" <<endl;
 }
 
 // ---------------------------------------------------------------------
