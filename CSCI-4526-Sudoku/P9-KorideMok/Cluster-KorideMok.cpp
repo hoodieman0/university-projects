@@ -21,7 +21,7 @@ Cluster(const string type, Square* arr[9]) : type(type){
 void Cluster::
 shoop(const char val){
     const int n = val - '0';
-    for (Square* square : clstr) square->turnOff(n);
+    for (Square* square : clstr) square->changeBit(n);
 }
 
 // ---------------------------------------------------------------------
