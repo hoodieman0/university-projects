@@ -11,6 +11,9 @@ class Frame{
         State arr[81];
 
     public:
+        Frame()=delete;
+        Frame(State*);
+        ~Frame()=default;
         State getState(int index) { return arr[index]; }
 };
 
