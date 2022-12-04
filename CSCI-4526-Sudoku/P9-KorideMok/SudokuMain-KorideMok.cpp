@@ -30,5 +30,3 @@ int main(int argc, char* const argv[]){
 
     bye();
 }
-
-//TODO comment functions

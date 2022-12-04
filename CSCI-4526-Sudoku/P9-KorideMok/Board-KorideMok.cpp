@@ -146,20 +146,3 @@ print(ostream& out) const {
 
     return out;
 }
-
-/* Can I implement this for visualization purposes?
- *
-// ---------------------------------------------------------------------
-// Prints the state of the board
-// Preconditions: Game object exists, getPuzzle has been run
-// Postconditions: All squares and their values of the board are outputted
-ostream& Board::
-print(ostream& out) {
-    for (int j = 0; j < n*n; j++){
-        out <<bd[j].getState() <<" ";
-        if ((j+1) % 9 == 0){
-            out << "\n ";
-        }
-    }
-    return out;
- */

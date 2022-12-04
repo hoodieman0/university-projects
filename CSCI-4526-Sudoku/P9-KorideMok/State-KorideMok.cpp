@@ -26,6 +26,10 @@ mark(const char ch){
     posList = 0;
 }
 
+// ---------------------------------------------------------------------
+// Returns the posList variable in a human readable format
+// Precondition: State object exists
+// Postcondition: returns a string where each char is whether the number exists
 string State::getPosList() const{
     short list = posList >> 1;
 
