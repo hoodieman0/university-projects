@@ -31,7 +31,7 @@ shoop(const char val){
 const bool Cluster::
 isValid(const char val) const{
     for (Square* square : clstr) {
-        if (square->getValue() == val) return false;
+        if (square->getState().getValue() == val) return false;
     }
     return true;
 }

@@ -8,7 +8,7 @@
 // Preconditions: Square object exists
 // Postconditions: Prints Square's variables to the console
 Square::
-Square(const char input, const short r, const short c) : State(input), row(r), col(c){
+Square(const char input, const short r, const short c) : state(input), row(r), col(c){
 }
 
 // ---------------------------------------------------------------------
@@ -27,8 +27,8 @@ mark(const char marker){
     }
 
     shoop(marker);
-    value = marker;
-    poslist = 0;
+    state.setValue(marker);
+    state.setPosList(0);
 }
 
 // ---------------------------------------------------------------------
@@ -48,7 +48,7 @@ void Square::
 changeBit(const int n) {
     short mask = 0x001;
     mask = mask << n;
-    poslist = poslist ^ mask;
+    state.xorBit(mask);
 }
 
 // ---------------------------------------------------------------------
@@ -57,7 +57,7 @@ changeBit(const int n) {
 // Postconditions: Prints Square's variables to the console
 ostream& Square::
 print(ostream& out) const{
-    out <<"Square [" <<row+1 <<", " <<col+1 <<"] ";
-    State::print(out);
+    out <<"Square [" <<row+1 <<", " <<col+1 <<"] "; 
+    state.print(out);
     return out;
 }

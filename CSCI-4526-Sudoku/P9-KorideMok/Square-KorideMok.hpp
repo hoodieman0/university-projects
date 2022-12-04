@@ -8,10 +8,11 @@
 
 class Cluster;
 
-class Square : public State{
+class Square{
     private:
         short row = 0;
         short col = 0;
+        State state;
         vector<Cluster*> buddies;
 
     public:
@@ -22,10 +23,15 @@ class Square : public State{
         void addCluster(Cluster* cl) { buddies.push_back(cl); }
         void shoop(char);
         void changeBit(int);
+
+        State getState() { return state; }
+        void setState(State s) { state = s; }
+
+
         ostream& print(ostream&) const; //follows matrix convention [rows, columns]
 };
 
-inline ostream& operator <<( ostream& out, Square& sq){
+inline ostream& operator <<(ostream& out, Square& sq){
     return sq.print(out);
 }
 

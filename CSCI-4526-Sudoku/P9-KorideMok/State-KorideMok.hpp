@@ -8,7 +8,7 @@
 
 class State {
 protected:
-    short poslist = 0x3FE; //0011 1111 1110
+    short posList = 0x3FE; //0011 1111 1110
     char value = '-';
     bool fixed = false; //is part of the original puzzle
 
@@ -18,6 +18,13 @@ public:
     virtual void mark(char);
     char getValue() const { return value; }
     string getPosList() const;
+
+    //I hate setters, but in order to use Undo/Redo it is necessary for
+    //State to be a variable in Square
+    void setValue(char val) { value = val; }
+    void setPosList(short n) { posList = n; }
+    void xorBit(short n) { posList = posList ^ n; }
+
     ostream& print(ostream&) const;
 };
 

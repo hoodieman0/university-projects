@@ -114,7 +114,7 @@ mark(const short r, const short c, const char value) const {
 // Postconditions: return Square::value
 char Board::
 getMarkChar(int row, int col) const {
-    return sub(row, col).getValue();
+    return sub(row, col).getState().getValue();
 }
 
 
