@@ -117,6 +117,15 @@ getMarkChar(int row, int col) const {
     return sub(row, col).getState().getValue();
 }
 
+void Board::
+restoreState(Frame* frame){
+    for (int row = 0; row < n; row++){
+        for (int col = 0; col < n; col++){
+            sub(row+1, col+1).setState(frame->getState(row+col));
+        }
+    }
+}
+
 
 // ---------------------------------------------------------------------
 // Prints the state of the board

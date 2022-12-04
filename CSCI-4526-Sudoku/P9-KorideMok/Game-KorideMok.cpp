@@ -83,25 +83,16 @@ run(){
                 frame = undo.top();
                 undo.pop();
                 redo.push(frame);
-
-                for (int row = 0; row < n; row++){
-                    for (int col = 0; col < n; col++){
-                        puzzle->sub(row+1, col+1).setState(frame->getState(row+col));
-                    }
-                }
+                puzzle->restoreState(frame);
                 continue;
 
             case 'R': continue;
                 if (redo.size() == 0) { cout <<"No Moves To Redo!" <<endl; continue; }
+                
                 frame = redo.top();
                 redo.pop();
                 undo.push(frame);
-
-                for (int row = 0; row < n; row++){
-                    for (int col = 0; col < n; col++){
-                        puzzle->sub(row+1, col+1).setState(frame->getState(row+col));
-                    }
-                }
+                puzzle->restoreState(frame);
                 continue;
 
             case 'S': continue;
