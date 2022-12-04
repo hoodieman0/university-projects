@@ -10,7 +10,7 @@
 
 class Game{
     private:
-        static const string menu[7];
+        static const string menu[8];
         Board* puzzle;
         short n;
         char gameType;

@@ -3,7 +3,7 @@
 #include "Game-KorideMok.hpp"
 
 const string Game::
-menu[7] = {"Print", "Mark", "Undo", "Redo", "Save", "Restore", "Quit"};
+menu[8] = {"Print", "Mark", "Turn On/Off", "Undo", "Redo", "Save", "Restore", "Quit"};
 
 // ---------------------------------------------------------------------
 // Game Constructor
@@ -30,7 +30,7 @@ Game(ifstream& file) : file(file) {
 // Postcondition: Displays the menu and calls possible options until quit is called
 void Game::
 run(){
-    const static char legal[] { "PpMmUuRrSsQq" };
+    const static char legal[] { "PpMmTtUuRrSsQq" };
     Viewer fancyView(9, 9, *puzzle);
     for(;;){
         fancyView.show(cout);
@@ -46,6 +46,13 @@ run(){
                 try{ puzzle->mark(r, c, value); }
                 catch(GameException& e) { cout <<e << endl; }
                 continue; //continues the for loop
+            case 'T':
+                short r, c;
+                char value;
+                cout <<"Input 'Row' 'Column' 'Value': ";
+                cin >> r >> c >> value; 
+                puzzle->sub(r, c).changeBit(value - '0');
+                continue;
             case 'U': continue;
             case 'R': continue;
             case 'S': continue;
