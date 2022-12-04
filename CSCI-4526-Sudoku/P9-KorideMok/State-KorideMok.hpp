@@ -24,7 +24,7 @@ public:
     //State to be a variable in Square
     void setValue(char val) { value = val; }
     void setPosList(short n) { posList = n; }
-    void xorBit(short n) { posList = posList ^ n; }
+    void andBit(short mask) { posList = posList & mask; }
 
     ostream& print(ostream&) const;
 };

@@ -48,7 +48,8 @@ void Square::
 changeBit(const int n) {
     short mask = 0x001;
     mask = mask << n;
-    state.xorBit(mask);
+    mask = ~mask;
+    state.andBit(mask);
 }
 
 // ---------------------------------------------------------------------
