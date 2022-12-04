@@ -22,7 +22,21 @@ Game(ifstream& file) : file(file) {
     }
 }
 
+// ---------------------------------------------------------------------
+// Helper function for Game::run() case 'M' and 'T'; Makes a new Frame and adds it to the given Stack
+// Precondition: Stack object exists
+// Postcondition: Stack::push() is called with the new Frame
+void Game::pushFrame(Stack stack){
+    State arr[81];
+    for (int row = 0; row < n; row++){
+        for (int col = 0; col < n; col++){
+            arr[row+col] = puzzle->sub(row+1, col+1).getState();
+            }
+        }
 
+        Frame* frame = new Frame(arr);
+        stack.push(frame);
+}
 
 // ---------------------------------------------------------------------
 // Runs the game
@@ -35,7 +49,6 @@ run(){
     Stack undo, redo;
     short r, c;
     char value;
-    State arr[81];
     Frame* frame;
     for(;;){
         fancyView.show(cout);
@@ -50,14 +63,7 @@ run(){
                 try{ puzzle->mark(r, c, value); }
                 catch(GameException& e) { cout <<e << endl; continue; }
 
-                for (int row = 0; row < n; row++){
-                    for (int col = 0; col < n; col++){
-                        arr[row+col] = puzzle->sub(row+1, col+1).getState();
-                    }
-                }
-
-                frame = new Frame(arr);
-                undo.push(frame);
+                pushFrame(undo);
                 redo.zap();
                 continue; 
 
@@ -66,14 +72,7 @@ run(){
                 cin >> r >> c >> value; 
                 puzzle->sub(r, c).changeBit(value - '0');
 
-                for (int row = 0; row < n; row++){
-                    for (int col = 0; col < n; col++){
-                        arr[row+col] = puzzle->sub(row+1, col+1).getState();
-                    }
-                }
-
-                frame = new Frame(arr);
-                undo.push(frame);
+                pushFrame(undo);
                 redo.zap();
                 continue;
 
@@ -88,7 +87,7 @@ run(){
 
             case 'R': continue;
                 if (redo.size() == 0) { cout <<"No Moves To Redo!" <<endl; continue; }
-                
+
                 frame = redo.top();
                 redo.pop();
                 undo.push(frame);

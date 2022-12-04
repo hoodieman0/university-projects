@@ -17,6 +17,8 @@ class Game{
         char gameType;
         ifstream& file;
 
+        void pushFrame(Stack stack);
+
     public:
         Game(ifstream&);
         void run();
