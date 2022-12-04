@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-std=c++11
-binaries=SudokuMain-KorideMok.o State-KorideMok.o Board-KorideMok.o Cluster-KorideMok.o Diagboard-KorideMok.o Exceptions-KorideMok.o Game-KorideMok.o Square-KorideMok.o UnitTests-KorideMok.o tools.o Canvas.o GridChar.o MixedChar.o Viewer.o
+binaries=SudokuMain-KorideMok.o State-KorideMok.o Board-KorideMok.o Cluster-KorideMok.o Diagboard-KorideMok.o Exceptions-KorideMok.o Game-KorideMok.o Square-KorideMok.o Frame-KorideMok.o UnitTests-KorideMok.o tools.o Canvas.o GridChar.o MixedChar.o Viewer.o
 
 all: program
 
@@ -30,6 +30,9 @@ Game-KorideMok.o: Game-KorideMok.cpp Game-KorideMok.hpp
 
 Square-KorideMok.o: Square-KorideMok.cpp Square-KorideMok.hpp
 	$(CC) -c $(CFLAGS) Square-KorideMok.cpp Square-KorideMok.hpp
+
+Frame-KorideMok.o: Frame-KorideMok.cpp Frame-KorideMok.hpp
+	$(CC) -c $(CFLAGS) Frame-KorideMok.cpp Frame-KorideMok.hpp
 
 UnitTests-KorideMok.o: UnitTests-KorideMok.cpp UnitTests-KorideMok.hpp
 	$(CC) -c $(CFLAGS) UnitTests-KorideMok.cpp UnitTests-KorideMok.hpp
