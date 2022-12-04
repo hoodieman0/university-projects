@@ -11,10 +11,12 @@ class Frame{
         State arr[81];
 
     public:
-        Frame()=delete;
+        Frame()=default;
         Frame(State arr[81]);
         ~Frame()=default;
         State getState(int index) { return arr[index]; }
+        void serialize(ofstream& outFile);
+        void realize(ifstream& inFile);
 };
 
 #endif
