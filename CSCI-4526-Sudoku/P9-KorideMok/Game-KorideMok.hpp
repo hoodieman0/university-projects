@@ -6,6 +6,7 @@
 #include "tools.hpp"
 #include "Board-KorideMok.hpp"
 #include "DiagBoard-KorideMok.hpp"
+#include "Stack-KorideMok.hpp"
 #include "Viewer.hpp"
 
 class Game{
@@ -16,8 +17,11 @@ class Game{
         char gameType;
         ifstream& file;
 
+        Stack undo, redo;
+
         void Mark();
         void TurnOff();
+        void NewMove();
 
 
     public:
