@@ -9,7 +9,7 @@
 State::
 State(const char input) : value(input){
     if (input != '-'){
-        poslist = 0x000;
+        posList = 0x000;
         fixed = true;
     }
 }
@@ -23,11 +23,12 @@ void State::
 mark(const char ch){
     if (fixed) throw MarkFixedException();
     value = ch;
-    poslist = 0;
+    posList = 0;
 }
 
-string State::getPosList() const{
-    short list = poslist >> 1;
+string State::
+getPosListString() const{
+    short list = posList >> 1;
 
     string s;
     short mask = 0x001;
@@ -48,7 +49,7 @@ print(ostream& out) const{
     out <<"value: " <<value <<" fixed: " <<boolalpha <<fixed;
     out <<" possibilities: ";
 
-    short temp = poslist >> 1;
+    short temp = posList >> 1;
     short mask = 0x001;
     for (int counter = 1; counter <= 9; counter++){
         if ((temp & mask) == 1){ out << counter; }

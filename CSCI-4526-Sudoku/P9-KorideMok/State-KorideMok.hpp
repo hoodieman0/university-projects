@@ -8,7 +8,7 @@
 
 class State {
 protected:
-    short poslist = 0x3FE; //0011 1111 1110
+    short posList = 0x3FE; //0011 1111 1110
     char value = '-';
     bool fixed = false; //is part of the original puzzle
 
@@ -16,8 +16,10 @@ public:
     State(char='-');
     ~State() = default;
     virtual void mark(char);
+    short getPosList() const { return posList; }
     char getValue() const { return value; }
-    string getPosList() const;
+    bool getFixed() const { return fixed; }
+    string getPosListString() const;
     ostream& print(ostream&) const;
 };
 
