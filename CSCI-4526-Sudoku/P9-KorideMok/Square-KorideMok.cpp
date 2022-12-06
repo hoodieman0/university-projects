@@ -28,7 +28,7 @@ mark(const char marker){
 
     shoop(marker);
     value = marker;
-    poslist = 0;
+    posList = 0;
 }
 
 // ---------------------------------------------------------------------
@@ -49,7 +49,14 @@ turnOff(const int n) {
     short mask = 0x001;
     mask = mask << n;
     mask = ~mask;
-    poslist = poslist & mask;
+    posList = posList & mask;
+}
+
+void Square::
+setState(State newState){
+    posList = newState.getPosList();
+    value = newState.getValue();
+    fixed = newState.getFixed();
 }
 
 // ---------------------------------------------------------------------

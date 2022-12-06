@@ -22,6 +22,7 @@ class Square : public State{
         void addCluster(Cluster* cl) { buddies.push_back(cl); }
         void shoop(char);
         void turnOff(int);
+        void setState(State newState);
         ostream& print(ostream&) const; //follows matrix convention [rows, columns]
 };
 
