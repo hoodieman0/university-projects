@@ -37,15 +37,8 @@ run(){
         cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 7, menu, legal);
         switch (toupper(x)) {
-            case 'P': cout <<*puzzle <<endl; continue;
-            case 'M':
-                short r, c;
-                char value;
-                cout <<"Input 'Row' 'Column' 'Value': ";
-                cin >> r >> c >> value;
-                try{ puzzle->mark(r, c, value); }
-                catch(GameException& e) { cout <<e << endl; }
-                continue; //continues the for loop
+            case 'P': cout <<*puzzle <<endl; continue; //continues the for loop
+            case 'M': Mark(); continue; 
             case 'T': TurnOff(); continue;
             case 'U': continue;
             case 'R': continue;
@@ -53,6 +46,16 @@ run(){
             case 'Q': return;
         }
     }
+}
+
+void Game::
+Mark(){
+    short r, c;
+    char value;
+    cout <<"Input 'Row' 'Column' 'Value': ";
+    cin >> r >> c >> value;
+    try{ puzzle->mark(r, c, value); }
+    catch(GameException& e) { cout <<e << endl; }
 }
 
 void Game::

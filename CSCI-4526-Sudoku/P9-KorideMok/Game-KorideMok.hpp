@@ -16,8 +16,9 @@ class Game{
         char gameType;
         ifstream& file;
 
+        void Mark();
         void TurnOff();
-        
+
 
     public:
         Game(ifstream&);
