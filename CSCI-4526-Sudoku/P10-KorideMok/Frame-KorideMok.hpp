@@ -12,9 +12,12 @@ class Frame{
 
     public:
         Frame()=delete;
-        Frame(State arr[81]);
+        Frame(State input[81]);
         ~Frame()=default;
         State getState(int index) { return arr[index]; }
+        void serialize(ofstream& outFile); 
+        void realize(ifstream& inFile); 
+
 };
 
 #endif
