@@ -124,23 +124,10 @@ getMarkChar(int row, int col) const {
 // Postconditions: All Square States are changed to match the frame
 void Board::
 restoreState(Frame* frame){
-    for (int row = 0; row < n; row++){
-        for (int col = 0; col < n; col++){
-            sub(row+1, col+1).setState(frame->getState((9*row)+col));
-        }
-    }
-}
-
-// ---------------------------------------------------------------------
-// Changes the squares of the board to match the frame's squares
-// Preconditions: Frame object exists, board object exists
-// Postconditions: All squares in bd have setState() called
-void Board::
-restoreState(Frame* frame){
     State temp;
     for (int row = 0; row < n; row++){
         for (int col = 0; col < n; col++){
-            temp = frame->getState(row+col);
+            temp = frame->getState((9*row)+col);
             sub(row+1, col+1).setState(temp);
         }
     }
