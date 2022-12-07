@@ -41,7 +41,7 @@ run(){
             case 'T': TurnOff(); continue;
             case 'U': Undo(); continue;
             case 'R': Redo(); continue;
-            case 'S': continue;
+            case 'S': Save(); continue;
             case 'E': continue;
             case 'Q': return;
         }
@@ -127,4 +127,15 @@ Redo(){
     undo.push(frame);
 
     puzzle->restoreState(frame);
+}
+
+void Game::
+Save(){
+    cout <<"Type The Name Of The File To Save To: ";
+    string fileName;
+    cin>> fileName;
+    
+    ofstream saveFile(fileName);
+    undo.top()->serialize(saveFile);
+    cout <<"Game Saved Successfully!" <<endl;
 }
