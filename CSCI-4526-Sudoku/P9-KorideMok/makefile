@@ -56,4 +56,4 @@ Viewer.o: Viewer.cpp Viewer.hpp
 	$(CC) -c $(CFLAGS) Viewer.cpp Viewer.hpp
 
 clean:
-	rm program *.o *.gch
+	rm program *.o *.gch *.stackdump
