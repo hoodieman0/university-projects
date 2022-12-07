@@ -92,13 +92,7 @@ Undo(){
     undo.pop();
     redo.push(frame);
 
-    State temp;
-    for (int row = 0; row < n; row++){
-        for (int col = 0; col < n; col++){
-            temp = frame->getState(row+col);
-            puzzle->sub(row+1, col+1).setState(temp);
-        }
-    }
+    puzzle->restoreState(frame);
 }
 
 void Game::
@@ -108,12 +102,6 @@ Redo(){
     Frame* frame = redo.top();
     redo.pop();
     undo.push(frame);
-    
-    State temp;
-    for (int row = 0; row < n; row++){
-        for (int col = 0; col < n; col++){
-            temp = frame->getState(row+col);
-            puzzle->sub(row+1, col+1).setState(temp);
-        }
-    }
+
+    puzzle->restoreState(frame);
 }
