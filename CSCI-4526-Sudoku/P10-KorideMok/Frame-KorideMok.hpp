@@ -11,18 +11,10 @@ class Frame{
         State arr[81];
 
     public:
-        Frame()=default;
-        explicit Frame(State arr[81]);
-        
-        Frame& operator=(const Frame&)=default; //copy assignments
-        Frame(const Frame&) = default;
-        Frame& operator=(const Frame&&)=delete; //remove move assignments.
-        Frame(const Frame&&) = delete;
-
+        Frame()=delete;
+        Frame(State arr[81]);
         ~Frame()=default;
         State getState(int index) { return arr[index]; }
-        void serialize(ofstream& outFile);
-        void realize(ifstream& inFile);
 };
 
 #endif

@@ -16,16 +16,10 @@ public:
     State(char='-');
     ~State() = default;
     virtual void mark(char);
+    short getPosList() const { return posList; }
     char getValue() const { return value; }
     bool getFixed() const { return fixed; }
-    string getPosList() const;
-
-    //I hate setters, but in order to use Undo/Redo it is necessary for
-    //State to be a variable in Square
-    void setValue(char val) { value = val; }
-    void setPosList(short n) { posList = n; }
-    void andBit(short mask) { posList = posList & mask; }
-
+    string getPosListString() const;
     ostream& print(ostream&) const;
 };
 

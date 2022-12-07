@@ -14,7 +14,6 @@ class Stack : private vector<Frame*>{
         Frame* top() { return vector::back(); }
         void push(Frame* frame) { vector::push_back(frame); }
         int size() { return vector::size(); }
-        //pops everything on the stack
         void zap() { while (!vector::empty()) vector::pop_back(); }
 
 };

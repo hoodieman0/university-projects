@@ -6,18 +6,26 @@
 #include "tools.hpp"
 #include "Board-KorideMok.hpp"
 #include "DiagBoard-KorideMok.hpp"
+#include "Stack-KorideMok.hpp"
 #include "Viewer.hpp"
 #include "Stack-KorideMok.hpp"
 
 class Game{
     private:
-        static const string menu[7];
+        static const string menu[8];
         Board* puzzle;
         short n;
         char gameType;
         ifstream& file;
 
-        void pushFrame(Stack stack);
+        Stack undo, redo;
+
+        void Mark();
+        void TurnOff();
+        void NewMove();
+        void Undo();
+        void Redo();
+
 
     public:
         Game(ifstream&);
