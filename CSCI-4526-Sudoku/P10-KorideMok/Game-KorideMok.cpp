@@ -88,7 +88,7 @@ NewMove(){
     State arr[81];
     for (int row = 0; row < n; row++){
         for (int col = 0; col < n; col++){
-            arr[row+col] = puzzle->sub(row+1, col+1);
+            arr[(9*row)+col] = puzzle->sub(row+1, col+1);
         }
     }
 

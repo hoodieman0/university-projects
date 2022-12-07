@@ -113,14 +113,20 @@ mark(const short r, const short c, const char value) const {
 // Postconditions: return Square::value
 char Board::
 getMarkChar(int row, int col) const {
-    return sub(row, col).getState().getValue();
+    return sub(row, col).getValue();
 }
 
+// ---------------------------------------------------------------------
+// Changes the state of the Squares of the board
+// Warning! The settings of the original board are kept, 
+// i.e. you cannot restore a regular board to a diagonal board
+// Preconditions: Frame object exists
+// Postconditions: All Square States are changed to match the frame
 void Board::
 restoreState(Frame* frame){
     for (int row = 0; row < n; row++){
         for (int col = 0; col < n; col++){
-            sub(row+1, col+1).setState(frame->getState(row+col));
+            sub(row+1, col+1).setState(frame->getState((9*row)+col));
         }
     }
 }
