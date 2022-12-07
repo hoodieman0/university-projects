@@ -27,8 +27,8 @@ mark(const char marker){
     }
 
     shoop(marker);
-    state.setValue(marker);
-    state.setPosList(0);
+    value = marker;
+    posList = 0;
 }
 
 // ---------------------------------------------------------------------
@@ -49,7 +49,18 @@ changeBit(const int n) {
     short mask = 0x001;
     mask = mask << n;
     mask = ~mask;
-    state.andBit(mask);
+    posList = posList & mask;
+}
+
+// ---------------------------------------------------------------------
+// Sets all the values of the state to the newState
+// Preconditions: square object exists
+// Postconditions: State posList, value, fixed are changed 
+void Square::
+setState(State newState){
+    posList = newState.getPosList();
+    value = newState.getValue();
+    fixed = newState.getFixed();
 }
 
 // ---------------------------------------------------------------------

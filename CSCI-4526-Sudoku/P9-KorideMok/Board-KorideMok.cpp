@@ -125,6 +125,20 @@ restoreState(Frame* frame){
     }
 }
 
+// ---------------------------------------------------------------------
+// Changes the squares of the board to match the frame's squares
+// Preconditions: Frame object exists, board object exists
+// Postconditions: All squares in bd have setState() called
+void Board::
+restoreState(Frame* frame){
+    State temp;
+    for (int row = 0; row < n; row++){
+        for (int col = 0; col < n; col++){
+            temp = frame->getState(row+col);
+            sub(row+1, col+1).setState(temp);
+        }
+    }
+}
 
 // ---------------------------------------------------------------------
 // Prints the state of the board
