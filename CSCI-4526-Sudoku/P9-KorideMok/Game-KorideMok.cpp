@@ -41,7 +41,7 @@ run(){
             case 'M': Mark(); continue; //continues the for loop
             case 'T': TurnOff(); continue;
             case 'U': Undo(); continue;
-            case 'R': continue;
+            case 'R': Redo(); continue;
             case 'S': continue;
             case 'E': continue;
             case 'Q': return;
@@ -84,13 +84,31 @@ NewMove(){
     redo.zap();
 }
 
-void Game::Undo(){
+void Game::
+Undo(){
     if (undo.size() < 2) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
 
     Frame* frame = undo.top();
     undo.pop();
     redo.push(frame);
 
+    State temp;
+    for (int row = 0; row < n; row++){
+        for (int col = 0; col < n; col++){
+            temp = frame->getState(row+col);
+            puzzle->sub(row+1, col+1).setState(temp);
+        }
+    }
+}
+
+void Game::
+Redo(){
+    if (redo.size() == 0) { cout <<"No Moves To Redo!" <<endl; return; }
+
+    Frame* frame = redo.top();
+    redo.pop();
+    undo.push(frame);
+    
     State temp;
     for (int row = 0; row < n; row++){
         for (int col = 0; col < n; col++){

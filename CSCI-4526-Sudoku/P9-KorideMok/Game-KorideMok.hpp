@@ -23,6 +23,7 @@ class Game{
         void TurnOff();
         void NewMove();
         void Undo();
+        void Redo();
 
 
     public:
