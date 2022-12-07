@@ -42,7 +42,7 @@ run(){
             case 'U': Undo(); continue;
             case 'R': Redo(); continue;
             case 'S': Save(); continue;
-            case 'E': continue;
+            case 'E': Restore(); continue;
             case 'Q': return;
         }
     }
@@ -134,8 +134,23 @@ Save(){
     cout <<"Type The Name Of The File To Save To: ";
     string fileName;
     cin>> fileName;
-    
+
     ofstream saveFile(fileName);
     undo.top()->serialize(saveFile);
     cout <<"Game Saved Successfully!" <<endl;
+}
+
+void Game::
+Restore(){
+    cout <<"Type The Name Of The File To Restore: ";
+    string fileName;
+    cin>> fileName;
+
+    ifstream inputFile(fileName);
+    Frame* frame = new Frame();
+    frame->realize(inputFile);
+    undo.zap();
+    redo.zap();
+    puzzle->restoreState(frame);
+    cout <<"Game Restored Successfully!" <<endl;
 }

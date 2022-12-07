@@ -12,7 +12,7 @@
 
 class Game{
     private:
-        static const string menu[8];
+        static const string menu[7];
         Board* puzzle;
         short n;
         char gameType;
@@ -26,6 +26,7 @@ class Game{
         void Undo();
         void Redo();
         void Save();
+        void Restore();
 
 
     public:
