@@ -22,6 +22,7 @@ class Game{
         void Mark();
         void TurnOff();
         void NewMove();
+        void Undo();
 
 
     public:

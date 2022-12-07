@@ -38,9 +38,9 @@ run(){
         cout <<"\nWhat Would You Like To Do? " <<endl;
         char x = menu_c("Menu", 7, menu, legal);
         switch (toupper(x)) {
-            case 'M': Mark(); NewMove(); continue; //continues the for loop
-            case 'T': TurnOff(); NewMove(); continue;
-            case 'U': continue;
+            case 'M': Mark(); continue; //continues the for loop
+            case 'T': TurnOff(); continue;
+            case 'U': Undo(); continue;
             case 'R': continue;
             case 'S': continue;
             case 'E': continue;
@@ -57,8 +57,7 @@ Mark(){
     cin >> r >> c >> value;
     try{ puzzle->mark(r, c, value); }
     catch(GameException& e) { cout <<e << endl; }
-
-
+    NewMove();
 }
 
 void Game::
@@ -68,6 +67,7 @@ TurnOff(){
     cout <<"Input 'Row' 'Column' 'Value': ";
     cin >> r >> c >> value; 
     puzzle->sub(r, c).turnOff(value - '0');
+    NewMove();
 }
 
 void Game::
@@ -84,3 +84,18 @@ NewMove(){
     redo.zap();
 }
 
+void Game::Undo(){
+    if (undo.size() < 2) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
+
+    Frame* frame = undo.top();
+    undo.pop();
+    redo.push(frame);
+
+    State temp;
+    for (int row = 0; row < n; row++){
+        for (int col = 0; col < n; col++){
+            temp = frame->getState(row+col);
+            puzzle->sub(row+1, col+1).setState(temp);
+        }
+    }
+}
