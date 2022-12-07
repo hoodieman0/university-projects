@@ -52,6 +52,10 @@ turnOff(const int n) {
     posList = posList & mask;
 }
 
+// ---------------------------------------------------------------------
+// Sets all the values of the state to the newState
+// Preconditions: square object exists
+// Postconditions: State posList, value, fixed are changed 
 void Square::
 setState(State newState){
     posList = newState.getPosList();

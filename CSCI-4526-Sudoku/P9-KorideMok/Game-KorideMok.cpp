@@ -49,6 +49,11 @@ run(){
     }
 }
 
+// ---------------------------------------------------------------------
+// Helper function for Game::run() to mark a square
+// Precondition: Game object exists
+// Postcondition: Marks the row r and column c with the given value
+// Fail Condition: The inputted value is in the cluster
 void Game::
 Mark(){
     short r, c;
@@ -56,10 +61,14 @@ Mark(){
     cout <<"Input 'Row' 'Column' 'Value': ";
     cin >> r >> c >> value;
     try{ puzzle->mark(r, c, value); }
-    catch(GameException& e) { cout <<e << endl; }
+    catch(GameException& e) { cout <<e << endl; return; }
     NewMove();
 }
 
+// ---------------------------------------------------------------------
+// Helper function for Game::run() to remove a possibility from a square
+// Precondition: Game object exists
+// Postcondition: Removes the 'value' bit at row r and column c 
 void Game::
 TurnOff(){
     short r, c;
@@ -70,6 +79,11 @@ TurnOff(){
     NewMove();
 }
 
+// ---------------------------------------------------------------------
+// Helper function for Game::Mark() and Game::TurnOff() to make a new Frame,
+// add the Frame to the undo stack, and clear the redo stack
+// Precondition: Game object exists
+// Postcondition: undo stack has a new Frame*, redo stack has no values
 void Game::
 NewMove(){
     State arr[81];
@@ -84,6 +98,11 @@ NewMove(){
     redo.zap();
 }
 
+// ---------------------------------------------------------------------
+// Helper function for Game::run() to go back to a previous Frame
+// Precondition: Game object exists
+// Postcondition: Board::restoreState() is called -> all Squares have their
+//                states changed
 void Game::
 Undo(){
     if (undo.size() < 2) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
@@ -95,6 +114,11 @@ Undo(){
     puzzle->restoreState(frame);
 }
 
+// ---------------------------------------------------------------------
+// Helper function for Game::run() to redo a previous Frame
+// Precondition: Game object exists
+// Postcondition: Board::restoreState() is called -> all Squares have their
+//                states changed
 void Game::
 Redo(){
     if (redo.size() == 0) { cout <<"No Moves To Redo!" <<endl; return; }

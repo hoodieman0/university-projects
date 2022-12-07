@@ -117,6 +117,10 @@ getMarkChar(int row, int col) const {
     return sub(row, col).getValue();
 }
 
+// ---------------------------------------------------------------------
+// Changes the squares of the board to match the frame's squares
+// Preconditions: Frame object exists, board object exists
+// Postconditions: All squares in bd have setState() called
 void Board::
 restoreState(Frame* frame){
     State temp;
