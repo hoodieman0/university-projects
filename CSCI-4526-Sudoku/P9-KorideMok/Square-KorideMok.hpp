@@ -8,7 +8,7 @@
 
 class Cluster;
 
-class Square{
+class Square : public State{
     private:
         short row = 0;
         short col = 0;

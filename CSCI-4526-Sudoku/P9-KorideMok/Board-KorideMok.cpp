@@ -113,16 +113,7 @@ mark(const short r, const short c, const char value) const {
 // Postconditions: return Square::value
 char Board::
 getMarkChar(int row, int col) const {
-    return sub(row, col).getState().getValue();
-}
-
-void Board::
-restoreState(Frame* frame){
-    for (int row = 0; row < n; row++){
-        for (int col = 0; col < n; col++){
-            sub(row+1, col+1).setState(frame->getState(row+col));
-        }
-    }
+    return sub(row, col).getValue();
 }
 
 // ---------------------------------------------------------------------
@@ -134,7 +125,7 @@ restoreState(Frame* frame){
     State temp;
     for (int row = 0; row < n; row++){
         for (int col = 0; col < n; col++){
-            temp = frame->getState(row+col);
+            temp = frame->getState((9*row)+col);
             sub(row+1, col+1).setState(temp);
         }
     }

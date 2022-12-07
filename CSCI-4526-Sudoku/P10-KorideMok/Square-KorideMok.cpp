@@ -8,7 +8,7 @@
 // Preconditions: Square object exists
 // Postconditions: Prints Square's variables to the console
 Square::
-Square(const char input, const short r, const short c) : state(input), row(r), col(c){
+Square(const char input, const short r, const short c) : State(input), row(r), col(c){
 }
 
 // ---------------------------------------------------------------------
@@ -20,7 +20,7 @@ mark(const char marker){
     string legal = "123456789";
     if (legal.find(marker) == string::npos) throw InvalidMarkerException(marker);
 
-    if (state.getFixed()) throw MarkFixedException(row+1, col+1);
+    if (getFixed()) throw MarkFixedException(row+1, col+1);
 
     for (Cluster* cl : buddies) {
         if (!cl->isValid(marker)) throw ExistingValueException(marker, row+1, col+1);
@@ -45,7 +45,7 @@ shoop(const char val) { //does not need input validation because mark() takes ca
 // Preconditions: square object exists
 // Postconditions: n bit is opposite of itself for this square
 void Square::
-changeBit(const int n) {
+turnOff(const int n) {
     short mask = 0x001;
     mask = mask << n;
     mask = ~mask;
@@ -70,6 +70,6 @@ setState(State newState){
 ostream& Square::
 print(ostream& out) const{
     out <<"Square [" <<row+1 <<", " <<col+1 <<"] "; 
-    state.print(out);
+    Square::print(out);
     return out;
 }

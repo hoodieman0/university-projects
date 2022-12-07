@@ -45,7 +45,7 @@ shoop(const char val) { //does not need input validation because mark() takes ca
 // Preconditions: square object exists
 // Postconditions: n bit is opposite of itself for this square
 void Square::
-changeBit(const int n) {
+turnOff(const int n) {
     short mask = 0x001;
     mask = mask << n;
     mask = ~mask;

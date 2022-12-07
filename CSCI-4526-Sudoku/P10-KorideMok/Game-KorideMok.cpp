@@ -35,7 +35,7 @@ run(){
     for(;;){
         fancyView.show(cout);
         cout <<"\nWhat Would You Like To Do? " <<endl;
-        char x = menu_c("Menu", 8, menu, legal);
+        char x = menu_c("Menu", 7, menu, legal);
         switch (toupper(x)) {
             case 'M': Mark(); continue; //continues the for loop
             case 'T': TurnOff(); continue;
@@ -104,7 +104,7 @@ NewMove(){
 //                states changed
 void Game::
 Undo(){
-    if (undo.size() < 2) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
+    if (undo.size() < 1) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
 
     Frame* frame = undo.top();
     undo.pop();
@@ -120,7 +120,7 @@ Undo(){
 //                states changed
 void Game::
 Redo(){
-    if (redo.size() == 0) { cout <<"No Moves To Redo!" <<endl; return; }
+    if (redo.size() < 1) { cout <<"No Moves To Redo!" <<endl; return; }
 
     Frame* frame = redo.top();
     redo.pop();
