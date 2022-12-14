@@ -132,8 +132,13 @@ Save(){
     string fileName;
     cin>> fileName;
 
-    ofstream saveFile(fileName);
-    undo.top()->serialize(saveFile);
+    try{
+        ofstream saveFile(fileName);
+        if (!saveFile) { throw BadOpenException(); }
+        undo.top()->serialize(saveFile, gameType);
+    }
+    catch(GameException& e) { cout <<e << endl; return; }
+
     cout <<"Game Saved Successfully!" <<endl;
 }
 
@@ -143,13 +148,17 @@ Restore(){
     string fileName;
     cin>> fileName;
 
-    ifstream inputFile(fileName);
-    Frame* frame = new Frame();
-    frame->realize(inputFile);
-    undo.zap();
-    Frame* padding = new Frame();
-    undo.push(padding);
-    redo.zap();
-    puzzle->restoreState(frame);
+    try{
+        ifstream inputFile(fileName);
+        if (!inputFile) { throw BadOpenException(); }
+        Frame* frame = new Frame();
+        frame->realize(inputFile);
+        undo.zap();
+        NewMove(); //adds the initial Frame to the undo stack
+        redo.zap();
+        puzzle->restoreState(frame);
+    }
+    catch(GameException& e) { cout <<e << endl; return; }
+    
     cout <<"Game Restored Successfully!" <<endl;
 }

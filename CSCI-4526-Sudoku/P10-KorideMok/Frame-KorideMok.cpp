@@ -18,8 +18,10 @@ Frame(State input[81]){
 // Precondition: Frame object, ostream exists
 // Postcondition: outFile has States printed to it
 void Frame::
-serialize(ofstream& outFile){
+serialize(ofstream& outFile, char gameType){
+    outFile <<gameType <<"\n";
     for (int i = 0; i < 81; i++){
+        if (i+1 % 9 == 0) outFile <<"\n";
         outFile <<arr[i].getValue();
     }
 }
@@ -31,6 +33,7 @@ serialize(ofstream& outFile){
 void Frame::
 realize(ifstream& inFile){
     char x;
+    inFile>> x; //gets the gameType
     for (int i = 0; i < 81; i++){
         inFile>> x;
         State temp(x);

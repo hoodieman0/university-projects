@@ -18,7 +18,7 @@ print(ostream& out) const {
 ostream& BadOpenException::
 print(ostream& out) const {
     out << "Error Code (" << code << ") " << error << endl;
-    out << "Unable To Open Input-File" << endl;
+    out << "Unable To Open Given File" << endl;
     return out;
 }
 

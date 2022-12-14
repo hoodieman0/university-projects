@@ -19,7 +19,7 @@ class Frame{
         Frame(const Frame&&) = delete; 
         ~Frame()=default;
         State getState(int index) { return arr[index]; }
-        void serialize(ofstream& outFile); 
+        void serialize(ofstream& outFile, char gameType); 
         void realize(ifstream& inFile); 
 
 };

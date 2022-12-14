@@ -9,7 +9,7 @@ int main(int argc, char* const argv[]){
         if(argc != 2) throw IncorrectUsageException();
 
         ifstream ifs(argv[1]);
-        if (!ifs.is_open()) throw BadOpenException();
+        if (!ifs) throw BadOpenException();
 
         cout <<"~Starting Game~" <<endl;
         Game obj(ifs);
