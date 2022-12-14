@@ -25,18 +25,6 @@ shoop(const char val){
 }
 
 // ---------------------------------------------------------------------
-// Checks to see if val is not used in other squares
-// Preconditions: board object exists
-// Postconditions: return false if val appears in another square, else return true
-const bool Cluster::
-isValid(const char val) const{
-    for (Square* square : clstr) {
-        if (square->getValue() == val) return false;
-    }
-    return true;
-}
-
-// ---------------------------------------------------------------------
 // Prints the Cluster values in a human-readable format
 // Preconditions: board object exists
 // Postconditions: Sends the cluster to the ostream

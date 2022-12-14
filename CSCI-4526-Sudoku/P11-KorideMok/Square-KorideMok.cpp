@@ -22,10 +22,6 @@ mark(const char marker){
 
     if (getFixed()) throw MarkFixedException(row+1, col+1);
 
-    for (Cluster* cl : buddies) {
-        if (!cl->isValid(marker)) throw ExistingValueException(marker, row+1, col+1);
-    }
-
     shoop(marker);
     value = marker;
     posList = 0;
