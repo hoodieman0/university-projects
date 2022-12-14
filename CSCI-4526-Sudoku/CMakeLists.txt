@@ -10,7 +10,8 @@ include_directories(P1-KorideMok
         P5-KorideMok
         P6-KorideMok
         P7-KorideMok
-        P8-KorideMok)
+        P8-KorideMok
+        P10-KorideMok)
 
 add_executable(P1-KorideMok
         P1-KorideMok/SudokuMain-KorideMok.cpp
@@ -137,13 +138,48 @@ add_executable(P8-KorideMok
         P8-KorideMok/DiagBoard-KorideMok.cpp
         P8-KorideMok/Exceptions-KorideMok.hpp
         P8-KorideMok/Exceptions-KorideMok.cpp
-        P8-KorideMok/CanView/Viewer.hpp
-        P8-KorideMok/CanView/Viewer.cpp
-        P8-KorideMok/CanView/Canvas.hpp
-        P8-KorideMok/CanView/Canvas.cpp
-        P8-KorideMok/CanView/CanView.hpp
-        P8-KorideMok/CanView/GridChar.hpp
-        P8-KorideMok/CanView/GridChar.cpp
-        P8-KorideMok/CanView/MixedChar.hpp
-        P8-KorideMok/CanView/MixedChar.cpp
+        P8-KorideMok/Viewer.hpp
+        P8-KorideMok/Viewer.cpp
+        P8-KorideMok/Canvas.hpp
+        P8-KorideMok/Canvas.cpp
+        P8-KorideMok/CanView.hpp
+        P8-KorideMok/GridChar.hpp
+        P8-KorideMok/GridChar.cpp
+        P8-KorideMok/MixedChar.hpp
+        P8-KorideMok/MixedChar.cpp
+        )
+
+add_executable(P10-KorideMok
+        P10-KorideMok/Square-KorideMok.cpp
+        P10-KorideMok/Square-KorideMok.hpp
+        P10-KorideMok/SudokuMain-KorideMok.cpp
+        P10-KorideMok/tools.cpp
+        P10-KorideMok/tools.hpp
+        P10-KorideMok/UnitTests-KorideMok.cpp
+        P10-KorideMok/UnitTests-KorideMok.hpp
+        P10-KorideMok/State-KorideMok.hpp
+        P10-KorideMok/State-KorideMok.cpp
+        P10-KorideMok/Game-KorideMok.hpp
+        P10-KorideMok/Game-KorideMok.cpp
+        P10-KorideMok/Board-KorideMok.hpp
+        P10-KorideMok/Board-KorideMok.cpp
+        P10-KorideMok/Cluster-KorideMok.hpp
+        P10-KorideMok/Cluster-KorideMok.cpp
+        P10-KorideMok/DiagBoard-KorideMok.hpp
+        P10-KorideMok/DiagBoard-KorideMok.cpp
+        P10-KorideMok/Exceptions-KorideMok.hpp
+        P10-KorideMok/Exceptions-KorideMok.cpp
+        P10-KorideMok/Viewer.hpp
+        P10-KorideMok/Viewer.cpp
+        P10-KorideMok/Canvas.hpp
+        P10-KorideMok/Canvas.cpp
+        P10-KorideMok/CanView.hpp
+        P10-KorideMok/GridChar.hpp
+        P10-KorideMok/GridChar.cpp
+        P10-KorideMok/MixedChar.hpp
+        P10-KorideMok/MixedChar.cpp
+        P10-KorideMok/Stack-KorideMok.cpp
+        P10-KorideMok/Stack-KorideMok.hpp
+        P10-KorideMok/Frame-KorideMok.cpp
+        P10-KorideMok/Frame-KorideMok.hpp
         )

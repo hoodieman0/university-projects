@@ -27,4 +27,7 @@ P8-KorideMok/.vscode/
 
 .vscode/
 
-*.stackdump
+*.stackdump 
+cmake-build-debug-cygwin/.cmake/api/v1/query/
+
+cmake-build-debug-cygwin/

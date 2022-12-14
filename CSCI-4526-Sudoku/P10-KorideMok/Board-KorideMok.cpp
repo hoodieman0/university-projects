@@ -117,9 +117,11 @@ getMarkChar(int row, int col) const {
 }
 
 // ---------------------------------------------------------------------
-// Changes the squares of the board to match the frame's squares
-// Preconditions: Frame object exists, board object exists
-// Postconditions: All squares in bd have setState() called
+// Changes the state of the Squares of the board
+// Warning! The settings of the original board are kept, 
+// i.e. you cannot restore a regular board to a diagonal board
+// Preconditions: Frame object exists
+// Postconditions: All Square States are changed to match the frame
 void Board::
 restoreState(Frame* frame){
     State temp;

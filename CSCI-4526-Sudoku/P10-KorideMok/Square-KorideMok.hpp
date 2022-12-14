@@ -12,7 +12,6 @@ class Square : public State{
     private:
         short row = 0;
         short col = 0;
-        State state;
         vector<Cluster*> buddies;
 
     public:

@@ -7,8 +7,8 @@
 #include "Board-KorideMok.hpp"
 #include "DiagBoard-KorideMok.hpp"
 #include "Stack-KorideMok.hpp"
+#include "Frame-KorideMok.hpp"
 #include "Viewer.hpp"
-#include "Stack-KorideMok.hpp"
 
 class Game{
     private:
@@ -25,6 +25,8 @@ class Game{
         void NewMove();
         void Undo();
         void Redo();
+        void Save();
+        void Restore();
 
 
     public:

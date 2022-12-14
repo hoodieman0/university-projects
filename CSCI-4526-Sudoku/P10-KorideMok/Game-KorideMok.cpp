@@ -3,7 +3,7 @@
 #include "Game-KorideMok.hpp"
 
 const string Game::
-menu[7] = {"Mark", "Turn Off", "Undo", "Redo", "Save", "rEstore", "Quit"};
+menu[7] = { "Mark", "Turn Off", "Undo", "Redo", "Save", "rEstore", "Quit"};
 
 // ---------------------------------------------------------------------
 // Game Constructor
@@ -20,6 +20,7 @@ Game(ifstream& file) : file(file) {
         case 'D': n = 9; clstr = 29; puzzle = new DiagBoard(n, clstr, file); break;
         case 'S': n = 6; clstr = 18; puzzle = new Board(n, clstr, file); break;
     }
+    NewMove(); //adds the initial Frame to the undo stack
 }
 
 
@@ -41,8 +42,8 @@ run(){
             case 'T': TurnOff(); continue;
             case 'U': Undo(); continue;
             case 'R': Redo(); continue;
-            case 'S': continue;
-            case 'E': continue;
+            case 'S': Save(); continue;
+            case 'E': Restore(); continue;
             case 'Q': return;
         }
     }
@@ -88,7 +89,7 @@ NewMove(){
     State arr[81];
     for (int row = 0; row < n; row++){
         for (int col = 0; col < n; col++){
-            arr[row+col] = puzzle->sub(row+1, col+1);
+            arr[(9*row)+col] = puzzle->sub(row+1, col+1);
         }
     }
 
@@ -105,12 +106,10 @@ NewMove(){
 void Game::
 Undo(){
     if (undo.size() < 2) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
-
-    Frame* frame = undo.top();
-    undo.pop();
-    redo.push(frame);
-
-    puzzle->restoreState(frame);
+    
+    redo.push(undo.top()); //put the latest move on the redo stack
+    undo.pop(); //gets rid of lastest the frame
+    puzzle->restoreState(undo.top()); //restore frame before last NewMove
 }
 
 // ---------------------------------------------------------------------
@@ -120,11 +119,46 @@ Undo(){
 //                states changed
 void Game::
 Redo(){
-    if (redo.size() == 0) { cout <<"No Moves To Redo!" <<endl; return; }
-
-    Frame* frame = redo.top();
+    if (redo.size() < 1) { cout <<"No Moves To Redo!" <<endl; return; }
+    
+    puzzle->restoreState(redo.top()); //restore the undo frame
+    undo.push(redo.top()); //since Undo() pops before its own restore, push the top() frame then pop it
     redo.pop();
-    undo.push(frame);
+}
 
-    puzzle->restoreState(frame);
+void Game::
+Save(){
+    cout <<"Type The Name Of The File To Save To: ";
+    string fileName;
+    cin>> fileName;
+
+    try{
+        ofstream saveFile(fileName);
+        if (!saveFile) { throw BadOpenException(); }
+        undo.top()->serialize(saveFile, gameType);
+    }
+    catch(GameException& e) { cout <<e << endl; return; }
+
+    cout <<"Game Saved Successfully!" <<endl;
+}
+
+void Game::
+Restore(){
+    cout <<"Type The Name Of The File To Restore: ";
+    string fileName;
+    cin>> fileName;
+
+    try{
+        ifstream inputFile(fileName);
+        if (!inputFile) { throw BadOpenException(); }
+        Frame* frame = new Frame();
+        frame->realize(inputFile);
+        undo.zap();
+        NewMove(); //adds the initial Frame to the undo stack
+        redo.zap();
+        puzzle->restoreState(frame);
+    }
+    catch(GameException& e) { cout <<e << endl; return; }
+    
+    cout <<"Game Restored Successfully!" <<endl;
 }
