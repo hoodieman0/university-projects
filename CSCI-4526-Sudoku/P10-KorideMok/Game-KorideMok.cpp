@@ -105,11 +105,11 @@ NewMove(){
 //                states changed
 void Game::
 Undo(){
-    if (undo.size() < 1) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
+    if (undo.size() < 2) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
     
-    redo.push(undo.top());
-    undo.pop(); //gets rid of last the frame
-    puzzle->restoreState(undo.top());
+    redo.push(undo.top()); //put the latest move on the redo stack
+    undo.pop(); //gets rid of lastest the frame
+    puzzle->restoreState(undo.top()); //restore frame before last NewMove
 }
 
 // ---------------------------------------------------------------------
@@ -121,9 +121,8 @@ void Game::
 Redo(){
     if (redo.size() < 1) { cout <<"No Moves To Redo!" <<endl; return; }
     
-    puzzle->restoreState(redo.top());
-    
-    undo.push(redo.top());
+    puzzle->restoreState(redo.top()); //restore the undo frame
+    undo.push(redo.top()); //since Undo() pops before its own restore, push the top() frame then pop it
     redo.pop();
 }
 
