@@ -20,6 +20,7 @@ Game(ifstream& file) : file(file) {
         case 'D': n = 9; clstr = 29; puzzle = new DiagBoard(n, clstr, file); break;
         case 'S': n = 6; clstr = 18; puzzle = new Board(n, clstr, file); break;
     }
+    NewMove(); //adds the initial Frame to the undo stack
 }
 
 
@@ -105,12 +106,10 @@ NewMove(){
 void Game::
 Undo(){
     if (undo.size() < 1) { cout <<"Not Enough Moves Has Been Made!" <<endl; return; }
-
-    Frame* frame = undo.top();
-    undo.pop();
-    redo.push(frame);
-
-    puzzle->restoreState(frame);
+    
+    redo.push(undo.top());
+    undo.pop(); //gets rid of last the frame
+    puzzle->restoreState(undo.top());
 }
 
 // ---------------------------------------------------------------------
@@ -121,12 +120,11 @@ Undo(){
 void Game::
 Redo(){
     if (redo.size() < 1) { cout <<"No Moves To Redo!" <<endl; return; }
-
-    Frame* frame = redo.top();
+    
+    puzzle->restoreState(redo.top());
+    
+    undo.push(redo.top());
     redo.pop();
-    undo.push(frame);
-
-    puzzle->restoreState(frame);
 }
 
 void Game::
@@ -150,6 +148,8 @@ Restore(){
     Frame* frame = new Frame();
     frame->realize(inputFile);
     undo.zap();
+    Frame* padding = new Frame();
+    undo.push(padding);
     redo.zap();
     puzzle->restoreState(frame);
     cout <<"Game Restored Successfully!" <<endl;
