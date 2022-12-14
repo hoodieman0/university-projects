@@ -28,7 +28,7 @@ serialize(ofstream& outFile, char gameType){
 
 // ---------------------------------------------------------------------
 // Reloads the game with new States from the ifstream
-// Precondition: Game object, undo Stack exists
+// Precondition: Game object, undo Stack exists, serialize file is inputted
 // Postcondition: The Frame arr[] is filled with the values in the ifstream
 void Frame::
 realize(ifstream& inFile){
