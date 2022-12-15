@@ -66,6 +66,6 @@ setState(State newState){
 ostream& Square::
 print(ostream& out) const{
     out <<"Square [" <<row+1 <<", " <<col+1 <<"] "; 
-    Square::print(out);
+    State::print(out);
     return out;
 }
