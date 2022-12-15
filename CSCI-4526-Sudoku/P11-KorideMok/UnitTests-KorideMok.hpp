@@ -8,7 +8,7 @@
 #include "Square-KorideMok.hpp" //P2
 #include "Game-KorideMok.hpp" //P3
 #include "Board-KorideMok.hpp" //P4
-#include "DiagBoard-KorideMok.hpp" //P6
+#include "BoardTypes-KorideMok.hpp" //P6
 
 void testStateFunctions(ostream&); //P1
 void testSquareFunctions(ostream&); //P2
