@@ -25,10 +25,6 @@ class DiagBoard : public TradBoard {
         
 };
 
-class SixyBoard : public Board {
-
-};
-
 class SixyBoard : public Board{
     private:
         void createVertBox(int row, int col);
@@ -36,8 +32,7 @@ class SixyBoard : public Board{
     public:
         SixyBoard()=default;
         SixyBoard(short, short, ifstream&);
-        ~SixyBoard();
-
+        ~SixyBoard()=default;
 };
 
 #endif

@@ -22,7 +22,6 @@ class Board : public CanView{
         void makeClusters();
         void createRow(short);
         void createCol(short);
-        void createBox(short, short);
 
     public:
         Board(short, short, ifstream&);
