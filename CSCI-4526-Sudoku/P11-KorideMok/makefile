@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-std=c++11
-binaries=SudokuMain-KorideMok.o State-KorideMok.o Board-KorideMok.o Cluster-KorideMok.o Diagboard-KorideMok.o Exceptions-KorideMok.o Game-KorideMok.o Square-KorideMok.o Frame-KorideMok.o Stack-KorideMok.o UnitTests-KorideMok.o tools.o Canvas.o GridChar.o MixedChar.o Viewer.o
+binaries=SudokuMain-KorideMok.o State-KorideMok.o Board-KorideMok.o Cluster-KorideMok.o BoardTypes-KorideMok.o Exceptions-KorideMok.o Game-KorideMok.o Square-KorideMok.o Frame-KorideMok.o Stack-KorideMok.o UnitTests-KorideMok.o tools.o Canvas.o GridChar.o MixedChar.o Viewer.o
 
 all: program
 
@@ -19,8 +19,8 @@ Board-KorideMok.o: Board-KorideMok.cpp Board-KorideMok.hpp
 Cluster-KorideMok.o: Cluster-KorideMok.cpp Cluster-KorideMok.hpp
 	$(CC) -c $(CFLAGS) Cluster-KorideMok.cpp Cluster-KorideMok.hpp
 
-Diagboard-KorideMok.o: Diagboard-KorideMok.cpp Diagboard-KorideMok.hpp
-	$(CC) -c $(CFLAGS) Diagboard-KorideMok.cpp Diagboard-KorideMok.hpp
+BoardTypes-KorideMok.o: BoardTypes-KorideMok.cpp BoardTypes-KorideMok.hpp
+	$(CC) -c $(CFLAGS) BoardTypes-KorideMok.cpp BoardTypes-KorideMok.hpp
 
 Exceptions.o: Exceptions.cpp Exceptions.hpp
 	$(CC) -c $(CFLAGS) Exceptions.cpp Exceptions.hpp
