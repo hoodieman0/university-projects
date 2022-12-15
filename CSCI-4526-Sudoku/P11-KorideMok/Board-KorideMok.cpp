@@ -43,7 +43,7 @@ getPuzzle() {
 // Postconditions: buddies vector is populated with valid clusters
 void Board::
 makeClusters() {
-    for (short k = 1; k < 10; k++) {
+    for (short k = 1; k < n; k++) {
         createRow(k);
         createCol(k);
     }
