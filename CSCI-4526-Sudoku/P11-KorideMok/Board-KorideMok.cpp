@@ -26,6 +26,7 @@ getPuzzle() {
 
     //depends on initial char being read already
     for (short r = 0; r < n; r++){
+        if (file.eof()) return;
         file>> x; //discard newline
         for (short c = 0; c < n; c++){
             file>> x;
@@ -34,8 +35,6 @@ getPuzzle() {
             if (x != '-') left--;
         }
     }
-    x = file.get(); //is the eof check necessary?
-    if (file.eof()) return;
 }
 
 // ---------------------------------------------------------------------
@@ -47,11 +46,6 @@ makeClusters() {
     for (short k = 1; k < 10; k++) {
         createRow(k);
         createCol(k);
-    }
-    for (short k = 1; k < 10; k = k +3) {
-        for(short h = 1; h < 10; h = h + 3){
-            createBox(k, h);
-        }
     }
 }
 
@@ -78,22 +72,6 @@ createCol(const short c) {
     for (short r = 0; r < 9; r++) { arr[r] = &sub(r+1, c); }
 
     Cluster* temp = new Cluster(clusterT[(int)ClusterType::COLUMN], arr);
-    buddies.push_back(temp);
-}
-
-// ---------------------------------------------------------------------
-// Helper function for createClusters, creates the clusters that are boxes
-// Preconditions: getPuzzle() has been run
-// Postconditions: the cluster for the box [r, c] is created and put into buddies
-void Board::
-createBox(const short r, const short c) {
-    Square* arr[9];
-    short index = 0;
-    for (short k = r; k < r + 3; k++) {
-        for (short h = c; h < c + 3; h++) { arr[index] = &sub(k, h); index++; }
-    }
-
-    Cluster* temp = new Cluster(clusterT[(int)ClusterType::BOX], arr);
     buddies.push_back(temp);
 }
 

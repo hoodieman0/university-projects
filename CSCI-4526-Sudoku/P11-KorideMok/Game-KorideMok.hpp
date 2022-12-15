@@ -5,7 +5,7 @@
 
 #include "tools.hpp"
 #include "Board-KorideMok.hpp"
-#include "DiagBoard-KorideMok.hpp"
+#include "BoardTypes-KorideMok.hpp"
 #include "Stack-KorideMok.hpp"
 #include "Frame-KorideMok.hpp"
 #include "Viewer.hpp"

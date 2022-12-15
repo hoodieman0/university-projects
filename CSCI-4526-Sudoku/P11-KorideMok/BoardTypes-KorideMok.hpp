@@ -5,13 +5,39 @@
 
 #include "Board-KorideMok.hpp"
 
-class DiagBoard : public Board {
+class TradBoard: public Board{
+    private:
+        void createBox(const short row, const short col);
     public:
-        DiagBoard() = default;
-        DiagBoard(short, short, ifstream&);
-        ~DiagBoard() = default;
-        void createDiagonal();
+        TradBoard()=default;
+        TradBoard(short, short, ifstream&);
+        ~TradBoard()=default;
+        
 };
 
+class DiagBoard : public TradBoard {
+    private:
+        void createDiagonal();
+    public:
+        DiagBoard()=default;
+        DiagBoard(short, short, ifstream&);
+        ~DiagBoard()=default;
+        
+};
+
+class SixyBoard : public Board {
+
+};
+
+class SixyBoard : public Board{
+    private:
+        void createVertBox(int row, int col);
+        void createHorBox(int row, int col);
+    public:
+        SixyBoard()=default;
+        SixyBoard(short, short, ifstream&);
+        ~SixyBoard();
+
+};
 
 #endif

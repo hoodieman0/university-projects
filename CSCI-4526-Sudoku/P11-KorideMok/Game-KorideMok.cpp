@@ -16,9 +16,9 @@ Game(ifstream& file) : file(file) {
     file>>gameType;
     if (types.find(gameType) == string::npos) throw InvalidGameTypeException(gameType);
     switch(toupper(gameType)){
-        case 'T': n = 9; clstr = 27; puzzle = new Board(n, clstr, file);
+        case 'T': n = 9; clstr = 27; puzzle = new TradBoard(n, clstr, file); break;
         case 'D': n = 9; clstr = 29; puzzle = new DiagBoard(n, clstr, file); break;
-        case 'S': n = 6; clstr = 18; puzzle = new Board(n, clstr, file); break;
+        case 'S': n = 6; clstr = 18; puzzle = new SixyBoard(n, clstr, file); break;
     }
     NewMove(); //adds the initial Frame to the undo stack
 }
