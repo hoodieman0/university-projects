@@ -20,7 +20,7 @@ mark(const char marker){
     string legal = "123456789";
     if (legal.find(marker) == string::npos) throw InvalidMarkerException(marker);
 
-    if (state.getFixed()) throw MarkFixedException(row+1, col+1);
+    if (fixed) throw MarkFixedException(row+1, col+1);
 
     for (Cluster* cl : buddies) {
         if (!cl->isValid(marker)) throw ExistingValueException(marker, row+1, col+1);
