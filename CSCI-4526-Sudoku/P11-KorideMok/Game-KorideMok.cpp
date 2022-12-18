@@ -137,7 +137,7 @@ Save(){
     try{
         ofstream saveFile(fileName);
         if (!saveFile) { throw BadOpenException(); }
-        undo.top()->serialize(saveFile, gameType);
+        undo.top()->serialize(saveFile, gameType, n);
     }
     catch(GameException& e) { cout <<e << endl; return; }
 
@@ -154,7 +154,7 @@ Restore(){
         ifstream inputFile(fileName);
         if (!inputFile) { throw BadOpenException(); }
         Frame* frame = new Frame();
-        frame->realize(inputFile);
+        frame->realize(inputFile, n);
         undo.zap();
         NewMove(); //adds the initial Frame to the undo stack
         redo.zap();

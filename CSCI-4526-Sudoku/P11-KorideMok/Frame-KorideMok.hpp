@@ -19,8 +19,8 @@ class Frame{
         Frame(const Frame&&) = delete; 
         ~Frame()=default;
         State getState(int index) { return arr[index]; }
-        void serialize(ofstream& outFile, char gameType); 
-        void realize(ifstream& inFile); 
+        void serialize(ofstream& outFile, const char gameType, const short n); 
+        void realize(ifstream& inFile, const short n); 
 
 };
 
