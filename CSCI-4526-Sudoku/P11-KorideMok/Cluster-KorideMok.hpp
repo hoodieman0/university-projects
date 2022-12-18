@@ -9,10 +9,10 @@
 class Cluster{
     private:
         const string type;
-        Square* clstr[9];
+        Square* clstr[9] = {0};
 
     public:
-        Cluster(string, Square* []);
+        Cluster(string type, Square* arr[], const short amnt);
         void shoop(char);
         ostream& print(ostream&) const;
 };

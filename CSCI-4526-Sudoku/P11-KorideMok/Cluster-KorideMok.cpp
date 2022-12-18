@@ -7,8 +7,8 @@
 // Preconditions: there is a valid array of Square objects
 // Postconditions: adds the created cluster to each square in the array
 Cluster::
-Cluster(const string type, Square* arr[9]) : type(type){
-    for (int index = 0; index < 9; index++){
+Cluster(const string type, Square* arr[9], const short amnt) : type(type){
+    for (int index = 0; index < amnt; index++){
         clstr[index] = arr[index];
         clstr[index]->addCluster(this);
     }
@@ -21,7 +21,7 @@ Cluster(const string type, Square* arr[9]) : type(type){
 void Cluster::
 shoop(const char val){
     const int n = val - '0';
-    for (Square* square : clstr) square->turnOff(n);
+    for (Square* square : clstr) if (square) square->turnOff(n);
 }
 
 // ---------------------------------------------------------------------
@@ -31,6 +31,6 @@ shoop(const char val){
 ostream& Cluster::
 print(ostream& out) const {
     out << type <<endl;
-    for (Square* square : clstr) out <<*square <<endl;
+    for (Square* square : clstr) if (square) out <<*square <<endl;
     return out;
 }

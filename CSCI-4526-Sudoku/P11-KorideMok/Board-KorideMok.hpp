@@ -8,7 +8,7 @@
 #include "Frame-KorideMok.hpp"
 #include "CanView.hpp"
 
-enum class ClusterType {ROW=0, COLUMN, BOX, DIAGONAL};
+enum class ClusterType {ROW=0, COLUMN, BOX, DIAGONAL, HBOX, VBOX};
 
 class Board : public CanView{
     protected:
@@ -20,8 +20,8 @@ class Board : public CanView{
 
         void getPuzzle();
         void makeClusters();
-        void createRow(short);
-        void createCol(short);
+        void createRow(const short row);
+        void createCol(const short col);
 
     public:
         Board(short, short, ifstream&);

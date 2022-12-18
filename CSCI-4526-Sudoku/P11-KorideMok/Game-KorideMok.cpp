@@ -18,7 +18,7 @@ Game(ifstream& file) : file(file) {
     switch(toupper(gameType)){
         case 'T': n = 9; clstr = 27; puzzle = new TradBoard(n, clstr, file); break;
         case 'D': n = 9; clstr = 29; puzzle = new DiagBoard(n, clstr, file); break;
-        case 'S': n = 6; clstr = 18; puzzle = new SixyBoard(n, clstr, file); break;
+        case 'S': n = 6; clstr = 24; puzzle = new SixyBoard(n, clstr, file); break;
     }
     NewMove(); //adds the initial Frame to the undo stack
 }
@@ -31,7 +31,9 @@ Game(ifstream& file) : file(file) {
 void Game::
 run(){
     const static char legal[] { "MmTtUuRrSsEeQq" };
+    cout << *puzzle << endl;
     Viewer fancyView(9, 9, *puzzle);
+
     
     for(;;){
         fancyView.show(cout);

@@ -31,7 +31,7 @@ class SixyBoard : public Board{
         void createHorBox(int row, int col);
     public:
         SixyBoard()=default;
-        SixyBoard(short, short, ifstream&);
+        SixyBoard(short size, short clstr, ifstream& file);
         ~SixyBoard()=default;
 };
 

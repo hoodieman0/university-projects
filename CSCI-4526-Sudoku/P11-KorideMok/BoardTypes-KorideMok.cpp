@@ -2,7 +2,7 @@
 
 #include "BoardTypes-KorideMok.hpp"
 
-static const string clusterT[4] = {"ROW", "COLUMN", "BOX", "DIAGONAL"};
+static const string clusterT[6] = {"ROW", "COLUMN", "BOX", "DIAGONAL", "HBOX", "VBOX"};
 
 // ---------------------------------------------------------------------
 // Constructor for TradBoard
@@ -29,7 +29,7 @@ createBox(const short r, const short c) {
         for (short h = c; h < c + 3; h++) { arr[index] = &sub(k, h); index++; }
     }
 
-    Cluster* temp = new Cluster(clusterT[(int)ClusterType::BOX], arr);
+    Cluster* temp = new Cluster(clusterT[(int)ClusterType::BOX], arr, n);
     buddies.push_back(temp);
 }
 
@@ -56,8 +56,8 @@ createDiagonal() {
         topArr[row] = &sub(row+1, row+1);
         botArr[row] = &sub(row+1, 9-row);
     }
-    Cluster* tempOne = new Cluster(clusterT[(int)ClusterType::DIAGONAL], topArr);
-    Cluster* tempTwo = new Cluster(clusterT[(int)ClusterType::DIAGONAL], botArr);
+    Cluster* tempOne = new Cluster(clusterT[(int)ClusterType::DIAGONAL], topArr, n);
+    Cluster* tempTwo = new Cluster(clusterT[(int)ClusterType::DIAGONAL], botArr, n);
     Board::buddies.push_back(tempOne);
     Board::buddies.push_back(tempTwo);
 }
@@ -85,9 +85,7 @@ createVertBox(int row, int col){
         for (int c = col; c < col + 2; c++){arr[index] = &sub(r, c); index++; }
     }
     
-    if (index > 6) cerr <<"Boxing went wrong" <<endl;
-
-    Cluster* temp = new Cluster(clusterT[(int)ClusterType::BOX], arr);
+    Cluster* temp = new Cluster(clusterT[(int)ClusterType::VBOX], arr, n);
     buddies.push_back(temp);
 }
 
@@ -99,6 +97,6 @@ createHorBox(int row, int col){
         for (int c = col; c < col + 3; c++){arr[index] = &sub(r, c); index++; }
     }
 
-    Cluster* temp = new Cluster(clusterT[(int)ClusterType::BOX], arr);
+    Cluster* temp = new Cluster(clusterT[(int)ClusterType::HBOX], arr, n);
     buddies.push_back(temp);
 }

@@ -27,7 +27,6 @@ getPuzzle() {
     //depends on initial char being read already
     for (short r = 0; r < n; r++){
         if (file.eof()) return;
-        file>> x; //discard newline
         for (short c = 0; c < n; c++){
             file>> x;
             if (types.find(x) == string::npos) throw InvalidCharException(x, r);
@@ -43,7 +42,7 @@ getPuzzle() {
 // Postconditions: buddies vector is populated with valid clusters
 void Board::
 makeClusters() {
-    for (short k = 1; k < n; k++) {
+    for (short k = 1; k < n+1; k++) {
         createRow(k);
         createCol(k);
     }
@@ -56,9 +55,9 @@ makeClusters() {
 void Board::
 createRow(const short r) {
     Square* arr[9];
-    for (short c = 0; c < 9; c++) { arr[c] = &sub(r, c+1); }
+    for (short c = 0; c < n; c++) { arr[c] = &sub(r, c+1); }
 
-    Cluster* temp = new Cluster(clusterT[(int)ClusterType::ROW], arr);
+    Cluster* temp = new Cluster(clusterT[(int)ClusterType::ROW], arr, n);
     buddies.push_back(temp);
 }
 
@@ -69,9 +68,9 @@ createRow(const short r) {
 void Board::
 createCol(const short c) {
     Square* arr[9];
-    for (short r = 0; r < 9; r++) { arr[r] = &sub(r+1, c); }
+    for (short r = 0; r < n; r++) { arr[r] = &sub(r+1, c); }
 
-    Cluster* temp = new Cluster(clusterT[(int)ClusterType::COLUMN], arr);
+    Cluster* temp = new Cluster(clusterT[(int)ClusterType::COLUMN], arr, n);
     buddies.push_back(temp);
 }
 
