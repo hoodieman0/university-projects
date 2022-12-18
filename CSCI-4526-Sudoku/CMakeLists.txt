@@ -11,7 +11,9 @@ include_directories(P1-KorideMok
         P6-KorideMok
         P7-KorideMok
         P8-KorideMok
-        P10-KorideMok)
+        P10-KorideMok
+        P11-KorideMok
+        )
 
 add_executable(P1-KorideMok
         P1-KorideMok/SudokuMain-KorideMok.cpp
@@ -182,4 +184,39 @@ add_executable(P10-KorideMok
         P10-KorideMok/Stack-KorideMok.hpp
         P10-KorideMok/Frame-KorideMok.cpp
         P10-KorideMok/Frame-KorideMok.hpp
+        )
+
+add_executable(P11-KorideMok
+        P11-KorideMok/Square-KorideMok.cpp
+        P11-KorideMok/Square-KorideMok.hpp
+        P11-KorideMok/SudokuMain-KorideMok.cpp
+        P11-KorideMok/tools.cpp
+        P11-KorideMok/tools.hpp
+        P11-KorideMok/UnitTests-KorideMok.cpp
+        P11-KorideMok/UnitTests-KorideMok.hpp
+        P11-KorideMok/State-KorideMok.hpp
+        P11-KorideMok/State-KorideMok.cpp
+        P11-KorideMok/Game-KorideMok.hpp
+        P11-KorideMok/Game-KorideMok.cpp
+        P11-KorideMok/Board-KorideMok.hpp
+        P11-KorideMok/Board-KorideMok.cpp
+        P11-KorideMok/Cluster-KorideMok.hpp
+        P11-KorideMok/Cluster-KorideMok.cpp
+        P11-KorideMok/BoardTypes-KorideMok.hpp
+        P11-KorideMok/BoardTypes-KorideMok.cpp
+        P11-KorideMok/Exceptions-KorideMok.hpp
+        P11-KorideMok/Exceptions-KorideMok.cpp
+        P11-KorideMok/Viewer.hpp
+        P11-KorideMok/Viewer.cpp
+        P11-KorideMok/Canvas.hpp
+        P11-KorideMok/Canvas.cpp
+        P11-KorideMok/CanView.hpp
+        P11-KorideMok/GridChar.hpp
+        P11-KorideMok/GridChar.cpp
+        P11-KorideMok/MixedChar.hpp
+        P11-KorideMok/MixedChar.cpp
+        P11-KorideMok/Stack-KorideMok.cpp
+        P11-KorideMok/Stack-KorideMok.hpp
+        P11-KorideMok/Frame-KorideMok.cpp
+        P11-KorideMok/Frame-KorideMok.hpp
         )

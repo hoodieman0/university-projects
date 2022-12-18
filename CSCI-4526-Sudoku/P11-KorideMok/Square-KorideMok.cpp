@@ -8,7 +8,7 @@
 // Preconditions: Square object exists
 // Postconditions: Prints Square's variables to the console
 Square::
-Square(const char input, const short r, const short c) : state(input), row(r), col(c){
+Square(const char input, const short r, const short c) : State(input), row(r), col(c){
 }
 
 // ---------------------------------------------------------------------
@@ -21,10 +21,6 @@ mark(const char marker){
     if (legal.find(marker) == string::npos) throw InvalidMarkerException(marker);
 
     if (fixed) throw MarkFixedException(row+1, col+1);
-
-    for (Cluster* cl : buddies) {
-        if (!cl->isValid(marker)) throw ExistingValueException(marker, row+1, col+1);
-    }
 
     shoop(marker);
     value = marker;
@@ -70,6 +66,6 @@ setState(State newState){
 ostream& Square::
 print(ostream& out) const{
     out <<"Square [" <<row+1 <<", " <<col+1 <<"] "; 
-    state.print(out);
+    State::print(out);
     return out;
 }
