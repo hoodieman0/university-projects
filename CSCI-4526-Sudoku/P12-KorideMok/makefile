@@ -34,8 +34,8 @@ Square-KorideMok.o: Square-KorideMok.cpp Square-KorideMok.hpp
 Frame-KorideMok.o: Frame-KorideMok.cpp Frame-KorideMok.hpp
 	$(CC) -c $(CFLAGS) Frame-KorideMok.cpp Frame-KorideMok.hpp
 
-Stack-KorideMok.o: Stack-KorideMok.cpp Stack-KorideMok.hpp
-	$(CC) -c $(CFLAGS) Stack-KorideMok.cpp Stack-KorideMok.hpp
+Stack-KorideMok.o: Stack-KorideMok.hpp
+	$(CC) -c $(CFLAGS) Stack-KorideMok.hpp
 
 UnitTests-KorideMok.o: UnitTests-KorideMok.cpp UnitTests-KorideMok.hpp
 	$(CC) -c $(CFLAGS) UnitTests-KorideMok.cpp UnitTests-KorideMok.hpp
