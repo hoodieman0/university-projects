@@ -4,14 +4,6 @@
 #include "Cluster-KorideMok.hpp"
 
 // ---------------------------------------------------------------------
-// Prints the values of the Square object in a human-readable format
-// Preconditions: Square object exists
-// Postconditions: Prints Square's variables to the console
-Square::
-Square(const char input, const short r, const short c) : State(input), row(r), col(c){
-}
-
-// ---------------------------------------------------------------------
 // Changes the value of square's state
 // Preconditions: Square object exists
 // Postconditions: if marker is in legal and not in another cluster, value = marker, else no change

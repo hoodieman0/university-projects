@@ -16,7 +16,7 @@ class Square : public State{
 
     public:
         Square() = default;
-        Square(char, short, short);
+        Square(char input, short row, short col) : State(input), row(row), col(col) {};
         ~Square() = default;
         void mark(char);
         void addCluster(Cluster* cl) { buddies.push_back(cl); }
