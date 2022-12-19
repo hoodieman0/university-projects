@@ -31,7 +31,6 @@ Game(ifstream& file) : file(file) {
 void Game::
 run(){
     const static char legal[] { "MmTtUuRrSsEeQq" };
-    cout << *puzzle << endl;
     Viewer fancyView(9, 9, *puzzle);
 
     
