@@ -85,15 +85,6 @@ mark(const short r, const short c, const char value) const {
 }
 
 // ---------------------------------------------------------------------
-// Gets the value of the square at the given position
-// Preconditions: Game object exists
-// Postconditions: return Square::value
-char Board::
-getMarkChar(int row, int col) const {
-    return sub(row, col).getValue();
-}
-
-// ---------------------------------------------------------------------
 // Changes the state of the Squares of the board
 // Warning! The settings of the original board are kept, 
 // i.e. you cannot restore a regular board to a diagonal board
