@@ -26,7 +26,7 @@ getPuzzle() {
 
     //depends on initial char being read already
     for (short r = 0; r < n; r++){
-        if (file.eof()) return;
+        if (file.eof()) throw InvalidCharException(x, r);
         for (short c = 0; c < n; c++){
             file>> x;
             if (types.find(x) == string::npos) throw InvalidCharException(x, r);
@@ -91,11 +91,12 @@ mark(const short r, const short c, const char value) const {
 // Preconditions: Frame object exists
 // Postconditions: All Square States are changed to match the frame
 void Board::
-restoreState(Frame* frame){
+restoreState(Frame& frame){
     State temp;
+
     for (int row = 0; row < n; row++){
         for (int col = 0; col < n; col++){
-            temp = frame->getState((9*row)+col);
+            temp = frame[(9*row)+col];
             sub(row+1, col+1).setState(temp);
         }
     }
