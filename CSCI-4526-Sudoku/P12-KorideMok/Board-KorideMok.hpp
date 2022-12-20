@@ -15,7 +15,7 @@ class Board : public CanView{
         short n; // Size of the puzzle
         Square* bd;
         ifstream& file;
-        short left;
+        short left; //dead variable requested by intstructions
         vector<Cluster*> buddies;
 
         void getPuzzle();
