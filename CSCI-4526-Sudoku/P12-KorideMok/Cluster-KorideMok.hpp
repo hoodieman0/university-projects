@@ -13,7 +13,7 @@ class Cluster{
 
     public:
         Cluster(string type, Square* arr[], const short amnt);
-        void shoop(char);
+        void shoop(char value);
         ostream& print(ostream&) const;
 };
 

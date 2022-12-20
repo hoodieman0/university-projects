@@ -31,6 +31,7 @@ class Game{
 
     public:
         Game(ifstream& input);
+        ~Game() { delete puzzle; }
         void run();
 };
 
