@@ -21,7 +21,15 @@ public:
     bool getFixed() const { return fixed; }
     string getPosListString() const;
     ostream& print(ostream& out) const;
+    State& operator=(const State& s);
 };
+
+inline State& State::operator=(const State& s){
+    posList = s.getPosList();
+    value = s.getValue();
+    fixed = s.getFixed();
+    return *this;
+}
 
 inline ostream& operator <<(ostream& out, State& st){
     return st.print(out);

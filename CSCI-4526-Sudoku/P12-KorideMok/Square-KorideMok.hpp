@@ -15,14 +15,14 @@ class Square : public State{
         vector<Cluster*> buddies;
 
     public:
-        Square() = default;
+        Square()=default;
         Square(char input, short row, short col) : State(input), row(row), col(col) {};
-        ~Square() = default;
+        ~Square()=default;
         void mark(char val);
         void addCluster(Cluster* cl) { buddies.push_back(cl); }
         void shoop(char val);
         void turnOff(int n);
-        void setState(State newState);
+        void setState(const State& newState);
         ostream& print(ostream& out) const; //follows matrix convention [rows, columns]
 };
 

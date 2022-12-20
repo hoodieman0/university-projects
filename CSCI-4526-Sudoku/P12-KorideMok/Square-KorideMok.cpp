@@ -45,10 +45,8 @@ turnOff(const int n) {
 // Preconditions: square object exists
 // Postconditions: State posList, value, fixed are changed 
 void Square::
-setState(State newState){
-    posList = newState.getPosList();
-    value = newState.getValue();
-    fixed = newState.getFixed();
+setState(const State& newState){
+    State::operator=(newState);
 }
 
 // ---------------------------------------------------------------------
