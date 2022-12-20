@@ -17,7 +17,7 @@
 //      *Used in main
 //
 // BadOpenException() - the file cannot be opened
-//      *Used in main
+//      *Used in main, Game::Save() and Game::Restore()
 //
 // InvalidGameTypeException() - the char read for Game::gametype is invalid
 //      *Used in Game::Game()

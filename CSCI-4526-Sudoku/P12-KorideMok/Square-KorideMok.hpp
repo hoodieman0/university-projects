@@ -18,12 +18,12 @@ class Square : public State{
         Square() = default;
         Square(char input, short row, short col) : State(input), row(row), col(col) {};
         ~Square() = default;
-        void mark(char);
+        void mark(char val);
         void addCluster(Cluster* cl) { buddies.push_back(cl); }
-        void shoop(char);
-        void turnOff(int);
+        void shoop(char val);
+        void turnOff(int n);
         void setState(State newState);
-        ostream& print(ostream&) const; //follows matrix convention [rows, columns]
+        ostream& print(ostream& out) const; //follows matrix convention [rows, columns]
 };
 
 inline ostream& operator <<(ostream& out, Square& sq){

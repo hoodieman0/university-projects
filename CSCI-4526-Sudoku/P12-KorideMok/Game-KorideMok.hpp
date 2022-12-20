@@ -30,7 +30,7 @@ class Game{
 
 
     public:
-        Game(ifstream&);
+        Game(ifstream& input);
         void run();
 };
 

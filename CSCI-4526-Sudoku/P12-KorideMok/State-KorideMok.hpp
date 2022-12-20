@@ -14,13 +14,13 @@ protected:
 
 public:
     State(char='-');
-    ~State() = default;
-    virtual void mark(char);
+    ~State()=default;
+    virtual void mark(char val);
     short getPosList() const { return posList; }
     char getValue() const { return value; }
     bool getFixed() const { return fixed; }
     string getPosListString() const;
-    ostream& print(ostream&) const;
+    ostream& print(ostream& out) const;
 };
 
 inline ostream& operator <<(ostream& out, State& st){

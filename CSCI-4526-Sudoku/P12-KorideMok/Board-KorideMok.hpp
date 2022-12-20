@@ -26,11 +26,13 @@ class Board : public CanView{
     public:
         Board(short, short, ifstream&);
         ~Board(){ cout <<"~Destroying Board~" <<endl; delete[] bd; }
-        Square& sub(const short r, const short c) const { return bd[(r - 1)* n + (c - 1)]; }
-        void mark(const short, const short, const char) const;
+
+        Square& sub(const short row, const short col) const { return bd[(row - 1)* n + (col - 1)]; }
+        void mark(const short row, const short col, const char val) const;
         char getMarkChar(int row, int col) const override { return sub(row, col).getValue(); };
         string getPossibilityString(int row, int col) const override { return sub(row, col).getPosListString(); }
-        void restoreState(Frame* frame);
+        void restoreState(Frame& frame);
+
         ostream& print(ostream&) const;
 };
 

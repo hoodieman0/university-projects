@@ -33,7 +33,6 @@ run(){
     const static char legal[] { "MmTtUuRrSsEeQq" };
     Viewer fancyView(9, 9, *puzzle);
 
-    
     for(;;){
         fancyView.show(cout);
         cout <<"\nWhat Would You Like To Do? " <<endl;
@@ -110,7 +109,7 @@ Undo(){
     
     redo.push(undo.top()); //put the latest move on the redo stack
     undo.pop(); //gets rid of lastest the frame
-    puzzle->restoreState(undo.top()); //restore frame before last NewMove
+    puzzle->restoreState(*undo.top()); //restore frame before last NewMove
 }
 
 // ---------------------------------------------------------------------
@@ -122,11 +121,15 @@ void Game::
 Redo(){
     if (redo.size() < 1) { cout <<"No Moves To Redo!" <<endl; return; }
     
-    puzzle->restoreState(redo.top()); //restore the undo frame
+    puzzle->restoreState(*redo.top()); //restore the undo frame
     undo.push(redo.top()); //since Undo() pops before its own restore, push the top() frame then pop it
     redo.pop();
 }
 
+// ---------------------------------------------------------------------
+// Helper function for Game::run() to save the last move made
+// Precondition: Game object exists
+// Postcondition: Frame::serialize() is called -> frame is saved to output file
 void Game::
 Save(){
     cout <<"Type The Name Of The File To Save To: ";
@@ -143,6 +146,10 @@ Save(){
     cout <<"Game Saved Successfully!" <<endl;
 }
 
+// ---------------------------------------------------------------------
+// Helper function for Game::run() to reload a previous frame
+// Precondition: Game object exists, save file exists
+// Postcondition: Frame::realize() is called -> a new frame is made and restored
 void Game::
 Restore(){
     cout <<"Type The Name Of The File To Restore: ";
@@ -157,7 +164,7 @@ Restore(){
         undo.zap();
         NewMove(); //adds the initial Frame to the undo stack
         redo.zap();
-        puzzle->restoreState(frame);
+        puzzle->restoreState(*frame);
     }
     catch(GameException& e) { cout <<e << endl; return; }
     

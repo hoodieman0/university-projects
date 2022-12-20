@@ -10,7 +10,7 @@ class TradBoard: public Board{
         void createBox(const short row, const short col);
     public:
         TradBoard()=default;
-        TradBoard(short, short, ifstream&);
+        TradBoard(short n, short clstr, ifstream& input);
         ~TradBoard()=default;
         
 };
@@ -20,7 +20,7 @@ class DiagBoard : public TradBoard {
         void createDiagonal();
     public:
         DiagBoard()=default;
-        DiagBoard(short, short, ifstream&);
+        DiagBoard(short n, short clstr, ifstream& input);
         ~DiagBoard()=default;
         
 };
