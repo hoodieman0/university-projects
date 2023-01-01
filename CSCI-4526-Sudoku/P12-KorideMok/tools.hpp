@@ -27,6 +27,8 @@
 #include <cctype>      // for isspace() and isdigit()  
 #include <cstdarg>     // for functions with variable # of arguments 
 
+#include <memory>
+
 using namespace std;
 
 // --------------------------------------------------------------------------- 

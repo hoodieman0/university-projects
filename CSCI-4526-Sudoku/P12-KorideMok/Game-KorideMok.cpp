@@ -93,7 +93,7 @@ NewMove(){
         }
     }
 
-    Frame* frame = new Frame(arr);
+    shared_ptr<Frame> frame(new Frame(arr));
     undo.push(frame);
     redo.zap();
 }
@@ -109,7 +109,7 @@ Undo(){
     
     redo.push(undo.top()); //put the latest move on the redo stack
     undo.pop(); //gets rid of lastest the frame
-    puzzle->restoreState(*undo.top()); //restore frame before last NewMove
+    puzzle->restoreState(undo.top()); //restore frame before last NewMove
 }
 
 // ---------------------------------------------------------------------
@@ -121,7 +121,7 @@ void Game::
 Redo(){
     if (redo.size() < 1) { cout <<"No Moves To Redo!" <<endl; return; }
     
-    puzzle->restoreState(*redo.top()); //restore the undo frame
+    puzzle->restoreState(redo.top()); //restore the undo frame
     undo.push(redo.top()); //since Undo() pops before its own restore, push the top() frame then pop it
     redo.pop();
 }
@@ -159,12 +159,12 @@ Restore(){
     try{
         ifstream inputFile(fileName);
         if (!inputFile) { throw BadOpenException(); }
-        Frame* frame = new Frame();
+        shared_ptr<Frame> frame(new Frame());
         frame->realize(inputFile, n);
         undo.zap();
         NewMove(); //adds the initial Frame to the undo stack
         redo.zap();
-        puzzle->restoreState(*frame);
+        puzzle->restoreState(frame);
     }
     catch(GameException& e) { cout <<e << endl; return; }
     

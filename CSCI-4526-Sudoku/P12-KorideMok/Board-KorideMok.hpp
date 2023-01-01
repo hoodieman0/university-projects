@@ -16,7 +16,7 @@ class Board : public CanView{
         Square* bd;
         ifstream& file;
         short left; //dead variable requested by intstructions
-        vector<Cluster*> buddies;
+        vector<shared_ptr<Cluster>> buddies;
 
         void getPuzzle();
         void makeClusters();
@@ -31,7 +31,7 @@ class Board : public CanView{
         void mark(const short row, const short col, const char val) const;
         char getMarkChar(int row, int col) const override { return sub(row, col).getValue(); };
         string getPossibilityString(int row, int col) const override { return sub(row, col).getPosListString(); }
-        void restoreState(Frame& frame);
+        void restoreState(shared_ptr<Frame> frame);
 
         ostream& print(ostream&) const;
 };

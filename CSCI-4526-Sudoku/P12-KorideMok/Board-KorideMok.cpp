@@ -57,7 +57,7 @@ createRow(const short r) {
     Square* arr[9];
     for (short c = 0; c < n; c++) { arr[c] = &sub(r, c+1); }
 
-    Cluster* temp = new Cluster(clusterT[(int)ClusterType::ROW], arr, n);
+    shared_ptr<Cluster> temp(new Cluster(clusterT[(int)ClusterType::ROW], arr, n));
     buddies.push_back(temp);
 }
 
@@ -70,7 +70,7 @@ createCol(const short c) {
     Square* arr[9];
     for (short r = 0; r < n; r++) { arr[r] = &sub(r+1, c); }
 
-    Cluster* temp = new Cluster(clusterT[(int)ClusterType::COLUMN], arr, n);
+    shared_ptr<Cluster> temp(new Cluster(clusterT[(int)ClusterType::COLUMN], arr, n));
     buddies.push_back(temp);
 }
 
@@ -91,12 +91,12 @@ mark(const short r, const short c, const char value) const {
 // Preconditions: Frame object exists
 // Postconditions: All Square States are changed to match the frame
 void Board::
-restoreState(Frame& frame){
+restoreState(shared_ptr<Frame> frame){
     State temp;
 
     for (int row = 0; row < n; row++){
         for (int col = 0; col < n; col++){
-            temp = frame[(9*row)+col];
+            temp = frame->operator[]((9*row)+col);
             sub(row+1, col+1).setState(temp);
         }
     }
@@ -116,7 +116,7 @@ print(ostream& out) const {
     }
 
     int k = 1;
-    for (Cluster* cl : buddies) {
+    for (shared_ptr<Cluster> cl : buddies) {
         out << "Cluster " << k++ << ": " << *cl << endl;
     }
 
