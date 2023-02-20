@@ -1,4 +1,4 @@
-# TODO Nodes
+
 # TODO Trees
 # TODO Graphs
 # TODO BFS
@@ -73,8 +73,67 @@ class Problem:
     def Value(self, state):                             #Inheritance
         raise NotImplementedError
 
+class Graph:
+    def __init__(self, graphDict=None, directed=False):
+        self.graphDict = graphDict
+        self.directed = directed
+        if not self.directed:
+            self.MakeUndirected()
+
+    def MakeUndirected(self):
+        for nodeA in list(self.graphDict.keys()):
+            for (nodeB, distance) in self.graphDict[nodeA].items():  #TODO Rename Variable b
+                self.ConnectOneWay(nodeB, nodeA, distance)
+
+    def Connect(self, nodeA, nodeB, distance=1):
+        self.ConnectOneWay(nodeA, nodeB, distance)
+        if not self.directed:
+            self.ConnectOneWay(nodeB, nodeA, distance)
+
+    def ConnectOneWay(self, nodeA, nodeB, distance):
+        self.graphDict.setdefault(nodeA, {})[nodeB] = distance
+
+    def get(self, nodeA, nodeB=None):
+        links = self.graphDict.setdefault(nodeA, {})
+        if b is None:
+            return links
+        else:
+            return links.Get(nodeB)
+
+    def nodes(self):
+        s1 = set([k for k in self.graphDict.keys()])
+        s2 = set([k2 for v in self.graphDict.values() for k2, v2, in v.items()])
+        nodes = s1.union(s2)
+        return list(nodes)
 
 
 
-print(list)
 
+
+
+
+
+
+
+
+
+
+def BreadthFirstSearch(problem):
+    frontierQueue = []
+    exploredList = []
+
+    startNode = Node(problem.initial, None, None, 0)
+    frontierQueue.append(startNode)
+
+    while frontierQueue:
+        node = frontierQueue.pop(0)
+        exploredList.append(node)
+
+        if problem.GoalTest(node.state):
+            return node
+
+        for childNode in node.Expand(problem):
+            if childNode not in frontierQueue and childNode not in exploredList:
+                frontierQueue.append(childNode)
+
+    return None
