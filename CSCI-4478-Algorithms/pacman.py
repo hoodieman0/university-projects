@@ -149,7 +149,7 @@ def main():
 #main()
 
 import filecmp
-filecmp.cmp('test.txt', 'check.txt')
+print(filecmp.cmp('test.txt', 'check.txt'))
 
 """file = open('test.txt', 'r')
 file2 = open('check.txt', 'r')
