@@ -7,7 +7,7 @@
 
 ---
 # Overview
-This repository is a showcase of the projects done in the author's Digital Systems class in Fall 2022. It uses the Arduino Uno and related components. The Graphics lab uses an online Arduino simulator whose name is unknown. Each directory has the runnable ino files and associated hardware diagrams for the Uno. For programs with a button, a debounce checker was added due to a buggy button.
+This repository is a showcase of the projects done in the author's Digital Systems class in Fall 2022. It uses the Arduino Uno and related components. The Arduino 1.8.19 IDE was used to create the code files. The Graphics lab uses an online Arduino simulator whose name is unknown. Each directory has the runnable .ino files and associated hardware diagrams for the Uno. For programs with a button, a debounce checker was added due to a buggy button.
 
 ## Button Toggle
 A simple program that lights up an LED if the button is pressed.
