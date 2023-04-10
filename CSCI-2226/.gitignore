@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+.vscode/
+
+*.stackdump
+
+Program4/program
