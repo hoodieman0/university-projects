@@ -19,20 +19,20 @@ int main()
 
     std::cout << "\n\nWelcome To Lookup!\n\n";
     
-    TimeToFindLinkedList(roadToRome, -1, 100);
-    std::cout << std::endl;
+    // TimeToFindLinkedList(roadToRome, -1, 100);
+    // std::cout << std::endl;
 
-    TimeToFindLinkedList(roadToRome, -1, 1000);
-    std::cout << std::endl;
+    // TimeToFindLinkedList(roadToRome, -1, 1000);
+    // std::cout << std::endl;
 
-    TimeToFindLinkedList(roadToRome, -1, 10000);
-    std::cout << std::endl;
+    // TimeToFindLinkedList(roadToRome, -1, 10000);
+    // std::cout << std::endl;
 
-    TimeToFindLinkedList(roadToRome, -1, 100000);
-    std::cout << std::endl;
+    // TimeToFindLinkedList(roadToRome, -1, 100000);
+    // std::cout << std::endl;
 
-    TimeToFindLinkedList(roadToRome, -1, 1000000);
-    std::cout << std::endl;
+    // TimeToFindLinkedList(roadToRome, -1, 1000000);
+    // std::cout << std::endl;
     
     // TimeToFindRBTree(yggdrasil, 256, 100);
     // std::cout << std::endl;

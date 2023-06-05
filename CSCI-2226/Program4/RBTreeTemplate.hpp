@@ -13,11 +13,19 @@ template <class T> struct Node
     Node<T>* right;
     Node<T>* parent;
 
+    Node(){
+        color = Color::BLACK;
+        left = nullptr;
+        right = nullptr;
+        parent = nullptr;
+    }
+
     Node(T data, Node<T>* parent):
         data{data},
         left{nullptr},
         right{nullptr},
-        parent{parent} {}
+        parent{parent},
+        color{Color::RED} {}
 };
 
 template <class T> class RBTree
@@ -26,8 +34,10 @@ template <class T> class RBTree
         Node<T>* root;
     
     public:
-        RBTree():
-            root{nullptr} {}
+        RBTree(){
+            root = nullptr
+        }
+
         
         Node<T>* Min(Node<T>* node)
         {
@@ -56,6 +66,7 @@ template <class T> class RBTree
         {
             return Max(root);
         }
+
 
         void Insert(Node<T>*& node, Node<T>* parent, T data)
         {
