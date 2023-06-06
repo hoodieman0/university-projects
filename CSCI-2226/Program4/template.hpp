@@ -36,11 +36,40 @@ class RBTree {
     private:
     Node<T>* root;
 
+    // to be called when inserting new nodes
+    // if the code executes without going into the if statements, no violation
+    // if the given node is the root, color it black
+    // if the given node's parent in red, go to red violation (since all newly inserted nodes are red)
     void checkViolation(Node<T>* curNode){
+        if (curNode == nullptr) {
+            cout << "Error: curNode in checkViolation was nullptr" << endl;
+            return;
+        }
 
+        if (curNode == root) curNode->color = Color::BLACK;
+        else if (curNode->parent->color == Color::RED) redViolation(curNode)
     }
 
-    void redViolation(Node<T>* curNode);
+    void redViolation(Node<T>* curNode){
+        if (curNode == nullptr) {
+            cout << "Error: curNode in redViolation was nullptr" << endl;
+            return;
+        }
+
+        Node<T>* parent = curNode->parent;
+
+        if (parent == nullptr) {.
+            cout << "Error: parent in redViolation was nullptr" << endl;
+            return;
+        }
+
+        Node<T>* grandparent = parent->parent;
+        Node<T>* uncle = nullptr; 
+
+        if (grandparent->left == parent) uncle = grandparent->right;
+        else uncle = grandparent->right;
+
+    }
 
     void redUncle(Node<T>* curNode);
     void blackUncle(Node<T>* curNode);
