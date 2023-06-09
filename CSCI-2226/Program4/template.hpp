@@ -47,9 +47,13 @@ class RBTree {
         }
 
         if (curNode == root) curNode->color = Color::BLACK;
-        else if (curNode->parent->color == Color::RED) redViolation(curNode)
+        else if (curNode->parent->color == Color::RED) redViolation(curNode);
     }
 
+
+    // if the parent of the curNode is red:
+    // if the uncle node is red, call redUncle()
+    // if the uncle node is black, call blackUncle()
     void redViolation(Node<T>* curNode){
         if (curNode == nullptr) {
             cout << "Error: curNode in redViolation was nullptr" << endl;
@@ -58,7 +62,7 @@ class RBTree {
 
         Node<T>* parent = curNode->parent;
 
-        if (parent == nullptr) {.
+        if (parent == nullptr) {
             cout << "Error: parent in redViolation was nullptr" << endl;
             return;
         }
@@ -69,10 +73,55 @@ class RBTree {
         if (grandparent->left == parent) uncle = grandparent->right;
         else uncle = grandparent->right;
 
+        if (uncle->color == Color::RED) redUncle(parent, uncle, grandparent);
+        else blackUncle(curNode, parent, grandparent);
     }
 
-    void redUncle(Node<T>* curNode);
-    void blackUncle(Node<T>* curNode);
+    void redUncle(Node<T>* parent, Node<T>* uncle, Node<T>* grandparent){
+        parent->color = Color::BLACK;
+
+        if (uncle != nullptr) uncle->color = Color::BLACK;
+        if (grandparent != nullptr) grandparent->color = Color::RED;
+        checkViolation(grandparent);
+    }
+
+    void blackUncle(Node<T>* curNode, Node<T>* parent, Node<T>* grandparent){
+        // if the parent is the left node of the grandparent
+        if (grandparent->left == parent){
+            // if the curNode is the right child of the parent, bring it to a state
+            // where we can make curNode the root of the subtree with a right rotate
+            if (parent->right == curNode) rotateLeft(parent);
+
+            // rotate the grandparent node to the right so its left child is now the root of the subtree
+            rotateRight(grandparent);
+
+            // create a new variable for clarity and readability of which node is being refered to
+            Node<T>* newParent = grandparent->parent;
+
+            // change the root of the subtree to be black, and its children to red
+            newParent->color = Color::BLACK;
+            newParent->left->color = Color::RED;
+            newParent->right->color = Color::RED;
+        }
+        // if the parent is the right node of the grandparent
+        else{
+            // if the curNode is the left child of the parent, bring it to a state
+            // where we can make curNode the root of the subtree with a left rotate
+            if (parent->left == curNode) rotateRight(parent);
+
+            // rotate the grandparent node to the left so its right child is now the root of the subtree
+            rotateLeft(grandparent);
+
+            // create a new variable for clarity and readability of which node is being refered to
+            Node<T>* newParent = grandparent->parent;
+
+            // change the root of the subtree to be black, and its children to red
+            newParent->color = Color::BLACK;
+            newParent->left->color = Color::RED;
+            newParent->right->color = Color::RED;
+        }
+        // TODO root->color = Color::BLACK;
+    }
 
     void rotateLeft(Node<T>* curNode){
         // parameter check
@@ -90,6 +139,7 @@ class RBTree {
         }
 
         // get left child from the right child of the current node
+        // can be nullptr, watch for segfaults
         Node<T>* leftGrandChild = curNode->right->left;
 
         // bring down curNode to be the left of the right child, right child is now the root of subtree
@@ -136,6 +186,7 @@ class RBTree {
         }
 
         // get right child from the left child of the current node
+        // can be nullptr, watch for segfaults
         Node<T>* rightGrandChild = curNode->left->right;
 
         // bring down curNode to be the right of the left child, left child is now the root of subtree
@@ -171,11 +222,32 @@ class RBTree {
         root = nullptr;
     }
 
-    void insert(Node<T>* curNode, T data);
-    void insert(T data);
-    Node<T>* find(Node<T>*, T data);
-    Node<T>* find(T data);
+    void insert(Node<T>* curNode, Node<T>* prevNode, T data){
+        if (curNode == nullptr) {
+            curNode = new Node<T>(data);
+            curNode->parent = prevNode;
 
+            if (root == nullptr) root = curNode;
+
+            checkViolation(curNode);
+        }
+        else if (data < curNode->data) {
+            insert(curNode->left, curNode, data);
+        }
+        else {
+            insert(curNode->right, curNode, data);
+        }
+    }
+
+    void insert(T data) { insert(root, nullptr, data); }
     
-
+    Node<T>* find(Node<T>* curNode, T data){
+        if (curNode == nullptr) return nullptr;
+        else if (data < curNode->data) find(curNode->left, data);
+        else if (data == curNode->data) return curNode;
+        else find(curNode->right, data);
+        return nullptr;
+    }
+    
+    Node<T>* find(T data) { return find(root, data); }
 };

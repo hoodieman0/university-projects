@@ -54,24 +54,15 @@ template <class T> class LinkedList
 
         NodeLL<T>* Find(T data)
         {
-            std::fstream file;
-            file.open(MYFILE);
-            file << "\n\n\n~~~~~~~~~~~~~~" << std::endl;
             NodeLL<T>* temp = head;
-            std::cerr << "Length : " << length << std::endl;
             while(temp != nullptr)
             {
-                file << "Searching " << temp->data << std::endl;
                 if (temp->data == data)
                 {
-                    file << "!!!Found " << data << "!!!" << std::endl;
-                    file.close();
                     return temp;
                 }
                 temp = temp->next;
             }
-            file << "\n~Item Not Found~\n" << std::endl;
-            file.close();
             throw "\n~Item Not Found~\n";
         }
 

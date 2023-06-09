@@ -7,7 +7,7 @@ all: program
 program: $(binaries)
 	$(CC) $(binaries) -o program
 
-main.o: main.cpp RBTreeTemplate.hpp LinkedListTemplate.hpp
+main.o: main.cpp template.hpp LinkedListTemplate.hpp
 	$(CC) -c $(CFLAGS) main.cpp
 
 clean: 
