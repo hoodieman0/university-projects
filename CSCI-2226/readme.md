@@ -24,7 +24,7 @@ A demonstration of polymorphism, stacks, and the command pattern.
 
 ## Program 4
 ### Red Black Tree
-An implementation of a red-black tree. Needs to be finished.
+An implementation of a red-black tree.
 
 ----------------------------
 
