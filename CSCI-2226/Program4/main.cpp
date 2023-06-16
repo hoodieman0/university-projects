@@ -1,11 +1,8 @@
 #include "LinkedListTemplate.hpp"
-#include "template.hpp"
+#include "RedBlackTreeTemplate.hpp"
 
 #include <iostream>
 #include <chrono>
-
-#define BT int; //I didn't know how to use define for data types
-
 
 void TreeInserter(RBTree<int>, int, int, int);
 void LinkedListInserter(LinkedList<int>, int, int, int);
