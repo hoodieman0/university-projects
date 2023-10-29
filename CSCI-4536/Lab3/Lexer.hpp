@@ -16,7 +16,7 @@ private:
     StateType state;
     ifstream inFile;
     ofstream outFile;
-    map<string, Token> symbolTable;
+    map<string, Token> tokenMap;
     char cursor;
     TokenType curToken;
 

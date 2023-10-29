@@ -1,6 +1,7 @@
 #include "Lexer.hpp"
 
-Lexer::Lexer(string filename){
+Lexer::
+Lexer(string filename){
     inFile.open(filename);
     if (!inFile) throw "Error: Could not open input file!";
 
@@ -13,12 +14,37 @@ Lexer::Lexer(string filename){
     outFile << "Comments: " << endl;
 }
 
-Lexer::~Lexer(){
+Lexer::
+~Lexer(){
     inFile.close();
     outFile.close();
 }
 
-void Lexer::doLex();
-ostream& Lexer::print(ostream& out);
-void Lexer::doToken(string name, TokenType type);
-void Lexer::doStart();
+void Lexer::
+doLex(){
+
+}
+
+ostream& Lexer::
+print(ostream& out){
+    return out;
+}
+
+void Lexer::
+doToken(string name, TokenType type){
+     if (map<string, Token>::iterator search = tokenMap.find(name); 
+        search != tokenMap.end()){
+            search->second.incrementRefCount();
+     }
+     else {
+        // I could use auto here but I figured it would be teaching moment to write it out
+        const pair<map<string, Token>::iterator, bool> ret = tokenMap.insert({name, Token(name, type)});
+        if (!ret.second) throw "Error: tokenMap failed insert!";
+        curToken = EMPTY;
+     }
+}
+
+void Lexer::
+doStart(){
+
+}
