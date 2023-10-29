@@ -23,6 +23,8 @@ private:
     string tokenString;
 
     bool isNumber(string s);
+    void doToken(string name, TokenType type);
+    void doStart();
 
 public:
     Lexer(string filename);
@@ -30,8 +32,7 @@ public:
 
     void doLex();
     ostream& print(ostream& out);
-    void doToken(string name, TokenType type);
-    void doStart();
+
 
 };
 
