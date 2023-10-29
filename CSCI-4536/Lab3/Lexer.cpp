@@ -10,7 +10,7 @@ Lexer(string filename) : state(STARTING), currentChar(' '), tokenString(""){
 
     outFile << "James Mok, Andrew Haller, Anusha Mandadam" << endl;
     outFile << "Lab 3: Forth Lexer" << endl;
-    outFile << "Lexed File: " << filename << endl;
+    outFile << "Lexed File: " << filename << '\n' << endl;
     outFile << "Comments: " << endl;
 }
 
@@ -45,8 +45,8 @@ doLex(){
                 else state = ACQUIRING_TOKEN;
                 break;
             case ACQUIRING_SLASH: // TODO make helper function
-                inFile >> currentChar;
-                while (currentChar != '\n'){
+                while (true){
+                    if (currentChar == '\n') break;
                     outFile << currentChar;
                     inFile >> currentChar;
                 }
@@ -58,18 +58,18 @@ doLex(){
                 else state = ACQUIRING_TOKEN;
                 break;
             case ACQUIRING_PAREN: // TODO make helper function
-                inFile >> currentChar;
-                while (currentChar != ')'){
+                while (true){
+                    if (currentChar == ')') break;
                     outFile << currentChar;
                     inFile >> currentChar;
                 }
-                outFile << currentChar << endl; // adds the trailing ) with a \n
+                outFile << endl; // adds a trailing \n
                 state = STARTING;
             case ACQUIRING_TOKEN: // TODO make helper function
-                inFile >> noskipws >> currentChar;
-                while (currentChar != ' '){
+                while (true){
+                    if (currentChar == ' ' || currentChar == '\n' || currentChar == 13) break;
                     tokenString += currentChar;
-                    inFile >> currentChar;
+                    inFile >> noskipws >> currentChar;
                 }
 
                 if(isNumber(tokenString)){
@@ -88,7 +88,8 @@ doLex(){
                 break;
             case ACQUIRING_STRING: // TODO make helper function
                 tokenString = "";
-                while (currentChar != '\"'){
+                while (true){
+                    if (currentChar == '\"') break;
                     tokenString += currentChar;
                     inFile >> currentChar;
                 }
@@ -122,8 +123,8 @@ doToken(string name, TokenType type){
         // I could use auto here but I figured it would be teaching moment to write it out
         const pair<map<string, Token>::iterator, bool> ret = tokenMap.insert({name, Token(name, type)});
         if (!ret.second) throw "Error: tokenMap failed insert!";
-        tokenString = "";
      }
+    tokenString = "";
 }
 
 void Lexer::
@@ -136,6 +137,9 @@ doStart(){
             state = PAREN_PENDING;
             break;
         case ' ': 
+            break;
+        case '\n':
+            doToken("\n", WORD);
             break;
         default:
             state = ACQUIRING_TOKEN;
