@@ -11,14 +11,17 @@
 
 using namespace std;
 
+
+
 class Lexer {
 private:
     StateType state;
     ifstream inFile;
     ofstream outFile;
     map<string, Token> tokenMap;
-    char cursor;
-    TokenType curToken;
+    char currentChar;
+    string tokenString;
+    TokenType currentToken;
 
 public:
     Lexer(string filename);

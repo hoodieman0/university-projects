@@ -40,7 +40,7 @@ doToken(string name, TokenType type){
         // I could use auto here but I figured it would be teaching moment to write it out
         const pair<map<string, Token>::iterator, bool> ret = tokenMap.insert({name, Token(name, type)});
         if (!ret.second) throw "Error: tokenMap failed insert!";
-        curToken = EMPTY;
+        tokenString = "";
      }
 }
 
