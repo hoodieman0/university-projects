@@ -103,6 +103,10 @@ doLex(){
 
 ostream& Lexer::
 print(ostream& out){
+    out << "Token Name : Token Info" << endl;
+    for(map<string, Token>::iterator itr = tokenMap.begin(); itr != tokenMap.end(); itr++){
+        out << itr->first << " | " << itr->second << endl;
+    }
     return out;
 }
 
