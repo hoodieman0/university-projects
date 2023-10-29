@@ -19,4 +19,8 @@ public:
     void incrementRefCount();
 };
 
+inline ostream& operator<<(ostream& out, Token& tk){
+    return tk.print(out);
+}
+
 #endif
