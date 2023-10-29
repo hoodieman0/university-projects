@@ -5,9 +5,9 @@
 
 using namespace std;
 
-enum TokenType {WORD, NUMBER, STRING};
+enum TokenType {WORD, NUMBER, STRING, EMPTY};
 enum StateType {STARTING, DONE, ACQUIRINGTOKEN, ACQUIRINGCOMMENT, ACQUIRINGSTRING};
 
-string TokenTypeName[3] = {"Word", "Number", "String"};
+string TokenTypeName[4] = {"Word", "Number", "String", "Empty"};
 
 #endif
