@@ -23,7 +23,7 @@ Lexer::
 // test to see if string is all numbers
 bool Lexer::
 isNumber(string s){
-    for(int i = 0; i < s.size(); i++){
+    for(int unsigned i = 0; i < s.size(); i++){ // what is the different between int unsigned and unsigned int?
         if (!isdigit(s[i])) return false;
     }
     return true;
@@ -40,7 +40,7 @@ doLex(){
                 doStart();
                 break;  
             case SLASH_PENDING: // TODO make helper function
-                if (currentChar = ' ') state = ACQUIRING_SLASH;
+                if (currentChar == ' ') state = ACQUIRING_SLASH;
                 else state = ACQUIRING_TOKEN;
                 break;
             case ACQUIRING_SLASH: // TODO make helper function
@@ -53,7 +53,7 @@ doLex(){
                 state = STARTING;
                 break;
             case PAREN_PENDING: // TODO make helper function
-                if (currentChar = ' ') state = ACQUIRING_PAREN;
+                if (currentChar == ' ') state = ACQUIRING_PAREN;
                 else state = ACQUIRING_TOKEN;
                 break;
             case ACQUIRING_PAREN: // TODO make helper function
