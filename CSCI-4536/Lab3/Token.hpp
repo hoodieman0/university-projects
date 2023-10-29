@@ -15,11 +15,11 @@ private:
 
 public:
     Token(string name, TokenType type);
-    ostream& print(ostream& out);
+    ostream& print(ostream& out) const;
     void incrementRefCount();
 };
 
-inline ostream& operator<<(ostream& out, Token& tk){
+inline ostream& operator<<(ostream& out, const Token& tk){
     return tk.print(out);
 }
 

@@ -22,7 +22,7 @@ private:
     char currentChar;
     string tokenString;
 
-    bool isNumber(string s);
+    bool isNumber(string s) const;
     void doToken(string name, TokenType type);
     void doStart();
 
@@ -31,7 +31,7 @@ public:
     ~Lexer();
 
     void doLex();
-    ostream& print(ostream& out);
+    ostream& print(ostream& out) const;
 
 
 };

@@ -23,7 +23,7 @@ Lexer::
 
 // test to see if string is all numbers
 bool Lexer::
-isNumber(string s){
+isNumber(string s) const{
     for(int unsigned i = 0; i < s.size(); i++){ // what is the different between int unsigned and unsigned int?
         if (!isdigit(s[i])) return false;
     }
@@ -107,9 +107,9 @@ doLex(){
 }
 
 ostream& Lexer::
-print(ostream& out){
+print(ostream& out) const {
     out << "~Token Info~\n" << endl;
-    for(map<string, Token>::iterator itr = tokenMap.begin(); itr != tokenMap.end(); itr++){
+    for(map<string, Token>::const_iterator itr = tokenMap.begin(); itr != tokenMap.end(); itr++){
         out << itr->second << endl;
         out << endl;
     }
