@@ -21,7 +21,6 @@ private:
     map<string, Token> tokenMap;
     char currentChar;
     string tokenString;
-    // TokenType currentToken;
 
     bool isNumber(string s);
 
