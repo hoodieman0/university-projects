@@ -31,7 +31,8 @@ isNumber(string s){
 
 void Lexer::
 doLex(){
-    while (inFile >> currentChar){ // assuming that the last char of file is \n 
+    while (true){ 
+        inFile >> noskipws >> currentChar; // assuming that the last char of file is \n
         if (inFile.eof()){
             return;
         }
@@ -65,7 +66,7 @@ doLex(){
                 outFile << currentChar << endl; // adds the trailing ) with a \n
                 state = STARTING;
             case ACQUIRING_TOKEN: // TODO make helper function
-                inFile >> currentChar;
+                inFile >> noskipws >> currentChar;
                 while (currentChar != ' '){
                     tokenString += currentChar;
                     inFile >> currentChar;
@@ -86,7 +87,7 @@ doLex(){
 
                 break;
             case ACQUIRING_STRING: // TODO make helper function
-            tokenString = "";
+                tokenString = "";
                 while (currentChar != '\"'){
                     tokenString += currentChar;
                     inFile >> currentChar;
