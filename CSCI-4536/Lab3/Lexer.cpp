@@ -11,7 +11,8 @@ Lexer(string filename) : state(STARTING), currentChar(' '), tokenString(""){
     outFile << "James Mok, Andrew Haller, Anusha Mandadam" << endl;
     outFile << "Lab 3: Forth Lexer" << endl;
     outFile << "Lexed File: " << filename << '\n' << endl;
-    outFile << "Comments: " << endl;
+    outFile << "===========================================================================" << endl;
+    outFile << "~Comments~\n" << endl;
 }
 
 Lexer::
@@ -34,6 +35,8 @@ doLex(){
     while (true){ 
         inFile >> noskipws >> currentChar; // assuming that the last char of file is \n
         if (inFile.eof()){
+            outFile << "===========================================================================" << endl;
+            outFile << *this;
             return;
         }
         switch(state){
@@ -105,10 +108,10 @@ doLex(){
 
 ostream& Lexer::
 print(ostream& out){
-    out << "Token Info" << endl;
+    out << "~Token Info~\n" << endl;
     for(map<string, Token>::iterator itr = tokenMap.begin(); itr != tokenMap.end(); itr++){
         out << itr->second << endl;
-        out << "===========================" << endl;
+        out << endl;
     }
     return out;
 }
@@ -137,9 +140,8 @@ doStart(){
             state = PAREN_PENDING;
             break;
         case ' ': 
-            break;
         case '\n':
-            doToken("\n", WORD);
+        case 13:
             break;
         default:
             state = ACQUIRING_TOKEN;
