@@ -12,7 +12,7 @@
 using namespace std;
 
 
-
+//outline of the lexer classs
 class Lexer {
 private:
     StateType state;
@@ -26,6 +26,7 @@ private:
     void doToken(string name, TokenType type);
     void doStart();
 
+//class parameter and deconstructer and print statement
 public:
     Lexer(string filename);
     ~Lexer();
