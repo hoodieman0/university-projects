@@ -1,0 +1,99 @@
+James Mok, Andrew Haller, Anusha Mandadam
+Lab 3: Forth Lexer
+Lexed File: circle.f
+
+===========================================================================
+~Comments~
+
+radius function ( diameter >> radius )
+diameter / 2 | diameter >> radius 
+circumference function ( diameter >> circumference )
+[diameter * 22] / 7 | diameter >> circumference 
+area function ( diameter diameter >> area )
+[22 * diameter * diameter] / 28 | d1 d1 >> area 
+circle function ( diameter >> )
+duplicate the diameter, see if diameter is positive | d1 >> d1 d1 0 > 
+diameter diameter diameter >> diameter area 
+diameter area >> area diameter
+area diameter diameter >> area diameter circumference 
+area diameter circumference >> area circumference diameter
+area circumference diameter diameter >> area circumference diameter radius 
+area circumference diameter radius >> area circumference radius diameter
+This should never run
+===========================================================================
+~Token Info~
+
+Token Name: ')' | Type: Word | Times Referenced: 10
+
+Token Name: '*' | Type: Word | Times Referenced: 3
+
+Token Name: '-3' | Type: Word | Times Referenced: 1
+
+Token Name: '.' | Type: Word | Times Referenced: 5
+
+Token Name: '."' | Type: Word | Times Referenced: 6
+
+Token Name: '/' | Type: Word | Times Referenced: 3
+
+Token Name: '0' | Type: Number | Times Referenced: 2
+
+Token Name: '0=' | Type: Word | Times Referenced: 1
+
+Token Name: '10' | Type: Number | Times Referenced: 1
+
+Token Name: '11' | Type: Number | Times Referenced: 1
+
+Token Name: '12' | Type: Number | Times Referenced: 1
+
+Token Name: '2' | Type: Number | Times Referenced: 1
+
+Token Name: '200' | Type: Number | Times Referenced: 1
+
+Token Name: '22' | Type: Number | Times Referenced: 2
+
+Token Name: '28' | Type: Number | Times Referenced: 1
+
+Token Name: '5' | Type: Number | Times Referenced: 1
+
+Token Name: '7' | Type: Number | Times Referenced: 1
+
+Token Name: ':' | Type: Word | Times Referenced: 4
+
+Token Name: ';' | Type: Word | Times Referenced: 4
+
+Token Name: '>' | Type: Word | Times Referenced: 1
+
+Token Name: 'Area = ' | Type: String | Times Referenced: 1
+
+Token Name: 'CR' | Type: Word | Times Referenced: 13
+
+Token Name: 'Circumference = ' | Type: String | Times Referenced: 1
+
+Token Name: 'Diameter = ' | Type: String | Times Referenced: 1
+
+Token Name: 'Error: Cannot have a diameter of zero! ' | Type: String | Times Referenced: 1
+
+Token Name: 'Radius = ' | Type: String | Times Referenced: 1
+
+Token Name: 'You cannot have a negative number for a diameter! Input = ' | Type: String | Times Referenced: 1
+
+Token Name: 'area' | Type: Word | Times Referenced: 2
+
+Token Name: 'bye' | Type: Word | Times Referenced: 1
+
+Token Name: 'circle' | Type: Word | Times Referenced: 8
+
+Token Name: 'circumference' | Type: Word | Times Referenced: 2
+
+Token Name: 'dup' | Type: Word | Times Referenced: 6
+
+Token Name: 'else' | Type: Word | Times Referenced: 1
+
+Token Name: 'if' | Type: Word | Times Referenced: 2
+
+Token Name: 'radius' | Type: Word | Times Referenced: 2
+
+Token Name: 'swap' | Type: Word | Times Referenced: 3
+
+Token Name: 'then' | Type: Word | Times Referenced: 2
+
