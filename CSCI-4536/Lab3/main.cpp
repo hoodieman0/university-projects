@@ -4,10 +4,7 @@
 int main(){
     Lexer lex("circle.f");
     lex.doLex();
-    
-    ofstream ofile("test.txt");
-    ofile << lex << endl;
-    ofile.close();
+    // printing to the output file handled by doLex(0)
 
     return 0;
 }
