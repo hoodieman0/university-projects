@@ -5,7 +5,7 @@ Lexer(string filename) : state(STARTING), currentChar(' '), tokenString(""){
     inFile.open(filename);
     if (!inFile) throw "Error: Could not open input file!";
 
-    outFile.open(filename + ".out");
+    outFile.open(filename + ".output");
     if (!outFile) throw "Error: Could not open output file!";
 
     outFile << "James Mok, Andrew Haller, Anusha Mandadam" << endl;
