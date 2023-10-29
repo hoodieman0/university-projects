@@ -46,5 +46,16 @@ doToken(string name, TokenType type){
 
 void Lexer::
 doStart(){
-
+    switch(currentChar){
+        case '\\': // TODO slashPending state
+        case '(':
+            state = ACQUIRINGCOMMENT; // parenPending state
+            break;
+        case ' ': 
+            break;
+        default:
+            state = ACQUIRINGTOKEN;
+            tokenString += currentChar;
+            break;
+    }
 }
