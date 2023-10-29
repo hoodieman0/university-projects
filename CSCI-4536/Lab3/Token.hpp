@@ -2,6 +2,7 @@
 #define TOKEN_HPP
 
 #include <string>
+#include <iostream>
 #include "Types.hpp"
 
 using namespace std;
@@ -14,7 +15,7 @@ private:
 
 public:
     Token(string name, TokenType type);
-    ofstream& print(ofstream& out);
+    ostream& print(ostream& out);
     void incrementRefCount();
 };
 
