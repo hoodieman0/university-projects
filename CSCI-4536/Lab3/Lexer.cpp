@@ -1,7 +1,7 @@
 #include "Lexer.hpp"
 
 Lexer::
-Lexer(string filename){
+Lexer(string filename) : state(STARTING), currentChar(' '), tokenString(""){
     inFile.open(filename);
     if (!inFile) throw "Error: Could not open input file!";
 
@@ -20,9 +20,85 @@ Lexer::
     outFile.close();
 }
 
+// test to see if string is all numbers
+bool Lexer::
+isNumber(string s){
+    for(int i = 0; i < s.size(); i++){
+        if (!isdigit(s[i])) return false;
+    }
+    return true;
+}
+
 void Lexer::
 doLex(){
+    while (inFile >> currentChar){ // assuming that the last char of file is \n 
+        if (inFile.eof()){
+            return;
+        }
+        switch(state){
+            case STARTING:
+                doStart();
+                break;  
+            case SLASH_PENDING: // TODO make helper function
+                if (currentChar = ' ') state = ACQUIRING_SLASH;
+                else state = ACQUIRING_TOKEN;
+                break;
+            case ACQUIRING_SLASH: // TODO make helper function
+                inFile >> currentChar;
+                while (currentChar != '\n'){
+                    outFile << currentChar;
+                    inFile >> currentChar;
+                }
+                outFile << currentChar; // adds the trailing \n
+                state = STARTING;
+                break;
+            case PAREN_PENDING: // TODO make helper function
+                if (currentChar = ' ') state = ACQUIRING_PAREN;
+                else state = ACQUIRING_TOKEN;
+                break;
+            case ACQUIRING_PAREN: // TODO make helper function
+                inFile >> currentChar;
+                while (currentChar != ')'){
+                    outFile << currentChar;
+                    inFile >> currentChar;
+                }
+                outFile << currentChar << endl; // adds the trailing ) with a \n
+                state = STARTING;
+            case ACQUIRING_TOKEN: // TODO make helper function
+                inFile >> currentChar;
+                while (currentChar != ' '){
+                    tokenString += currentChar;
+                    inFile >> currentChar;
+                }
 
+                if(isNumber(tokenString)){
+                    doToken(tokenString, NUMBER);
+                    state = STARTING;
+                }
+                else if(tokenString[0] == '.' && tokenString[1] == '\"'){ // TODO make helper function
+                    doToken(tokenString, WORD);
+                    state = ACQUIRING_STRING;
+                }
+                else {
+                    doToken(tokenString, WORD);
+                    state = STARTING;
+                }
+
+                break;
+            case ACQUIRING_STRING: // TODO make helper function
+            tokenString = "";
+                while (currentChar != '\"'){
+                    tokenString += currentChar;
+                    inFile >> currentChar;
+                }
+                doToken(tokenString, STRING);
+                state = STARTING;
+                break;
+            case DONE:
+            default:
+                break;
+        }
+    }
 }
 
 ostream& Lexer::
