@@ -36,4 +36,8 @@ public:
 
 };
 
+inline ostream& operator<<(ostream& out, Lexer& lx){
+    return lx.print(out);
+}
+
 #endif
