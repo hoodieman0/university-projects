@@ -139,6 +139,8 @@ leftShift(unsigned int bits){
     return shift & hx01F; // remove extra leading 1s
 }
 
+// meant for 8 bit numbers
+// returns an 8 bit number
 unsigned int SDES::
 encrypt(const unsigned int plaintext){
     // IP -> smallF w/ K1 -> SW -> smallF w/ K2 -> inverseIP 
@@ -170,6 +172,41 @@ encrypt(const unsigned int plaintext){
             right << setw(26) << bitset<8>(ciphertext) << endl;
 
     return ciphertext;
+}
+
+// meant for 8 bit numbers
+// returns an 8 bit number
+unsigned int SDES::
+decrypt(const unsigned int ciphertext){
+    // IP -> smallF w/ K2 -> SW -> smallF w/ K1 -> inverseIP 
+
+    if (verbose)
+        cout << "----------------------------------------------------------\n" << 
+        "decrypt():" << endl;
+
+    unsigned int result = initPermute(ciphertext);
+    unsigned int leftBits = (result & hxF0) >> 4; // keep start at least significant bit
+    unsigned int rightBits = result & hx0F;
+
+    result = processKeyAndText(keyTwo, rightBits);
+    leftBits = leftBits ^ result;
+
+    // swap here
+    if (verbose)
+        cout << "Swapping left and right bits..." << endl;
+
+    result = processKeyAndText(keyOne, leftBits);
+    rightBits = rightBits ^ result;
+
+    unsigned int combined = (rightBits << 4) + leftBits;
+    unsigned int plaintext = inverseInitPermute(combined);
+
+     if (verbose)
+        cout << "----------------------------------------------------------\n" << 
+            "The value of the plaintext is: " << 
+            right << setw(27) << bitset<8>(plaintext) << endl;
+
+    return plaintext;
 }
 
 // meant for 8 bit numbers
