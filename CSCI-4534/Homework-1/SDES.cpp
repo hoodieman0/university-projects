@@ -23,8 +23,8 @@ keyGen(const unsigned int key){
     unsigned int combined = (left10 << 5) + right10;
     keyOne = permute8(combined);
 
-    left10 = leftShift(left10);
-    right10 = leftShift(right10);
+    left10 = leftShift(leftShift(left10));
+    right10 = leftShift(leftShift(right10));
     combined = (left10 << 5) + right10;
 
     keyTwo = permute8(combined);
