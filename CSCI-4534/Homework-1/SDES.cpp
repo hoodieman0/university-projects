@@ -9,6 +9,10 @@ void SDES::
 keyGen(const unsigned int key){
     // P10 -> SHIFT -> P8 -> keyOne
     // P10 -> SHIFT -> SHIFT-> P8 -> keyTwo
+
+    if (verbose)
+        cout << "----------------------------------------------------------\n" << 
+        "keyGen():" << endl;
     unsigned int resultP10 = permute10(key);
 
     unsigned int left10 = resultP10 & LeftBits;
@@ -24,6 +28,15 @@ keyGen(const unsigned int key){
     combined = (left10 << 5) + right10;
 
     keyTwo = permute8(combined);
+
+    if (verbose){
+        cout << "----------------------------------------------------------" << endl;
+        cout << "The value of KeyOne is: " << 
+            right << setw(34) << bitset<8>(keyOne) << endl;
+        cout << "The value of KeyTwo is: " << 
+            right << setw(34) << bitset<8>(keyTwo) << endl;
+        cout << "----------------------------------------------------------" << endl;
+    }
 }
 
 // meant for 10 bit numbers only
