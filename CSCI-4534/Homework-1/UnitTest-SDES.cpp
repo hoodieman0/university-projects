@@ -9,7 +9,7 @@ int UnitTest_InputA(){
         const unsigned int ciphertext = 0b01110101;
 
         SDES cipher(key);
-        const int resultCipher = cipher.encrypt(plaintext);
+        const unsigned int resultCipher = cipher.encrypt(plaintext);
         if (resultCipher != ciphertext) throw "Returned cipher text is wrong!";
 
     } catch(const char* a) {
