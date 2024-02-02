@@ -171,7 +171,7 @@ encrypt(const unsigned int plaintext){
     unsigned int combined = (rightBits << 4) + leftBits;
     unsigned int ciphertext = inverseInitPermute(combined);
 
-     if (output || verbose) {
+    if (output || verbose) {
         if (verbose) cout << "----------------------------------------------------------" << endl; 
         cout << "The value of the ciphertext is: " << 
             right << setw(26) << bitset<8>(ciphertext) << endl;
@@ -212,7 +212,7 @@ decrypt(const unsigned int ciphertext){
     unsigned int combined = (rightBits << 4) + leftBits;
     unsigned int plaintext = inverseInitPermute(combined);
 
-     if (output || verbose) {
+    if (output || verbose) {
         if (verbose) cout << "----------------------------------------------------------" << endl; 
         cout << "The value of the plaintext is: " << 
             right << setw(27) << bitset<8>(plaintext) << endl;
@@ -293,7 +293,8 @@ processKeyAndText(unsigned int key, unsigned int text){
 
 // meant for 4 bit number
 // returns an 8 bit number
-unsigned int SDES::expandPermute4(unsigned int bits){
+unsigned int SDES::
+expandPermute4(unsigned int bits){
     // The 4 bit representation:
     // 0  0  0  0  k1 k2 k3 k4
     // becomes 
@@ -324,7 +325,8 @@ unsigned int SDES::expandPermute4(unsigned int bits){
 
 // meant for 4 bit number
 // returns a 4 bit number
-unsigned int SDES::permute4(unsigned int bits){
+unsigned int SDES::
+permute4(unsigned int bits){
     // The 4 bit representation:
     // k1 k2 k3 k4
     // becomes 
