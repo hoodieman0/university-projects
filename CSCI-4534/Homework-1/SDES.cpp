@@ -102,3 +102,25 @@ permute8(unsigned int bits){
 
     return permutation;
 }
+
+// meant for 5 bit numbers only
+// returns a 5 bit number
+unsigned int SDES::
+leftShift(unsigned int bits){
+    // The 5 bit representation:
+    // k1 k2 k3 k4 k5
+    // becomes 
+    // k2 k3 k4 k5 k1
+
+    unsigned int k1 = 0b10000;
+
+    unsigned int shift = 
+    ((bits & k1) >> 4) + (bits << 1);
+
+    if (verbose)
+        cout << "The result of left shifting " << bitset<5>(bits) << 
+        " is: " << right << setw(20) << bitset<5>(shift) << endl;
+
+
+    return shift & RightBits; // remove extra leading 1s
+}
