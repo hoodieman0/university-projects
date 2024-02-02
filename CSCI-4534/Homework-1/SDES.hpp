@@ -1,6 +1,9 @@
 #ifndef SDES_HPP
 #define SDES_HPP
 
+#define LeftBits 0b1111100000
+#define RightBits 0b0000011111
+
 #include <string>
 
 using namespace std;
