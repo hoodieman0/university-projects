@@ -214,7 +214,7 @@ processKeyAndText(unsigned int key, unsigned int text){
     unsigned int rightBits = hx0F & result;
 
     unsigned int combined = 
-    (S0[(leftBits & hx1) + (leftBits >> 2)][(leftBits & hx6) >> 1] << 2) +
+    (S0[(leftBits & hx1) + ((leftBits & hx9) >> 2)][(leftBits & hx6) >> 1] << 2) +
     S1[(rightBits & hx1) + (rightBits >> 2)][(rightBits & hx6) >> 1];
     
     result = permute4(combined);
