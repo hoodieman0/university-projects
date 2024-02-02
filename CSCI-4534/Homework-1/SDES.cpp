@@ -73,7 +73,7 @@ permute8(unsigned int bits){
     // The 10 bit representation:
     // k1 k2 k3 k4 k5 k6 k7 k8 k9 k10
     // becomes 
-    // k6 k3 k7 k4 k8 k5 k10 k9
+    // 0  0  k6 k3 k7 k4 k8 k5 k10 k9
 
     unsigned int 
     k3 =  0b0010000000,
@@ -85,15 +85,17 @@ permute8(unsigned int bits){
     k9 =  0b0000000010,
     k10 = 0b0000000001;
 
+    // shifts are done to make k9 the least significant bit
+    // everything was shifted to the right by 2
     unsigned int permutation = 
-    ((bits & k6) << 5) +
-    ((bits & k3) << 1) +
-    ((bits & k7) << 4) +
-    ((bits & k4) << 0) +
-    ((bits & k8) << 3) +
-    ((bits & k5) >> 1) +
-    ((bits & k10) << 3) +
-    ((bits & k9) << 1);
+    ((bits & k6) << 3) +
+    ((bits & k3) >> 1) +
+    ((bits & k7) << 2) +
+    ((bits & k4) >> 2) +
+    ((bits & k8) << 1) +
+    ((bits & k5) >> 3) +
+    ((bits & k10) << 1) +
+    ((bits & k9) >> 1);
 
     if (verbose) 
         cout << "The permute8 result of " << bitset<10>(bits) << " is: "
