@@ -1,8 +1,13 @@
 #ifndef SDES_HPP
 #define SDES_HPP
 
-#define LeftBits 0b1111100000
-#define RightBits 0b0000011111
+// bit masks used for keyGen()
+#define hx2E0 0b1111100000
+#define hx01F 0b0000011111
+
+// bit masks used for encrypt()/decrypt()
+#define hx0F 0b00001111
+#define hxF0 0b11110000
 
 #include <string>
 #include <iostream>

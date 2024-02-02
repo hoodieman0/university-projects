@@ -15,17 +15,17 @@ keyGen(const unsigned int key){
         "keyGen():" << endl;
     unsigned int resultP10 = permute10(key);
 
-    unsigned int left10 = resultP10 & LeftBits;
-    left10 = left10 >> 5;
-    left10 = leftShift(left10);
+    unsigned int leftBits = resultP10 & hx2E0;
+    leftBits = leftBits >> 5;
+    leftBits = leftShift(leftBits);
 
-    unsigned int right10 = leftShift(resultP10 & RightBits);
-    unsigned int combined = (left10 << 5) + right10;
+    unsigned int rightBits = leftShift(resultP10 & hx01F);
+    unsigned int combined = (leftBits << 5) + rightBits;
     keyOne = permute8(combined);
 
-    left10 = leftShift(leftShift(left10));
-    right10 = leftShift(leftShift(right10));
-    combined = (left10 << 5) + right10;
+    leftBits = leftShift(leftShift(leftBits));
+    rightBits = leftShift(leftShift(rightBits));
+    combined = (leftBits << 5) + rightBits;
 
     keyTwo = permute8(combined);
 
@@ -137,5 +137,5 @@ leftShift(unsigned int bits){
         " is: " << right << setw(20) << bitset<5>(shift) << endl;
 
 
-    return shift & RightBits; // remove extra leading 1s
+    return shift & hx01F; // remove extra leading 1s
 }
