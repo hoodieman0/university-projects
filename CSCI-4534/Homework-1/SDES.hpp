@@ -18,10 +18,10 @@ class SDES {
     ~SDES() = default;
 
     // IP -> smallF w/ K1 -> SW -> smallF w/ K2 -> inverseIP 
-    string encryption(const unsigned int plaintext);
+    int encrypt(const unsigned int plaintext);
 
     // IP -> smallF w/ K2 -> SW -> smallF w/ K1 -> inverseIP 
-    string decryption(const unsigned int ciphertext);
+    int decrypt(const unsigned int ciphertext);
 
     
 
