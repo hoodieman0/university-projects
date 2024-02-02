@@ -170,9 +170,40 @@ encrypt(const unsigned int plaintext){
     return ciphertext;
 }
 
+// meant for 8 bit numbers
+// returns an 8 bit number
 unsigned int SDES::
 initPermute(unsigned int text) {
-    return 1;
+    // The 8 bit representation:
+    // k1 k2 k3 k4 k5 k6 k7 k8
+    // becomes 
+    // k2 k6 k3 k1 k4 k8 k5 k7
+    
+    unsigned int
+    k1 =  0b10000000,
+    k2 =  0b01000000,
+    k3 =  0b00100000,
+    k4 =  0b00010000,
+    k5 =  0b00001000,
+    k6 =  0b00000100,
+    k7 =  0b00000010,
+    k8 =  0b00000001;
+
+    unsigned int permutation = 
+    ((text & k2) << 1) +
+    ((text & k6) << 4) +
+    ((text & k3) << 0) +
+    ((text & k1) >> 3 ) +
+    ((text & k4) >> 1) +
+    ((text & k8) << 2) +
+    ((text & k5) >> 2) +
+    ((text & k7) >> 1);
+
+    if (verbose) 
+        cout << "The initPermute result of " << bitset<8>(text) << " is: "
+        << right << setw(20) << bitset<8>(permutation) << endl;
+
+    return permutation;
 }
 
 unsigned int SDES::
@@ -180,7 +211,38 @@ processKeyAndText(unsigned int key, unsigned int text){
     return 1;
 }
 
+// meant for 8 bit numbers
+// returns an 8 bit number
 unsigned int SDES::
 inverseInitPermute(unsigned int text){
-    return 1;
+    // The 8 bit representation:
+    // k1 k2 k3 k4 k5 k6 k7 k8
+    // becomes 
+    // k4 k1 k3 k5 k7 k2 k8 k6
+    
+    unsigned int
+    k1 =  0b10000000,
+    k2 =  0b01000000,
+    k3 =  0b00100000,
+    k4 =  0b00010000,
+    k5 =  0b00001000,
+    k6 =  0b00000100,
+    k7 =  0b00000010,
+    k8 =  0b00000001;
+
+    unsigned int permutation = 
+    ((text & k4) << 3) +
+    ((text & k1) >> 1) +
+    ((text & k3) << 0) +
+    ((text & k5) << 1 ) +
+    ((text & k7) << 2) +
+    ((text & k2) >> 4) +
+    ((text & k8) << 1) +
+    ((text & k6) >> 2);
+
+    if (verbose) 
+        cout << "The inverseInitPermute result of " << bitset<8>(text) << " is: "
+        << right << setw(20) << bitset<8>(permutation) << endl;
+
+    return permutation;
 }
