@@ -35,7 +35,6 @@ keyGen(const unsigned int key){
             right << setw(34) << bitset<8>(keyOne) << endl;
         cout << "The value of KeyTwo is: " << 
             right << setw(34) << bitset<8>(keyTwo) << endl;
-        cout << "----------------------------------------------------------" << endl;
     }
 }
 
@@ -143,6 +142,11 @@ leftShift(unsigned int bits){
 unsigned int SDES::
 encrypt(const unsigned int plaintext){
     // IP -> smallF w/ K1 -> SW -> smallF w/ K2 -> inverseIP 
+
+    if (verbose)
+        cout << "----------------------------------------------------------\n" << 
+        "encrypt():" << endl;
+
     unsigned int result = initPermute(plaintext);
     unsigned int leftBits = (result & hxF0) >> 4; // keep start at least significant bit
     unsigned int rightBits = result & hx0F;
@@ -157,6 +161,12 @@ encrypt(const unsigned int plaintext){
 
     unsigned int combined = (rightBits << 4) + leftBits;
     unsigned int ciphertext = inverseInitPermute(combined);
+
+     if (verbose)
+        cout << "----------------------------------------------------------\n" << 
+            "The value of ciphertext is: " << 
+            right << setw(34) << bitset<8>(ciphertext) << endl;
+
     return ciphertext;
 }
 
