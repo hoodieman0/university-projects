@@ -22,6 +22,30 @@ int UnitTest_InputA(){
     return 0;
 }
 
+/// @brief check the SDES class against question 4a and verify correctness
+/// @return int 0 on pass, 1 on fail 
+int UnitTest_RunHomework(){
+    int points = 0;
+    const int maxPoints = 30;
+
+    cout << "Running Requirement - InputA..." << endl;
+    if (UnitTest_InputA()) { cout << "Requirement - InputA -> Failed Test \u274c" << endl; }
+    else { cout << "Requirement- InputA -> Passed Test \u2713" << endl; points += 10; }
+    
+    cout << "Running Requirement - InputB..." << endl;
+    if (UnitTest_InputB()) { cout << "Requirement - InputB -> Failed Test \u274c" << endl; }
+    else { cout << "Requirement- InputB -> Passed Test \u2713" << endl; points += 10; }
+    
+    cout << "Running Requirement - InputC..." << endl;
+    if (UnitTest_InputC()) { cout << "Requirement - InputC -> Failed Test \u274c" << endl; }
+    else { cout << "Requirement- InputC -> Passed Test \u2713" << endl; points += 10; }
+
+    cout << "Score on homework = " << points << "/" << maxPoints << endl;
+    // Note: not really the accurate score but just a fun tracker
+
+    return 0;
+}
+
 /// @brief run all the unit tests for the SDES class
 /// @return int 0 on pass, 1 on fail 
 int UnitTest_RunAll(){
