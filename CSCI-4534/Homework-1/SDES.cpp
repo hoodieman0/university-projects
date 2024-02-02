@@ -155,6 +155,8 @@ encrypt(const unsigned int plaintext){
     leftBits = leftBits ^ result;
 
     // swap here
+    if (verbose)
+        cout << "Swapping left and right bits..." << endl;
 
     result = processKeyAndText(keyTwo, leftBits);
     rightBits = rightBits ^ result;
@@ -164,8 +166,8 @@ encrypt(const unsigned int plaintext){
 
      if (verbose)
         cout << "----------------------------------------------------------\n" << 
-            "The value of ciphertext is: " << 
-            right << setw(34) << bitset<8>(ciphertext) << endl;
+            "The value of the ciphertext is: " << 
+            right << setw(26) << bitset<8>(ciphertext) << endl;
 
     return ciphertext;
 }
@@ -201,27 +203,41 @@ initPermute(unsigned int text) {
 
     if (verbose) 
         cout << "The initPermute result of " << bitset<8>(text) << " is: "
-        << right << setw(20) << bitset<8>(permutation) << endl;
+        << right << setw(19) << bitset<8>(permutation) << endl;
 
     return permutation;
 }
 
+// meant for 4 bit numbers
+// returns a 4 bit number
 unsigned int SDES::
 processKeyAndText(unsigned int key, unsigned int text){
     unsigned int result = expandPermute4(text);
     result = result ^ key;
+
+    if (verbose)
+        cout << "The XOR of expandPermute4 and key is: " << right << setw(20) << bitset<8>(result) << endl;
+
     unsigned int leftBits = (hxF0 & result) >> 4; // shift to start at least significant bit
     unsigned int rightBits = hx0F & result;
+
+    if (verbose) {
+        cout << "Indexing S0" << "[" << (leftBits & hx1) + ((leftBits & hx9) >> 2) << "]" << "[" << ((leftBits & hx6) >> 1) << "]" <<
+        " and S1" << "[" << (rightBits & hx1) + (rightBits >> 2) << "]" << "[" << ((rightBits & hx6) >> 1) << "]" << "..."<< endl;
+    }
 
     unsigned int combined = 
     (S0[(leftBits & hx1) + ((leftBits & hx9) >> 2)][(leftBits & hx6) >> 1] << 2) +
     S1[(rightBits & hx1) + (rightBits >> 2)][(rightBits & hx6) >> 1];
-    
+
+    if (verbose)
+        cout << "The combination of S0 and S1 is: " << right << setw(25) << bitset<4>(combined) << endl;
+
     result = permute4(combined);
 
     if (verbose)
         cout << "The processing of key " << bitset<8>(key) << " and text "<< bitset<4>(text) <<
-        " is: " << right << setw(20) << bitset<8>(result) << endl;
+        " is: " << right << setw(9) << bitset<4>(result) << endl;
 
     return result;
 }
@@ -279,7 +295,7 @@ unsigned int SDES::permute4(unsigned int bits){
 
     if (verbose) 
         cout << "The permute4 result of " << bitset<4>(bits) << " is: "
-        << right << setw(20) << bitset<4>(permutation) << endl;
+        << right << setw(26) << bitset<4>(permutation) << endl;
 
     return permutation;
 }
@@ -316,7 +332,7 @@ inverseInitPermute(unsigned int text){
 
     if (verbose) 
         cout << "The inverseInitPermute result of " << bitset<8>(text) << " is: "
-        << right << setw(20) << bitset<8>(permutation) << endl;
+        << right << setw(12) << bitset<8>(permutation) << endl;
 
     return permutation;
 }
