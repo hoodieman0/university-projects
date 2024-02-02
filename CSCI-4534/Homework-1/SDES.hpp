@@ -27,6 +27,19 @@ class SDES {
     unsigned int keyOne = 0;
     unsigned int keyTwo = 0;
 
+    unsigned int S0[4][4] = {
+      {0b01, 0b00, 0b11, 0b10},
+      {0b11, 0b10, 0b01, 0b00},
+      {0b00, 0b10, 0b01, 0b11},
+      {0b11, 0b01, 0b11, 0b10}
+    };
+    unsigned int S1[4][4] = {
+      {0b00, 0b01, 0b10, 0b11},
+      {0b10, 0b00, 0b01, 0b11},
+      {0b11, 0b00, 0b01, 0b00},
+      {0b10, 0b01, 0b00, 0b11}
+    };
+
     bool output = false;
     bool verbose = false;
 
@@ -38,6 +51,8 @@ class SDES {
     unsigned int initPermute(unsigned int text);
     // Fk
     unsigned int processKeyAndText(unsigned int key, unsigned int text);
+    unsigned int expandPermute4(unsigned int bits);
+    unsigned int permute4(unsigned int bits);
     unsigned int inverseInitPermute(unsigned int text);
 
   public:

@@ -208,8 +208,30 @@ initPermute(unsigned int text) {
 
 unsigned int SDES::
 processKeyAndText(unsigned int key, unsigned int text){
+    unsigned int result = expandPermute4(text);
+    result = result^key;
+    unsigned int leftBits = (hxF0 & result) >> 4; // shift to start at least significant bit
+    unsigned int rightBits = hx0F & result;
+
+    unsigned int combined = 
+    (S0[(leftBits & hx1) + (leftBits >> 2)][(leftBits & hx6) >> 1] << 2) +
+    S1[(rightBits & hx1) + (rightBits >> 2)][(rightBits & hx6) >> 1];
+    result = permute4(combined);
+
+    if (verbose)
+        cout << "The processing of key " << bitset<8>(key) << " and text "<< bitset<4>(text) <<
+        " is: " << right << setw(20) << bitset<8>(result) << endl;
+
+    return result;
+}
+
+unsigned int SDES::expandPermute4(unsigned int bits){
     return 1;
 }
+unsigned int SDES::permute4(unsigned int bits){
+    return 1;
+}
+
 
 // meant for 8 bit numbers
 // returns an 8 bit number
