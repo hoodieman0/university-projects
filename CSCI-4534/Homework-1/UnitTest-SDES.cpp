@@ -8,7 +8,7 @@ int UnitTest_InputA(){
         const unsigned int key = 0b1010000010;
         const unsigned int ciphertext = 0b01110101;
 
-        SDES cipher(key, true, true);
+        SDES cipher(key, true);
         const unsigned int resultCipher = cipher.encrypt(plaintext);
         if (resultCipher != ciphertext) throw "Returned cipher text is wrong!";
 
@@ -30,7 +30,7 @@ int UnitTest_InputB(){
         const unsigned int key = 0b1101110111;
         const unsigned int ciphertext = 0b01110101;
 
-        SDES cipher(key, true, true);
+        SDES cipher(key, true);
         const unsigned int resultCipher = cipher.encrypt(plaintext);
         if (resultCipher != ciphertext) throw "Returned cipher text is wrong!";
 
