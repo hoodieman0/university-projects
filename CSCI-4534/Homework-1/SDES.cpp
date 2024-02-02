@@ -60,7 +60,8 @@ permute10(unsigned int bits){
     ((bits & k6) >> 4);
 
     if (verbose) 
-        cout << "The result of permute10 is: " << bitset<10>(permutation) << endl;
+        cout << "The permute10 result of " << bitset<10>(bits) << " is: " 
+        << right << setw(19) << bitset<10>(permutation) << endl;
 
     return permutation;
 }
