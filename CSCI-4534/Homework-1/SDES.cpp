@@ -157,8 +157,13 @@ encrypt(const unsigned int plaintext){
     leftBits = leftBits ^ result;
 
     // swap here
+    result = (rightBits << 4) + leftBits;
+
     if (verbose)
         cout << "Swapping left and right bits..." << endl;
+    if (output || verbose)
+        cout << "The intermediate value after the SW operation is: " <<
+        right << setw(0) << bitset<8>(result) << endl;
 
     result = processKeyAndText(keyTwo, leftBits);
     rightBits = rightBits ^ result;
@@ -192,8 +197,13 @@ decrypt(const unsigned int ciphertext){
     leftBits = leftBits ^ result;
 
     // swap here
+    result = (rightBits << 4) + leftBits;
+
     if (verbose)
         cout << "Swapping left and right bits..." << endl;
+    if (output || verbose)
+        cout << "The intermediate value after the SW operation is: " <<
+        right << setw(0) << bitset<8>(result) << endl;
 
     result = processKeyAndText(keyOne, leftBits);
     rightBits = rightBits ^ result;
