@@ -24,21 +24,15 @@ class SDES {
     bool output = false;
     bool verbose = false;
 
-    // P10 -> SHIFT -> P8 -> keyOne
-    // P10 -> SHIFT -> SHIFT-> P8 -> keyOne
     void keyGen(unsigned int key);
     unsigned int permute10(unsigned int bits);
     unsigned int permute8(unsigned int bits);
     unsigned int leftShift(unsigned int bits);
 
-    void IP();
-    void inverseIP();
-    
-    void P8();
-    void SW();
-    void smallF();
-    void F();
-    void S0();
+    unsigned int initPermute(unsigned int text);
+    // Fk
+    unsigned int processKeyAndText(unsigned int key, unsigned int text);
+    unsigned int inverseInitPermute(unsigned int text);
 
   public:
     SDES(const unsigned int key, bool output=false, bool verbose=false);

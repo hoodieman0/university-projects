@@ -139,3 +139,38 @@ leftShift(unsigned int bits){
 
     return shift & hx01F; // remove extra leading 1s
 }
+
+unsigned int SDES::
+encrypt(const unsigned int plaintext){
+    // IP -> smallF w/ K1 -> SW -> smallF w/ K2 -> inverseIP 
+    unsigned int result = initPermute(plaintext);
+    unsigned int leftBits = (result & hxF0) >> 4; // keep start at least significant bit
+    unsigned int rightBits = result & hx0F;
+
+    result = processKeyAndText(keyOne, rightBits);
+    leftBits = leftBits ^ result;
+
+    // swap here
+
+    result = processKeyAndText(keyTwo, leftBits);
+    rightBits = rightBits ^ result;
+
+    unsigned int combined = (rightBits << 4) + leftBits;
+    unsigned int ciphertext = inverseInitPermute(combined);
+    return ciphertext;
+}
+
+unsigned int SDES::
+initPermute(unsigned int text) {
+    return 1;
+}
+
+unsigned int SDES::
+processKeyAndText(unsigned int key, unsigned int text){
+    return 1;
+}
+
+unsigned int SDES::
+inverseInitPermute(unsigned int text){
+    return 1;
+}
