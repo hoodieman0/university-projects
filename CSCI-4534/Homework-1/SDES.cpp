@@ -171,10 +171,11 @@ encrypt(const unsigned int plaintext){
     unsigned int combined = (rightBits << 4) + leftBits;
     unsigned int ciphertext = inverseInitPermute(combined);
 
-     if (output || verbose)
-        cout << "----------------------------------------------------------\n" << 
-            "The value of the ciphertext is: " << 
+     if (output || verbose) {
+        if (verbose) cout << "----------------------------------------------------------" << endl; 
+        cout << "The value of the ciphertext is: " << 
             right << setw(26) << bitset<8>(ciphertext) << endl;
+     }
 
     return ciphertext;
 }
@@ -211,10 +212,11 @@ decrypt(const unsigned int ciphertext){
     unsigned int combined = (rightBits << 4) + leftBits;
     unsigned int plaintext = inverseInitPermute(combined);
 
-     if (output || verbose)
-        cout << "----------------------------------------------------------\n" << 
-            "The value of the plaintext is: " << 
+     if (output || verbose) {
+        if (verbose) cout << "----------------------------------------------------------" << endl; 
+        cout << "The value of the plaintext is: " << 
             right << setw(27) << bitset<8>(plaintext) << endl;
+     }
 
     return plaintext;
 }
