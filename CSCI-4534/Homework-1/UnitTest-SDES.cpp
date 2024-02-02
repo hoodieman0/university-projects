@@ -12,8 +12,11 @@ int UnitTest_InputA(){
         const unsigned int resultCipher = cipher.encrypt(plaintext);
         if (resultCipher != ciphertext) throw "Returned cipher text is wrong!";
 
-    } catch(const char* a) {
-        cout << a << endl; return 1;
+        const unsigned int resultPlain = cipher.decrypt(resultCipher);
+        if (resultPlain != plaintext) throw "Returned plain text is wrong!";
+
+    } catch(const char* txt) {
+        cout << txt << endl; return 1;
     } catch (...) { return 1; }
 
     return 0;
