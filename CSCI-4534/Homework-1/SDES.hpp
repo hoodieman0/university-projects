@@ -5,6 +5,8 @@
 #define RightBits 0b0000011111
 
 #include <string>
+#include <iostream>
+#include <bitset>
 
 using namespace std;
 
