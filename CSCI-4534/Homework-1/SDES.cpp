@@ -209,13 +209,14 @@ initPermute(unsigned int text) {
 unsigned int SDES::
 processKeyAndText(unsigned int key, unsigned int text){
     unsigned int result = expandPermute4(text);
-    result = result^key;
+    result = result ^ key;
     unsigned int leftBits = (hxF0 & result) >> 4; // shift to start at least significant bit
     unsigned int rightBits = hx0F & result;
 
     unsigned int combined = 
     (S0[(leftBits & hx1) + (leftBits >> 2)][(leftBits & hx6) >> 1] << 2) +
     S1[(rightBits & hx1) + (rightBits >> 2)][(rightBits & hx6) >> 1];
+    
     result = permute4(combined);
 
     if (verbose)
@@ -225,11 +226,62 @@ processKeyAndText(unsigned int key, unsigned int text){
     return result;
 }
 
+// meant for 4 bit number
+// returns an 8 bit number
 unsigned int SDES::expandPermute4(unsigned int bits){
-    return 1;
+    // The 4 bit representation:
+    // 0  0  0  0  k1 k2 k3 k4
+    // becomes 
+    // k4 k1 k2 k3 k2 k3 k4 k1 
+
+    unsigned int 
+    k1 =  0b1000,
+    k2 =  0b0100,
+    k3 =  0b0010,
+    k4 =  0b0001;
+
+    unsigned int permutation = 
+    ((bits & k4) << 7) +
+    ((bits & k1) << 3) +
+    ((bits & k2) << 3) +
+    ((bits & k3) << 3) +
+    ((bits & k2) << 1) +
+    ((bits & k3) << 1) +
+    ((bits & k4) << 1) +
+    ((bits & k1) >> 3);
+
+    if (verbose) 
+        cout << "The expandPermute4 result of " << bitset<4>(bits) << " is: "
+        << right << setw(20) << bitset<8>(permutation) << endl;
+
+    return permutation;
 }
+
+// meant for 4 bit number
+// returns a 4 bit number
 unsigned int SDES::permute4(unsigned int bits){
-    return 1;
+    // The 4 bit representation:
+    // k1 k2 k3 k4
+    // becomes 
+    // k2 k4 k3 k1
+
+    unsigned int 
+    k1 =  0b1000,
+    k2 =  0b0100,
+    k3 =  0b0010,
+    k4 =  0b0001;
+
+    unsigned int permutation = 
+    ((bits & k2) << 1) +
+    ((bits & k4) << 2) +
+    ((bits & k3) << 0) +
+    ((bits & k1) >> 3);
+
+    if (verbose) 
+        cout << "The permute4 result of " << bitset<4>(bits) << " is: "
+        << right << setw(20) << bitset<4>(permutation) << endl;
+
+    return permutation;
 }
 
 
