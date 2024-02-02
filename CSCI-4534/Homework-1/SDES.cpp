@@ -145,7 +145,7 @@ unsigned int SDES::
 encrypt(const unsigned int plaintext){
     // IP -> smallF w/ K1 -> SW -> smallF w/ K2 -> inverseIP 
 
-    if (verbose)
+    if (output || verbose)
         cout << "----------------------------------------------------------\n" << 
         "encrypt():" << endl;
 
@@ -171,7 +171,7 @@ encrypt(const unsigned int plaintext){
     unsigned int combined = (rightBits << 4) + leftBits;
     unsigned int ciphertext = inverseInitPermute(combined);
 
-     if (verbose)
+     if (output || verbose)
         cout << "----------------------------------------------------------\n" << 
             "The value of the ciphertext is: " << 
             right << setw(26) << bitset<8>(ciphertext) << endl;
@@ -185,7 +185,7 @@ unsigned int SDES::
 decrypt(const unsigned int ciphertext){
     // IP -> smallF w/ K2 -> SW -> smallF w/ K1 -> inverseIP 
 
-    if (verbose)
+    if (output|| verbose)
         cout << "----------------------------------------------------------\n" << 
         "decrypt():" << endl;
 
@@ -211,7 +211,7 @@ decrypt(const unsigned int ciphertext){
     unsigned int combined = (rightBits << 4) + leftBits;
     unsigned int plaintext = inverseInitPermute(combined);
 
-     if (verbose)
+     if (output || verbose)
         cout << "----------------------------------------------------------\n" << 
             "The value of the plaintext is: " << 
             right << setw(27) << bitset<8>(plaintext) << endl;
