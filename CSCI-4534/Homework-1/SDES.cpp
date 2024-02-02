@@ -65,3 +65,40 @@ permute10(unsigned int bits){
 
     return permutation;
 }
+
+// meant for 10 bit numbers only
+// returns a 8 bit number
+unsigned int SDES::
+permute8(unsigned int bits){
+    // The 10 bit representation:
+    // k1 k2 k3 k4 k5 k6 k7 k8 k9 k10
+    // becomes 
+    // k6 k3 k7 k4 k8 k5 k10 k9
+
+    unsigned int 
+    k3 =  0b0010000000,
+    k4 =  0b0001000000,
+    k5 =  0b0000100000,
+    k6 =  0b0000010000,
+    k7 =  0b0000001000,
+    k8 =  0b0000000100,
+    k9 =  0b0000000010,
+    k10 = 0b0000000001;
+
+    unsigned int permutation = 
+    ((bits & k6) << 5) +
+    ((bits & k3) << 1) +
+    ((bits & k7) << 4) +
+    ((bits & k4) << 0) +
+    ((bits & k8) << 3) +
+    ((bits & k5) >> 1) +
+    ((bits & k10) << 3) +
+    ((bits & k9) << 1);
+
+    if (verbose) 
+        cout << "The permute8 result of " << bitset<10>(bits) << " is: "
+        << right << setw(20) << bitset<8>(permutation) << endl;
+
+
+    return permutation;
+}
