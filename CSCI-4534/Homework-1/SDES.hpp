@@ -6,8 +6,14 @@
 #define hx01F 0b0000011111
 
 // bit masks used for encrypt()/decrypt()
-#define hx0F 0b00001111
 #define hxF0 0b11110000
+#define hx0F 0b00001111
+
+// bit masks used for processKeyAndText()
+#define hx9 0b1001
+#define hx6 0b0110
+#define hx1 0b0001
+
 
 #include <string>
 #include <iostream>
