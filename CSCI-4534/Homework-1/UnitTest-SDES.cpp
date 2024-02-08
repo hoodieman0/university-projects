@@ -48,7 +48,17 @@ int UnitTest_InputB(){
 /// @return int 0 on pass, 1 on fail 
 int UnitTest_InputC(){
     try{
-        throw "Not implemented";
+        const unsigned int plaintext = 0b01110111; 
+        const unsigned int key = 0b1101110111;
+        const unsigned int ciphertext = 0b01110101;
+
+        modSDES cipher(key, true, true);
+
+        const unsigned int resultCipher = cipher.modEncrypt(plaintext);
+        if (resultCipher != ciphertext) throw "Returned cipher text is wrong!";
+
+        const unsigned int resultPlain = cipher.modDecrypt(resultCipher);
+        if (resultPlain != plaintext) throw "Returned plain text is wrong!";
     } catch(const char* txt) {
         cout << txt << endl; return 1;
     } catch (...) { return 1; }

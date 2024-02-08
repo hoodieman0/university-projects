@@ -23,7 +23,7 @@
 using namespace std;
 
 class SDES {
-  private:
+  protected:
     unsigned int keyOne = 0;
     unsigned int keyTwo = 0;
 

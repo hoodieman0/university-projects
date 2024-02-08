@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "SDES.hpp"
+#include "mod-SDES.hpp"
 
 using namespace std;
 
