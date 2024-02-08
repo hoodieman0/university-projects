@@ -28,7 +28,7 @@ int UnitTest_InputB(){
     try{
         const unsigned int plaintext = 0b01110111; 
         const unsigned int key = 0b1101110111;
-        const unsigned int ciphertext = 0b01110101;
+        const unsigned int ciphertext = 0b11001101;
 
         SDES cipher(key, true);
         const unsigned int resultCipher = cipher.encrypt(plaintext);
@@ -50,9 +50,9 @@ int UnitTest_InputC(){
     try{
         const unsigned int plaintext = 0b01110111; 
         const unsigned int key = 0b1101110111;
-        const unsigned int ciphertext = 0b01110101;
+        const unsigned int ciphertext = 0b00000101;
 
-        modSDES cipher(key, true, true);
+        modSDES cipher(key, true);
 
         const unsigned int resultCipher = cipher.modEncrypt(plaintext);
         if (resultCipher != ciphertext) throw "Returned cipher text is wrong!";
