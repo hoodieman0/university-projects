@@ -1,7 +1,8 @@
 #include "mod-SDES.hpp"
 
-// meant for 8 bit numbers
-// returns an 8 bit number
+/// @brief the SDES encryption algorithm to encrypt information
+/// @param plaintext (unsigned int) the 8-bit number considered as the message to encrypt
+/// @return (unsigned int) the 8-bit number cipher text using keyOne and keyTwo
 unsigned int modSDES::
 modEncrypt(const unsigned int plaintext){
     // IP -> smallF w/ K1 -> SW -> smallF w/ K2 -> inverseIP 
@@ -41,8 +42,9 @@ modEncrypt(const unsigned int plaintext){
     return ciphertext;
 }
 
-// meant for 8 bit numbers
-// returns an 8 bit number
+/// @brief the SDES decryption algorithm to read encrypted information
+/// @param ciphertext (unsigned int) the 8-bit number considered as the cipher text to decrypt
+/// @return (unsigned int) the 8-bit number plain text using keyTwo and keyOne
 unsigned int modSDES::
 modDecrypt(const unsigned int ciphertext){
         // IP -> smallF w/ K2 -> SW -> smallF w/ K1 -> inverseIP 
@@ -82,8 +84,13 @@ modDecrypt(const unsigned int ciphertext){
     return plaintext;
 }
 
-// meant for 4 bit numbers
-// returns a 4 bit number
+/// @brief the part of the SDES encryption/decryption where the keys are applied
+///        to the message
+/// @param key (unsigned int) an 8-bit number to serve as the key (usually keyOne or keyTwo)
+/// @param text (unsigned int) a 4-bit number to serve as the message to encrypt/decrypt, 
+///             usually half of the message block
+/// @return (unsigned int) a 4-bit number that represents the message 
+///         when the given key is applied
 unsigned int modSDES::
 modProcessKeyAndText(unsigned int key, unsigned int text){
     unsigned int result = expandPermute4(text);
