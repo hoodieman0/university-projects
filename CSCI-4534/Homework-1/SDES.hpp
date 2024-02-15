@@ -49,6 +49,7 @@ class SDES {
     /// ----------------------------------------------------------------------------
     /// @brief Generates keyOne and keyTwo according to SDES standard
     /// @param key (unsigned int) a 10-bit key that derives keyOne and keyTwo
+    /// ----------------------------------------------------------------------------
     void keyGen(unsigned int key);
     
     /// ----------------------------------------------------------------------------
@@ -57,6 +58,7 @@ class SDES {
     /// @param bits (unsigned int) a 10-bit number to permute
     /// @return (unsigned int) the new 10-bit number changed according to SDES key
     ///         generation standards
+    /// ----------------------------------------------------------------------------
     unsigned int permute10(unsigned int bits);
 
     /// ----------------------------------------------------------------------------
@@ -65,6 +67,7 @@ class SDES {
     /// @param bits (unsigned int) an 8-bit number to permute
     /// @return (unsigned int) the new 8-bit number changed from bits 
     ///         according to SDES key generation standards
+    /// ----------------------------------------------------------------------------
     unsigned int permute8(unsigned int bits);
 
     /// ----------------------------------------------------------------------------
@@ -72,6 +75,7 @@ class SDES {
     /// @param bits (unsigned int) a 5-bit number to shift
     /// @return (unsigned int) the new 5-bit number changed from bits 
     ///         with its bits shifted left and wrapped once
+    /// ----------------------------------------------------------------------------
     unsigned int leftShift(unsigned int bits);
 
     /// ----------------------------------------------------------------------------
@@ -79,6 +83,7 @@ class SDES {
     /// @param text (unsigned int) an 8-bit number to permute
     /// @return (unsigned int) the new 8-bit number changed from bits 
     ///         according to SDES encryption/decryption standards
+    /// ----------------------------------------------------------------------------
     unsigned int initPermute(unsigned int text);
     
     /// ----------------------------------------------------------------------------
@@ -89,6 +94,7 @@ class SDES {
     ///             usually half of the message block
     /// @return (unsigned int) a 4-bit number that represents the message 
     ///         when the given key is applied
+    /// ----------------------------------------------------------------------------
     unsigned int processKeyAndText(unsigned int key, unsigned int text);
     
     /// ----------------------------------------------------------------------------
@@ -96,6 +102,7 @@ class SDES {
     ///        according to SDES encryption/decryption
     /// @param bits (unsigned int) a 4-bit number to permute
     /// @return (unsigned int) an 8-bit number expanded & permuted from bits
+    /// ----------------------------------------------------------------------------
     unsigned int expandPermute4(unsigned int bits);
 
     /// ----------------------------------------------------------------------------
@@ -103,6 +110,7 @@ class SDES {
     /// @param bits (unsigned int) a 4-bit number to permute
     /// @return (unsigned int) the new 4-bit number changed according to SDES 
     ///         encryption/decryption
+    /// ----------------------------------------------------------------------------
     unsigned int permute4(unsigned int bits);
 
     /// ----------------------------------------------------------------------------
@@ -111,6 +119,7 @@ class SDES {
     /// @param text (unsigned int) an 8-bit number to permute
     /// @return (unsigned int) the new 8-bit number changed from bits 
     ///         according to SDES encryption/decryption standards
+    /// ----------------------------------------------------------------------------
     unsigned int inverseInitPermute(unsigned int text);
 
   public:
@@ -119,6 +128,7 @@ class SDES {
     /// @param key (unsigned int) a 10-bit number that serves as the encryption key
     /// @param output (bool) flag to send homework outputs to console
     /// @param verbose (bool) flag to send debugging outputs to console
+    /// ----------------------------------------------------------------------------
     SDES(const unsigned int key, bool output=false, bool verbose=false);
     ~SDES() = default;
 
@@ -126,12 +136,14 @@ class SDES {
     /// @brief the SDES encryption algorithm to obscure information
     /// @param plaintext (unsigned int) the 8-bit number considered as the message
     /// @return (unsigned int) the 8-bit number cipher text using keyOne and keyTwo
+    /// ----------------------------------------------------------------------------
     unsigned int encrypt(const unsigned int plaintext);
 
     /// ----------------------------------------------------------------------------
     /// @brief the SDES decryption algorithm to read obscured information
     /// @param ciphertext (unsigned int) the 8-bit number considered as the cipher text
     /// @return (unsigned int) the 8-bit number plain text using keyTwo and keyOne
+    /// ----------------------------------------------------------------------------
     unsigned int decrypt(const unsigned int ciphertext);
 };
 

@@ -1,7 +1,9 @@
 #include "UnitTest-SDES.hpp"
 
+/// ----------------------------------------------------------------------------
 /// @brief check the SDES class against question 4a and verify correctness
 /// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
 int UnitTest_InputA(){
     try{
         const unsigned int plaintext = 0b10111101; 
@@ -22,8 +24,10 @@ int UnitTest_InputA(){
     return 0;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief check the SDES class against question 4b and verify correctness
 /// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
 int UnitTest_InputB(){
     try{
         const unsigned int plaintext = 0b01110111; 
@@ -44,8 +48,10 @@ int UnitTest_InputB(){
     return 0;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief check the SDES class against question 4c and verify correctness
 /// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
 int UnitTest_InputC(){
     try{
         const unsigned int plaintext = 0b01110111; 
@@ -66,8 +72,10 @@ int UnitTest_InputC(){
     return 0;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief check the SDES class against question 4a and verify correctness
 /// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
 int UnitTest_RunHomework(){
     int points = 0;
     const int maxPoints = 30;
@@ -90,8 +98,10 @@ int UnitTest_RunHomework(){
     return 0;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief run all the unit tests for the SDES class
 /// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
 int UnitTest_RunAll(){
     int passed = 0, failed = 0;
 

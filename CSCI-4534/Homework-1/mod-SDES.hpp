@@ -21,6 +21,7 @@ class modSDES : public SDES {
         ///             usually half of the message block
         /// @return (unsigned int) a 4-bit number that represents the message 
         ///         when the given key is applied
+        /// ----------------------------------------------------------------------------
         unsigned int modProcessKeyAndText(unsigned int key, unsigned int text);
 
     public:
@@ -29,6 +30,7 @@ class modSDES : public SDES {
         /// @param key (unsigned int) a 10-bit number that serves as the encryption key
         /// @param output (bool) flag to send homework outputs to console
         /// @param verbose (bool) flag to send debugging outputs to console
+        /// ----------------------------------------------------------------------------
         modSDES(unsigned int key, bool output=false, bool verbose=false) : SDES(key, output, verbose) {}
         ~modSDES() = default;
 
@@ -36,12 +38,14 @@ class modSDES : public SDES {
         /// @brief the SDES encryption algorithm to encrypt information
         /// @param plaintext (unsigned int) the 8-bit number considered as the message to encrypt
         /// @return (unsigned int) the 8-bit number cipher text using keyOne and keyTwo
+        /// ----------------------------------------------------------------------------
         unsigned int modEncrypt(const unsigned int plaintext);
 
         /// ----------------------------------------------------------------------------
         /// @brief the SDES decryption algorithm to read encrypted information
         /// @param ciphertext (unsigned int) the 8-bit number considered as the cipher text to decrypt
         /// @return (unsigned int) the 8-bit number plain text using keyTwo and keyOne
+        /// ----------------------------------------------------------------------------
         unsigned int modDecrypt(const unsigned int ciphertext);
         
 };

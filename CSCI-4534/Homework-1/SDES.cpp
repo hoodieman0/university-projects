@@ -5,6 +5,7 @@
 /// @param key (unsigned int) a 10-bit number that serves as the encryption key
 /// @param output (bool) flag to send homework outputs to console
 /// @param verbose (bool) flag to send debugging outputs to console
+/// ----------------------------------------------------------------------------
 SDES::
 SDES(const unsigned int key, bool output, bool verbose) : output(output), verbose(verbose) {
     keyGen(key);
@@ -13,6 +14,7 @@ SDES(const unsigned int key, bool output, bool verbose) : output(output), verbos
 /// ----------------------------------------------------------------------------
 /// @brief Generates keyOne and keyTwo according to SDES standard
 /// @param key (unsigned int) a 10-bit key that derives keyOne and keyTwo
+/// ----------------------------------------------------------------------------
 void SDES::
 keyGen(const unsigned int key){
     // P10 -> SHIFT -> P8 -> keyOne
@@ -53,6 +55,7 @@ keyGen(const unsigned int key){
 /// @param bits (unsigned int) a 10-bit number to permute
 /// @return (unsigned int) the new 10-bit number changed according to SDES key
 ///         generation standards
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 permute10(unsigned int bits){
     // The 10 bit representation:
@@ -97,6 +100,7 @@ permute10(unsigned int bits){
 /// @param bits (unsigned int) an 8-bit number to permute
 /// @return (unsigned int) the new 8-bit number changed from bits 
 ///         according to SDES key generation standards
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 permute8(unsigned int bits){
     // The 10 bit representation:
@@ -139,6 +143,7 @@ permute8(unsigned int bits){
 /// @param bits (unsigned int) a 5-bit number to shift
 /// @return (unsigned int) the new 5-bit number changed from bits 
 ///         with its bits shifted left and wrapped once
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 leftShift(unsigned int bits){
     // The 5 bit representation:
@@ -163,6 +168,7 @@ leftShift(unsigned int bits){
 /// @brief the SDES encryption algorithm to obscure information
 /// @param plaintext (unsigned int) the 8-bit number considered as the message
 /// @return (unsigned int) the 8-bit number cipher text using keyOne and keyTwo
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 encrypt(const unsigned int plaintext){
     // IP -> smallF w/ K1 -> SW -> smallF w/ K2 -> inverseIP 
@@ -206,6 +212,7 @@ encrypt(const unsigned int plaintext){
 /// @brief the SDES decryption algorithm to read obscured information
 /// @param ciphertext (unsigned int) the 8-bit number considered as the cipher text
 /// @return (unsigned int) the 8-bit number plain text using keyTwo and keyOne
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 decrypt(const unsigned int ciphertext){
     // IP -> smallF w/ K2 -> SW -> smallF w/ K1 -> inverseIP 
@@ -250,6 +257,7 @@ decrypt(const unsigned int ciphertext){
 /// @param text (unsigned int) an 8-bit number to permute
 /// @return (unsigned int) the new 8-bit number changed from bits 
 ///         according to SDES encryption/decryption standards
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 initPermute(unsigned int text) {
     // The 8 bit representation:
@@ -292,6 +300,7 @@ initPermute(unsigned int text) {
 ///             usually half of the message block
 /// @return (unsigned int) a 4-bit number that represents the message 
 ///         when the given key is applied
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 processKeyAndText(unsigned int key, unsigned int text){
     unsigned int result = expandPermute4(text);
@@ -329,6 +338,7 @@ processKeyAndText(unsigned int key, unsigned int text){
 ///        according to SDES encryption/decryption
 /// @param bits (unsigned int) a 4-bit number to permute
 /// @return (unsigned int) an 8-bit number expanded & permuted from bits
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 expandPermute4(unsigned int bits){
     // The 4 bit representation:
@@ -364,6 +374,7 @@ expandPermute4(unsigned int bits){
 /// @param bits (unsigned int) a 4-bit number to permute
 /// @return (unsigned int) the new 4-bit number changed according to SDES 
 ///         encryption/decryption
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 permute4(unsigned int bits){
     // The 4 bit representation:
@@ -396,6 +407,7 @@ permute4(unsigned int bits){
 /// @param text (unsigned int) an 8-bit number to permute
 /// @return (unsigned int) the new 8-bit number changed from bits 
 ///         according to SDES encryption/decryption standards
+/// ----------------------------------------------------------------------------
 unsigned int SDES::
 inverseInitPermute(unsigned int text){
     // The 8 bit representation:
