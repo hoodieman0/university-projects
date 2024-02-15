@@ -1,6 +1,6 @@
 #include "UnitTest-SDES.hpp"
 
 int main(){
-    UnitTest_RunAll();
+    UnitTest_RunHomework();
     return 0;
 }
