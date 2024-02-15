@@ -16,6 +16,7 @@ class modSDES : public SDES {
         /// ----------------------------------------------------------------------------
         /// @brief the part of the SDES encryption/decryption where the keys are applied
         ///        to the message
+        /// @note known as the function F in notes, but uses S1p instead of S1
         /// @param key (unsigned int) an 8-bit number to serve as the key (usually keyOne or keyTwo)
         /// @param text (unsigned int) a 4-bit number to serve as the message to encrypt/decrypt, 
         ///             usually half of the message block
