@@ -1,5 +1,6 @@
 #include "SDES.hpp"
 
+/// ----------------------------------------------------------------------------
 /// @brief SDES class constructor
 /// @param key (unsigned int) a 10-bit number that serves as the encryption key
 /// @param output (bool) flag to send homework outputs to console
@@ -9,6 +10,7 @@ SDES(const unsigned int key, bool output, bool verbose) : output(output), verbos
     keyGen(key);
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief Generates keyOne and keyTwo according to SDES standard
 /// @param key (unsigned int) a 10-bit key that derives keyOne and keyTwo
 void SDES::
@@ -45,6 +47,7 @@ keyGen(const unsigned int key){
     }
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief a 10-bit permutation for SDES key generation
 ///        the first step when encoding the keys 
 /// @param bits (unsigned int) a 10-bit number to permute
@@ -88,6 +91,7 @@ permute10(unsigned int bits){
     return permutation;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief an 8-bit permutation for SDES key generation
 ///        the second permutation when encoding the keys 
 /// @param bits (unsigned int) an 8-bit number to permute
@@ -130,6 +134,7 @@ permute8(unsigned int bits){
     return permutation;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief a 5-bit left shift, where the left-most bit becomes the right-most bit
 /// @param bits (unsigned int) a 5-bit number to shift
 /// @return (unsigned int) the new 5-bit number changed from bits 
@@ -154,6 +159,7 @@ leftShift(unsigned int bits){
     return shift & hx01F; // remove extra leading 1s
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief the SDES encryption algorithm to obscure information
 /// @param plaintext (unsigned int) the 8-bit number considered as the message
 /// @return (unsigned int) the 8-bit number cipher text using keyOne and keyTwo
@@ -196,6 +202,7 @@ encrypt(const unsigned int plaintext){
     return ciphertext;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief the SDES decryption algorithm to read obscured information
 /// @param ciphertext (unsigned int) the 8-bit number considered as the cipher text
 /// @return (unsigned int) the 8-bit number plain text using keyTwo and keyOne
@@ -238,6 +245,7 @@ decrypt(const unsigned int ciphertext){
     return plaintext;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief an 8-bit permutation for SDES encryption/decryption
 /// @param text (unsigned int) an 8-bit number to permute
 /// @return (unsigned int) the new 8-bit number changed from bits 
@@ -276,6 +284,7 @@ initPermute(unsigned int text) {
     return permutation;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief the part of the SDES encryption/decryption where the keys are applied
 ///        to the message
 /// @param key (unsigned int) an 8-bit number to serve as the key (usually keyOne or keyTwo)
@@ -315,6 +324,7 @@ processKeyAndText(unsigned int key, unsigned int text){
     return result;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief takes a 4-bit number and makes an 8-bit permutation from it
 ///        according to SDES encryption/decryption
 /// @param bits (unsigned int) a 4-bit number to permute
@@ -349,6 +359,7 @@ expandPermute4(unsigned int bits){
     return permutation;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief a 4-bit permutation for SDES encryption/decryption
 /// @param bits (unsigned int) a 4-bit number to permute
 /// @return (unsigned int) the new 4-bit number changed according to SDES 
@@ -379,10 +390,7 @@ permute4(unsigned int bits){
     return permutation;
 }
 
-
-// meant for 8 bit numbers
-// returns an 8 bit number
-
+/// ----------------------------------------------------------------------------
 /// @brief an 8-bit permutation to end SDES encryption/decryption, 
 ///        the inverse of initPermute()
 /// @param text (unsigned int) an 8-bit number to permute
