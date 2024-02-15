@@ -1,5 +1,6 @@
 #include "mod-SDES.hpp"
 
+/// ----------------------------------------------------------------------------
 /// @brief the SDES encryption algorithm to encrypt information
 /// @param plaintext (unsigned int) the 8-bit number considered as the message to encrypt
 /// @return (unsigned int) the 8-bit number cipher text using keyOne and keyTwo
@@ -42,6 +43,7 @@ modEncrypt(const unsigned int plaintext){
     return ciphertext;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief the SDES decryption algorithm to read encrypted information
 /// @param ciphertext (unsigned int) the 8-bit number considered as the cipher text to decrypt
 /// @return (unsigned int) the 8-bit number plain text using keyTwo and keyOne
@@ -84,6 +86,7 @@ modDecrypt(const unsigned int ciphertext){
     return plaintext;
 }
 
+/// ----------------------------------------------------------------------------
 /// @brief the part of the SDES encryption/decryption where the keys are applied
 ///        to the message
 /// @param key (unsigned int) an 8-bit number to serve as the key (usually keyOne or keyTwo)
