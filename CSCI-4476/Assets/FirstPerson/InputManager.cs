@@ -54,5 +54,7 @@ public class InputManager : MonoBehaviour
         actions.InGame.Movement.canceled -= InvokeMovement;
         actions.InGame.MouseLook.performed -= InvokeMouseLook;
         actions.InGame.MouseLook.canceled -= InvokeMouseLook;
+        actions.InGame.Interact.performed -= InvokeInteract;
+        actions.InGame.Interact.canceled -= StopInteract;
     }
 }

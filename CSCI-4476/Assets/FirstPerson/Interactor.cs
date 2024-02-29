@@ -9,6 +9,7 @@ public class Interactor : MonoBehaviour
     Color rayColor = Color.black;
     IInteractable objBeingLookedAt;
     IInteractable objBeingInteractedWith;
+    FixedJoint fJoint;
 
     void OnEnable()
     {
@@ -32,7 +33,7 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
-        objBeingInteractedWith?.WhileInteract(this);
+        // objBeingInteractedWith?.WhileInteract(this);
     }
 
     void StopInteract()

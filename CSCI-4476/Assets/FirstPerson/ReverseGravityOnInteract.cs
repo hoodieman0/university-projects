@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ReverseGravityOnInteract : MonoBehaviour, IInteractable
 {
     Rigidbody rig;
@@ -22,9 +23,7 @@ public class ReverseGravityOnInteract : MonoBehaviour, IInteractable
     public void StartInteract(Interactor interactor){
         state = true;
     }
-    public void WhileInteract(Interactor interactor){
 
-    }
     public void StopInteract(Interactor interactor){
         state = false;
     }
