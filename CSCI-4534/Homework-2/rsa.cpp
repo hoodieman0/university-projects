@@ -1,206 +1,167 @@
-//
-// Created by hoodi on 10/25/2022.
-//
-
-#include "rsa.hpp"
+#include "RSA.hpp"
 
 RSA::
-RSA() {
+RSA(){
     generateKeys();
 }
 
-BT RSA::
-GCD(BT a, BT b) {
-    BT r;
-    while ( (a % b) > 0){
-        r = a % b;
-        a = b;
-        b = r;
-    }
-    return b;
+void RSA::
+generateKeys(){
+    random_device r;
+    default_random_engine e1(r());
+    uniform_int_distribution<int> dist(10, 100);
+    
+    // select primes
+    do {
+        primeP = dist(e1);
+    } while (!isPrime(primeP));
+    
+    do {
+        primeQ = dist(e1);
+    } while (!isPrime(primeQ));
+
+    // compute number & totient
+    int n = primeP * primeQ;
+    publicKey.number = n;
+    privateKey.number = n;
+
+    int totient = eulerTotient(primeP, primeQ);
+
+    cout << "totient: " << totient << endl;
+    cout << "P: " << primeP << endl;
+    cout << "Q: " << primeQ << endl;
+    cout << "N: " << n << endl;
+
+    // choose encryption key
+    uniform_int_distribution<int> keyGen(2, totient - 1);
+    do {
+        publicKey.key = keyGen(e1);
+        // gcd
+
+        try { privateKey.key = modInverse(publicKey.key, totient); } // choose private key to be modular inverse of pubkey
+        catch (...){ privateKey.key = 0; }
+    } while (publicKey.key == 0 || publicKey.key < 0 || privateKey.key == 0 || privateKey.key < 0);
+
+    cout << publicKey.key << endl;
+    cout << privateKey.key << endl;
 }
 
-bool RSA::isRelativePrime(BT p, BT q) {
-    if (GCD(p, q) == 1) return true;
-    return false;
+bool RSA::
+isPrime(int num){
+    if (num <= 1) return false;                     // num is 1 or smaller
+    if (num <= 3) return true;                      // num is 2 or 3
+    if (num % 2 == 0 || num % 3 == 0) return false; // num is divisible by 2 or 3
+    
+    return isPrimeMillerRabin(num, TEST_REPEAT);
 }
 
-BT RSA::
-fastMod(BT a, BT b, BT n) {
-    BT result = 1;
-    if (b & 1){ result = a; }
-    while (b){
-        b >>= 1;
-        a = (a * a) % n;
-        if (b & 1){
-            result = (result * a) % n;
+// monte carlo
+bool RSA::
+isPrimeMillerRabin(int num, int repeat){
+    random_device r;
+    default_random_engine e1(r());
+    uniform_int_distribution<int> dist(1, num - 1);
+
+    int a;
+    for (int i = 0; i < repeat; i++){
+        a = dist(e1);
+        try {
+            if (compositeWitness(a, num)) return false;
         }
-    }
-//    if (result < 0) { result = result + n; }
-    return result;
-}
-
-bool RSA::
-millerTest(BT d, BT n){
-    srand(time(NULL));
-    int a = 2 + rand() % (n-4);
-    int x = fastMod(a, d, n);
-    if (x == 1 || x == n-1) { return true; }
-
-    while (d != n-1){
-        x = (x * x) % n;
-        d *= 2;
-        if (x == 1) return false;
-        if (x == n-1) return true;
-    }
-    return false;
-}
-
-//TODO please check this GoG code over and cross reference book
-bool RSA::
-isPrime(BT p, int k) {
-    if (p <= 1 || p == 4) return false;
-    if (p <= 3 ) return true;
-    BT d = p - 1;
-    while (d % 2 == 0){
-        d /=2;
-    }
-    for (int i = 0; i < k; i++){
-        if (!millerTest(d, p)) return false;
+        catch (const char * txt) {
+            cout << txt << endl;
+        } catch (...) {}
     }
 
     return true;
 }
 
-// returns d, d = ax + by = GCD(a,b)
-//TODO can be done iteratively
-BT RSA::
-extendedEuclid(BT a, BT b, BT* x, BT* y){
+// is a a composite witness of num
+bool RSA::
+compositeWitness(int a, int num){
+    int t = 0, u = num - 1; // this only needs to be calculated once
+    while (u % 2 == 0){
+        u /= 2;
+        t++;
+    }
+
+    int temp = 0;
+    int x = fastModExponentiation(a, u, num);
+
+
+    for (int i = 0; i <= t; i++){
+        temp = x;
+        x = fastModExponentiation(x, 2, num);
+
+        if (x == 1 && temp != 1 && temp != num - 1) {
+            return true;        // num is composite
+        }
+    }
+
+    if (x != 1) return true;    // num is composite
+    
+    return false;   // num is not composite
+}
+
+int RSA::
+modInverse(int a, int n) const {
+    return modLinearEquationSolver(a, 1, n);
+}
+
+int RSA::
+modLinearEquationSolver(int a, int b, int n) const {
+    int gcd; 
+    int x,          // first coefficient from gcdExtended
+    y;              // second coefficient from gcdExtended
+    gcd = gcdExtended(a, n, &x, &y);
+    cout << "GCD: " << gcd << endl;
+    if (b % gcd == 0){
+        return (x * (b/gcd)) % n;
+    }
+
+    throw "Modular Linear Equation Solver cannot return a value";
+}
+
+// find a solution such that result = ax + by = GCD(a, b)
+int RSA::
+gcdExtended(int a, int b, int* x, int* y) const{
     if (b == 0){
         *x = 1;
         *y = 0;
         return a;
     }
-    else{
-        BT result = extendedEuclid(b, a % b, x, y);
-        BT temp = *x;
-        *x = *y;
-        *y = temp - (a / b) * (*y);
-        return result;
-    }
+
+    int result = gcdExtended(b, a % b, x, y);
+    int temp = *x;
+    *x = *y;
+    *y = temp - (a / b) * (*y);
+    return result;
 }
 
-//finds all possible solutions for x in ax = b (mod n)
-// for RSA key generation, b = 1 must be true
-BT RSA::
-modLinear(BT a, BT b, BT n){
-    BT d, x, y, z;
-
-    d = extendedEuclid(a, n, &x, &y);
-
-    if (b % d == 0){
-        z = (x * (b / d)) % n;
-        if (z < 0){ z = z + n; }
-        return z;
-    }
-    throw "Modular Linear Equation Solver has a bad value";
+int RSA::
+encrypt(int plaintext) const {
+    return fastModExponentiation(plaintext, publicKey.key, publicKey.number);
 }
 
-void RSA::
-generateKeys() {
-    random_device r;
-    default_random_engine e1(r());
-    uniform_int_distribution<BT> dist(10, 1000);
-
-    do{
-        primeP = dist(e1);//primes(gen);
-    } while (!isPrime(primeP, 10)); //TODO make this a DEFINE
-
-    do{
-        primeQ = dist(e1);//primes(gen);
-    } while (!isPrime(primeQ, 10));
-
-    number = primeP * primeQ;
-
-    BT totient = eulerTotient(primeP, primeQ);
-    uniform_int_distribution<BT> keys(2, totient - 1);
-
-
-    random_device r2;
-    default_random_engine e2(r2());
-    uniform_int_distribution<BT> dist2(2, totient - 1);
-
-    while (pubKey == 0 || priKey == 0){
-        do {
-            pubKey = dist2(e2);//keys(gen);
-        } while (!isRelativePrime(pubKey, totient));
-
-        priKey = modLinear(pubKey, 1, totient);
-
-//        for (int k = 2; k < totient; k++){
-//            if ((k*totient + 1) % pubKey == 0){
-//                int x = k * totient;
-//                int y = x + 1;
-//                cerr << pubKey << endl;
-//                int z = y / pubKey;
-//                int a = 100000 % pubKey;
-//                int temp = z;
-//                cerr << temp << endl;
-//                priKey = (k*totient + 1) / pubKey;
-//                break;
-//            }
-//        }
-    }
-    //TODO remove this
-    cerr << "P = " << primeP << " | Q = " << primeQ << " | Number = " << number << endl;
-    cerr << "Public : " << pubKey << " | Private : " << priKey << " | T : " << totient<< endl;
+int RSA::
+decrypt(int ciphertext) const {
+    return fastModExponentiation(ciphertext, privateKey.key, privateKey.number);
 }
 
-void RSA::encryptFile(const string& fileName) const {
-    ifstream ifs(fileName);
-    ofstream oFile("modifiedText.txt");
-    string temp;
-    while (!ifs.eof()){
-        ifs >> temp;
-        for (char c : temp){
-            oFile << fastMod(c, pubKey, number);
-            oFile << '\n';
-        }
+// solve a^b mod n fast
+// uses less multiplications for mod operations
+// relies on the idea that modding smaller parts gets same result
+// for example: a^5 mod n = a^2 mod n * a^2 mod n * a mod n
+int RSA::
+fastModExponentiation(int a, int b, int n) const {
+    int i = b;
+    int x = a % n;
+    int result = 1;
+    while ( i > 0){
+        if (i & 1) result = (result * x) % n;       // if b is odd, set the new result and mod it by n
+        i >>= 1;                                    // divide by 2
+        x = (x * x) % n;                            // a^2 mod n
     }
-    cout << "File Successfully Encrypted!" <<endl;
 
-    oFile.close();
-    ifs.close();
-}
-
-void RSA::decryptFile(const string& fileName) const {
-    ifstream ifs("modifiedText.txt");
-    ofstream oFile("modifiedText(2).txt");
-    string temp;
-
-    BT thing;
-    BT thing2;
-
-    while (!ifs.eof()){
-        ifs >> temp;
-        thing = stoi(temp); //TODO THIS IS WRONG
-
-        thing2 = fastMod(thing, priKey, number);
-        oFile << (char) thing2;
-        cerr << temp << endl;
-        cerr << thing << endl;
-        cerr << thing2 << endl;
-        cerr << (char) thing2 << "\n" <<endl;
-
-        oFile << '\n';
-    }
-    cout << "File Successfully Decrypted!" <<endl;
-
-    oFile.close();
-    ifs.close();
-}
-
-PubKey RSA::getPubKey() const {
-    PubKey temp(pubKey, number);
-    return temp;
+    return result;
 }

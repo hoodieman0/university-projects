@@ -1,41 +1,61 @@
-//
-// Created by hoodi on 10/25/2022.
-//
-
 #ifndef RSA_HPP
 #define RSA_HPP
 
-#include "tools.hpp"
-#include "PubKey.hpp"
+#include <random>
+#include <iostream>
 
-#define BT int
+using namespace std;
+
+#define TEST_REPEAT 1000
+
+struct Key{
+    int key;
+    int number;    // must be larger than message size
+};
 
 class RSA {
 private:
-    BT primeP = 0;
-    BT primeQ = 0;
-    BT number = 0; //longer than chars in file (otherwise split BTo blocks)
-    BT pubKey = 0;
-    BT priKey = 0;
+    int primeP;
+    int primeQ;
+    
+    Key publicKey;
+    Key privateKey;
 
-    static BT GCD(BT, BT);
-    static bool isRelativePrime(BT, BT);
-    static BT fastMod(BT, BT, BT);
-    static bool millerTest(BT, BT);
-    static bool isPrime(BT, int); //TODO revamp
-    //p and q must be prime
-    static BT eulerTotient(BT p, BT q) { return (p-1) * (q-1);}
-    static BT extendedEuclid(BT, BT, BT*, BT*);
-    static BT modLinear(BT, BT, BT); //for this purpose, has a unique value
+    // calculates the Euler Totient of two primes
+    int eulerTotient(int p, int q) const { return (p-1)*(q-1); }
+
+    // check if selected P and Q are prime
+    bool isPrime(int num);
+    bool isPrimeMillerRabin(int num, int repeat);
+    bool compositeWitness(int a, int num);
+
+    // get inverse from modLinearEquationSolver
+    int modInverse(int a, int n) const;
+
+    // ax = b mod n, find x
+    int modLinearEquationSolver(int a, int b, int n) const;
+
+    // Extended Euclidian Algorithm for GCD 
+    int gcdExtended(int a, int b, int* x, int* y) const;
+
+    // a ^ b mod n but fast
+    int fastModExponentiation(int a, int b, int n) const;
 
 public:
     RSA();
-    ~RSA() = default;
+    ~RSA()=default;
+    bool test() { return compositeWitness(137, 221); }
+
+    const Key getPublicKey() { return publicKey; }
+
+    // make new keys for class
     void generateKeys();
-    void encryptFile(const string&) const;
-    void decryptFile(const string&) const;
-    PubKey getPubKey() const;
+
+    // encrypt with own public key
+    int encrypt(int plaintext) const;
+
+    // decrypt with own private key
+    int decrypt(int plaintext) const;
 };
 
-
-#endif
+#endif 
