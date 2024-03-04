@@ -19,10 +19,16 @@ int UnitTest_AttackOne();
 int UnitTest_AttackTwo();
 
 /// ----------------------------------------------------------------------------
-/// @brief check the SDES class against question 4a and verify correctness
+/// @brief check the RSA class against the attacks and verify correctness
 /// @return int 0 on pass, 1 on fail 
 /// ----------------------------------------------------------------------------
 int UnitTest_RunHomework();
+
+/// ----------------------------------------------------------------------------
+/// @brief verify RSA class creation works
+/// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
+int UnitTest_RSACreation();
 
 /// ----------------------------------------------------------------------------
 /// @brief run all the unit tests for the SDES class
