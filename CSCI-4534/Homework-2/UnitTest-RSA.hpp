@@ -1,22 +1,12 @@
 #ifndef UNITTEST_RSA_HPP
 #define UNITTEST_RSA_HPP
 
+#define TEST_RUNS 1000000
+
 #include <iostream>
 #include "RSA.hpp"
 
 using namespace std;
-
-/// ----------------------------------------------------------------------------
-/// @brief break the RSA class against attack 1 and verify correctness
-/// @return int 0 on pass, 1 on fail 
-/// ----------------------------------------------------------------------------
-int UnitTest_AttackOne();
-
-/// ----------------------------------------------------------------------------
-/// @brief break the RSA class against attack 2 and verify correctness
-/// @return int 0 on pass, 1 on fail 
-/// ----------------------------------------------------------------------------
-int UnitTest_AttackTwo();
 
 /// ----------------------------------------------------------------------------
 /// @brief check the RSA class against the attacks and verify correctness
@@ -30,8 +20,11 @@ int UnitTest_RunHomework();
 /// ----------------------------------------------------------------------------
 int UnitTest_RSACreation();
 
+
+int UnitTest_RSAExhaustive();
+
 /// ----------------------------------------------------------------------------
-/// @brief run all the unit tests for the SDES class
+/// @brief run all the unit tests for the RSA class
 /// @return int 0 on pass, 1 on fail 
 /// ----------------------------------------------------------------------------
 int UnitTest_RunAll();

@@ -11,9 +11,9 @@ int UnitTest_RSACreation(){
         // const int ciphertext = 11;
 
         const int resultCipher = cipher.encrypt(plaintext);
-        cout << resultCipher << endl;
+        cout << "Ciphertext: " << resultCipher << endl;
         const unsigned int resultPlain = cipher.decrypt(resultCipher);
-        cout << resultPlain << endl;
+        cout << "Plaintext: " << resultPlain << endl;
 
         // if (resultCipher != ciphertext) throw "Returned cipher text is wrong!";
 
@@ -23,6 +23,19 @@ int UnitTest_RSACreation(){
     } catch(const char* txt) {
         cout << txt << endl; return 1;
     } catch (...) { return 1; }
+
+    return 0;
+}
+
+int UnitTest_RSAExhaustive(){
+    int passed = 0, failed = 0;
+    for (int i = 0; i < TEST_RUNS; i++){
+        if (UnitTest_RSACreation()) failed++;
+        else passed++;
+    }
+
+    cout << "\u2713 Passed Tests: " << passed << endl;
+    cout << "\u274c Failed Tests: " << failed << endl;
 
     return 0;
 }
