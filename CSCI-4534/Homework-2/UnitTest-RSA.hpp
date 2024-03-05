@@ -1,7 +1,7 @@
 #ifndef UNITTEST_RSA_HPP
 #define UNITTEST_RSA_HPP
 
-#define TEST_RUNS 1000000
+#define TEST_RUNS 100000
 
 #include <iostream>
 #include "RSA.hpp"

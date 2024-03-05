@@ -24,6 +24,8 @@ private:
     // calculates the Euler Totient of two primes
     int eulerTotient(int p, int q) const { return (p-1)*(q-1); }
 
+    int gcd(int a, int b) { int _; return gcdExtended(a, b, &_, &_); }
+
     // check if selected P and Q are prime
     bool isPrime(int num);
     bool isPrimeMillerRabin(int num, int repeat);

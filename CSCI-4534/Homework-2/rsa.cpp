@@ -35,7 +35,9 @@ generateKeys(){
     // choose encryption key
     uniform_int_distribution<int> keyGen(2, totient - 1);
     do {
+        do {
         publicKey.key = keyGen(e1);
+        } while (gcd(publicKey.key, totient) != 1);
 
         try { privateKey.key = modInverse(publicKey.key, totient); } // choose private key to be modular inverse of pubkey
         catch (...){ privateKey.key = 0; }
@@ -137,7 +139,7 @@ modLinearEquationSolver(int a, int b, int n) const {
 
 /// -----------------------------------------------------------------------------------------------------------
 /// @brief      the extended Euclidean algorithm to find the greatest common denominator
-/// @note       remainder = ax + by = GCD(a, b)
+///             where remainder = ax + by = GCD(a, b)
 /// @param a    (int) the first term to find the GCD with
 /// @param b    (int) the second term to find the GCD with
 /// @param x    (int*) return parameter to return Bezout coefficient x
