@@ -18,7 +18,7 @@ generateKeys(){
     
     do {
         primeQ = dist(e1);
-    } while (!isPrime(primeQ));
+    } while (!isPrime(primeQ) || primeQ == primeP);
 
     // compute number & totient
     int n = primeP * primeQ;
@@ -36,7 +36,6 @@ generateKeys(){
     uniform_int_distribution<int> keyGen(2, totient - 1);
     do {
         publicKey.key = keyGen(e1);
-        // gcd
 
         try { privateKey.key = modInverse(publicKey.key, totient); } // choose private key to be modular inverse of pubkey
         catch (...){ privateKey.key = 0; }
