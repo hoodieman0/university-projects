@@ -50,6 +50,9 @@ int main(){
     return 0;
 }
 
+/// @brief          a helper function to run both RSAAttacker functions on one problem set
+/// @param attack   (RSAAttacker) any object that will get its values changed with info param
+/// @param info     (struct Members) the specified public key, number, and ciphertext xtruct
 void Problem(RSAAttacker& attack, Members info){
     // read in the information into the attacker
     attack.SetInfo(info);
