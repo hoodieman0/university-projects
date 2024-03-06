@@ -54,10 +54,10 @@ void Problem(RSAAttacker& attack, Members info){
     // read in the information into the attacker
     attack.SetInfo(info);
 
-    cout << "==========================" << endl;
+    cout << "=========================" << endl;
     cout << "Ciphertext: " << info.ciphertext << endl;
     cout << "Public Key: " << info.encryptionKey << endl;
-    cout << "Number: " << info.number << endl;
+    cout << "Number:     " << info.number << endl;
     cout << "==========================" << endl;
 
 
@@ -77,10 +77,10 @@ void Problem(RSAAttacker& attack, Members info){
     const secondVal vals = attack.AttackTwo();
     const auto end2 = chrono::high_resolution_clock::now();
 
-    cout << "Prime P: " << vals.primeP << endl;
-    cout << "Prime Q: " << vals.primeQ << endl;
+    cout << "Prime P:     " << vals.primeP << endl;
+    cout << "Prime Q:     " << vals.primeQ << endl;
     cout << "Private Key: " << vals.privKey << endl;
-    cout << "Plaintext: " << vals.plaintext << endl;
+    cout << "Plaintext:   " << vals.plaintext << endl;
 
     const auto timeCast2 = chrono::duration_cast<chrono::microseconds>(end2 - start2);
 
