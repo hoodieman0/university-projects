@@ -38,9 +38,9 @@ AttackOne(){
 
 /// -----------------------------------------------------------------------------------------------------------
 /// @brief  factor inputted info.number into its two primes and get plaintext by calculating private key from them
-/// @return (struct secondVal) following calculated values via RSA algorithm: { (int) prime P, (int) prime Q, (int) private key, (int) plaintext }
+/// @return (struct attackTwoReturn) following calculated values via RSA algorithm: { (int) prime P, (int) prime Q, (int) private key, (int) plaintext }
 /// -----------------------------------------------------------------------------------------------------------
-secondVal RSAAttacker::
+attackTwoReturn RSAAttacker::
 AttackTwo(){
     // calculate the two prime factors (naively)
     int p, q;
@@ -58,7 +58,7 @@ AttackTwo(){
     // calculate plaintext from c ^ dKey mod number
     int m = fastModExponentiation(info.ciphertext, privateKey, info.number);
 
-    return secondVal { p, q, privateKey, m };
+    return attackTwoReturn { p, q, privateKey, m };
 }
 
 /// -----------------------------------------------------------------------------------------------------------

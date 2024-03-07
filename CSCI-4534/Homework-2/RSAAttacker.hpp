@@ -9,7 +9,7 @@ struct Members {
 };
 
 /// @brief return value for AttackTwo to aggregate data and return one item
-struct secondVal {
+struct attackTwoReturn {
     int primeP;     // calculated primes from RSA
     int primeQ;
     int privKey;    // private key/decryption key associated with RSA encryption key
@@ -62,9 +62,9 @@ public:
 
     /// -----------------------------------------------------------------------------------------------------------
     /// @brief  factor inputted info.number into its two primes and get plaintext by calculating private key from them
-    /// @return (struct secondVal) following calculated values via RSA algorithm: { (int) prime P, (int) prime Q, (int) private key, (int) plaintext }
+    /// @return (struct attackTwoReturn) following calculated values via RSA algorithm: { (int) prime P, (int) prime Q, (int) private key, (int) plaintext }
     /// -----------------------------------------------------------------------------------------------------------
-    secondVal AttackTwo();
+    attackTwoReturn AttackTwo();
 
     /// -----------------------------------------------------------------------------------------------------------
     /// @brief      solve a ^ b mod n fast using less multiplications

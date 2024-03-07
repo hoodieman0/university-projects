@@ -77,7 +77,7 @@ void Problem(RSAAttacker& attack, Members info){
 
     cout << "Running Attack Two..." << endl;
     const auto start2 = chrono::high_resolution_clock::now();
-    const secondVal vals = attack.AttackTwo();
+    const attackTwoReturn vals = attack.AttackTwo();
     const auto end2 = chrono::high_resolution_clock::now();
 
     cout << "Prime P:     " << vals.primeP << endl;
