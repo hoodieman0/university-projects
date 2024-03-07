@@ -135,7 +135,7 @@ gcdExtended(int a, int b, int* x, int* y) const{
     int bezoutY     = 0, bezoutYCalc    = 1;
     int quotient    = 0, temp           = 0;
 
-    while (newRemainder != 0){                                  // while 
+    while (newRemainder != 0){                                  // while there is something to divide 
         quotient = remainder / newRemainder;                    // get the quotient result
         temp = newRemainder;
         newRemainder = remainder - (quotient * newRemainder);   // calculate next remainder
