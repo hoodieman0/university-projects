@@ -1,0 +1,270 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[a4paper, total={6.5in, 10in}]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true
+}
+
+\definecolor{numbercolor}{rgb}{0.11,0.86,0.98}
+\definecolor{stringcolor}{rgb}{0,0.53,0.14}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.98,0.98,0.98}
+\definecolor{keywordcolor}{rgb}{1,0.55,0.1}
+
+\lstdefinestyle{myStyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegray},
+    keywordstyle=\color{keywordcolor},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{stringcolor},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\begin{document}
+\begin{enumerate}
+    % Q1 ----------------------------------------------------------------
+    \item Answers
+    \begin{enumerate}
+        \item I would see which key $K_1$ matched the plaintext/ciphertext pair for $X = E_{K_1}(P)$ and the two keys $K_2$, $K_3$ that matched the plaintext/ciphertext pair for $X = E_{K_2}(D_{K_3}(C))$. The found keys would be the answer since they both align to the same result. 
+        
+        \item $2^{112} + 2^56$ keys (2 keys + 1 key)
+
+        \item $2^{56}$ space (each key is only 56 bits)
+    \end{enumerate}
+
+    % Q2 ----------------------------------------------------------------
+    \item Answers
+    \begin{enumerate}
+        \item I am assuming that there is a private key to complement the public key. I am also assuming that the public key cipher with the public and private keys can be used for digital signatures. I also assume A and B have synchronized clocks.
+        
+        \item $E_{KR_A}(timestamp)$
+
+        \item B will decrypt the message with $KU_A$ to get the timestamp and then check if the timestamp is recent enough to be the current virtual circuit.  
+
+        \item BG will not have the private key of A, so when A signs the timestamp B can be assured that A is the sender when decrypting with $KU_A$. The timestamp functions as a way to ensure that the message is recent enough to be used and can’t be replayed by BG. 
+    \end{enumerate}
+
+    % Q3 ----------------------------------------------------------------
+    \item Answers
+    \begin{enumerate}
+         % (3a) ----------------------------------------------------------------
+        \item \begin{align*}
+            8^1 \Mod{11} &\equiv 8 \Mod{11}\\
+            8^2 \Mod{11} \equiv 8^1 \Mod{11} \times 8^1 \Mod{11} &\equiv 9 \Mod{11} \\
+            8^3 \Mod{11} \equiv 8^2 \Mod{11} \times 8^1 \Mod{11} &\equiv 6 \Mod{11} \\
+            8^4 \Mod{11} \equiv 8^3 \Mod{11} \times 8^1 \Mod{11} &\equiv 4 \Mod{11} \\
+            8^5 \Mod{11} \equiv 8^4 \Mod{11} \times 8^1 \Mod{11} &\equiv 10 \Mod{11} \\
+            8^6 \Mod{11} \equiv 8^5 \Mod{11} \times 8^1 \Mod{11} &\equiv 3 \Mod{11} \\
+            8^7 \Mod{11} \equiv 8^6 \Mod{11} \times 8^1 \Mod{11} &\equiv 2 \Mod{11} \\
+            8^8 \Mod{11} \equiv 8^7 \Mod{11} \times 8^1 \Mod{11} &\equiv 5 \Mod{11} \\
+            8^9 \Mod{11} \equiv 8^8 \Mod{11} \times 8^1 \Mod{11} &\equiv 7 \Mod{11} \\
+            8^{10} \Mod{11} \equiv 8^9 \Mod{11} \times 8^1 \Mod{11} &\equiv 1 \Mod{11} 
+        \end{align*}
+        There are no repeat modular values\\ $\therefore$ 8 is a primitive root of 11.
+
+        % (3b) ----------------------------------------------------------------
+        \item Solve for $X_A$ given $Y_A = 6, q = 11, \alpha = 8$ \[6 = 8^{X_A} \Mod{11}\] 
+        \begin{align*}
+            8^1 \Mod{11} &\equiv 8 \Mod{11}\\
+            8^2 \Mod{11} \equiv 8^1 \Mod{11} \times 8^1 \Mod{11} &\equiv 9 \Mod{11} \\
+            8^3 \Mod{11} \equiv 8^2 \Mod{11} \times 8^1 \Mod{11} &\equiv 6 \Mod{11} 
+        \end{align*}
+        $8^3 \Mod{11} \equiv 6 = Y_A$ \\
+        $\therefore X_A = 3$
+
+        % (3c) ----------------------------------------------------------------
+        \item Solve for $X_B$ given $Y_B = 3, q = 11, \alpha = 8$ \[3 = 8^{X_B} \Mod{11}\] 
+        \begin{align*}
+            8^1 \Mod{11} &\equiv 8 \Mod{11}\\
+            8^2 \Mod{11} \equiv 8^1 \Mod{11} \times 8^1 \Mod{11} &\equiv 9 \Mod{11} \\
+            8^3 \Mod{11} \equiv 8^2 \Mod{11} \times 8^1 \Mod{11} &\equiv 6 \Mod{11} \\
+            8^4 \Mod{11} \equiv 8^3 \Mod{11} \times 8^1 \Mod{11} &\equiv 4 \Mod{11} \\
+            8^5 \Mod{11} \equiv 8^4 \Mod{11} \times 8^1 \Mod{11} &\equiv 10 \Mod{11} \\
+            8^6 \Mod{11} \equiv 8^5 \Mod{11} \times 8^1 \Mod{11} &\equiv 3 \Mod{11} 
+        \end{align*}
+        $8^6 \Mod{11} \equiv 3 = Y_B$ \\
+        $\therefore X_B = 6$
+
+        % (3d) ----------------------------------------------------------------
+        \item Given the equation $K = {Y_B}^{X_A} \Mod{q}$ where $Y_B = 3$, $X_A = 3$, and $q = 11$ \\
+        $\therefore K = 3^3 \Mod{11} = 5$
+
+        % (3e) ----------------------------------------------------------------
+        \item Given the equation $K = {Y_A}^{X_B} \Mod{q}$ where $Y_A = 6$, $X_B = 6$, and $q = 11$ \\
+        $\therefore K = 6^6 \Mod{11} = 5$
+        
+    \end{enumerate}
+
+    % Q4 ----------------------------------------------------------------
+    \item Answers
+    \begin{enumerate}
+        % (4a) ----------------------------------------------------------------
+        \item Given the equation $Y_A = \alpha^{X_A} \Mod{q}$, $q = 11$, $\alpha = 7$, and $X_A = 6$:
+        \begin{align*}
+            Y_A = 7^6 \Mod{11} \equiv 4
+        \end{align*}
+        $\therefore Y_A = 4$ 
+
+        % (4b) ----------------------------------------------------------------
+        \item Given the equation $K = {Y_A}^k \Mod{q}$, $\alpha = 7$, $q = 11$, $k = 2$, $M = 3$, and $Y_A = 4$:
+        \begin{align*}
+            K = 4^2 \Mod{11} \equiv 5
+        \end{align*}
+        $\therefore K = 5$\\
+        Using the equations $C_1 = \alpha^k \Mod{q}$ and $C_2 = KM \Mod{q}$, it follows:
+        \begin{align*}
+            C_1 &= 7^2 \Mod{11} \equiv 5 \\
+            C_2 &= 5\times3 \Mod{11} \equiv 4
+        \end{align*}
+        $\therefore C_1 = 5, C_2 = 4$
+
+        % (4c) ----------------------------------------------------------------
+        \item Given the equations $K = {C_1}^{X_A} \Mod{q}$ and $M = C_2K^{-1} \Mod{q}$, $C_1 = 5$, $C_2 = 4$, and $X_A = 6$, it follows:
+        \begin{align*}
+            K = 5^6 \Mod{11} \equiv 5
+        \end{align*}
+        $\therefore K = 5$ \\
+        $K^{-1}$ is calculated by testing all possible values:
+        \begin{align*}
+            5 \times 0 &\equiv 0 \Mod{11} \\
+            5 \times 1 &\equiv 5 \Mod{11} \\ 
+            5 \times 2 &\equiv 10 \Mod{11} \\
+            5 \times 3 &\equiv 4 \Mod{11} \\
+            5 \times 4 &\equiv 9 \Mod{11} \\
+            5 \times 5 &\equiv 3 \Mod{11} \\
+            5 \times 6 &\equiv 8 \Mod{11} \\
+            5 \times 7 &\equiv 2 \Mod{11} \\
+            5 \times 8 &\equiv 7 \Mod{11} \\
+            5 \times 9 &\equiv 1 \Mod{11} \\
+            \therefore K^{-1} = 9
+        \end{align*}
+        From this, $M$ can be calculated as following:
+        \begin{align*}
+            M &= 4 \times 9 \Mod{11} \equiv 3
+        \end{align*}
+        $\therefore M$ is calculated to be 3, and A has successfully recovered the message.
+    \end{enumerate}
+
+    % Q5 ----------------------------------------------------------------
+    \item Answers
+    \begin{enumerate}
+        \item The BG could take the public key of B and replace it with their public key and send that to A.
+
+        \item BG could take an old transmission from round 2 and send that to A instead of the legitimate transmission. The old transmission might have an old public key for B which the BG could use as their new public key.
+
+        \item In round 6, BG could send a nonce $N_2$ to A and A would have no way of confirming it came from B. The nonce in round 3 is only known to A and B, so without it A cannot confirm B’s identity.
+
+        \item BG could request their public key from the authority and send it to A in round 2. A would be forced to assume that this is the response they wanted when in reality it would be the BG’s public key.
+        
+    \end{enumerate}
+\end{enumerate}    
+
+\section*{Programming Problem}
+    \subsection*{Self-critique}
+        The program works as expected and its answers are verifiably correct. The only issue is the chosen plaintext for the third set of attacks. Since the plaintext is only 67 and not something higher, the first brute force attack is significantly faster than the second factoring attack. I do not believe that the first attack is faster than the second attack unless the best case occurs where M is close to 1, as seen in the program.
+    
+    \newpage
+    \subsection*{Program Output}
+    \begin{lstlisting}[language=bash]
+    hoodz@hoodz-laptop:/mnt/c/Users/hoodi/Desktop/Coding/CSCI-4534-Cryptography/Homework-2$ ./main
+------------------------------------------------------
+~ RSA Brute Force Attacker Program ~
+------------------------------------------------------
+Running Problem 1...
+------------------------------------------------------
+=========================
+Ciphertext: 10
+Public Key: 7
+Number:     15
+==========================
+Running Attack One...
+Plaintext: 10
+Time to complete AttackOne: 500 nanoseconds
+
+Running Attack Two...
+Prime P:     5
+Prime Q:     3
+Private Key: 7
+Plaintext:   10
+Time to complete AttackTwo: 300 nanoseconds
+
+------------------------------------------------------
+Running Problem 2...
+------------------------------------------------------
+=========================
+Ciphertext: 356
+Public Key: 13
+Number:     527
+==========================
+Running Attack One...
+Plaintext: 271
+Time to complete AttackOne: 8700 nanoseconds
+
+Running Attack Two...
+Prime P:     31
+Prime Q:     17
+Private Key: 37
+Plaintext:   271
+Time to complete AttackTwo: 1600 nanoseconds
+
+------------------------------------------------------
+Running Problem 3...
+------------------------------------------------------
+=========================
+Ciphertext: 8567
+Public Key: 53
+Number:     21583
+==========================
+Running Attack One...
+Plaintext: 67
+Time to complete AttackOne: 3400 nanoseconds
+
+Running Attack Two...
+Prime P:     191
+Prime Q:     113
+Private Key: 20477
+Plaintext:   67
+Time to complete AttackTwo: 53000 nanoseconds
+
+------------------------------------------------------
+~ End of Program ~
+hoodz@hoodz-laptop:/mnt/c/Users/hoodi/Desktop/Coding/CSCI-4534-Cryptography/Homework-2$
+    \end{lstlisting}
+    
+    \newpage
+
+    \lstset{style=myStyle}
+    
+    \subsection*{Human-readable code}
+    \subsubsection*{main.cpp}
+    \lstinputlisting[language=C++]{main.cpp}
+    \subsubsection*{RSAAttacker.hpp}
+    \lstinputlisting[language=C++]{RSAAttacker.hpp}
+    
+    \subsubsection*{RSAAttacker.cpp}
+    \lstinputlisting[language=C++]{RSAAttacker.cpp}
+    
+    
+
+\end{document}
