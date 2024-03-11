@@ -1,12 +1,12 @@
 #include "RSAAttacker.hpp"
 
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 /// @brief              main constructor for RSAAttacker helper class
 /// @param eKey         (int) encryption key/private key of RSA
 /// @param number       (int) calculated number N of RSA
 /// @param ciphertext   (int) valid ciphertext of RSA derived from m ^ eKey mod number (m is unknown to class)
 /// @note               this class does not check for validness of inputs
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 RSAAttacker::
 RSAAttacker(int eKey, int number, int ciphertext) {
     info.encryptionKey = eKey;
@@ -14,18 +14,18 @@ RSAAttacker(int eKey, int number, int ciphertext) {
     info.ciphertext = ciphertext;
 }
 
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 /// @brief          constructor for RSAAttacker helper class that allows assignment using Members struct
 /// @param info     (struct Members) values needed for attacker, see RSAAttacker(int, int, int)
 /// @note           this class does not check for validness of inputs
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 RSAAttacker::
 RSAAttacker(Members info) : info(info) {}
 
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 /// @brief  run through all possible values of m until [m ^ eKey mod number = ciphertext] is found
 /// @return (int) plaintext associated with the inputted ciphertext from info
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 int RSAAttacker::
 AttackOne(){
     int guess = 0, m = 0;
@@ -36,10 +36,10 @@ AttackOne(){
     return m;
 }
 
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 /// @brief  factor inputted info.number into its two primes and get plaintext by calculating private key from them
 /// @return (struct attackTwoReturn) following calculated values via RSA algorithm: { (int) prime P, (int) prime Q, (int) private key, (int) plaintext }
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 attackTwoReturn RSAAttacker::
 AttackTwo(){
     // calculate the two prime factors (naively)
@@ -61,7 +61,7 @@ AttackTwo(){
     return attackTwoReturn { p, q, privateKey, m };
 }
 
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 /// @brief      solve a ^ b mod n fast using less multiplications
 /// @param a    (int) positive base of the equation
 /// @param b    (int) positive exponent of the equation
@@ -69,7 +69,7 @@ AttackTwo(){
 /// @return     (int) result of a ^ b mod n
 /// @note       relies on the idea that modding smaller parts gets same result
 /// @example    a^5 mod n = a^2 mod n * a^2 mod n * a mod n
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 int RSAAttacker::
 fastModExponentiation(int a, int b, int n) const {
     int result = 1;
@@ -84,26 +84,26 @@ fastModExponentiation(int a, int b, int n) const {
     return result;
 }
 
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 /// @brief      helper function to calculate modular inverse, ax = 1 mod n
 /// @param a    (int) positive known term in the above equation
 /// @param n    (int) modulus value of the equation 
 /// @return     (int) modular inverse of a mod n 
 /// @throw      if the modular inverse cannot be found, a const char* message notification is thrown
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 int RSAAttacker::
 modInverse(int a, int n) const {
     return modLinearEquationSolver(a, 1, n);
 }
 
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 /// @brief      uses the extended Euclidean algorithm to find the solution to ax = b mod n
 /// @param a    (int) positive known term in the above equation
 /// @param b    (int) positive congruent term in the above equation
 /// @param n    (int) modulus value of the equation 
 /// @return     (int) the solution x to the equation ax = b mod n
 /// @throw      if the modular inverse cannot be found, a const char* message notification is thrown
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 int RSAAttacker::
 modLinearEquationSolver(int a, int b, int n) const {
     int x,              // first Bezout coefficient from gcdExtended
@@ -117,7 +117,7 @@ modLinearEquationSolver(int a, int b, int n) const {
     throw "Modular Linear Equation Solver cannot return a value";
 }
 
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 /// @brief      the extended Euclidean algorithm to find the greatest common denominator
 /// @note       remainder = ax + by = GCD(a, b)
 /// @param a    (int) the first term to find the GCD with
@@ -127,7 +127,7 @@ modLinearEquationSolver(int a, int b, int n) const {
 /// @return     (int) the GCD of a & b, as well as Bezout coefficients in x & y
 /// @cite       https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
 /// @date       4 Mar 2024
-/// -----------------------------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------
 int RSAAttacker::
 gcdExtended(int a, int b, int* x, int* y) const{
     int remainder   = a, newRemainder   = b;   
