@@ -71,9 +71,9 @@ void Problem(RSAAttacker& attack, Members info){
     cout << "Plaintext: " << plaintext << endl;
 
     const std::chrono::duration<double> time1 = end1 - start1;
-    const auto timeCast1 = chrono::duration_cast<chrono::microseconds>(end1 - start1);
+    const auto timeCast1 = chrono::duration_cast<chrono::nanoseconds>(end1 - start1);
 
-    cout << "Time to complete AttackOne: " << timeCast1.count() << " microseconds\n" << endl;
+    cout << "Time to complete AttackOne: " << timeCast1.count() << " nanoseconds\n" << endl;
 
     cout << "Running Attack Two..." << endl;
     const auto start2 = chrono::high_resolution_clock::now();
@@ -85,7 +85,7 @@ void Problem(RSAAttacker& attack, Members info){
     cout << "Private Key: " << vals.privKey << endl;
     cout << "Plaintext:   " << vals.plaintext << endl;
 
-    const auto timeCast2 = chrono::duration_cast<chrono::microseconds>(end2 - start2);
+    const auto timeCast2 = chrono::duration_cast<chrono::nanoseconds>(end2 - start2);
 
-    cout << "Time to complete AttackTwo: " << timeCast2.count() << " microseconds\n" << endl;
+    cout << "Time to complete AttackTwo: " << timeCast2.count() << " nanoseconds\n" << endl;
 }
