@@ -278,13 +278,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2475695673136751367, guid: 1cd1c9f92f293fe4189e4b2884369712, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3330288767037488309, guid: 1cd1c9f92f293fe4189e4b2884369712, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5213690373952990290, guid: 1cd1c9f92f293fe4189e4b2884369712, type: 3}
       propertyPath: cameraSpeed
-      value: 1.5
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213690373952990290, guid: 1cd1c9f92f293fe4189e4b2884369712, type: 3}
+      propertyPath: cameraSpeedX
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213690373952990290, guid: 1cd1c9f92f293fe4189e4b2884369712, type: 3}
+      propertyPath: cameraSpeedY
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6262380764641496230, guid: 1cd1c9f92f293fe4189e4b2884369712, type: 3}
       propertyPath: m_LocalPosition.x
