@@ -67,7 +67,7 @@ Rigidbody:
   m_GameObject: {fileID: 2835505120090908673}
   serializedVersion: 4
   m_Mass: 72
-  m_Drag: 1
+  m_Drag: 4
   m_AngularDrag: 5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 2991824494248118875}
   - component: {fileID: 5213690373952990290}
   - component: {fileID: 1519709198639349149}
+  - component: {fileID: 6621067001467698812}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -281,7 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcc7fec08d609047bfb2f0c3c866ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 1
+  cameraSpeedX: 2
+  cameraSpeedY: 2
 --- !u!114 &1519709198639349149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,3 +297,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 2
+--- !u!54 &6621067001467698812
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825866586785119795}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
