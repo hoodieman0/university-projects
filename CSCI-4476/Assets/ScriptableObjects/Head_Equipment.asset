@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c1beac7cd39b145be8bf44bd310496, type: 3}
-  m_Name: Credit
+  m_Script: {fileID: 11500000, guid: 6f83f267c51ca1746bd9c76c141a7e1c, type: 3}
+  m_Name: Head_Equipment
   m_EditorClassIdentifier: 
-  objName: Credit
+  objName: 
   type: 0
   objModel: {fileID: 0}
   pickupSound: {fileID: 0}
   collisionSound: {fileID: 0}
-  value: 3

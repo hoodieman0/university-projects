@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "Pickups/Item")]
 public class ItemSO : PickupSO
 {
-
+    
 }
