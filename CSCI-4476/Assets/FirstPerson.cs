@@ -55,7 +55,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Inventory 1"",
+                    ""name"": ""Inventory1"",
                     ""type"": ""Button"",
                     ""id"": ""de0a28d4-bfb9-4481-a9aa-272dc0a1dee4"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +64,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Inventory 2"",
+                    ""name"": ""Inventory2"",
                     ""type"": ""Button"",
                     ""id"": ""e5da6b55-27e8-47e8-baa0-ecc974f4ce39"",
                     ""expectedControlType"": ""Button"",
@@ -73,7 +73,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Inventory 3"",
+                    ""name"": ""Inventory3"",
                     ""type"": ""Button"",
                     ""id"": ""c21094a7-108b-48d0-a5b2-f83263904fb7"",
                     ""expectedControlType"": ""Button"",
@@ -220,7 +220,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Inventory 1"",
+                    ""action"": ""Inventory1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -231,18 +231,18 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Inventory 2"",
+                    ""action"": ""Inventory2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""53ec282b-1df2-4c22-a517-0d84b4f39e7e"",
-                    ""path"": ""<Pen>/barrel3"",
+                    ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Inventory 3"",
+                    ""action"": ""Inventory3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -273,9 +273,9 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         m_InGame_Movement = m_InGame.FindAction("Movement", throwIfNotFound: true);
         m_InGame_MouseLook = m_InGame.FindAction("MouseLook", throwIfNotFound: true);
         m_InGame_Interact = m_InGame.FindAction("Interact", throwIfNotFound: true);
-        m_InGame_Inventory1 = m_InGame.FindAction("Inventory 1", throwIfNotFound: true);
-        m_InGame_Inventory2 = m_InGame.FindAction("Inventory 2", throwIfNotFound: true);
-        m_InGame_Inventory3 = m_InGame.FindAction("Inventory 3", throwIfNotFound: true);
+        m_InGame_Inventory1 = m_InGame.FindAction("Inventory1", throwIfNotFound: true);
+        m_InGame_Inventory2 = m_InGame.FindAction("Inventory2", throwIfNotFound: true);
+        m_InGame_Inventory3 = m_InGame.FindAction("Inventory3", throwIfNotFound: true);
         m_InGame_Drop = m_InGame.FindAction("Drop", throwIfNotFound: true);
     }
 

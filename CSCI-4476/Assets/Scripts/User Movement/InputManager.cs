@@ -6,17 +6,17 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager instance;
-    static FirstPerson actions;
-    public static Action<Vector2> movement;
-    public static Action<Vector2> mouseLook;
-    public static Action interactAction;
-    public static Action stopInteractAction;
+    public  static  InputManager        instance;
+    public  static  FirstPerson         actions;
+    public  static  Action<Vector2>     movement;
+    public  static  Action<Vector2>     mouseLook;
+    public  static  Action              interactAction;
+    public  static  Action              stopInteractAction;
+    public  static  Action<int>         inventoryAction;
+    public  static  Action              dropAction;
     // public static Action num1Action;
     // public static Action num2Action;
     // public static Action num3Action;
-    public static Action<int> inventoryAction;
-    public static Action dropAction;
 
     void Awake(){
         if (!instance){
@@ -66,19 +66,19 @@ public class InputManager : MonoBehaviour
         stopInteractAction?.Invoke();
     }
 
-    void InvokeSlot1(){
+    void InvokeSlot1(InputAction.CallbackContext ctx){
         inventoryAction?.Invoke(0);
     }
 
-    void InvokeSlot2(){
+    void InvokeSlot2(InputAction.CallbackContext ctx){
         inventoryAction?.Invoke(1);
     }
 
-    void InvokeSlot3(){
+    void InvokeSlot3(InputAction.CallbackContext ctx){
         inventoryAction?.Invoke(2);
     }
 
-    void InvokeDrop(){
+    void InvokeDrop(InputAction.CallbackContext ctx){
         dropAction?.Invoke();
     }
 

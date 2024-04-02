@@ -6,7 +6,7 @@ using UnityEngine;
 public class IncreaseSpeedOnInteract : MonoBehaviour, IInteractable
 {
     [SerializeField] float changeSpeed = 5000f;
-    float originalSpeed = 2000f;
+    // float originalSpeed = 2000f;
     MovementController movementController = null;
 
     public void StartInteract(Interactor interactor){

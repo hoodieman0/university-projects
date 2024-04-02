@@ -6,17 +6,17 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-    [SerializeField] TextMeshProUGUI currencyText;
-    [SerializeField] TextMeshProUGUI[] inventorySlots;
-    ItemSO[] inventoryItems;
-    uint maxInventorySlots = 3;
-    int currentlySelectedSlot = 0;
+    [SerializeField]    TextMeshProUGUI     currencyText;
+    [SerializeField]    TextMeshProUGUI[]   inventorySlots;
+                        GameObject[]            inventoryItems;
+                        uint                maxInventorySlots       =   3;
+                        int                 currentlySelectedSlot   =   0;
     
-    int currencyCount = 0;
+                        int                 currencyCount           =   0;
 
     void OnValidate(){
-        if (inventorySlots > maxInventorySlots){
-            Debug.LogError("Too many slots", gameObject);
+        if (inventorySlots.Length > maxInventorySlots){
+            Debug.LogError("Too many slots serialized!", gameObject);
         }
     }
 
@@ -26,12 +26,17 @@ public class InventoryManager : MonoBehaviour
     }
 
     void Awake(){
-        if (!instance) instance = this; 
+        if (!instance) {
+            instance = this;
+            inventoryItems = new GameObject[3];
+            SelectInventorySlot(0);
+        } 
         else Destroy(gameObject);
     }
 
     public void Pickup(GameObject obj){
         PickupSO pickup = obj.GetComponent<Pickupable>().getSO();
+        
         switch (pickup){
             case CurrencySO:
                 // add to counter
@@ -39,11 +44,11 @@ public class InventoryManager : MonoBehaviour
                 break;
             case ItemSO:
                 // add to inventory
-                PickupItem((ItemSO) pickup);
+                PickupItem(obj);
                 break;
             case EquipmentSO:
                 // add to player
-                PickupEquipment((EquipmentSO) pickup);
+                PickupEquipment(obj);
                 break;
             default:
                 break;
@@ -55,12 +60,12 @@ public class InventoryManager : MonoBehaviour
         currencyText.text = currencyCount.ToString();
     }
     
-    void PickupItem(PickupSO pickup){
-        inventorySlots[currentlySelectedSlot].text = pickup.name;
+    void PickupItem(GameObject pickup){
+        inventorySlots[currentlySelectedSlot].text = (currentlySelectedSlot + 1) + ". " + pickup.name;
         inventoryItems[currentlySelectedSlot] = pickup;
     }
 
-    void PickupEquipment(PickupSO pickup){
+    void PickupEquipment(GameObject pickup){
 
     }
 
@@ -70,11 +75,12 @@ public class InventoryManager : MonoBehaviour
         inventorySlots[currentlySelectedSlot].color = Color.green;
     }
 
-    void Drop(GameObject obj){
+    void Drop(){
         if(inventorySlots[currentlySelectedSlot] != null){
             GameObject currentItem = inventoryItems[currentlySelectedSlot];
-            currentObj.transform.position = transform.position;
+            currentItem.transform.position = transform.position;
             
+            currentItem.SetActive(true);
             inventorySlots[currentlySelectedSlot].text = currentlySelectedSlot + ". Empty";
             inventoryItems[currentlySelectedSlot] = null;
 
