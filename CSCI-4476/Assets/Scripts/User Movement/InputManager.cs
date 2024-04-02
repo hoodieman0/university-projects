@@ -6,12 +6,17 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager instance;
-    static FirstPerson actions;
-    public static Action<Vector2> movement;
-    public static Action<Vector2> mouseLook;
-    public static Action interactAction;
-    public static Action stopInteractAction;
+    public  static  InputManager        instance;
+    public  static  FirstPerson         actions;
+    public  static  Action<Vector2>     movement;
+    public  static  Action<Vector2>     mouseLook;
+    public  static  Action              interactAction;
+    public  static  Action              stopInteractAction;
+    public  static  Action<int>         inventoryAction;
+    public  static  Action              dropAction;
+    // public static Action num1Action;
+    // public static Action num2Action;
+    // public static Action num3Action;
 
     void Awake(){
         if (!instance){
@@ -25,12 +30,24 @@ public class InputManager : MonoBehaviour
     }
 
     void OnEnable(){
+        // Movement
         actions.InGame.Movement.performed += InvokeMovemt;
         actions.InGame.Movement.canceled += InvokeMovemt;
+
+        // Mouse Look
         actions.InGame.MouseLook.performed += InvokeMouseLook;
         actions.InGame.MouseLook.canceled += InvokeMouseLook;
+
+        // Interaction
         actions.InGame.Interact.performed += InvokeInteract;
         actions.InGame.Interact.canceled += InvokeStopInteract;
+
+        // Inventory
+        actions.InGame.Inventory1.performed += InvokeSlot1;
+        actions.InGame.Inventory2.performed += InvokeSlot2;
+        actions.InGame.Inventory3.performed += InvokeSlot3;
+        actions.InGame.Drop.performed += InvokeDrop;
+
     }
 
     void InvokeMovemt(InputAction.CallbackContext ctx){
@@ -49,12 +66,39 @@ public class InputManager : MonoBehaviour
         stopInteractAction?.Invoke();
     }
 
+    void InvokeSlot1(InputAction.CallbackContext ctx){
+        inventoryAction?.Invoke(0);
+    }
+
+    void InvokeSlot2(InputAction.CallbackContext ctx){
+        inventoryAction?.Invoke(1);
+    }
+
+    void InvokeSlot3(InputAction.CallbackContext ctx){
+        inventoryAction?.Invoke(2);
+    }
+
+    void InvokeDrop(InputAction.CallbackContext ctx){
+        dropAction?.Invoke();
+    }
+
     void OnDisable(){
+        // Movement
         actions.InGame.Movement.performed -= InvokeMovemt;
         actions.InGame.Movement.canceled -= InvokeMovemt;
+
+        // Mouse look
         actions.InGame.MouseLook.performed -= InvokeMouseLook;
         actions.InGame.MouseLook.canceled -= InvokeMouseLook;
+
+        // Interaction
         actions.InGame.Interact.performed -= InvokeInteract;
         actions.InGame.Interact.canceled -= InvokeStopInteract;
+
+        // Inventory
+        actions.InGame.Inventory1.performed -= InvokeSlot1;
+        actions.InGame.Inventory2.performed -= InvokeSlot2;
+        actions.InGame.Inventory3.performed -= InvokeSlot3;
+        actions.InGame.Drop.performed -= InvokeDrop;
     }
 }
