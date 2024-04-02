@@ -856,9 +856,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 688344852}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 10000
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -873,20 +873,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &688344858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688344852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58a841592e255554cad3c5f0a95cbc4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &688344864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2432,6 +2420,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2249638891652022939, guid: 19344c0f4582baa4ca369545dd24f51c, type: 3}
+      propertyPath: moveDuration
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3894481436350271325, guid: 19344c0f4582baa4ca369545dd24f51c, type: 3}
       propertyPath: m_Name
       value: Door
@@ -2441,13 +2433,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: cdd992b4d4d64cf4680e14b95fb4d174, type: 2}
     m_RemovedComponents:
-    - {fileID: 992241223729698289, guid: 19344c0f4582baa4ca369545dd24f51c, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2015686691832319938, guid: 19344c0f4582baa4ca369545dd24f51c, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 688344858}
     - targetCorrespondingSourceObject: {fileID: 2015686691832319938, guid: 19344c0f4582baa4ca369545dd24f51c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 688344857}
