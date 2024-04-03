@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager instance;
+    public static InventoryManager          instance;
+    [SerializeField]    Transform           cameraPos;
     [SerializeField]    TextMeshProUGUI     currencyText;
     [SerializeField]    TextMeshProUGUI[]   inventorySlots;
-                        GameObject[]            inventoryItems;
+                        GameObject[]        inventoryItems;
                         uint                maxInventorySlots       =   3;
                         int                 currentlySelectedSlot   =   0;
-    
                         int                 currencyCount           =   0;
 
     void OnValidate(){
@@ -94,12 +94,11 @@ public class InventoryManager : MonoBehaviour
     void Drop(){
         if(inventoryItems[currentlySelectedSlot] != null){
             GameObject currentItem = inventoryItems[currentlySelectedSlot];
-            currentItem.transform.position = transform.position;
+            currentItem.transform.position = cameraPos.position + cameraPos.forward;
             
             currentItem.SetActive(true);
             inventorySlots[currentlySelectedSlot].text = currentlySelectedSlot + ". Empty";
             inventoryItems[currentlySelectedSlot] = null;
-
         }
     }
 
