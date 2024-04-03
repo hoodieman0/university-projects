@@ -71,7 +71,9 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        return false;
+        Drop();
+        AddItemToSlot(pickup, currentlySelectedSlot);
+        return true; // make false if you do not want to pickup item
     }
 
     void AddItemToSlot(GameObject pickup, int slot){
