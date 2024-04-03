@@ -11,8 +11,8 @@ public class Pickupable : MonoBehaviour, IInteractable
     public PickupSO getSO() {return pickup; }
 
     public void StartInteract(Interactor interactor){
-        InventoryManager.instance.Pickup(gameObject);
-        gameObject.SetActive(false);
+        if (InventoryManager.instance.Pickup(gameObject))
+            gameObject.SetActive(false);
     }
 
     public void StopInteract(Interactor interactor){}

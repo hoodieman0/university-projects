@@ -34,39 +34,53 @@ public class InventoryManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void Pickup(GameObject obj){
+    public bool Pickup(GameObject obj){
         PickupSO pickup = obj.GetComponent<Pickupable>().getSO();
         
         switch (pickup){
             case CurrencySO:
                 // add to counter
-                PickupCurrency((CurrencySO) pickup);
-                break;
+                return PickupCurrency((CurrencySO) pickup);
             case ItemSO:
                 // add to inventory
-                PickupItem(obj);
-                break;
+                return PickupItem(obj);
             case EquipmentSO:
                 // add to player
-                PickupEquipment(obj);
-                break;
+                return PickupEquipment(obj);
             default:
-                break;
+                return false;
         }
     }
 
-    void PickupCurrency(CurrencySO pickup){
+    bool PickupCurrency(CurrencySO pickup){
         currencyCount += (int) pickup.value;
         currencyText.text = currencyCount.ToString();
+        return true;
     }
     
-    void PickupItem(GameObject pickup){
-        inventorySlots[currentlySelectedSlot].text = (currentlySelectedSlot + 1) + ". " + pickup.name;
-        inventoryItems[currentlySelectedSlot] = pickup;
+    bool PickupItem(GameObject pickup){
+        if (inventoryItems[currentlySelectedSlot] == null){
+            AddItemToSlot(pickup, currentlySelectedSlot);
+            return true;
+        }
+        else {
+            for (int i = 0; i < maxInventorySlots; i++){
+                if (inventoryItems[i] == null){
+                    AddItemToSlot(pickup, i);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    void PickupEquipment(GameObject pickup){
+    void AddItemToSlot(GameObject pickup, int slot){
+        inventorySlots[slot].text = (slot + 1) + ". " + pickup.name;
+        inventoryItems[slot] = pickup;
+    }
 
+    bool PickupEquipment(GameObject pickup){
+        return false;
     }
 
     void SelectInventorySlot(int index){
@@ -76,7 +90,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     void Drop(){
-        if(inventorySlots[currentlySelectedSlot] != null){
+        if(inventoryItems[currentlySelectedSlot] != null){
             GameObject currentItem = inventoryItems[currentlySelectedSlot];
             currentItem.transform.position = transform.position;
             
