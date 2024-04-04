@@ -89,6 +89,24 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MainAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""543aac0c-fdfe-49a8-8027-a60f7fd15faf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""059eb0ef-2e2c-48c5-9354-80ea881747b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +274,28 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ea4065e-7d71-4bff-ae71-b3c42c39dbef"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f78807ed-de0f-4ef7-bdf8-297bca0e6d5b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -277,6 +317,8 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         m_InGame_Inventory2 = m_InGame.FindAction("Inventory2", throwIfNotFound: true);
         m_InGame_Inventory3 = m_InGame.FindAction("Inventory3", throwIfNotFound: true);
         m_InGame_Drop = m_InGame.FindAction("Drop", throwIfNotFound: true);
+        m_InGame_MainAction = m_InGame.FindAction("MainAction", throwIfNotFound: true);
+        m_InGame_SecondAction = m_InGame.FindAction("SecondAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -345,6 +387,8 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Inventory2;
     private readonly InputAction m_InGame_Inventory3;
     private readonly InputAction m_InGame_Drop;
+    private readonly InputAction m_InGame_MainAction;
+    private readonly InputAction m_InGame_SecondAction;
     public struct InGameActions
     {
         private @FirstPerson m_Wrapper;
@@ -356,6 +400,8 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         public InputAction @Inventory2 => m_Wrapper.m_InGame_Inventory2;
         public InputAction @Inventory3 => m_Wrapper.m_InGame_Inventory3;
         public InputAction @Drop => m_Wrapper.m_InGame_Drop;
+        public InputAction @MainAction => m_Wrapper.m_InGame_MainAction;
+        public InputAction @SecondAction => m_Wrapper.m_InGame_SecondAction;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -386,6 +432,12 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
             @Drop.started += instance.OnDrop;
             @Drop.performed += instance.OnDrop;
             @Drop.canceled += instance.OnDrop;
+            @MainAction.started += instance.OnMainAction;
+            @MainAction.performed += instance.OnMainAction;
+            @MainAction.canceled += instance.OnMainAction;
+            @SecondAction.started += instance.OnSecondAction;
+            @SecondAction.performed += instance.OnSecondAction;
+            @SecondAction.canceled += instance.OnSecondAction;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -411,6 +463,12 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
             @Drop.started -= instance.OnDrop;
             @Drop.performed -= instance.OnDrop;
             @Drop.canceled -= instance.OnDrop;
+            @MainAction.started -= instance.OnMainAction;
+            @MainAction.performed -= instance.OnMainAction;
+            @MainAction.canceled -= instance.OnMainAction;
+            @SecondAction.started -= instance.OnSecondAction;
+            @SecondAction.performed -= instance.OnSecondAction;
+            @SecondAction.canceled -= instance.OnSecondAction;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -446,5 +504,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         void OnInventory2(InputAction.CallbackContext context);
         void OnInventory3(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnMainAction(InputAction.CallbackContext context);
+        void OnSecondAction(InputAction.CallbackContext context);
     }
 }

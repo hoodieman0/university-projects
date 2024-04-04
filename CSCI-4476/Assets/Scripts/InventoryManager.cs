@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]    TextMeshProUGUI     currencyText;
     [SerializeField]    TextMeshProUGUI[]   inventorySlots;
     [SerializeField]    float               dropDistance            =   2f;
+    [SerializeField]    float               throwForce              =   1000f;
                         GameObject[]        inventoryItems;
                         GameObject          headEquipment;  // could make this an array of gameObjects, then dedicate position to head, etc.
                         GameObject          feetEquipment;
@@ -19,6 +20,10 @@ public class InventoryManager : MonoBehaviour
                         uint                maxInventorySlots       =   3;
                         int                 currentlySelectedSlot   =   0;
                         int                 currencyCount           =   0;
+                        Vector3             headOffset;
+                        Vector3             rightHandOffset;
+    [SerializeField]    AudioSource         audioPlayer;
+
 
     void OnValidate(){
         if (inventorySlots.Length > maxInventorySlots){
@@ -29,11 +34,16 @@ public class InventoryManager : MonoBehaviour
     void OnEnable(){
         InputManager.inventoryAction += SelectInventorySlot;
         InputManager.dropAction += DropItem;
+        InputManager.mainAction += DoMainAction;
+        InputManager.secondAction += DoSecondAction;
     }
 
     void OnDisable(){
         InputManager.inventoryAction -= SelectInventorySlot;
         InputManager.dropAction -= DropItem;
+        InputManager.mainAction -= DoMainAction;
+        InputManager.secondAction -= DoSecondAction;
+
     }
 
     void Awake(){
@@ -49,24 +59,23 @@ public class InventoryManager : MonoBehaviour
     void Update(){
         // can I do this with the observers?
         if (headEquipment) {
-            headEquipment.transform.position = cameraPos.position + cameraPos.up;
+            headEquipment.transform.position = cameraPos.position + cameraPos.up + headOffset;
             headEquipment.transform.rotation = cameraPos.rotation;
         }
         if (feetEquipment) {
-            feetEquipment.transform.position = cameraPos.position + cameraPos.up;
             feetEquipment.transform.rotation = cameraPos.rotation;
         }
         if (torsoEquipment) {
-            torsoEquipment.transform.position = cameraPos.position + cameraPos.up;
-            torsoEquipment.transform.rotation = cameraPos.rotation;
+            // torsoEquipment.transform.rotation = cameraPos.rotation;
+            
         }
         if (leftHandEquipment) {
-            leftHandEquipment.transform.position = cameraPos.position + cameraPos.up;
             leftHandEquipment.transform.rotation = cameraPos.rotation;
         }
         if (rightHandEquipment) {
-            rightHandEquipment.transform.position = cameraPos.position + cameraPos.up;
-            rightHandEquipment.transform.rotation = cameraPos.rotation;
+            rightHandEquipment.transform.position = Camera.main.transform.position + (Camera.main.transform.forward + rightHandOffset);
+            // rightHandEquipment.transform.rotation = cameraPos.rotation;
+            // rightHandEquipment.transform.position = cameraPos.position + cameraPos.forward + rightHandOffset;
         }
     }
 
@@ -92,6 +101,7 @@ public class InventoryManager : MonoBehaviour
 
     bool PickupCurrency(CurrencySO pickup){
         currencyCount += (int) pickup.value;
+        audioPlayer.PlayOneShot(pickup.pickupSound);
         currencyText.text = currencyCount.ToString();
         return true;
     }
@@ -121,39 +131,86 @@ public class InventoryManager : MonoBehaviour
 
     bool PickupEquipment(GameObject pickup, EquipmentSO so){
         switch(so.slot){
-            case EquipmentSO.EquipmentSlots.HEAD: return EquipHead(pickup);
-            case EquipmentSO.EquipmentSlots.FEET: return EquipFeet(pickup);
-            case EquipmentSO.EquipmentSlots.TORSO: return EquipTorso(pickup);
-            case EquipmentSO.EquipmentSlots.LEFTHAND: return EquipLeftHand(pickup);
-            case EquipmentSO.EquipmentSlots.RIGHTHAND: return EquipRightHand(pickup);
+            case EquipmentSO.EquipmentSlots.HEAD: return EquipHead(pickup, so);
+            case EquipmentSO.EquipmentSlots.FEET: return EquipFeet(pickup, so);
+            case EquipmentSO.EquipmentSlots.TORSO: return EquipTorso(pickup, so);
+            case EquipmentSO.EquipmentSlots.LEFTHAND: return EquipLeftHand(pickup, so);
+            case EquipmentSO.EquipmentSlots.RIGHTHAND: return EquipRightHand(pickup, so);
         }
         return false;
     }
 
-    bool EquipHead(GameObject pickup){
+    void EnablePhysics(GameObject obj){
+        Rigidbody rig = obj.GetComponent<Rigidbody>();
+        // rig.useGravity = true;
+        rig.isKinematic = false;
+    }
+    void DisablePhysics(GameObject obj){
+        Rigidbody rig = obj.GetComponent<Rigidbody>();
+        // rig.useGravity = false;
+        rig.isKinematic = true;
+    }
+
+    bool EquipHead(GameObject pickup, EquipmentSO so){
         if (headEquipment) DropEquipment(EquipmentSO.EquipmentSlots.HEAD);
         headEquipment = pickup;
+        headOffset = so.posOffset;
+        DisablePhysics(headEquipment);
+        headEquipment.transform.parent = cameraPos.parent;
+        headEquipment.transform.position = cameraPos.position + so.posOffset;
+
         return true;
     }
-    bool EquipFeet(GameObject pickup){
+    bool EquipFeet(GameObject pickup, EquipmentSO so){
         if (feetEquipment) DropEquipment(EquipmentSO.EquipmentSlots.FEET);
         feetEquipment = pickup;
+        DisablePhysics(feetEquipment);
+        feetEquipment.transform.parent = cameraPos.parent;
+        feetEquipment.transform.position = cameraPos.position + (-cameraPos.up) + so.posOffset;
         return true;
     }
-    bool EquipTorso(GameObject pickup){
+    bool EquipTorso(GameObject pickup, EquipmentSO so){
         if (torsoEquipment) DropEquipment(EquipmentSO.EquipmentSlots.TORSO);
         torsoEquipment = pickup;
+        torsoEquipment.GetComponent<Collider>().enabled = false;
+        DisablePhysics(torsoEquipment);
+        torsoEquipment.transform.parent = cameraPos.parent;
+        torsoEquipment.transform.position = cameraPos.position + so.posOffset;
+        // torsoEquipment.transform.rotation = cameraPos.rotation;
         return true;
     }
-    bool EquipLeftHand(GameObject pickup){
+    bool EquipLeftHand(GameObject pickup, EquipmentSO so){
         if (leftHandEquipment) DropEquipment(EquipmentSO.EquipmentSlots.LEFTHAND);
         leftHandEquipment = pickup;
+        DisablePhysics(leftHandEquipment);
+        leftHandEquipment.transform.parent = cameraPos.parent;
+        leftHandEquipment.transform.position = cameraPos.position + cameraPos.forward + so.posOffset;
         return true;
     }
-    bool EquipRightHand(GameObject pickup){
+    bool EquipRightHand(GameObject pickup, EquipmentSO so){
         if (rightHandEquipment) DropEquipment(EquipmentSO.EquipmentSlots.RIGHTHAND);
         rightHandEquipment = pickup;
+        rightHandOffset = so.posOffset;
+        DisablePhysics(rightHandEquipment);
+        rightHandEquipment.transform.parent = cameraPos.parent;
+        // rightHandEquipment.transform.position = cameraPos.position + cameraPos.forward + rightHandOffset;
+        rightHandEquipment.transform.rotation = cameraPos.parent.rotation;
         return true;
+    }
+
+    void DoMainAction(){
+        if (rightHandEquipment){
+            Rigidbody tempRig = rightHandEquipment.GetComponent<Rigidbody>();
+            DropRightHand();
+            tempRig.AddForce( cameraPos.forward * throwForce);
+        }
+    }
+    void DoSecondAction(){
+        if (leftHandEquipment){
+            Rigidbody tempRig = leftHandEquipment.GetComponent<Rigidbody>();
+            DropLeftHand();
+            tempRig.AddForce( cameraPos.forward * throwForce);
+        }
     }
 
     void SelectInventorySlot(int index){
@@ -190,6 +247,8 @@ public class InventoryManager : MonoBehaviour
 
     void DropHead(){
         if(headEquipment) {
+            EnablePhysics(headEquipment);
+            headEquipment.transform.parent = null;
             headEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
             headEquipment = null;
         }
@@ -197,6 +256,7 @@ public class InventoryManager : MonoBehaviour
 
     void DropFeet(){
         if(feetEquipment) {
+            EnablePhysics(feetEquipment);
             feetEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
             feetEquipment = null;
         }
@@ -204,6 +264,7 @@ public class InventoryManager : MonoBehaviour
 
     void DropTorso(){
         if(torsoEquipment) {
+            EnablePhysics(torsoEquipment);
             torsoEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
             torsoEquipment = null;
         }
@@ -211,6 +272,8 @@ public class InventoryManager : MonoBehaviour
 
     void DropLeftHand(){
         if(leftHandEquipment) {
+            EnablePhysics(leftHandEquipment);
+            leftHandEquipment.transform.parent = null;
             leftHandEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
             leftHandEquipment = null;
         }
@@ -218,6 +281,8 @@ public class InventoryManager : MonoBehaviour
 
     void DropRightHand(){
         if(rightHandEquipment) {
+            EnablePhysics(rightHandEquipment);
+            rightHandEquipment.transform.parent = null;
             rightHandEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
             rightHandEquipment = null;
         }

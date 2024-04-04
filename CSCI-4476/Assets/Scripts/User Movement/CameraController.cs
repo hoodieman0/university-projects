@@ -15,10 +15,13 @@ public class CameraController : MonoBehaviour
         InputManager.mouseLook += MouseLook;    
     }
 
-    void MouseLook(Vector2 lookDir){
-        newDir += lookDir;
+    void Update(){
         transform.localRotation = Quaternion.Euler(Mathf.Clamp(-newDir.y * cameraSpeedY, -90f, 90f), 0f, 0f);
         transform.parent.localRotation = Quaternion.Euler(0f, newDir.x * cameraSpeedX, 0f);
+    }
+
+    void MouseLook(Vector2 lookDir){
+        newDir += lookDir;
     }
 
     void OnDisable() {
