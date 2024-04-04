@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager          instance;
     [SerializeField]    Transform           cameraPos;
     [SerializeField]    TextMeshProUGUI     currencyText;
-    [SerializeField]    TextMeshProUGUI[]   inventorySlots;
+    [SerializeField]    Image[]             inventorySlots;
     [SerializeField]    float               dropDistance            =   2f;
     [SerializeField]    float               throwForce              =   1000f;
                         GameObject[]        inventoryItems;
@@ -125,8 +127,11 @@ public class InventoryManager : MonoBehaviour
     }
 
     void AddItemToSlot(GameObject pickup, int slot){
-        inventorySlots[slot].text = (slot + 1) + ". " + pickup.name;
+        // inventorySlots[slot].text = (slot + 1) + ". " + pickup.name;
         inventoryItems[slot] = pickup;
+        inventorySlots[slot].sprite = ((ItemSO)pickup.GetComponent<Pickupable>().getSO()).displaySprite;
+        if (slot == currentlySelectedSlot) inventorySlots[slot].color = Color.green;
+        else inventorySlots[slot].color = Color.white;
     }
 
     bool PickupEquipment(GameObject pickup, EquipmentSO so){
@@ -214,7 +219,10 @@ public class InventoryManager : MonoBehaviour
     }
 
     void SelectInventorySlot(int index){
-        inventorySlots[currentlySelectedSlot].color = Color.white;
+        if (inventoryItems[currentlySelectedSlot] == null) 
+            inventorySlots[currentlySelectedSlot].color = Color.clear;
+        else
+            inventorySlots[currentlySelectedSlot].color = Color.white;
         currentlySelectedSlot = index;
         inventorySlots[currentlySelectedSlot].color = Color.green;
     }
@@ -225,7 +233,9 @@ public class InventoryManager : MonoBehaviour
             currentItem.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
             
             currentItem.SetActive(true);
-            inventorySlots[currentlySelectedSlot].text = currentlySelectedSlot + ". Empty";
+            // inventorySlots[currentlySelectedSlot].text = currentlySelectedSlot + ". Empty";
+            inventorySlots[currentlySelectedSlot].sprite = null;
+            inventorySlots[currentlySelectedSlot].color = new Color(0, 0, 0, 0);
             inventoryItems[currentlySelectedSlot] = null;
         }
     }
