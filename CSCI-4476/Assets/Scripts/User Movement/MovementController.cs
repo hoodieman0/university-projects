@@ -10,6 +10,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] float sprintMultiplier = 2f;
     float speed = 50000f;
 
+    public bool isLocked = false;
+
     void Awake(){
         rig = GetComponent<Rigidbody>();
     }

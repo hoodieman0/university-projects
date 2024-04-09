@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float cameraSpeedX = 2f;
     [SerializeField] float cameraSpeedY = 2f;
     Vector2 newDir = Vector2.zero;
+    public bool isLocked = false;
 
     void Start(){
         Cursor.lockState = CursorLockMode.Locked;
