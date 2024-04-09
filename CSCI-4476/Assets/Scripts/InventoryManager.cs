@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager          instance;
     [SerializeField]    Transform           cameraPos;
     [SerializeField]    TextMeshProUGUI     currencyText;
-    [SerializeField]    TextMeshProUGUI[]   inventorySlots;
+    [SerializeField]    Image[]             inventorySlots;
     [SerializeField]    float               dropDistance            =   2f;
+    [SerializeField]    float               throwForce              =   1000f;
                         GameObject[]        inventoryItems;
-                        GameObject          headEquipment;  // could make this an array of gameObjects, then dedicate position to head, etc.
-                        GameObject          feetEquipment;
-                        GameObject          torsoEquipment;
-                        GameObject          leftHandEquipment;
-                        GameObject          rightHandEquipment;
                         uint                maxInventorySlots       =   3;
                         int                 currentlySelectedSlot   =   0;
                         int                 currencyCount           =   0;
+                        Vector3             headOffset;
+                        Vector3             rightHandOffset;
+    [SerializeField]    AudioSource         audioPlayer;
+    [SerializeField]    Sprite              defaultSprite;
+    [SerializeField]    Transform[]         equipmentSlots;
+    [SerializeField]    GameObject[]        equipmentGameObj;
+
 
     void OnValidate(){
         if (inventorySlots.Length > maxInventorySlots){
@@ -29,45 +34,26 @@ public class InventoryManager : MonoBehaviour
     void OnEnable(){
         InputManager.inventoryAction += SelectInventorySlot;
         InputManager.dropAction += DropItem;
+        InputManager.mainAction += DoMainAction;
+        InputManager.secondAction += DoSecondAction;
     }
 
     void OnDisable(){
         InputManager.inventoryAction -= SelectInventorySlot;
         InputManager.dropAction -= DropItem;
+        InputManager.mainAction -= DoMainAction;
+        InputManager.secondAction -= DoSecondAction;
+
     }
 
     void Awake(){
         if (!instance) {
             instance = this;
             inventoryItems = new GameObject[3];
+            equipmentGameObj = new GameObject[equipmentSlots.Length];
             SelectInventorySlot(0);
         } 
         else Destroy(gameObject);
-    }
-
-
-    void Update(){
-        // can I do this with the observers?
-        if (headEquipment) {
-            headEquipment.transform.position = cameraPos.position + cameraPos.up;
-            headEquipment.transform.rotation = cameraPos.rotation;
-        }
-        if (feetEquipment) {
-            feetEquipment.transform.position = cameraPos.position + cameraPos.up;
-            feetEquipment.transform.rotation = cameraPos.rotation;
-        }
-        if (torsoEquipment) {
-            torsoEquipment.transform.position = cameraPos.position + cameraPos.up;
-            torsoEquipment.transform.rotation = cameraPos.rotation;
-        }
-        if (leftHandEquipment) {
-            leftHandEquipment.transform.position = cameraPos.position + cameraPos.up;
-            leftHandEquipment.transform.rotation = cameraPos.rotation;
-        }
-        if (rightHandEquipment) {
-            rightHandEquipment.transform.position = cameraPos.position + cameraPos.up;
-            rightHandEquipment.transform.rotation = cameraPos.rotation;
-        }
     }
 
     public bool Pickup(GameObject obj){
@@ -92,6 +78,7 @@ public class InventoryManager : MonoBehaviour
 
     bool PickupCurrency(CurrencySO pickup){
         currencyCount += (int) pickup.value;
+        audioPlayer.PlayOneShot(pickup.pickupSound);
         currencyText.text = currencyCount.ToString();
         return true;
     }
@@ -115,49 +102,61 @@ public class InventoryManager : MonoBehaviour
     }
 
     void AddItemToSlot(GameObject pickup, int slot){
-        inventorySlots[slot].text = (slot + 1) + ". " + pickup.name;
+        // inventorySlots[slot].text = (slot + 1) + ". " + pickup.name;
         inventoryItems[slot] = pickup;
+        inventorySlots[slot].sprite = ((ItemSO)pickup.GetComponent<Pickupable>().getSO()).displaySprite;
+        if (slot == currentlySelectedSlot) inventorySlots[slot].color = Color.green;
+        else inventorySlots[slot].color = Color.white;
     }
 
     bool PickupEquipment(GameObject pickup, EquipmentSO so){
-        switch(so.slot){
-            case EquipmentSO.EquipmentSlots.HEAD: return EquipHead(pickup);
-            case EquipmentSO.EquipmentSlots.FEET: return EquipFeet(pickup);
-            case EquipmentSO.EquipmentSlots.TORSO: return EquipTorso(pickup);
-            case EquipmentSO.EquipmentSlots.LEFTHAND: return EquipLeftHand(pickup);
-            case EquipmentSO.EquipmentSlots.RIGHTHAND: return EquipRightHand(pickup);
+        int slot = (int)so.slot;
+        if(equipmentGameObj[slot] != null){
+            DropEquipment(slot);
         }
-        return false;
+        equipmentGameObj[slot] = pickup;
+        DisablePhysics(equipmentGameObj[slot]);
+        pickup.transform.parent = equipmentSlots[slot];
+        pickup.transform.position = equipmentSlots[slot].position;
+        pickup.transform.rotation = Quaternion.identity;
+        return true;
     }
 
-    bool EquipHead(GameObject pickup){
-        if (headEquipment) DropEquipment(EquipmentSO.EquipmentSlots.HEAD);
-        headEquipment = pickup;
-        return true;
+    void EnablePhysics(GameObject obj){
+        Rigidbody rig = obj.GetComponent<Rigidbody>();
+        rig.useGravity = true;
+        rig.isKinematic = false;
+        obj.GetComponent<Collider>().enabled = true;
     }
-    bool EquipFeet(GameObject pickup){
-        if (feetEquipment) DropEquipment(EquipmentSO.EquipmentSlots.FEET);
-        feetEquipment = pickup;
-        return true;
+    void DisablePhysics(GameObject obj){
+        Rigidbody rig = obj.GetComponent<Rigidbody>();
+        rig.useGravity = false;
+        rig.isKinematic = true;
+        obj.GetComponent<Collider>().enabled = false;
     }
-    bool EquipTorso(GameObject pickup){
-        if (torsoEquipment) DropEquipment(EquipmentSO.EquipmentSlots.TORSO);
-        torsoEquipment = pickup;
-        return true;
+
+    void DoMainAction(){
+        int slot = (int)EquipmentSO.EquipmentSlots.RIGHTHAND;
+        if (equipmentGameObj[slot] != null){
+            Rigidbody rig = equipmentGameObj[slot].GetComponent<Rigidbody>();
+            DropEquipment((int)EquipmentSO.EquipmentSlots.RIGHTHAND);
+            rig.AddForce( cameraPos.forward * throwForce);
+        }
     }
-    bool EquipLeftHand(GameObject pickup){
-        if (leftHandEquipment) DropEquipment(EquipmentSO.EquipmentSlots.LEFTHAND);
-        leftHandEquipment = pickup;
-        return true;
-    }
-    bool EquipRightHand(GameObject pickup){
-        if (rightHandEquipment) DropEquipment(EquipmentSO.EquipmentSlots.RIGHTHAND);
-        rightHandEquipment = pickup;
-        return true;
+    void DoSecondAction(){
+        int slot = (int)EquipmentSO.EquipmentSlots.LEFTHAND;
+        if (equipmentGameObj[slot] != null){
+            Rigidbody rig = equipmentGameObj[slot].GetComponent<Rigidbody>();
+            DropEquipment((int)EquipmentSO.EquipmentSlots.LEFTHAND);
+            rig.AddForce( cameraPos.forward * throwForce);
+        }
     }
 
     void SelectInventorySlot(int index){
-        inventorySlots[currentlySelectedSlot].color = Color.white;
+        if (inventoryItems[currentlySelectedSlot] == null) 
+            inventorySlots[currentlySelectedSlot].color = Color.clear;
+        else
+            inventorySlots[currentlySelectedSlot].color = Color.white;
         currentlySelectedSlot = index;
         inventorySlots[currentlySelectedSlot].color = Color.green;
     }
@@ -165,61 +164,23 @@ public class InventoryManager : MonoBehaviour
     void DropItem(){
         if(inventoryItems[currentlySelectedSlot] != null){
             GameObject currentItem = inventoryItems[currentlySelectedSlot];
-            currentItem.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
-            
-            currentItem.SetActive(true);
-            inventorySlots[currentlySelectedSlot].text = currentlySelectedSlot + ". Empty";
+            MoveDroppedObj(currentItem);
+            // inventorySlots[currentlySelectedSlot].text = currentlySelectedSlot + ". Empty";
+            inventorySlots[currentlySelectedSlot].sprite = null;
+            inventorySlots[currentlySelectedSlot].color = new Color(0, 0, 0, 0);
             inventoryItems[currentlySelectedSlot] = null;
         }
     }
 
-    void DropEquipment(EquipmentSO.EquipmentSlots area){
-        switch (area){
-            case EquipmentSO.EquipmentSlots.HEAD: DropHead();
-            break;
-            case EquipmentSO.EquipmentSlots.FEET: DropFeet();
-            break;
-            case EquipmentSO.EquipmentSlots.TORSO: DropTorso();
-            break;
-            case EquipmentSO.EquipmentSlots.LEFTHAND: DropLeftHand();
-            break;
-            case EquipmentSO.EquipmentSlots.RIGHTHAND: DropRightHand();
-            break;
-        }
+    void DropEquipment(int slot){
+        equipmentGameObj[slot].transform.parent = null;
+        EnablePhysics(equipmentGameObj[slot]);
+        MoveDroppedObj(equipmentGameObj[slot]);
+        equipmentGameObj[slot] = null;
     }
 
-    void DropHead(){
-        if(headEquipment) {
-            headEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
-            headEquipment = null;
-        }
-    }
-
-    void DropFeet(){
-        if(feetEquipment) {
-            feetEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
-            feetEquipment = null;
-        }
-    }
-
-    void DropTorso(){
-        if(torsoEquipment) {
-            torsoEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
-            torsoEquipment = null;
-        }
-    }
-
-    void DropLeftHand(){
-        if(leftHandEquipment) {
-            leftHandEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
-            leftHandEquipment = null;
-        }
-    }
-
-    void DropRightHand(){
-        if(rightHandEquipment) {
-            rightHandEquipment.transform.position = cameraPos.position + (cameraPos.forward * dropDistance);
-            rightHandEquipment = null;
-        }
+    void MoveDroppedObj(GameObject obj){
+        obj.transform.SetPositionAndRotation(cameraPos.position + Vector3.up + cameraPos.transform.forward * dropDistance, Quaternion.identity);
+        obj.SetActive(true);
     }
 }

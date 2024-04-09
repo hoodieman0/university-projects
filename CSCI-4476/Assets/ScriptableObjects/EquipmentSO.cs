@@ -8,5 +8,5 @@ public class EquipmentSO : PickupSO
     public enum EquipmentSlots {HEAD, FEET, TORSO, LEFTHAND, RIGHTHAND};
     public EquipmentSlots slot;
     public Vector3 posOffset;
-    public Vector3 rotOffeset;
+    public Vector3 rotOffset;
 }

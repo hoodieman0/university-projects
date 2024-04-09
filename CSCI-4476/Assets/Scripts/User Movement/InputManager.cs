@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour
     public  static  Action              stopInteractAction;
     public  static  Action<int>         inventoryAction;
     public  static  Action              dropAction;
+    public  static  Action              mainAction;
+    public  static  Action              secondAction;
     // public static Action num1Action;
     // public static Action num2Action;
     // public static Action num3Action;
@@ -47,6 +49,9 @@ public class InputManager : MonoBehaviour
         actions.InGame.Inventory2.performed += InvokeSlot2;
         actions.InGame.Inventory3.performed += InvokeSlot3;
         actions.InGame.Drop.performed += InvokeDrop;
+
+        actions.InGame.MainAction.performed += InvokeMainAction;
+        actions.InGame.SecondAction.performed += InvokeSecondAction;
 
     }
 
@@ -82,6 +87,13 @@ public class InputManager : MonoBehaviour
         dropAction?.Invoke();
     }
 
+    void InvokeMainAction(InputAction.CallbackContext ctx){
+        mainAction?.Invoke();
+    }
+    void InvokeSecondAction(InputAction.CallbackContext ctx){
+        secondAction?.Invoke();
+    }
+
     void OnDisable(){
         // Movement
         actions.InGame.Movement.performed -= InvokeMovemt;
@@ -100,5 +112,9 @@ public class InputManager : MonoBehaviour
         actions.InGame.Inventory2.performed -= InvokeSlot2;
         actions.InGame.Inventory3.performed -= InvokeSlot3;
         actions.InGame.Drop.performed -= InvokeDrop;
+
+        actions.InGame.MainAction.performed -= InvokeMainAction;
+        actions.InGame.SecondAction.performed -= InvokeSecondAction;
+
     }
 }

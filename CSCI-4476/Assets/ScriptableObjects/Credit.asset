@@ -15,6 +15,6 @@ MonoBehaviour:
   objName: Credit
   type: 0
   objModel: {fileID: 0}
-  pickupSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 4d3d2aa9f05ca1c4aa45c37bfcd02c03, type: 3}
   collisionSound: {fileID: 0}
   value: 3
