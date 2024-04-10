@@ -118,7 +118,7 @@ public class InventoryManager : MonoBehaviour
         DisablePhysics(equipmentGameObj[slot]);
         pickup.transform.parent = equipmentSlots[slot];
         pickup.transform.position = equipmentSlots[slot].position;
-        pickup.transform.rotation = Quaternion.identity;
+        pickup.transform.rotation = equipmentSlots[slot].rotation;//Quaternion.identity;
         return true;
     }
 

@@ -25,7 +25,7 @@ public class MovementController : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (moveDir != Vector2.zero){
+        if (moveDir != Vector2.zero && !isLocked){
             rig.AddForce((sprintMultiplier * speed * Time.fixedDeltaTime) * (transform.forward * moveDir.y + transform.right * moveDir.x), ForceMode.Force);
         }
     }

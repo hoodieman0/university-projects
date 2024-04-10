@@ -22,7 +22,9 @@ public class CameraController : MonoBehaviour
     }
 
     void MouseLook(Vector2 lookDir){
-        newDir += lookDir;
+        if(!isLocked){
+            newDir += lookDir;
+        }
     }
 
     void OnDisable() {
