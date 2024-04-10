@@ -25,7 +25,6 @@ public class CinematicCamera : MonoBehaviour
         // return to start
         // reenable inputs
         originalPosition = transform.position;
-        Debug.Log(originalPosition);
         LockInput(true);
         cineCamera.LookAt = target;
 

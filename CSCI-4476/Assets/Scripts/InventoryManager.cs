@@ -24,6 +24,12 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]    Transform[]         equipmentSlots;
     [SerializeField]    GameObject[]        equipmentGameObj;
 
+    // Preview pickup item
+    [SerializeField]    Transform           itemPreviewHolder;
+    [SerializeField]    MovementController          moveCon;
+    [SerializeField]    CameraController            camCon;
+                        Vector3                     originalPos;
+                        bool                        previewingItem = false;
 
     void OnValidate(){
         if (inventorySlots.Length > maxInventorySlots){
@@ -35,15 +41,18 @@ public class InventoryManager : MonoBehaviour
         InputManager.inventoryAction += SelectInventorySlot;
         InputManager.dropAction += DropItem;
         InputManager.mainAction += DoMainAction;
+        InputManager.mainActionCancel += CancelMainAction;
         InputManager.secondAction += DoSecondAction;
+        InputManager.Pickup += DoInteraction;
     }
 
     void OnDisable(){
         InputManager.inventoryAction -= SelectInventorySlot;
         InputManager.dropAction -= DropItem;
         InputManager.mainAction -= DoMainAction;
+        InputManager.mainActionCancel -= CancelMainAction;
         InputManager.secondAction -= DoSecondAction;
-
+        InputManager.Pickup -= DoInteraction;
     }
 
     void Awake(){
@@ -58,7 +67,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool Pickup(GameObject obj){
         PickupSO pickup = obj.GetComponent<Pickupable>().getSO();
-        
+
         switch (pickup){
             case CurrencySO:
                 // add to counter
@@ -66,7 +75,6 @@ public class InventoryManager : MonoBehaviour
                 return PickupCurrency((CurrencySO) pickup);
             case ItemSO:
                 // add to inventory
-                obj.SetActive(false);
                 return PickupItem(obj);
             case EquipmentSO:
                 // add to player
@@ -84,6 +92,11 @@ public class InventoryManager : MonoBehaviour
     }
     
     bool PickupItem(GameObject pickup){
+        if (!previewingItem){
+            PickupItemPreview(pickup);
+            return false;
+        }
+        pickup.SetActive(false);
         if (inventoryItems[currentlySelectedSlot] == null){
             AddItemToSlot(pickup, currentlySelectedSlot);
             return true;
@@ -96,17 +109,50 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        DropItem();
+        DropItem();     // otherwise add the pickup to the current selected slot by dropping currently held item
         AddItemToSlot(pickup, currentlySelectedSlot);
         return true; // make false if you do not want to pickup item
     }
 
+    void DoInteraction(){
+        if (previewingItem){
+            PickupItem(camCon.objToRotate);
+            StopItemPreview(camCon.objToRotate);
+        }
+    }
+
     void AddItemToSlot(GameObject pickup, int slot){
         // inventorySlots[slot].text = (slot + 1) + ". " + pickup.name;
+        previewingItem = false;
         inventoryItems[slot] = pickup;
         inventorySlots[slot].sprite = ((ItemSO)pickup.GetComponent<Pickupable>().getSO()).displaySprite;
         if (slot == currentlySelectedSlot) inventorySlots[slot].color = Color.green;
         else inventorySlots[slot].color = Color.white;
+    }
+
+    void PickupItemPreview(GameObject item){
+        DisablePhysics(item);
+        originalPos = item.transform.position;
+        item.transform.parent = itemPreviewHolder;
+        item.transform.position = itemPreviewHolder.position;
+        
+        camCon.objToRotate = item;
+        camCon.isLocked = true;
+        moveCon.isLocked = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        previewingItem = true;
+    }
+    void StopItemPreview(GameObject item){
+        EnablePhysics(item);
+        item.transform.parent = null;
+        camCon.objToRotate = null;
+        item.transform.position = originalPos;
+        camCon.isLocked = false;
+        moveCon.isLocked = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        previewingItem = false;
     }
 
     bool PickupEquipment(GameObject pickup, EquipmentSO so){
@@ -136,11 +182,22 @@ public class InventoryManager : MonoBehaviour
     }
 
     void DoMainAction(){
-        int slot = (int)EquipmentSO.EquipmentSlots.RIGHTHAND;
-        if (equipmentGameObj[slot] != null){
-            Rigidbody rig = equipmentGameObj[slot].GetComponent<Rigidbody>();
-            DropEquipment((int)EquipmentSO.EquipmentSlots.RIGHTHAND);
-            rig.AddForce( cameraPos.forward * throwForce);
+        if (camCon.objToRotate) {
+            camCon.rotatingItem = true;
+        }
+        else{
+            int slot = (int)EquipmentSO.EquipmentSlots.RIGHTHAND;
+            if (equipmentGameObj[slot] != null){
+                Rigidbody rig = equipmentGameObj[slot].GetComponent<Rigidbody>();
+                DropEquipment((int)EquipmentSO.EquipmentSlots.RIGHTHAND);
+                rig.AddForce( cameraPos.forward * throwForce);
+            }
+        }
+    }
+
+    void CancelMainAction(){
+        if (camCon.objToRotate){
+            camCon.rotatingItem = false;
         }
     }
     void DoSecondAction(){
@@ -162,7 +219,11 @@ public class InventoryManager : MonoBehaviour
     }
 
     void DropItem(){
-        if(inventoryItems[currentlySelectedSlot] != null){
+        if (camCon.objToRotate) {
+            MoveDroppedObj(camCon.objToRotate);
+            StopItemPreview(camCon.objToRotate);
+        }
+        else if(inventoryItems[currentlySelectedSlot] != null){
             GameObject currentItem = inventoryItems[currentlySelectedSlot];
             MoveDroppedObj(currentItem);
             // inventorySlots[currentlySelectedSlot].text = currentlySelectedSlot + ". Empty";

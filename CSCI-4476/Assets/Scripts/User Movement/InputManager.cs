@@ -15,7 +15,9 @@ public class InputManager : MonoBehaviour
     public  static  Action<int>         inventoryAction;
     public  static  Action              dropAction;
     public  static  Action              mainAction;
+    public  static  Action              mainActionCancel;
     public  static  Action              secondAction;
+    public  static  Action              Pickup;
     // public static Action num1Action;
     // public static Action num2Action;
     // public static Action num3Action;
@@ -51,7 +53,10 @@ public class InputManager : MonoBehaviour
         actions.InGame.Drop.performed += InvokeDrop;
 
         actions.InGame.MainAction.performed += InvokeMainAction;
+        actions.InGame.MainAction.canceled += InvokeMainActionCancel;
         actions.InGame.SecondAction.performed += InvokeSecondAction;
+
+        actions.InGame.Pickup.performed += InvokePickup;
 
     }
 
@@ -90,8 +95,14 @@ public class InputManager : MonoBehaviour
     void InvokeMainAction(InputAction.CallbackContext ctx){
         mainAction?.Invoke();
     }
+    void InvokeMainActionCancel(InputAction.CallbackContext ctx){
+        mainActionCancel?.Invoke();
+    }
     void InvokeSecondAction(InputAction.CallbackContext ctx){
         secondAction?.Invoke();
+    }
+    void InvokePickup(InputAction.CallbackContext ctx){
+        Pickup?.Invoke();
     }
 
     void OnDisable(){
@@ -114,7 +125,10 @@ public class InputManager : MonoBehaviour
         actions.InGame.Drop.performed -= InvokeDrop;
 
         actions.InGame.MainAction.performed -= InvokeMainAction;
+        actions.InGame.MainAction.canceled -= InvokeMainActionCancel;
         actions.InGame.SecondAction.performed -= InvokeSecondAction;
+
+        actions.InGame.Pickup.performed -= InvokePickup;
 
     }
 }

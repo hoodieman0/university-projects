@@ -107,6 +107,15 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pickup"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf4eed9a-41a7-4994-be2a-44280ba46563"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -296,6 +305,17 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""action"": ""SecondAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95b09fd3-484a-4841-9819-602b816ce9ea"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pickup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -319,6 +339,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         m_InGame_Drop = m_InGame.FindAction("Drop", throwIfNotFound: true);
         m_InGame_MainAction = m_InGame.FindAction("MainAction", throwIfNotFound: true);
         m_InGame_SecondAction = m_InGame.FindAction("SecondAction", throwIfNotFound: true);
+        m_InGame_Pickup = m_InGame.FindAction("Pickup", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -389,6 +410,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Drop;
     private readonly InputAction m_InGame_MainAction;
     private readonly InputAction m_InGame_SecondAction;
+    private readonly InputAction m_InGame_Pickup;
     public struct InGameActions
     {
         private @FirstPerson m_Wrapper;
@@ -402,6 +424,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         public InputAction @Drop => m_Wrapper.m_InGame_Drop;
         public InputAction @MainAction => m_Wrapper.m_InGame_MainAction;
         public InputAction @SecondAction => m_Wrapper.m_InGame_SecondAction;
+        public InputAction @Pickup => m_Wrapper.m_InGame_Pickup;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -438,6 +461,9 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
             @SecondAction.started += instance.OnSecondAction;
             @SecondAction.performed += instance.OnSecondAction;
             @SecondAction.canceled += instance.OnSecondAction;
+            @Pickup.started += instance.OnPickup;
+            @Pickup.performed += instance.OnPickup;
+            @Pickup.canceled += instance.OnPickup;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -469,6 +495,9 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
             @SecondAction.started -= instance.OnSecondAction;
             @SecondAction.performed -= instance.OnSecondAction;
             @SecondAction.canceled -= instance.OnSecondAction;
+            @Pickup.started -= instance.OnPickup;
+            @Pickup.performed -= instance.OnPickup;
+            @Pickup.canceled -= instance.OnPickup;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -506,5 +535,6 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         void OnDrop(InputAction.CallbackContext context);
         void OnMainAction(InputAction.CallbackContext context);
         void OnSecondAction(InputAction.CallbackContext context);
+        void OnPickup(InputAction.CallbackContext context);
     }
 }
