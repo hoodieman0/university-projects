@@ -11,5 +11,11 @@ p(p), q(q), h(h), privateKey(privateKey), k(k) {
 Signature DSA::
 signHash(int hash){
     int r = fastModExponentiation(g, k, p) % q;
-    
+    int inverseK = modInverse(k, q);
+    int s = (inverseK * (hash + (privateKey * r))) % q; 
+    return Signature {
+        hash,
+        r,
+        s
+    };
 }
