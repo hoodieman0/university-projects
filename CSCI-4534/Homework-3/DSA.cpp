@@ -8,7 +8,7 @@ p(p), q(q), h(h), privateKey(privateKey) {
 }
 
 Signature DSA::
-signHash(int hash, int k) const{
+signHash(const int hash, const int k) const{
     int r = fastModExponentiation(g, k, p) % q;
     int inverseK = modInverse(k, q);
     int s = (inverseK * (hash + (privateKey * r))) % q; 

@@ -18,7 +18,7 @@ class DSA {
 
     public:
     DSA(int p, int q, int h, int privateKey);
-    Signature signHash(int hash, int k) const;
+    Signature signHash(const int hash, const int k) const;
     bool verifyHash(const int hash, const Signature sig) const;
 
     ~DSA()=default;
