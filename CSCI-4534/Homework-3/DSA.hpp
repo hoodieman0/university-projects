@@ -19,10 +19,6 @@ class DSA {
     Signature signHash(int hash);
     bool verifyHash(Signature sig);
 
-
-
-
-    
     ~DSA()=default;
 };
 
