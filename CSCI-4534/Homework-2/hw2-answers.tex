@@ -46,10 +46,12 @@
     % Q1 ----------------------------------------------------------------
     \item Answers
     \begin{enumerate}
+
         \item I would see which key $K_1$ matched the plaintext/ciphertext pair for $X = E_{K_1}(P)$ and the two keys $K_2$, $K_3$ that matched the plaintext/ciphertext pair for $X = E_{K_2}(D_{K_3}(C))$. The found keys would be the answer since they both align to the same result. 
         
+        % Technically 2^112
         \item $2^{112} + 2^{56}$ keys (2 keys + 1 key)
-
+        
         \item $2^{56}$ space (each key is only 56 bits)
     \end{enumerate}
 
@@ -58,6 +60,7 @@
     \begin{enumerate}
         \item I am assuming that there is a private key to complement the public key. I am also assuming that the public key cipher with the public and private keys can be used for digital signatures. I also assume A and B have synchronized clocks.
         
+        % timestamp || Hash(timestamp) 
         \item $E_{KR_A}(timestamp)$
 
         \item B will decrypt the message with $KU_A$ to get the timestamp and then check if the timestamp is recent enough to be the current virtual circuit.  
@@ -175,6 +178,7 @@
 
         \item In round 6, BG could send a nonce $N_2$ to A and A would have no way of confirming it came from B. The nonce in round 3 is only known to A and B, so without it A cannot confirm B’s identity.
 
+        % change request in round 1, A could not verify in round 2
         \item BG could request their public key from the authority and send it to A in round 2. A would be forced to assume that this is the response they wanted when in reality it would be the BG’s public key.
         
     \end{enumerate}
