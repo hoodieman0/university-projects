@@ -1,6 +1,8 @@
 #ifndef DSA_HPP
 #define DSA_HPP
 
+#include "Cryptography.hpp"
+
 using namespace std;
 
 struct Signature {
