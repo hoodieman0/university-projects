@@ -1,14 +1,14 @@
 #include "DSA.hpp"
 
 DSA::
-DSA(int p, int q, int h, int privateKey, int k) :
-p(p), q(q), h(h), privateKey(privateKey), k(k) {
+DSA(int p, int q, int h, int privateKey) :
+p(p), q(q), h(h), privateKey(privateKey) {
     g = fastModExponentiation(h, (p-1)/q, p);
     publicKey = fastModExponentiation(g, privateKey, p);
 }
 
 Signature DSA::
-signHash(int hash){
+signHash(int hash, int k){
     int r = fastModExponentiation(g, k, p) % q;
     int inverseK = modInverse(k, q);
     int s = (inverseK * (hash + (privateKey * r))) % q; 
