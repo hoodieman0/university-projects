@@ -6,20 +6,20 @@
 using namespace std;
 
 struct Signature {
-    int hash;
     int r;
     int s;
 };
 
 class DSA {
     private:
-    int p, q, h, privateKey, k;
-    int publicKey, g;
+    // privateKey = x, publicKey = y
+    int p, q, h, privateKey, k; // globally known
+    int publicKey, g;           // derived
 
     public:
     DSA(int p, int q, int h, int privateKey, int k);
     Signature signHash(int hash);
-    bool verifyHash(Signature sig);
+    bool verifyHash(const int hash, const Signature sig) const;
 
     ~DSA()=default;
 };

@@ -1,6 +1,5 @@
 #include "DSA.hpp"
 
-
 DSA::
 DSA(int p, int q, int h, int privateKey, int k) :
 p(p), q(q), h(h), privateKey(privateKey), k(k) {
@@ -14,8 +13,16 @@ signHash(int hash){
     int inverseK = modInverse(k, q);
     int s = (inverseK * (hash + (privateKey * r))) % q; 
     return Signature {
-        hash,
         r,
         s
     };
+}
+
+bool DSA::
+verifyHash(const int hash, const Signature sig) const{
+    int w = modInverse(sig.s, q);
+    int u1 = (hash * w) % q;
+    int u2 = (sig.r * w) % q;
+    int v = (fastModExponentiation(g, u1, p) * fastModExponentiation(publicKey, u2, p)) % q;
+    return v == sig.r;
 }
