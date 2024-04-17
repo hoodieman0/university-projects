@@ -37,6 +37,39 @@ int UnitTest_InputA(){
 }
 
 int UnitTest_InputB(){
+    try {
+        int p = 47,
+            q = 23,
+            h = 5,
+            x = 7,
+            k = 13,
+            HM1 = 5,
+            HM2 = 4;
+
+            DSA cipher(p, q, h, x, true, true);
+            cout << "----------------------------------------------------------------------------" << endl;
+            cout << "Sign Hash:" << endl;
+            const Signature sign = cipher.signHash(HM1, k);
+
+            if (sign.s != 9 || sign.r != 16) throw "Returned signature is wrong!";
+            
+            cout << "----------------------------------------------------------------------------" << endl;
+            cout << "Verify Real Hash" << endl;
+            bool goodVerification = cipher.verifyHash(HM1, sign);
+
+            if (!goodVerification) throw "Good verification went wrong!";
+
+            cout << "----------------------------------------------------------------------------" << endl;
+            cout << "Verify Fake Hash" << endl;
+            bool badVerification = cipher.verifyHash(HM2, sign);
+            if (goodVerification || badVerification) {}
+
+            if (badVerification) throw "Bad verification went wrong!";
+            cout << "----------------------------------------------------------------------------" << endl;
+    } catch(const char* txt) {
+        cout << txt << endl; return 1;
+    } catch (...) { return 1; }
+
     return 0;
 }
 
