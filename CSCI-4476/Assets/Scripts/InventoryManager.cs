@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
+// TODO make three inventory scripts
 
 public class InventoryManager : MonoBehaviour
 {
