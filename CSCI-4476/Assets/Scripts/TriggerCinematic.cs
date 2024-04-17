@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class TriggerCinematic : MonoBehaviour
 {
-    [SerializeField]    Transform           target;
-    [SerializeField]    Queue<Transform>    dollyLocations;
+    [SerializeField]    Transform       target;
+    [SerializeField]    Transform[]     dollyLocations;
     void OnTriggerEnter(Collider other){
         if (other.gameObject.CompareTag("Player")){
-            
+            StartCoroutine(CinematicCamera.instance.TriggerCinematic(target, dollyLocations));
         }
     }
 }
