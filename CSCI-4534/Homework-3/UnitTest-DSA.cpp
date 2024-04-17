@@ -74,6 +74,39 @@ int UnitTest_InputB(){
 }
 
 int UnitTest_InputC(){
+    try {
+        int p = 151,
+            q = 50,
+            h = 64,
+            x = 29,
+            k = 41,
+            HM1 = 11,
+            HM2 = 33;
+
+            DSA cipher(p, q, h, x, true, true);
+            cout << "----------------------------------------------------------------------------" << endl;
+            cout << "Sign Hash:" << endl;
+            const Signature sign = cipher.signHash(HM1, k);
+
+            if (sign.s != 23 || sign.r != 8) throw "Returned signature is wrong!";
+            
+            cout << "----------------------------------------------------------------------------" << endl;
+            cout << "Verify Real Hash" << endl;
+            bool goodVerification = cipher.verifyHash(HM1, sign);
+
+            if (!goodVerification) throw "Good verification went wrong!";
+
+            cout << "----------------------------------------------------------------------------" << endl;
+            cout << "Verify Fake Hash" << endl;
+            bool badVerification = cipher.verifyHash(HM2, sign);
+            if (goodVerification || badVerification) {}
+
+            if (badVerification) throw "Bad verification went wrong!";
+            cout << "----------------------------------------------------------------------------" << endl;
+    } catch(const char* txt) {
+        cout << txt << endl; return 1;
+    } catch (...) { return 1; }
+
     return 0;
 }
 
@@ -85,7 +118,7 @@ int UnitTest_RunAll(){
     int passed = 0, failed = 0;
 
     cout << "Running all unit tests for RSA class" << endl;
-    cout << "------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------" << endl;
 
     cout << "Running Unit Test - Input A..." << endl;
     if (UnitTest_InputA()) { cout << "Unit Test - Input A -> Failed Test \u274c" << endl; failed++;}
@@ -100,7 +133,7 @@ int UnitTest_RunAll(){
     else { cout << "Unit Test - Input C -> Passed Test \u2713" << endl; passed++; }
 
 
-    cout << "------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------" << endl;
     cout << "Finished running all tests" << endl;
     cout << "\u2713 Passed Tests: " << passed << endl;
     cout << "\u274c Failed Tests: " << failed << endl;
