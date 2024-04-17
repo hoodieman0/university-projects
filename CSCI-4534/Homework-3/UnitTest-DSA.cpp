@@ -70,7 +70,6 @@ int UnitTest_InputB(){
             cout << "----------------------------------------------------------------------------" << endl;
             cout << "Verify Fake Hash" << endl;
             bool badVerification = cipher.verifyHash(HM2, sign);
-            if (goodVerification || badVerification) {}
 
             if (badVerification) throw "Bad verification went wrong!";
             cout << "----------------------------------------------------------------------------" << endl;
@@ -111,7 +110,6 @@ int UnitTest_InputC(){
             cout << "----------------------------------------------------------------------------" << endl;
             cout << "Verify Fake Hash" << endl;
             bool badVerification = cipher.verifyHash(HM2, sign);
-            if (goodVerification || badVerification) {}
 
             if (badVerification) throw "Bad verification went wrong!";
             cout << "----------------------------------------------------------------------------" << endl;
@@ -123,13 +121,13 @@ int UnitTest_InputC(){
 }
 
 /// ----------------------------------------------------------------------------
-/// @brief run all the unit tests for the SDES class
+/// @brief run all the unit tests for the DSA class
 /// @return int 0 on pass, 1 on fail 
 /// ----------------------------------------------------------------------------
 int UnitTest_RunAll(){
     int passed = 0, failed = 0;
 
-    cout << "Running all unit tests for RSA class" << endl;
+    cout << "Running all unit tests for DSA class" << endl;
     cout << "----------------------------------------------------------------------------" << endl;
 
     cout << "Running Unit Test - Input A..." << endl;

@@ -25,7 +25,7 @@ int UnitTest_InputB();
 int UnitTest_InputC();
 
 /// ----------------------------------------------------------------------------
-/// @brief run all the unit tests for the RSA class
+/// @brief run all the unit tests for the DSA class
 /// @return int 0 on pass, 1 on fail 
 /// ----------------------------------------------------------------------------
 int UnitTest_RunAll();
