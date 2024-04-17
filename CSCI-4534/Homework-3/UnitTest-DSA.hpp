@@ -7,14 +7,16 @@
 using namespace std;
 
 /// ----------------------------------------------------------------------------
-/// @brief check the RSA class against the attacks and verify correctness
+/// @brief see if input 1 on homework works for DSA class
 /// @return int 0 on pass, 1 on fail 
 /// ----------------------------------------------------------------------------
-int UnitTest_RunHomework();
-
 int UnitTest_InputA();
+
+
 int UnitTest_InputB();
 int UnitTest_InputC();
+
+
 
 /// ----------------------------------------------------------------------------
 /// @brief run all the unit tests for the RSA class
