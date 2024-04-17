@@ -34,7 +34,7 @@ verifyHash(const int hash, const Signature sig) const{
     int w = modInverse(sig.s, q);
     int u1 = (hash * w) % q;
     int u2 = (sig.r * w) % q;
-    int v = (fastModExponentiation(g, u1, p) * fastModExponentiation(publicKey, u2, p)) % q;
+    int v = ((fastModExponentiation(g, u1, p) * fastModExponentiation(publicKey, u2, p)) % p)  % q;
 
     if (verbose || output){
         cout << "w:         " << w << endl;
