@@ -83,7 +83,6 @@ gcdExtended(int a, int b, int* x, int* y){
 /// @note       relies on the idea that modding smaller parts gets same result
 /// @example    a^5 mod n = a^2 mod n * a^2 mod n * a mod n
 /// -----------------------------------------------------------------------------------------------------------
-
 int
 fastModExponentiation(int a, int b, int n) {
     int result = 1;
