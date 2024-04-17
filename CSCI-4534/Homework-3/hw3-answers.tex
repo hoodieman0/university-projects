@@ -1,0 +1,232 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[a4paper, total={6.5in, 10in}]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true
+}
+
+\definecolor{numbercolor}{rgb}{0.11,0.86,0.98}
+\definecolor{stringcolor}{rgb}{0,0.53,0.14}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.98,0.98,0.98}
+\definecolor{keywordcolor}{rgb}{1,0.55,0.1}
+
+\lstdefinestyle{myStyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegray},
+    keywordstyle=\color{keywordcolor},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{stringcolor},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\begin{document}
+\begin{enumerate}
+    % Q1 ----------------------------------------------------------------
+    \item Answers
+    \begin{enumerate}
+        \item No, BG does not have the $K_{C, TGS}$ to decrypt the necessary information.
+        
+        \item If the lifetime of the ticket was too short, the client could not use the service for a meaningful amount of time. If the lifetime of the ticket was too long, the BG could get onto the clients machine and still use the same ticket with reprompting for the password.
+
+        \item Yes, $K_{C, V}$ is used to authenticate both the client and server in round (6). Without the key, this would not be possible with the same configuration.
+    \end{enumerate}
+
+    % Q2 ----------------------------------------------------------------
+    % Double check
+    \item Answers
+    \begin{enumerate}
+        \item See Work
+    \end{enumerate}
+
+    % Q3 ----------------------------------------------------------------
+    \item Answers
+    \begin{enumerate}
+         % (3a) ----------------------------------------------------------------
+        \item Timestamps need less rounds of communication to verify that the message is current. Nonces do not need to have synchronized clocks to work.
+
+        % (3b) ----------------------------------------------------------------
+        % Double check
+        \item \begin{align*}
+           p &= 1 - ({64!}/{64^2 (64-2)!}) \\
+           &= 1 - (63/64) \\
+           &= 1/64
+        \end{align*}
+        
+
+        % (3c) ----------------------------------------------------------------
+        \item PGP has the user create a password and prompts for it every time the private key needs to be used. The private key is encrypted with the SHA hash of the password and is decrypted the same way.
+
+        % (3d) ----------------------------------------------------------------
+        \item No, once the SSL handshake finished, all data sent after the handshake is encrypted with the session key.
+
+        % (3e) ----------------------------------------------------------------
+        \item Cryptographic keys are generated from a random number created each handshake. This number prevents replay attacks from happening.
+        
+    \end{enumerate}
+
+    % Q4 ----------------------------------------------------------------
+    \item Answers
+    \begin{enumerate}
+        % (4a) ----------------------------------------------------------------
+        
+        \item No, BG would calculate $x \Mod{73}$ for each number with a zero in the one's digit place, making the domain the set:
+        \begin{align}\label{set:bad_hash}
+            \{x | 0 \leq x < 910, 10 | x\}
+        \end{align} 
+        This set has $\approx 10^2 = 100$ unique values compared to the original 1000, increasing the amount of possible collisions. This calculation works because $M \Mod{91}$ will always yield a result between 0 and 91. Multiplying that range by 10 makes the possible range for $x$ the same as set \ref{set:bad_hash}. BG would then find an $x$ where $x \Mod{73}$ is equal to $h(M)$ and find an $M'$ that satisfies the equation:
+        \begin{align*}
+            M' = (x / 10) \Mod{91}
+        \end{align*} 
+        BG would then replace $M$ with $M'$. 
+        The following shows a collision for $M = 103$:
+        
+        \begin{align*}
+            M &= 103\\
+            h(M) &= (103 \Mod{91} * 10) \Mod{73}\\
+            &= (12 * 10) \Mod{73}\\
+            &= 120 \Mod{73}\\
+            &= 47
+        \end{align*}
+        
+        \begin{align*}
+            x &= 850 \\
+            h(M) &\stackrel{?}{=} x \Mod{73} = 850 \Mod{73}\\
+            h(M) &= 47 \\
+            M' &= (850 / 10) \Mod{91} = 85
+        \end{align*}
+
+    \end{enumerate}
+\end{enumerate}    
+
+\section*{Programming Problem}
+    \subsection*{Self-critique}
+        The program works as expected. I am curious if there are any restrictions for p, q, or h.
+    
+    \subsection*{Program Output}
+    \begin{lstlisting}[language=bash]
+    hoodz@DESKTOP-IOQ6GTP:/mnt/c/Users/hoodz/Desktop/Coding/CSCI-4534-Cryptography/Homework-3$ ./main
+Running all unit tests for DSA class
+----------------------------------------------------------------------------
+Running Unit Test - Input A...
+g:             2
+publicKey:     4
+----------------------------------------------------------------------------
+Sign Hash:
+r:     2
+s:     1
+----------------------------------------------------------------------------
+Verify Real Hash
+w:         1
+u1:        0
+u2:        2
+v:         2
+v == r:    true
+----------------------------------------------------------------------------
+Verify Fake Hash
+w:         1
+u1:        1
+u2:        2
+v:         1
+v == r:    false
+----------------------------------------------------------------------------
+Unit Test - Input A -> Passed Test 
+Running Unit Test - Input B...
+g:             25
+publicKey:     27
+----------------------------------------------------------------------------
+Sign Hash:
+r:     16
+s:     9
+----------------------------------------------------------------------------
+Verify Real Hash
+w:         18
+u1:        21
+u2:        12
+v:         16
+v == r:    true
+----------------------------------------------------------------------------
+Verify Fake Hash
+w:         18
+u1:        3
+u2:        12
+v:         4
+v == r:    false
+----------------------------------------------------------------------------
+Unit Test - Input B -> Passed Test 
+Running Unit Test - Input C...
+g:             8
+publicKey:     19
+----------------------------------------------------------------------------
+Sign Hash:
+r:     8
+s:     23
+----------------------------------------------------------------------------
+Verify Real Hash
+w:         37
+u1:        7
+u2:        46
+v:         8
+v == r:    true
+----------------------------------------------------------------------------
+Verify Fake Hash
+w:         37
+u1:        21
+u2:        46
+v:         1
+v == r:    false
+----------------------------------------------------------------------------
+Unit Test - Input C -> Passed Test 
+----------------------------------------------------------------------------
+Finished running all tests
+ Passed Tests: 3
+ Failed Tests: 0
+hoodz@DESKTOP-IOQ6GTP:/mnt/c/Users/hoodz/Desktop/Coding/CSCI-4534-Cryptography/Homework-3$ 
+    \end{lstlisting}
+    
+    \newpage
+
+    \lstset{style=myStyle}
+    
+    \subsection*{Human-readable code}
+    \subsubsection*{main.cpp}
+    \lstinputlisting[language=C++]{main.cpp}
+    \subsubsection*{UnitTest-DSA.hpp}
+    \lstinputlisting[language=C++]{UnitTest-DSA.hpp}
+    
+    \subsubsection*{UnitTest-DSA.cpp}
+    \lstinputlisting[language=C++]{UnitTest-DSA.cpp}
+
+    \subsubsection*{DSA.hpp}
+    \lstinputlisting[language=C++]{DSA.hpp}
+
+    \subsubsection*{DSA.cpp}
+    \lstinputlisting[language=C++]{DSA.cpp}
+
+    \subsubsection*{Cryptography.hpp}
+    \lstinputlisting[language=C++]{Cryptography.hpp}
+
+    \subsubsection*{Cryptography.cpp}
+    \lstinputlisting[language=C++]{Cryptography.cpp}
+\end{document}
