@@ -1,5 +1,9 @@
 #include "UnitTest-DSA.hpp"
 
+/// ----------------------------------------------------------------------------
+/// @brief see if input 1 on homework works for DSA class
+/// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
 int UnitTest_InputA(){
     try {
         int p = 7,
@@ -36,6 +40,10 @@ int UnitTest_InputA(){
     return 0;
 }
 
+/// ----------------------------------------------------------------------------
+/// @brief see if input 2 on homework works for DSA class
+/// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
 int UnitTest_InputB(){
     try {
         int p = 47,
@@ -73,6 +81,10 @@ int UnitTest_InputB(){
     return 0;
 }
 
+/// ----------------------------------------------------------------------------
+/// @brief see if custom inputs work for DSA class
+/// @return int 0 on pass, 1 on fail 
+/// ----------------------------------------------------------------------------
 int UnitTest_InputC(){
     try {
         int p = 151,
