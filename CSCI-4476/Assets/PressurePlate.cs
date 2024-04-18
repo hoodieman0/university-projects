@@ -24,12 +24,10 @@ public class PressurePlate : MonoBehaviour
         else if (button.localPosition.y == yMin && !pressed){
             pressed = true;
             target.GetComponent<IInteractable>()?.StartInteract();
-            Debug.Log("Pressed");
         }
         else if (pressed && button.localPosition.y != yMin){
             target.GetComponent<IInteractable>()?.StopInteract();
             pressed = false;
-            Debug.Log("Unpressed");
         }
     }
 }
