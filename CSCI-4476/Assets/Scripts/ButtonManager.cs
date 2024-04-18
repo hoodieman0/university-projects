@@ -18,6 +18,7 @@ public class ButtonManager : MonoBehaviour
 
     void OnValidate(){
         if (target.GetComponent<IInteractable>() == null){
+            target = null;
             Debug.LogError("Not a valid target for interaction!", gameObject);
         }
     }
@@ -33,9 +34,10 @@ public class ButtonManager : MonoBehaviour
             button.GetComponent<Renderer>().material.color = Color.red;
         }
         LeanTween.moveLocalY(button, minY, moveDuration);
-        LeanTween.
+        yield return new WaitForSeconds(moveDuration);
+        LeanTween.moveLocalY(button, originalY, moveDuration);
         if (willReset){
-            StartCoroutine(Reset);
+            StartCoroutine(Reset());
         }
     }
 
