@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance;
     [SerializeField] float cameraSpeedX = 2f;
     [SerializeField] float cameraSpeedY = 2f;
     Vector2 newDir = Vector2.zero;
@@ -11,6 +12,11 @@ public class CameraController : MonoBehaviour
     public bool isLocked = false;
     public bool rotatingItem = false;
     public GameObject objToRotate;
+
+    void Awake(){
+        if (instance == null) instance = this;
+        else Destroy(this);
+    }
 
     void Start(){
         Cursor.lockState = CursorLockMode.Locked;
