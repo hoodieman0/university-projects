@@ -57,7 +57,50 @@
     % Double check
     \item Answers
     \begin{enumerate}
-        \item See Work
+        \item Given the equation $s_i = K^{-1}(H(M_i) + xr) \Mod{q}$ and the variables $H(M_1) = 5$, $H(M_2) = 2$, $H(M_3) = 3$, $s_1 = 3$, $s_2 = 4$, and $q = 11$, $s_3$ is found to be the following:
+        \begin{align*}
+           s_1 = 3 &= K^{-1}(5 + xr) \Mod{11}\\
+           s_2 = 4 &= K^{-1}(2 + xr) \Mod{11}
+        \end{align*}
+            By elimination of a system of equations:
+        \begin{align*}
+            -1 &= 3K^{-1} \Mod{11}\\
+            -1 \times 3^{-1} \Mod{11} &= K^{-1}\\
+            -1 \times 4 \Mod{11} &= K^{-1}\\
+            10 \times 4 \Mod{11} &= K^{-1}\\
+            40 \Mod{11} &= K^{-1}\\
+            7 \Mod{11} &= K^{-1}
+        \end{align*}
+        Then the modular inverse of $K^{-1}$ is found:
+        
+        \begin{align*}
+        K \times K^{-1} &= 1 \Mod{11}\\
+        K \times 7 &= 1 \Mod{11}\\
+        8 \times 7 &= 1 \Mod{11}\\
+        \therefore K &= 8
+        \end{align*}
+
+        To find $xr$, $K^{-1}$ is plugged into the original equation for $s_1$:
+
+        \begin{align*}
+        s_1 = 3 &= 7 (5 + xr) \Mod{11}\\
+        3 \times 7^{-1} &= 5 + xr \Mod{11}\\
+        3 \times 8 &= 5 + xr \Mod{11}\\
+        24 - 5 &= xr \Mod{11}\\
+        19 &= xr \Mod{11}\\
+        8 &= xr
+        \end{align*}
+
+        Using the known value of $xr$, $K^{-1}$, and $H(M_3)$, $s_3$ can be found from the original equation: 
+        
+        \begin{align*}
+        s_3 &= 7 (3 + 8) \Mod{11}\\
+        s_3 &= 7 \times 11 \Mod{11}\\
+        s_3 &= 77 \Mod{11}\\
+        s_3 &= 0
+        \end{align*}
+        
+        
     \end{enumerate}
 
     % Q3 ----------------------------------------------------------------
@@ -68,10 +111,10 @@
 
         % (3b) ----------------------------------------------------------------
         % Double check
-        \item \begin{align*}
-           p &= 1 - ({64!}/{64^2 (64-2)!}) \\
-           &= 1 - (63/64) \\
-           &= 1/64
+        \item 
+        \begin{align*}
+            p &= [{2(2-1)}]/[{2 \times 2^{64}}]\\
+           &= 1/2^{64}
         \end{align*}
         
 
