@@ -12,18 +12,7 @@ public class AnalogColorChange : MonoBehaviour, IInteractable
     }
 
     public void SendAnalogValue(float value){
-        if (value >= 0f && value < 25f) {
-            ren.material.color = colorArr[0];
-        }
-        else if (value >= 25f && value < 50f){
-            ren.material.color = colorArr[1];
-        }
-        else if (value >= 50f && value < 75f){
-            ren.material.color = colorArr[2];
-        }
-        else {
-            ren.material.color = colorArr[3];
-        }
+        ren.material.color = Color.HSVToRGB(value/100, 1, 1);
     }
 
     public void StartInteract(Interactor _){ }
