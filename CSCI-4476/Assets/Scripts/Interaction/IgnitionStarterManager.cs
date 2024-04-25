@@ -15,7 +15,8 @@ public class IgnitionStarterManager : MonoBehaviour
     float timer = 0f;
 
     void OnValidate(){
-        if (target.GetComponent<IInteractable>() == null){
+        if (target == null) return;
+        if (target?.GetComponent<IInteractable>() == null){
             target = null;
             Debug.LogError("Not a valid target for interaction!", gameObject);
         }

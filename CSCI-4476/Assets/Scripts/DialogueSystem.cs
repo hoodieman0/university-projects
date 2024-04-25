@@ -19,11 +19,14 @@ public class DialogueSystem : MonoBehaviour
     void Awake(){
         if (instance == null) {
             instance = this;
-            aS = AudioManager.instance.aS;
         }
         else {
             Destroy(gameObject);
         }
+    }
+
+    void Start(){
+        aS = AudioManager.instance.aS;
     }
 
     void FixedUpdate(){ // could be coroutines
@@ -53,7 +56,6 @@ public class DialogueSystem : MonoBehaviour
         speakerField.text = currentDialogue.speaker;
         subtitleField.text = "";
         subtitleText = currentDialogue.subtitle;
-        Debug.Log(subtitleText);
 
         float timeLength = currentDialogue.audioClip.length;
         float timePerChar = (timeLength * 0.75f) / subtitleText.Length;
