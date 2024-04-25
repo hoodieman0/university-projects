@@ -17,7 +17,7 @@ public class ButtonManager : MonoBehaviour
     float moveDuration = 0.5f;
 
     void OnValidate(){
-        if (target.GetComponent<IInteractable>() == null){
+        if (target != null && target.GetComponent<IInteractable>() == null){
             target = null;
             Debug.LogError("Not a valid target for interaction!", gameObject);
         }

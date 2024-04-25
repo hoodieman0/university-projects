@@ -4,6 +4,14 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+Here's the code for the lever object. 
+I believe the only issue was that the rotation, rotX, was not being set properly to 60 on start, 
+as C# initializes most variables to 0, rather than setting their initial value to the first newly set value, 
+and this can cause issues when using =/+= in Update, an easy thing to miss. 
+Best, Phil
+*/
+
 public class InteractableLever : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject target;
