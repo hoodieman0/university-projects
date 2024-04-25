@@ -50,6 +50,7 @@
         
         \item If the lifetime of the ticket was too short, the client could not use the service for a meaningful amount of time. If the lifetime of the ticket was too long, the BG could get onto the clients machine and still use the same ticket with reprompting for the password.
 
+        % used to authenticate client to server
         \item Yes, $K_{C, V}$ is used to authenticate both the client and server in round (6). Without the key, this would not be possible with the same configuration.
     \end{enumerate}
 
@@ -122,7 +123,7 @@
         \item PGP has the user create a password and prompts for it every time the private key needs to be used. The private key is encrypted with the SHA hash of the password and is decrypted the same way.
 
         % (3d) ----------------------------------------------------------------
-        \item No, once the SSL handshake finished, all data sent after the handshake is encrypted with the session key.
+        \item No, once the SSL handshake is finished, all data sent after the handshake is encrypted with the session key.
 
         % (3e) ----------------------------------------------------------------
         \item Cryptographic keys are generated from a random number created each handshake. This number prevents replay attacks from happening.
