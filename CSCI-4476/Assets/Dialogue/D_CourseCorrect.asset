@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e06164b19ac8c5a43ac841534046789a, type: 3}
-  m_Name: D_Return
+  m_Name: D_CourseCorrect
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  subtitle: HE DID IT
-  speaker: Me
-  delayBefore: 0
-  delayAfter: 0
+  audioClip: {fileID: 8300000, guid: 9df50388d721f73468ca4f5f71d2a9f8, type: 3}
+  subtitle: Papa 2, adjusting course 15 degrees starboard, over.
+  speaker: Papa 2
+  delayBefore: 2
+  delayAfter: 1

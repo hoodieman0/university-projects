@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e06164b19ac8c5a43ac841534046789a, type: 3}
-  m_Name: D_Interrupt
+  m_Name: D_Docking
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  subtitle: Hey, a penny!
-  speaker: Me
-  delayBefore: 0
-  delayAfter: 0
+  audioClip: {fileID: 8300000, guid: 2770150a1e7f483408af613c64b2adef, type: 3}
+  subtitle: Lima 1, you are clear to dock at station Bravo Foxtrot Uniform 12, over.
+  speaker: Traffic Control
+  delayBefore: 1
+  delayAfter: 1

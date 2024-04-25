@@ -8,15 +8,18 @@ public class DialogueSystem : MonoBehaviour
 {
     public static DialogueSystem            instance;
     [SerializeField]    List<Dialogue>      dialogueQueue;
+    [SerializeField]    GameObject          subtitleHolder;
     [SerializeField]    TextMeshProUGUI     speakerField;
     [SerializeField]    TextMeshProUGUI     subtitleField;  // will need coroutines
     Dialogue                                currentDialogue;
     AudioSource                             aS;
+                        string              subtitleText;
+                        bool                playingSubtitles    =   false;
 
     void Awake(){
         if (instance == null) {
             instance = this;
-            aS = GetComponent<AudioSource>();
+            aS = AudioManager.instance.aS;
         }
         else {
             Destroy(gameObject);
@@ -24,23 +27,55 @@ public class DialogueSystem : MonoBehaviour
     }
 
     void FixedUpdate(){ // could be coroutines
-        if (dialogueQueue.Count > 0 && !aS.isPlaying){
-            PlayAudio();
+        if (dialogueQueue.Count > 0 && !aS.isPlaying && !playingSubtitles){
+           StartCoroutine(PlayAudio());
         }
     }
 
-    void PlayAudio(){
+    IEnumerator PlayAudio(){
+        playingSubtitles = true;
         currentDialogue = dialogueQueue[0];
-        aS.PlayOneShot(currentDialogue.audioClip);
         dialogueQueue.Remove(currentDialogue);      // pop front current dialogue
+        
+        yield return new WaitForSeconds(currentDialogue.delayBefore);
+        subtitleHolder.SetActive(true);
+        
+        aS.PlayOneShot(currentDialogue.audioClip);
+
+        yield return StartCoroutine(StaggerSubtitleText());
+
+        yield return new WaitForSeconds(currentDialogue.delayAfter);
+        subtitleHolder.SetActive(false);
+        playingSubtitles = false;
+    }
+
+    IEnumerator StaggerSubtitleText(){
+        speakerField.text = currentDialogue.speaker;
+        subtitleField.text = "";
+        subtitleText = currentDialogue.subtitle;
+        Debug.Log(subtitleText);
+
+        float timeLength = currentDialogue.audioClip.length;
+        float timePerChar = (timeLength * 0.75f) / subtitleText.Length;
+
+
+        foreach (char c in subtitleText){
+            subtitleField.text += c;
+            yield return new WaitForSeconds(timePerChar);
+        }
+        yield return new WaitForSeconds(timeLength * 0.25f);
+        subtitleText = "";
     }
 
     public void Interrupt(List<Dialogue> dialogues){
         aS.Stop();
-        // clear subtitles
+        StopAllCoroutines(); // clear subtitles
+        subtitleField.text = "";
+        subtitleText = "";
         dialogueQueue.Insert(0, currentDialogue);   // bug where return plays before interrupt
         QueuePushFront(dialogues);        
-        PlayAudio();                                // Get ahead of race condition
+        StartCoroutine(PlayAudio());                                // Get ahead of race condition
+
     }
 
     public void QueuePushFront(List<Dialogue> dialogues){

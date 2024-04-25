@@ -7,7 +7,7 @@ public class AddDialogueOnTrigger : MonoBehaviour
     [SerializeField] List<Dialogue> dialogues;
 
     void OnTriggerEnter(Collider other){
-        if (other.CompareTag("player")){
+        if (other.CompareTag("Player")){
             DialogueSystem.instance.Interrupt(dialogues);
         }
     }
