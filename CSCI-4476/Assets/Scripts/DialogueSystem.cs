@@ -59,6 +59,7 @@ public class DialogueSystem : MonoBehaviour
 
         float timeLength = currentDialogue.audioClip.length;
         float timePerChar = (timeLength * 0.75f) / subtitleText.Length;
+        // float timePerChar = timeLength  / (subtitleText.Length * dialogueSpeed);
 
 
         foreach (char c in subtitleText){
