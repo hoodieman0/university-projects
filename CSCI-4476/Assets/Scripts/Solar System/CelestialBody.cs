@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Source: Sebastian Lague
+    https://github.com/SebLague/Solar-System/tree/Episode_01
+    Accessed 3 May 2024
+*/
+
 [ExecuteInEditMode]
 [RequireComponent(typeof(Rigidbody))]
 public class CelestialBody : MonoBehaviour
