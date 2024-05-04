@@ -29,7 +29,8 @@ public class CinematicCamera : MonoBehaviour
         cineCamera.LookAt = target;
 
         for(int i = 0; i < dollyLocations.Length; i++){
-            LeanTween.move(gameObject, dollyLocations[i].position, duration);
+            Debug.Log(dollyLocations[i].position);
+            LeanTween.move(gameObject, dollyLocations[i].position, .5f);
             yield return new WaitForSeconds(duration);
         }
         yield return new WaitForSeconds(duration * 2f);
