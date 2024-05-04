@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager          instance;
     [SerializeField]    Transform           cameraPos;
     [SerializeField]    float               dropDistance            =   2f;
-                        GameObject          inventoryItem;
+    public              GameObject          inventoryItem;
     public              int                 currencyCount           =   0;
     
     // head, feet, torso, lefthand, righthand
