@@ -15,8 +15,8 @@ public class InventoryManager : MonoBehaviour
     public              int                 currencyCount           =   0;
     
     // head, feet, torso, lefthand, righthand
-    [SerializeField]    Transform[]         equipmentSlots;
-    [SerializeField]    GameObject[]        equipmentGameObj;
+    public    Transform[]         equipmentSlots;
+    public    GameObject[]        equipmentGameObj;
 
 
     void OnEnable(){
