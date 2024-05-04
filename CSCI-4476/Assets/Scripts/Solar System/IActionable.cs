@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IAction
+public interface IActionable
 {
     public void StartAction();
     public void StopAction();
