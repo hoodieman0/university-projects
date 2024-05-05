@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cuttable : MonoBehaviour
 {
+    public GameObject disablableGO;
    public   float   healthPoints    =   100f;
    public void DealDamage(float damage){
         healthPoints -= damage;
@@ -15,6 +16,6 @@ public class Cuttable : MonoBehaviour
    public void ObjectCut(){
         // play animation
         // play sound
-        gameObject.SetActive(false);
+        disablableGO.SetActive(false);
    }
 }

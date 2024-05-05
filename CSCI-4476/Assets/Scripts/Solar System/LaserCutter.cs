@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LaserCutter : MonoBehaviour, IActionable
 {
+    public Transform    cam;
     public  Color       laserColor  =   Color.red;
     public  GameObject  laserGO;
             bool        isFiring    =   false;
@@ -23,7 +24,7 @@ public class LaserCutter : MonoBehaviour, IActionable
 
     void FixedUpdate(){
         if (!isFiring) return;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, cutDistance))
+        if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, cutDistance))
         {
             // If the object has the interface
             if (hit.transform.gameObject.GetComponent<Cuttable>() != null) {
