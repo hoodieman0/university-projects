@@ -6,12 +6,14 @@ public class Welder : MonoBehaviour, IActionable
 {
     public float weldSpeed = 20f;
     public float weldDistance = 30f;
+    public  AudioClip clip;
     bool isWelding = false;
     public void StartAction(){
         isWelding = true;
     }
     void FixedUpdate(){
         if (!isWelding) return;
+        if (!AudioManager.instance.aS.isPlaying) AudioManager.instance.aS.PlayOneShot(clip);
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, weldDistance))
         {
             // If the object has the interface
@@ -29,5 +31,6 @@ public class Welder : MonoBehaviour, IActionable
     }
     public void StopAction(){
         isWelding = false;
+        if(AudioManager.instance.aS.isPlaying) AudioManager.instance.aS.Stop();
     }
 }
