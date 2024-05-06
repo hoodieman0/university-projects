@@ -19,4 +19,4 @@ MonoBehaviour:
   collisionSound: {fileID: 0}
   slot: 4
   posOffset: {x: 0, y: 0, z: 0}
-  rotOffset: {x: 90, y: 0, z: 0}
+  rotOffset: {x: 0, y: 90, z: 0}
