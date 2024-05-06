@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06164b19ac8c5a43ac841534046789a, type: 3}
   m_Name: D_Guess
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  subtitle: 
-  speaker: 
-  delayBefore: 0
-  delayAfter: 0
+  audioClip: {fileID: 8300000, guid: ca72351badca96b40b50be01fc206955, type: 3}
+  subtitle: I don't know. Some space junk, probably.
+  speaker: Unknown 2
+  delayBefore: 2
+  delayAfter: 1

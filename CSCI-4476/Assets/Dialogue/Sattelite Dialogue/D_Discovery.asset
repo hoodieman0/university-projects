@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06164b19ac8c5a43ac841534046789a, type: 3}
   m_Name: D_Discovery
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  subtitle: Any idea what's floating over there?
+  audioClip: {fileID: 8300000, guid: c5afff22f7a4b724c97b6254679d37ba, type: 3}
+  subtitle: Any idea what that floating thing is over there?
   speaker: Unknown 1
-  delayBefore: 0
-  delayAfter: 0
+  delayBefore: 1
+  delayAfter: 1

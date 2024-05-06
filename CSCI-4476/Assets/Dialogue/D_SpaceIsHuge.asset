@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06164b19ac8c5a43ac841534046789a, type: 3}
   m_Name: D_SpaceIsHuge
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  subtitle: 
-  speaker: 
-  delayBefore: 0
-  delayAfter: 0
+  audioClip: {fileID: 8300000, guid: 2a1b40218de8db840bb829de40d53042, type: 3}
+  subtitle: Man, space is just, big...
+  speaker: Me
+  delayBefore: 1
+  delayAfter: 2

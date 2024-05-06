@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06164b19ac8c5a43ac841534046789a, type: 3}
   m_Name: D_Moving
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  subtitle: 
-  speaker: 
-  delayBefore: 0
-  delayAfter: 0
+  audioClip: {fileID: 8300000, guid: 047b3c71fdb7a254680327de4e27f4dc, type: 3}
+  subtitle: Well I'm going to check it out real quick. Don't drift away while I'm
+    gone.
+  speaker: Unknown 1
+  delayBefore: 1
+  delayAfter: 1
