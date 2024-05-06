@@ -11,12 +11,18 @@ public class MovementController : MonoBehaviour
     float speed = 50000f;
 
     public bool isLocked = false;
+    bool movingUp = false;
+    bool movingDown = false;
 
     void Awake(){
         rig = GetComponent<Rigidbody>();
     }
     void OnEnable(){
         InputManager.movement += Move;
+        InputManager.moveUpPerformed += MoveUpPerformed;
+        InputManager.moveDownPerformed += MoveDownPerformed;
+        InputManager.moveUpCanceled += MoveUpCanceled;
+        InputManager.moveDownCanceled += MoveDownCanceled;
     }
     
 
@@ -24,10 +30,26 @@ public class MovementController : MonoBehaviour
         this.moveDir = moveDir;
     }
 
+    void MoveUpPerformed(){
+        movingUp = true;
+    }
+    void MoveUpCanceled(){
+        movingUp = false;
+    }
+
+    void MoveDownPerformed(){
+        movingDown = true;
+    }
+    void MoveDownCanceled(){
+        movingDown = false;
+    }
+
     void FixedUpdate(){
         if (moveDir != Vector2.zero && !isLocked){
             rig.AddForce((sprintMultiplier * speed * Time.fixedDeltaTime) * (transform.forward * moveDir.y + transform.right * moveDir.x), ForceMode.Force);
         }
+        if (movingUp && !isLocked) rig.AddForce((sprintMultiplier * speed * Time.fixedDeltaTime) * transform.up.normalized, ForceMode.Force);
+        if (movingDown && !isLocked) rig.AddForce((sprintMultiplier * speed * Time.fixedDeltaTime) * -transform.up.normalized, ForceMode.Force);
     }
 
     public void SetSprintSpeed(float s){
@@ -39,5 +61,9 @@ public class MovementController : MonoBehaviour
 
     void OnDisable(){
         InputManager.movement -= Move;
+        InputManager.moveUpPerformed -= MoveUpPerformed;
+        InputManager.moveDownPerformed -= MoveDownPerformed;
+        InputManager.moveUpCanceled -= MoveUpCanceled;
+        InputManager.moveDownCanceled -= MoveDownCanceled;
     }
 }

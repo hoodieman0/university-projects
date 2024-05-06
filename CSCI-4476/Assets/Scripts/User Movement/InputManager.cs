@@ -10,6 +10,10 @@ public class InputManager : MonoBehaviour
     public  static  FirstPerson         actions;
     public  static  Action<Vector2>     movement;
     public  static  Action<Vector2>     mouseLook;
+    public  static  Action              moveUpPerformed;
+    public  static  Action              moveUpCanceled;
+    public  static  Action              moveDownPerformed;
+    public  static  Action              moveDownCanceled;
     public  static  Action              interactAction;
     public  static  Action              stopInteractAction;
     public  static  Action<int>         inventoryAction;
@@ -58,6 +62,11 @@ public class InputManager : MonoBehaviour
 
         actions.InGame.Pickup.performed += InvokePickup;
 
+        actions.InGame.MoveUp.performed += InvokeMoveUpPerformed;
+        actions.InGame.MoveUp.canceled += InvokeMoveUpCanceled;
+        actions.InGame.MoveDown.performed += InvokeMoveDownPerformed;
+        actions.InGame.MoveDown.canceled += InvokeMoveDownCanceled;
+
     }
 
     void InvokeMovemt(InputAction.CallbackContext ctx){
@@ -105,6 +114,20 @@ public class InputManager : MonoBehaviour
         Pickup?.Invoke();
     }
 
+    void InvokeMoveUpPerformed(InputAction.CallbackContext ctx){
+        moveUpPerformed?.Invoke();
+    }
+    void InvokeMoveUpCanceled(InputAction.CallbackContext ctx){
+        moveUpCanceled?.Invoke();
+    }
+
+    void InvokeMoveDownPerformed(InputAction.CallbackContext ctx){
+        moveDownPerformed?.Invoke();
+    }
+    void InvokeMoveDownCanceled(InputAction.CallbackContext ctx){
+        moveDownCanceled?.Invoke();
+    }
+
     void OnDisable(){
         // Movement
         actions.InGame.Movement.performed -= InvokeMovemt;
@@ -130,5 +153,9 @@ public class InputManager : MonoBehaviour
 
         actions.InGame.Pickup.performed -= InvokePickup;
 
+        actions.InGame.MoveUp.performed -= InvokeMoveUpPerformed;
+        actions.InGame.MoveDown.performed -= InvokeMoveDownPerformed;
+        actions.InGame.MoveUp.canceled -= InvokeMoveUpCanceled;
+        actions.InGame.MoveDown.canceled -= InvokeMoveDownCanceled;
     }
 }
