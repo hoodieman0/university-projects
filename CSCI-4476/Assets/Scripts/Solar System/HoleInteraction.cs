@@ -8,7 +8,10 @@ public class HoleInteraction : MonoBehaviour, IInteractable
     public bool         isCovered = false;
 
     public void StartInteract(Interactor interactor){
-        if (!isCovered && InventoryManager.instance.inventoryItem?.GetComponent<Pickupable>().getSO().objName == "Hull Plate"){
+        if (!isCovered && InventoryManager.instance.inventoryItem != null){
+            // this is not the item needed
+            if (InventoryManager.instance.inventoryItem?.GetComponent<Pickupable>().getSO().objName != "Hull Plate") return; 
+
             // cache object
             GameObject plate = InventoryManager.instance.inventoryItem;
 

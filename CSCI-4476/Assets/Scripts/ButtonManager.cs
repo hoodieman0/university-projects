@@ -11,7 +11,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] float resetDuration;
     bool isPressed;
-    bool willReset;
+    [SerializeField] bool willReset = false;
     float originalY = 1f;
     float minY = 0.51f;
     float moveDuration = 0.5f;
@@ -44,5 +44,7 @@ public class ButtonManager : MonoBehaviour
     IEnumerator Reset(){
         yield return new WaitForSeconds(resetDuration);
         isPressed = false;
+        button.GetComponent<Renderer>().material.color = Color.red;
+
     }
 }
