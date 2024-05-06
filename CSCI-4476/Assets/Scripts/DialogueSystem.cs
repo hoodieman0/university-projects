@@ -38,6 +38,7 @@ public class DialogueSystem : MonoBehaviour
     IEnumerator PlayAudio(){
         playingSubtitles = true;
         currentDialogue = dialogueQueue[0];
+        if (currentDialogue == null) yield break;
         dialogueQueue.Remove(currentDialogue);      // pop front current dialogue
         
         yield return new WaitForSeconds(currentDialogue.delayBefore);
@@ -49,6 +50,7 @@ public class DialogueSystem : MonoBehaviour
 
         yield return new WaitForSeconds(currentDialogue.delayAfter);
         subtitleHolder.SetActive(false);
+        currentDialogue = null;
         playingSubtitles = false;
     }
 
@@ -59,6 +61,7 @@ public class DialogueSystem : MonoBehaviour
 
         float timeLength = currentDialogue.audioClip.length;
         float timePerChar = (timeLength * 0.75f) / subtitleText.Length;
+        // float timePerChar = timeLength  / (subtitleText.Length * dialogueSpeed);
 
 
         foreach (char c in subtitleText){

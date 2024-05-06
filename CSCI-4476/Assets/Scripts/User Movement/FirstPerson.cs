@@ -116,6 +116,24 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""2cf19cf6-122e-4147-9343-065a88f1025d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""6cdb4de3-7044-4b29-8c47-0e15573854f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -316,6 +334,28 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
                     ""action"": ""Pickup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a59b2f2c-36e2-41c0-ab7a-73aab51ce2f9"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1c627e4-12cc-4d98-bc9c-866671ea6108"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -340,6 +380,8 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         m_InGame_MainAction = m_InGame.FindAction("MainAction", throwIfNotFound: true);
         m_InGame_SecondAction = m_InGame.FindAction("SecondAction", throwIfNotFound: true);
         m_InGame_Pickup = m_InGame.FindAction("Pickup", throwIfNotFound: true);
+        m_InGame_MoveUp = m_InGame.FindAction("MoveUp", throwIfNotFound: true);
+        m_InGame_MoveDown = m_InGame.FindAction("MoveDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -411,6 +453,8 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_MainAction;
     private readonly InputAction m_InGame_SecondAction;
     private readonly InputAction m_InGame_Pickup;
+    private readonly InputAction m_InGame_MoveUp;
+    private readonly InputAction m_InGame_MoveDown;
     public struct InGameActions
     {
         private @FirstPerson m_Wrapper;
@@ -425,6 +469,8 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         public InputAction @MainAction => m_Wrapper.m_InGame_MainAction;
         public InputAction @SecondAction => m_Wrapper.m_InGame_SecondAction;
         public InputAction @Pickup => m_Wrapper.m_InGame_Pickup;
+        public InputAction @MoveUp => m_Wrapper.m_InGame_MoveUp;
+        public InputAction @MoveDown => m_Wrapper.m_InGame_MoveDown;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -464,6 +510,12 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
             @Pickup.started += instance.OnPickup;
             @Pickup.performed += instance.OnPickup;
             @Pickup.canceled += instance.OnPickup;
+            @MoveUp.started += instance.OnMoveUp;
+            @MoveUp.performed += instance.OnMoveUp;
+            @MoveUp.canceled += instance.OnMoveUp;
+            @MoveDown.started += instance.OnMoveDown;
+            @MoveDown.performed += instance.OnMoveDown;
+            @MoveDown.canceled += instance.OnMoveDown;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -498,6 +550,12 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
             @Pickup.started -= instance.OnPickup;
             @Pickup.performed -= instance.OnPickup;
             @Pickup.canceled -= instance.OnPickup;
+            @MoveUp.started -= instance.OnMoveUp;
+            @MoveUp.performed -= instance.OnMoveUp;
+            @MoveUp.canceled -= instance.OnMoveUp;
+            @MoveDown.started -= instance.OnMoveDown;
+            @MoveDown.performed -= instance.OnMoveDown;
+            @MoveDown.canceled -= instance.OnMoveDown;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -536,5 +594,7 @@ public partial class @FirstPerson: IInputActionCollection2, IDisposable
         void OnMainAction(InputAction.CallbackContext context);
         void OnSecondAction(InputAction.CallbackContext context);
         void OnPickup(InputAction.CallbackContext context);
+        void OnMoveUp(InputAction.CallbackContext context);
+        void OnMoveDown(InputAction.CallbackContext context);
     }
 }

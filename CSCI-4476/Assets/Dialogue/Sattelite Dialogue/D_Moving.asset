@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e06164b19ac8c5a43ac841534046789a, type: 3}
+  m_Name: D_Moving
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 047b3c71fdb7a254680327de4e27f4dc, type: 3}
+  subtitle: Well I'm going to check it out real quick. Don't drift away while I'm
+    gone.
+  speaker: Unknown 1
+  delayBefore: 1
+  delayAfter: 1
