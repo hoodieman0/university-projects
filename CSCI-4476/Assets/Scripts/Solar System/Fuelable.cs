@@ -9,6 +9,7 @@ public class Fuelable : MonoBehaviour, IInteractable
     public float currentFuel = 250f;
     bool isOccupied = false;
     public bool isFull = false;
+    public AudioClip clip;
 
     void Awake(){
         isFull = currentFuel > fuelLimit ? true : false;
@@ -27,6 +28,7 @@ public class Fuelable : MonoBehaviour, IInteractable
     void NotifyFullTank(){
         // play animation
         // play sound
+        AudioManager.instance.aS.PlayOneShot(clip);
         Debug.Log("The tank is full!");
     }
 

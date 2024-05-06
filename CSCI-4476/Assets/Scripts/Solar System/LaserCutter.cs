@@ -7,6 +7,7 @@ public class LaserCutter : MonoBehaviour, IActionable
     public Transform    cam;
     public  Color       laserColor  =   Color.red;
     public  GameObject  laserGO;
+    public  AudioClip   clip;
             bool        isFiring    =   false;
     public  bool        isHitting   =   false;
     public  float       cutDamage   =   25f;
@@ -24,6 +25,7 @@ public class LaserCutter : MonoBehaviour, IActionable
 
     void FixedUpdate(){
         if (!isFiring) return;
+        if (!AudioManager.instance.aS.isPlaying) AudioManager.instance.aS.PlayOneShot(clip);
         if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, cutDistance))
         {
             // If the object has the interface
@@ -43,5 +45,6 @@ public class LaserCutter : MonoBehaviour, IActionable
     public void StopAction(){
         laserGO.SetActive(false);
         isFiring = false;
+        if(AudioManager.instance.aS.isPlaying) AudioManager.instance.aS.Stop();
     }
 }
