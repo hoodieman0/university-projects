@@ -42,7 +42,7 @@ public class Fuelable : MonoBehaviour, IInteractable
             nozzle.transform.parent = nozzleFillPosition;
 
             // reset its rotation
-            nozzle.transform.rotation = Quaternion.identity;
+            nozzle.transform.rotation = nozzleFillPosition.rotation;
 
             // remove nozzle from inventory item
             InventoryManager.instance.equipmentGameObj[slot] = null;
