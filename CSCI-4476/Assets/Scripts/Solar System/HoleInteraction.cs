@@ -14,6 +14,7 @@ public class HoleInteraction : MonoBehaviour, IInteractable
 
             // set plate's parent to hole slot and move it
             plate.transform.position = holePosition.position;
+            plate.transform.rotation = holePosition.rotation;
             plate.transform.parent = holePosition;
 
             // reenable plate and remove it from inventory item
