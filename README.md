@@ -1,2 +1,2 @@
 # university-projects
-The collection of repositories I created for my university projects.
+The collection of repositories I created for my university projects. Since I created all this code while I was learning to program, I will not vouch for is validitiy or correctness. These projects are left as is from when the class was taken, only being reorganized later into this repository. Not all classes are repesented here, but it covers the majority of my coding history in school.

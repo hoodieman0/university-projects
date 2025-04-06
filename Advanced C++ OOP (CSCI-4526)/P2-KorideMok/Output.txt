@@ -1,0 +1,112 @@
+"C:\Users\hoodi\OneDrive\Documents\1New Haven\5_Fifth Semester\CSCI-4526 Advanced C++\CSCI-4526-Sudoku-Project-Master\cmake-build-debug\P2-KorideMok.exe"
+
+----------------------------------------------------------------
+        James Mok and Neelakanta Bharadwaj Koride
+        CSCI-4526: Advanced C++
+        Sat Sep 17 2022 23:21:55
+----------------------------------------------------------------
+~Begin State Test~
+---------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+Testing the State class from Square-KorideMok.hpp
+Expected Output:
+1. Default values
+2. Empty markable State
+3. Numbered unmarkable State
+1. Default Value Test
+Default State Constructor
+~Before~
+value: - fixed: false possibilities: 123456789!Mark 1!
+~After~
+value: 1 fixed: false possibilities: ---------
+Default State Destructor
+
+2. Empty State Test
+~Before~
+value: - fixed: false possibilities: 123456789!Mark 1!
+~After~
+value: 1 fixed: false possibilities: ---------
+Default State Destructor
+
+3. Fixed State Test
+~Before~
+value: 9 fixed: true possibilities: ---------!Mark 1!
+Cannot Add Value
+~After~
+value: 9 fixed: true possibilities: ---------
+Default State Destructor
+----------------------------------------------------------------------------------------------------------
+Default State Destructor
+Default State Destructor
+Default State Destructor
+
+~State Test Completed Successfully~
+---------------------------------------------------
+~Begin Square Test~
+---------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+Testing the Square class from Square-KorideMok.hpp
+Expected Output:
+1. Default values
+2. Square [5,1] is created and marked
+3. Square [7,3] is created and unmarkable
+4. Square[9, 5] is created and validates input
+
+1. Default Value Test
+Default State Constructor
+Square Default Constructor
+~Before~
+Square [0, 0] value: - fixed: false possibilities: 123456789
+!Mark 5!
+~After~
+Square [0, 0] value: 5 fixed: false possibilities: ---------
+Destroying Square 0, 0
+Default State Destructor
+
+2. Markable Square Test
+Constructing Square5, 1
+~Before~
+Square [5, 1] value: - fixed: false possibilities: 123456789
+!Mark 5!
+~After~
+Square [5, 1] value: 5 fixed: false possibilities: ---------
+Destroying Square 5, 1
+Default State Destructor
+
+3. Unmarkable Square Test
+Constructing Square7, 3
+~Before~
+Square [7, 3] value: 5 fixed: true possibilities: ---------
+!Mark 5!
+Cannot Add Value
+~After~
+Square [7, 3] value: 5 fixed: true possibilities: ---------
+Destroying Square 7, 3
+Default State Destructor
+
+4. Input Validation Test
+Constructing Square9, 5
+~Before~
+Square [9, 5] value: - fixed: false possibilities: 123456789
+!Mark 0!
+Invalid Input
+!Mark ~!
+Invalid Input
+~After~
+Square [9, 5] value: - fixed: false possibilities: 123456789
+----------------------------------------------------------------------------------------------------------
+Destroying Square 9, 5
+Default State Destructor
+Destroying Square 7, 3
+Default State Destructor
+Destroying Square 5, 1
+Default State Destructor
+Destroying Square 0, 0
+Default State Destructor
+
+~Square Test Completed Successfully~
+---------------------------------------------------
+
+Normal termination.
+
+Process finished with exit code 0
